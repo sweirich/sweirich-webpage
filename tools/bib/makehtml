@@ -2,7 +2,7 @@
 
 # This script generates a papers web page from the source bibtex file(s):
 
-SOURCEBIB=../../../bibtex/weirich.bib
+SOURCEBIB=../../content/bibtex/weirich.bib
 
 # it divides these files up into the following files, using the bibextract
 # utility.
