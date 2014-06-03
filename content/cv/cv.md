@@ -1,7 +1,6 @@
 Stephanie Weirich 
 ==================
 
-
 Contact Info
 ------------
 School of Engineering and Science  
@@ -37,16 +36,18 @@ Honors
   * CRA-W Distributed Mentorship Project Award, 1996.
   * Microsoft Technical Scholar, 1995--1996.
 
+Technical Society Membership
+----------------------------
+  * Association for Computing Machinery, Lifetime member
+  * ACM SIGPLAN, 1998-present
+  * ACM SIGLOG, 2014-present
+  * IFIP Working Group 2.8 (Functional Programming), 2003-present
+  * IFIP Working Group 2.11 (Program Generation), 2007-2012
+
 Teaching Experience
 -------------------
   * CIS 120 (Programming Languages and Techniques I)
   * CIS 552 (Advanced Programming)
-  * CIS 670 (Dependent Type Systems)
+  * CIS 670/700 (Advanced topics in Programming Languages)
   * CIS 500 (Software Foundations)
   * CIS 341 (Programming Languages)
-  
-  
-  
----
-last updated: June 2, 2014
-
