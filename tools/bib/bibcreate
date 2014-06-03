@@ -1,7 +1,6 @@
 #!/bin/sh
 
-rm -f publications.bib
-cat bibdefs.bib weirich.bib > publications.bib
+cat ../../bibtex/weirich.bib > publications.bib
 
 bibtex2html -debug -m "bibdefs.bib" -d -r -nodoc -t "<a
 href=http://www.cis.upenn.edu/~sweirich> Stephanie Weirich's</a>

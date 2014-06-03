@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# This script generates a papers web page from two source bibtex files:
-# - ../bibdefs.bib and ../weirich.bib
+# This script generates a papers web page from the source bibtex file(s):
+
+SOURCEBIB=../../../bibtex/weirich.bib
+
 # it divides these files up into the following files, using the bibextract
 # utility.
 #  - journal.bib 
+#  - chapters.bib
 #  - thesis.bib
 #  - conf.bib
 #  - unpub.bib
@@ -29,12 +32,12 @@ export TMPDIR=.
 FLAGS="-s boldtitle -nodoc -d -r -both -nobibsource -nf ps PS -nf pdf PDF -nf projecturl Project"
 
 ###### Create source files
-bib2bib -c '$type = "ARTICLE"'  ../bibdefs.bib ../weirich.bib > journal.bib
-bib2bib -c '$type = "INCOLLECTION"'  ../bibdefs.bib ../weirich.bib > chapters.bib
-bib2bib -c '$type = "INPROCEEDINGS"' ../bibdefs.bib ../weirich.bib > conf.bib
-bib2bib -c '$type = "UNPUBLISHED"' ../bibdefs.bib ../weirich.bib > unpub.bib
-bib2bib -c '$type = "PHDTHESIS"' ../bibdefs.bib ../weirich.bib > thesis.bib
-bib2bib -c '$type = "TECHREPORT"' ../bibdefs.bib ../weirich.bib > techreport.bib
+bib2bib -c '$type = "ARTICLE"'  $SOURCEBIB > journal.bib
+bib2bib -c '$type = "INCOLLECTION"'  $SOURCEBIB > chapters.bib
+bib2bib -c '$type = "INPROCEEDINGS"' $SOURCEBIB > conf.bib
+bib2bib -c '$type = "UNPUBLISHED"' $SOURCEBIB > unpub.bib
+bib2bib -c '$type = "PHDTHESIS"' $SOURCEBIB > thesis.bib
+bib2bib -c '$type = "TECHREPORT"' $SOURCEBIB > techreport.bib
 
 ###### Header information
 touch publications.html
@@ -173,12 +176,12 @@ echo "Last modified: " >> abstracts.html
 date >> abstracts.html
 echo "</font></td></tr></table></table></center></html>" >> abstracts.html
 
-## create public bib file
-cat ../bibdefs.bib ../weirich.bib > weirich.bib
 
 ## clean up temporary files
 rm journal.bib
 # rm journal.html
+rm chapters.bib
+rm chapters.html
 rm thesis.bib
 rm thesis.html
 rm conf.bib
