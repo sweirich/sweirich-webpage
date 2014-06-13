@@ -1,40 +1,34 @@
 %% BIBTEX %%
+
 @InProceedings{breitner:safe-coercions,
   author = 		  {Joachim Breitner and Richard A. Eisenberg and Simon {Peyton Jones} and Stephanie Weirich},
-  title = 	  {Safe Zero-Cost Coercions for Haskell},
+  title = 	  {Safe Zero-Cost Coercions for {Haskell}},
   booktitle = {The 19th ACM SIGPLAN International Conference on Functional Programming},
   year = 	  2014,
   series = 	  {ICFP '14},
   month = 	  sep,
   note = 	  {To appear.},
-  plclub = {yes}
+  plclub = {yes},
+  pdf =          "http://www.seas.upenn.edu/~sweirich/papers/coercible.pdf"
 }
 
-@article{plmw12,
-  author = 	  {Kathleen Fisher and Ronald Garcia and Stephanie Weirich},
-  title = 	  {Nourishing the future of the field: the programming language mentoring workshop 2012},
-  booktitle =    {ACM SIGPLAN Notices - Supplemental issue}, 
-  journal =      {SIGPLAN Not.},
-  month = 	  {April},
-  year = 	  2012,
-  volume = 47,
-  number = {4a},
-  issue_date = {April 2012},
-  issue_description = {Supplemental issue},
-  publisher = {ACM}, 
-  address = {New York, NY, USA},
-  doi =   {10.1145/2442776.2448985}, 
-  pages = {14--15},
-  plclub = {yes}
+
+@TechReport{breitner:safe-coercions-extended,
+  author = 		  {Joachim Breitner and Richard A. Eisenberg and Simon {Peyton Jones} and Stephanie Weirich},
+  title = 		  {Safe Zero-cost Coercions for {Haskell} (Extended Version)},
+  institution =  {Univ. of Pennsylvania},
+  year = 		  2014,
+  number = 	     {MS-CIS-14-07},
+  pdf =          "http://www.seas.upenn.edu/~sweirich/papers/coercible-extended.pdf"
 }
+
 
 @InProceedings{eisenberg:closed-tf,
   author = 	  {Richard A. Eisenberg and Dimitrios Vytiniotis and Simon {Peyton Jones} and Stephanie Weirich},
-  title = 	  {Closed type families with overlapping equations.},
+  title = 	  {Closed type families with overlapping equations},
   booktitle = {POPL 2014: 41st ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages},
   year = 	  2014,
   address =   {San Diego, CA, USA},
-  annote = 	  {To appear.},
   plclub =    {yes},
   pdf =       "http://www.seas.upenn.edu/~sweirich/papers/popl14-axioms.pdf",
   extended =  "http://www.seas.upenn.edu/~sweirich/papers/popl14-axioms-extended.pdf"
@@ -42,9 +36,10 @@
 
 @TechReport{eisenberg:closed-tf-extended,
   author = 	  {Richard A. Eisenberg and Dimitrios Vytiniotis and Simon {Peyton Jones} and Stephanie Weirich},
-  title = 	  {Closed type families with overlapping equations (Extended version).},
+  title = 	  {Closed type families with overlapping equations (Extended version)},
   year = 	  2013,
   plclub =    {yes},
+  pages =     {671--683},
   pdf =       "http://www.seas.upenn.edu/~sweirich/papers/popl14-axioms-extended.pdf",
   institution = {University of Pennsylvania}, 
   number =    {MS-CIS-13-10}
@@ -56,7 +51,7 @@
   booktitle = {POPL 2014: 41st ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages},
   year = 	  2014,
   address =   {San Diego, CA, USA},
-  annote = 	  {To appear.}, 
+  pages =     {33--45},
   plclub =    {yes}, 
   pdf =       "http://www.seas.upenn.edu/~sweirich/papers/popl14-trellys.pdf",
   extended =  "http://www.seas.upenn.edu/~sweirich/papers/popl14-trellys-long.pdf"
@@ -72,7 +67,7 @@
 
 @InProceedings{weirich:dwk,
   author = 	  {Stephanie Weirich and Justin Hsu and Richard A. Eisenberg},
-  title = 	  {System FC with explicit kind equality},
+  title = 	  {System {FC} with explicit kind equality},
   booktitle = {Proceedings of The 18th ACM SIGPLAN International Conference on Functional Programming},
   year = 	  2013,
   series = 	  {ICFP '13},
@@ -165,6 +160,24 @@ semantics},
   plclub    = {yes}
 }
 
+@article{plmw12,
+  author = 	  {Kathleen Fisher and Ronald Garcia and Stephanie Weirich},
+  title = 	  {Nourishing the future of the field: the programming language mentoring workshop 2012},
+  booktitle =    {ACM SIGPLAN Notices - Supplemental issue}, 
+  journal =      {SIGPLAN Not.},
+  month = 	  {April},
+  year = 	  2012,
+  volume = 47,
+  number = {4a},
+  issue_date = {April 2012},
+  issue_description = {Supplemental issue},
+  publisher = {ACM}, 
+  address = {New York, NY, USA},
+  doi =   {10.1145/2442776.2448985}, 
+  pages = {14--15},
+  plclub = {yes}
+}
+
 @article{DBLP:journals/jfp/AcarCW12,
   author    = {Umut A. Acar and
                James Cheney and
@@ -252,6 +265,7 @@ POPL paper in Coq},
   title = {Step-Indexed Normalization for a Language with General Recursion},
   booktitle = {Fourth workshop on Mathematically Structured Functional Programming (MSFP '12)},
   year = 2012,
+  pages = {25--39},
   pdf = {papers/msfp12log.pdf},
   plclub = {yes}
 }
@@ -264,6 +278,7 @@ POPL paper in Coq},
   title = {Irrelevance, Heterogenous Equality, and Call-by-value Dependent Type Systems},
   booktitle = {Fourth workshop on Mathematically Structured Functional Programming (MSFP '12)},
   year = 2012,
+  pages = {112--162},
   plclub = {yes},
   pdf = {papers/msfp12prog.pdf}
 }
@@ -277,6 +292,7 @@ POPL paper in Coq},
   booktitle = {Sixth ACM SIGPLAN Workshop Programming Languages meets Program Verification (PLPV '12)},
   year = 	  2012,
   plclub = yes,
+  pages = {15--26},
   pdf = {papers/plpv2012genreccbv.pdf}
 }
 
@@ -288,6 +304,7 @@ POPL paper in Coq},
   booktitle = {Seventh ACM SIGPLAN Workshop on. Types in Language Design and Implementation (TLDI '12)},
   year = 	  2012,
   pdf =       "http://www.seas.upenn.edu/~sweirich/papers/tldi12.pdf",
+  pages = {53--66},
   plclub = yes
 
 }
@@ -330,6 +347,7 @@ POPL paper in Coq},
   title = 		  {Generative Type Abstraction and Type-level Computation},
   booktitle = {POPL 11: 38th {ACM SIGACT-SIGPLAN} Symposium on Principles of Programming Languages, January 26--28, 2011. Austin, TX, USA.},
   year = 	  2011,
+  pages =     {227--240},
   month =     jan,
   plclub =    {yes},
   pdf = "http://www.seas.upenn.edu/~sweirich/papers/popl163af-weirich.pdf",
