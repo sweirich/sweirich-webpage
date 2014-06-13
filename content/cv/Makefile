@@ -3,11 +3,12 @@ MD=cv funding students talks tutorials service university-service outreach
 PUBS=journal chapter conf thesis techreport
 
 SOURCEBIB=../bibtex/weirich.bib
-SOURCEMD=$(patsubst ,%,%.md,$(MD))
+SOURCEMD=$(patsubst %,%.md,$(MD))
 
 pdf: weirich-cv.pdf
 
 bib: $(SOURCEBIB)
+	mkdir -p temp
 	bib2bib -s $$date -r -c '$$type = "ARTICLE"'  $(SOURCEBIB) > temp/journal.bib
 	bib2bib -s $$date -r -c '$$type = "INCOLLECTION"'  $(SOURCEBIB) > temp/chapter.bib
 	bib2bib -s $$date -r -c '$$type = "INPROCEEDINGS"' $(SOURCEBIB) > temp/conf.bib
