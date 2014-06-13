@@ -1,19 +1,19 @@
 Students
 ========
 
-### Dissertation supervision:
+## Dissertation supervision
   - Richard Eisenberg, anticipated graduation date: 2015.
   - Brent Yorgey, anticipated graduation date: Fall 2014.
   - Vilhelm Sjöberg, anticipated graduation date: Fall 2014.
   - Chris Casinghino, anticipated graduation date: August 2014.
   - Dimitrios Vytiniotis, August 2008.  
-   [Practical type inference for first-class polymorphism](http://repository.upenn.edu/dissertations/AAI3328671/)  
+   [*Practical type inference for first-class polymorphism*](http://repository.upenn.edu/dissertations/AAI3328671/)  
    Current position: Microsoft Research, Cambridge UK.
   - Geoffrey Washburn, December 2007.    
-   [Principia Narcissus: How to avoid being caught by your reflection](http://repository.upenn.edu/dissertations/AAI3292086/)  
+   [*Principia Narcissus: How to avoid being caught by your reflection*](http://repository.upenn.edu/dissertations/AAI3292086/)  
    Current position: Logicblox.
 
-### Dissertation committee member:
+## Dissertation committee member
   - Peter Michael Osera, Penn, proposal April 2014.
   - Daniel Wagner, Penn, June 2014 (expected).
   - Harley Eades III, University of Iowa, May 2014.
@@ -32,13 +32,13 @@ Students
   - Joeseph Vanderwaart, Carnegie Mellon University, August 2006.
   - Vladimir Gapayev, Penn, January 2006.
 
-### Visiting PhD student supervison:
+## Visiting PhD student supervison
 
   - Antoine Voizard, INRIA. Mar-Aug 2014.
   - Steven Keuchel, University of Ghent, Sep 2013-Mar 2014.
   - Arthur Charguéraud (co-supervised with Benjamin Pierce), 2007.
 
-### Independent study:
+## Independent study
 
   - Graduate: Antal Spector-Zablusky, Spring 2013. Jennifer Paykin, Fall 2012.
   Richard Eisenberg, Justin Hsu, Spring 2012.Richard Eisenberg, Hongbo

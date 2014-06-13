@@ -1,12 +1,12 @@
-University Service
-------------------
+Department, School and University Service
+========================================
 
 - University committee on the Facilities, 
     2011-present. Chair 2013-2014, 2012-2013.
 - Graduate student admissions chair, 2013-2014, 2012-2013.
 - Faculty advisor to CommuniTech (Penn undergraduate service
     organization). 2012-present.
-- Faculty advisor to A$\Omega$E International Engineering and Technical
+- Faculty advisor to AΩE International Engineering and Technical
     Science Sorority. 2012-present.
 - Diversity hiring committee char, 2012-2013.
 - CIS seminar series coordinator, 2011-2012.
@@ -21,5 +21,4 @@ University Service
 - Freshman Advisor, 2003.
 - Graduate Admissions Committee, 2003-2004. 
 - Curriculum Committee, 2002-2003.
-\end{entry}
-}
+

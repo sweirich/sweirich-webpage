@@ -1,7 +1,7 @@
-Service
-=======
+Research Community Service 
+==========================
 
-### Conference and Workshop Organization
+## Conference and Workshop Organization
 - Dependently-Typed Programming Workshop (DTP) 2013, program chair and organizer.
 - Shonan Village Dependently-Typed Programming, 2011, co-organizer.
 - Types in Language Design and Implementation Workshop, 2011, general chair.
@@ -10,12 +10,20 @@ Service
 - Workshop on Mechanizing Metatheory, 2006-2009, co-organizer.
 - Workshop on Mechanizing Metatheory, 2006, program chair.
 
-### Program Committee Membership
+## Program Committee Membership
 
-- [2015] Certified Proofs and Programs CPP, 
-   Principles of Programming Languages POPL ERC
-- [2014] POPL, FLOPS
-- [2013] TLCA, LFMTP, TFPIE
+2015
+  ~ Certified Proofs and Programs CPP, 
+  ~ Principles of Programming Languages POPL ERC
+2014
+  ~ POPL
+  ~ FLOPS
+2013
+  ~ TLCA
+  ~ LFMTP
+  ~ TFPIE
+
+
 - [2012] POPL (ERC), PPDP, APLAS, 
    Grace Hopper Conference, Panels, Workshops, and Presentations 
 - [2011] 
@@ -49,7 +57,7 @@ Service
    [WCGP](http://www.cs.uu.nl/%7Ejohanj/wcgp/)
 - [2001] [Haskell](http://www.informatik.uni-bonn.de/%7Eralf/hw2001.html)
 
-### Steering Committee Membership
+## Steering Committee Membership
 
 - Haskell Symposium, 2008-2012
 - ICFP, 2009-2012
@@ -58,7 +66,7 @@ Service
 - WGP, 2012-present
 - PLMW, 2012-present
 
-### Journal
+## Journal Service
 
 - Editor of Journal of Functional Programming, 2011-present
 - Guest Editor (with Zhenjiang Hu, Shin-Cheng Mu), Progress in
@@ -71,12 +79,8 @@ Service
   Languages, 2012-present.
 - Nomination committee, SIGPLAN CACM Research Highlights, 2009-2011.
 
-### External Reviews 
--   **Journals** : JFP, HOSC, Acta Informatica, TOPLAS, SCP
--   **Conferences** : ICFP, POPL, PLDI, ECOOP, LCTES, ICALP
--   **Workshops** : FOOL, ML, Haskell, PEPM
-
-### Other
+## Other
+- Ad hoc reviews: JFP, HOSC, Acta Informatica, TOPLAS, SCP, ICFP, POPL, PLDI, ECOOP, LCTES, ICALP, FOOL, ML, Haskell, PEPM
 - NSF panel: June 2014, October 2012, December 2011, March 2008, December 2004.
 - Member: Haskell' language standard committee, 2005-2010.
 - TYPES forum moderator: 2003-2009. 
