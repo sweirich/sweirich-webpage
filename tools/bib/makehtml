@@ -2,7 +2,8 @@
 
 # This script generates a papers web page from the source bibtex file(s):
 
-SOURCEBIB=../../content/bibtex/weirich.bib
+SOURCEBIB=../../bibtex/weirich.bib
+LOCAL=../../content/pages
 
 # it divides these files up into the following files, using the bibextract
 # utility.
@@ -58,8 +59,8 @@ echo "<font size=4>Works in Progress</font>" >> abstracts.html
 bibtex2html $FLAGS unpub.bib 
 
 # Clean up the resulting html
-sed -f cleanhtml unpub.html >> publications.html
-sed -f cleanhtml unpub_abstracts.html >> abstracts.html
+sed -f ./cleanhtml unpub.html >> publications.html
+sed -f ./cleanhtml unpub_abstracts.html >> abstracts.html
 
 # close the cell
 echo "</td></tr>" >> publications.html
@@ -77,8 +78,8 @@ echo "<font size=4>Conferences and Workshops</font>" >> abstracts.html
 bibtex2html $FLAGS conf.bib 
 
 # Clean up the resulting html
-sed -f cleanhtml conf.html >> publications.html
-sed -f cleanhtml conf_abstracts.html >> abstracts.html
+sed -f ./cleanhtml conf.html >> publications.html
+sed -f ./cleanhtml conf_abstracts.html >> abstracts.html
 
 # close the cell
 echo "</td></tr>" >> publications.html
@@ -193,6 +194,6 @@ rm techreport.html
 rm *.old
 rm *_abstracts.html
 
-## copy files to webserver
-scp *.html eniac.seas.upenn.edu:~/html
-scp weirich.bib eniac.seas.upenn.edu:~/html
+## copy files to local 
+cp *.html $LOCAL
+cp weirich.bib $LOCAL
