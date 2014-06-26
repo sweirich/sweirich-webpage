@@ -1,5 +1,5 @@
 ## if you add to these, you must update top.tex to refer to them as well
-MD=cv funding students talks tutorials service university-service outreach
+MD=cv funding students talks tutorials service university-service outreach teaching
 PUBS=journal chapter conf thesis techreport
 
 SOURCEBIB=../bibtex/weirich.bib
@@ -9,11 +9,11 @@ pdf: weirich-cv.pdf
 
 bib: $(SOURCEBIB)
 	mkdir -p temp
-	bib2bib -s $$date -r -c '$$type = "ARTICLE"'  $(SOURCEBIB) > temp/journal.bib
-	bib2bib -s $$date -r -c '$$type = "INCOLLECTION"'  $(SOURCEBIB) > temp/chapter.bib
-	bib2bib -s $$date -r -c '$$type = "INPROCEEDINGS"' $(SOURCEBIB) > temp/conf.bib
-	bib2bib -s $$date -r -c '$$type = "PHDTHESIS"' $(SOURCEBIB) > temp/thesis.bib
-	bib2bib -s $$date -r -c '$$type = "TECHREPORT"' $(SOURCEBIB) > temp/techreport.bib
+	bib2bib -s '$$date' -r -c '$$type = "ARTICLE"'  $(SOURCEBIB) > temp/journal.bib
+	bib2bib -s '$$date' -r -c '$$type = "INCOLLECTION"'  $(SOURCEBIB) > temp/chapter.bib
+	bib2bib -s '$$date' -r -c '$$type = "INPROCEEDINGS"' $(SOURCEBIB) > temp/conf.bib
+	bib2bib -s '$$date' -r -c '$$type = "PHDTHESIS"' $(SOURCEBIB) > temp/thesis.bib
+	bib2bib -s '$$date' -r -c '$$type = "TECHREPORT"' $(SOURCEBIB) > temp/techreport.bib
 
 clean:
 	rm -rf temp/

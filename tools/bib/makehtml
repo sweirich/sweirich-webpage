@@ -3,7 +3,7 @@
 # This script generates a papers web page from the source bibtex file(s):
 
 SOURCEBIB=../../bibtex/weirich.bib
-LOCAL=../../content/pages
+LOCAL=../../content/
 
 # it divides these files up into the following files, using the bibextract
 # utility.
@@ -180,7 +180,7 @@ echo "</font></td></tr></table></table></center></html>" >> abstracts.html
 
 ## clean up temporary files
 rm journal.bib
-# rm journal.html
+rm journal.html
 rm chapters.bib
 rm chapters.html
 rm thesis.bib
@@ -195,5 +195,6 @@ rm *.old
 rm *_abstracts.html
 
 ## copy files to local 
-cp *.html $LOCAL
+cp publications.html $LOCAL
+cp abstracts.html $LOCAL
 cp weirich.bib $LOCAL

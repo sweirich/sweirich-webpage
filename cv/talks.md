@@ -5,58 +5,55 @@ Invited Talks and Technical Presentations
   Keynote address, International Conference on Functional 
   Programming (ICFP). September 2014 (Forthcoming)
 
-1. *TBA*    
-   WG 2.8, Estes Park, CO, August 2014 (Forthcoming)
-
 1. *Combining Proofs and Programs.*  
   Certification of High-level and Low-level programs. 
   Paris, France, July 2014 (Forthcoming)
 
-1. [*Programming Up-to Congruence.*]("talks/wg28-congruence.pdf")
+1. [*Programming Up-to Congruence.*](talks/wg28-congruence.pdf)  
   WG 2.8, Aussios, France, October 14, 2013
 
-1. [*The pleasure and pain of advanced type systems.*]("talks/facebook13.pdf")
+1. [*The pleasure and pain of advanced type systems.*](talks/facebook13.pdf)  
   Invited speaker, Facebook Faculty Summit. 
   Menlo Park, CA, August 6, 2013
 
-1. [*Paradoxical Typecase.*]("talks/wg28-paradoxes.pdf")
+1. [*Paradoxical Typecase.*](talks/wg28-paradoxes.pdf)   
   WG 2.8, Anapolis, MD, November 7, 2012
 
-1. [*A POPLmark retrospective: Using proof assistants in
-  programming language research.*]("http://people.csail.mit.edu/adamc/lfmtp12/programme.html")    
+1. *A POPLmark retrospective: Using proof assistants in
+  programming language research.*   
   Invited speaker, [LFMTP 2012: 7th
   International Workshop on Logical Frameworks and Meta-languages:
-  Theory and Practice]("http://people.csail.mit.edu/adamc/lfmtp12/programme.html"),
+  Theory and Practice](http://people.csail.mit.edu/adamc/lfmtp12/programme.html),
   Copenhagen, Denmark, September 9, 2012
  
-1. [*Dependently-typed programming in GHC.*]("talks/flops2012.pdf")
+1. [*Dependently-typed programming in GHC.*](talks/flops2012.pdf)    
  Invited speaker,
  [FLOPS 2012: Eleventh International Symposium on 
- Functional and Logic Programming]("http://www.org.kobe-u.ac.jp/flops2012/"), 
+ Functional and Logic Programming](http://www.org.kobe-u.ac.jp/flops2012/), 
  Kobe, Japan, May 25, 2012
 
-1. [*Binders Unbound.*]("talks/icfp2011.pdf")
+1. [*Binders Unbound.*](talks/icfp2011.pdf)   
  The 16th ACM SIGPLAN International Conference on Functional
  Programming, ICFP 2012 
  Tokyo Japan, September 21, 2011
 
-1. [*Combining Proofs and Programs.*]("talks/shonan2011.pdf")
+1. [*Combining Proofs and Programs.*](talks/shonan2011.pdf)    
  Dependently Typed Programming, Shonan Seminar 007, 
  Shonan Village, Japan, September 16, 2011
 
-1. [*Combining Proofs and Programs.*]("talks/rdp2011.pdf")  
+1. [*Combining Proofs and Programs.*](talks/rdp2011.pdf)  
  Joint invited speaker for  [Rewriting Techniques and 
- Applications (RTA 2011) and Typed Lambda Calculi and Applications (TLCA 2011)]("http://www.rdp2011.uns.ac.rs/index.html") 
+ Applications (RTA 2011) and Typed Lambda Calculi and Applications (TLCA 2011)](http://www.rdp2011.uns.ac.rs/index.html) 
  Novi Sad, Serbia, June 1, 2011
 
-1. [*Combining Proofs and Programs in Trellys.*]("talks/mfps2011.pdf")
- Plenary Address, [MFPS 27]("http://dauns.math.tulane.edu/%7Emfps/MFPS27/MFPS_XXVII.html"). 
+1. [*Combining Proofs and Programs in Trellys.*](talks/mfps2011.pdf)   
+ Plenary Address, [MFPS 27](http://dauns.math.tulane.edu/%7Emfps/MFPS27/MFPS_XXVII.html). 
  Pittsburgh, PA. May 26, 2011
 
 1. *Generic Binding and Telescopes.*  
   WG 2.8, Marble Falls, TX. March 11, 2011
 
-1. *ICFP 2010 Program Chair's report.*
+1. *ICFP 2010 Program Chair's report.*    
   Baltimore, MD. September 27, 2010
 
 1. *Dependent types and program equivalence.*  
@@ -65,32 +62,32 @@ Invited Talks and Technical Presentations
 1. *Generic Programming with Dependent Types.*  
   IFIP 2.11, St. Andrews, Scotland. March 1-3, 2010
 
-1. [*Dependent types and program equivalence.*]("talks/nottingham-deptyp.pdf")   
+1. [*Dependent types and program equivalence.*](talks/nottingham-deptyp.pdf)   
   University of Nottingham. Nottingham, England. 
   February 5, 2010
 
-1. [*Trellys Status Report.*]("talks/TrellysPLPV.pdf")   
+1. [*Trellys Status Report.*](talks/TrellysPLPV.pdf)   
   PLPV Discussion. Madrid, Spain. January  19, 2010
 
 1. [*A POPLmark retrospective: Using proof assistants in programming
-  language research.*]("talks/cambridge-09.pdf")      
+  language research.*](talks/cambridge-09.pdf)      
   University of Cambridge Computer Laboratory
   Wednesday Seminars. Cambridge, England. December 2, 2009
 
-1. [*Dependent types and program equivalence.*]("talks/lab-deptyp.pdf")
+1. [*Dependent types and program equivalence.*](talks/lab-deptyp.pdf)    
   Semantics Lunch, University of Cambridge Computer Laboratory. 
   Cambridge, England. November 2, 2009
 
-1. *Haskell Symposium 2009 Program Chair's report.* 
+1. *Haskell Symposium 2009 Program Chair's report.*    
   Edinburgh, Scotland. September 3, 2009
 
-1. *Doing dependent types wrong without going wrong.*
+1. *Doing dependent types wrong without going wrong.*   
   IFIP WG 2.8, Frauenchiemsee, Germany, June 2009
 
-1. [*Adventures in Dependently-Typed Metatheory.*]("talks/211-deptyp.pdf")    
+1. [*Adventures in Dependently-Typed Metatheory.*](talks/211-deptyp.pdf)    
   IFIP WG 2.11, Mountain View CA. April 15, 2009
 
-1. *Engineering Formal Metatheory*  
+1. [*Engineering Formal Metatheory*](talks/cuny09.pdf)  
   Computer Science Colloquium, City University of 
   New York Graduate Center. New York, NY. February 2, 2009
 
@@ -107,37 +104,37 @@ Invited Talks and Technical Presentations
   National Security Agency. Fort Meade, MD, USA.  
   July 20, 2007
 
-1. *Engineering Aspects of Formal Metatheory.*  
+1. [*Engineering Aspects of Formal Metatheory.*](talks/binders.ppt)  
   Harvard University, Boston MA, USA. June 1, 2007
 
-1. *Dependently-Typed Languages.*  
+1. [*Dependently-Typed Languages.*](talks/wg211-dependent.ppt)  
   Working session summary. IFIP WG 2.11, 
   Portland, OR, October 2006
 
-1. *Simple Unification-Based Type Inference for GADTs.*  
+1. [*Simple Unification-Based Type Inference for GADTs.*](talks/icfp06-wobbly.pdf)  
   International Conference on Functional Programming (ICFP). 
   Portland, OR. September 2006
 
-1. *RepLib: A Library for Derivable Type Classes.*  
+1. [*RepLib: A Library for Derivable Type Classes.*](talks/HW06.pdf)  
   Haskell Workshop.
   Portland, OR. September 2006
 
-1. *Parametricity and GADTs.*  
+1. [*Parametricity and GADTs.*](talks/param-gadt.pdf)  
   IFIP Working Group 2.8 (Functional Programming). 
   Boston, MA. July 2006
 
-1. *Practical Type Inference for Advanced Type Systems.*  
+1. [*Practical Type Inference for Advanced Type Systems.*](talks/weirich-wg211.pdf)  
   International Federation for Information Processing 
   (IFIP) Working Group 2.11, 
   Dagstuhl, Wadern, Germany. January 2006
 
-1. *Boxy Types: Inference for Higher-rank Types and
-  Impredicativity.*  
+1. [*Boxy Types: Inference for Higher-rank Types and
+  Impredicativity.*](http://www.informatik.uni-bonn.de/%7Eralf/WG2.8/22/slides/stephanie.pdf)  
   International Federation for Information Processing 
   (IFIP) Working Group 2.8, Kalvi Manor, Estonia. October
   2005
   
-1. *A Core Language for Generalised Algebraic Datatypes.*  
+1. [*A Core Language for Generalised Algebraic Datatypes.*](talks/GADT.pdf)  
   International Federation for Information Processing 
   (IFIP) Working Group 2.8, West Point, USA. November 2004
  
@@ -150,43 +147,43 @@ Invited Talks and Technical Presentations
   International Conference 
   on Functional Programming, Snowbird, UT. September 20, 2004
 
-1. *A Core Language for Generalised Algebraic Datatypes.*  
+1. [*A Core Language for Generalised Algebraic Datatypes.*](talks/GADT.pdf)  
   Dagstuhl Seminar 04381: Dependently Typed Programming, Wadern,
   Germany. September 12, 2004
 
-1. *A Design for Type-Directed Java.*  
+1. [*A Design for Type-Directed Java.*](talks/msr04.pdf)  
   Microsoft Research Lab, 
   Cambridge, UK. August 31, 2004
   
-1. *A Design for Type-Directed Java.*  
+1. [*A Design for Type-Directed Java.*](talks/wood04.pdf)  
   Workshop on Object-Oriented Developments (WOOD '04). 
   London, UK, August 2004
 
-1. *Unifying Nominal and Structural Ad-hoc Polymorphism.*  
+1. [*Unifying Nominal and Structural Ad-hoc Polymorphism.*](talks/coffs-harbour.pdf)  
   International Federation for Information Processing 
   (IFIP) Working Group 2.8, 
   Coffs Harbour, Australia. January 2003
   
-1. *Unifying Nominal and Structural Ad-hoc Polymorphism.*  
+1. [*Unifying Nominal and Structural Ad-hoc Polymorphism.*](talks/cuny03.pdf)  
   Computer Science Colloquium, City University of 
   New York Graduate Center. New York, NY. October 30, 2003
   
-1. *Boxes Go Bananas: Parametric Higher-Order Abstract Syntax
-  in System F.*  
+1. [*Boxes Go Bananas: Parametric Higher-Order Abstract Syntax
+  in System F.*](talks/bgb.pdf)  
   Laboratory for Secure Systems Seminar, Stevens
   Institute of Technology. Hoboken, NJ. May 5, 2003
   
-1. *Run-time type analysis in Haskell with an Awful Lot of
-  Newtypes.*  
+1. [*Run-time type analysis in Haskell with an Awful Lot of
+  Newtypes.*](talks/wg28-cransmontana.ps)  
   International Federation for Information Processing
   (IFIP) Working Group 2.8, Crans-Montana, Switzerland. January 2003
-  
-1. *Polytypic Programming and Intensional Type Analysis.*  
+
+1. [*Polytypic Programming and Intensional Type Analysis.*](talks/njpls.ps)  
   New Jersey Programming Languages Seminar. 
   University of Pennsylvania,
   Philadelphia, PA. September 20, 2002
 
-1. *Programming with Types.*  
+1. [*Programming with Types.*](talks/JobTalk.pdf)  
   OHSU/Oregon Graduate Institute, Beaverton, OR. February 11, 2002
 
 1. *Programming with Types.*  
@@ -216,7 +213,7 @@ Invited Talks and Technical Presentations
 1. *Programming with Types.*  
   University of Texas, Austin, TX. April 2, 2002
 
-1. *Higher-order Intensional Type Analysis.*  
+1. [*Higher-order Intensional Type Analysis.*](talks/esop02.pdf)  
   European Symposium on Programming (ESOP '02). 
   Grenoble, France, April 2002
   
@@ -225,8 +222,10 @@ Invited Talks and Technical Presentations
 
 1. *Programming with Types.*  
    Pennsylvania State University, State College, PA. April 19, 2002
+	
 1. *Programming with Types.*  
    Massachusetts Institute of Technology, Boston, MA. April 25, 2002
+	
 1. *Programming with Types.*  
    Rice University, Houston TX. April 29, 2002
 
@@ -234,7 +233,7 @@ Invited Talks and Technical Presentations
   Research, Careers and Computer Science: A Maryland Symposium. 
   University of Maryland, College Park, MD. November 2001
  
-1. *Polytypic Programming and Intensional Type Constructor Analysis.*  
+1. [*Polytypic Programming and Intensional Type Constructor Analysis.*](talks/are.ps)  
   International Federation for Information Processing (IFIP) Working
   Group 2.8, Are, Sweden. April 2001
   
@@ -242,14 +241,14 @@ Invited Talks and Technical Presentations
   European Symposium on Programming (ESOP '01). 
   Genova, Italy. April 2001
 
-1. *Resource Bound Certification.* 
+1. [*Resource Bound Certification.*](talks/harvard.prn) 
   Harvard University, Boston, MA. February 2001
 
 1. *Functional Pearl: Type-Safe Cast.* 
   International Conference on Functional Programming. 
   Montreal, Canada. September 2000
   
-1. *Resource Bound Certification.* 
+1. [*Resource Bound Certification.*](talks/ibm-final.ppt) 
   IBM Research, Hawthorne, NY. June 2000
 
 1. *Resource Bound Certification.* 
@@ -260,9 +259,9 @@ Invited Talks and Technical Presentations
   International Conference on Functional Programming (ICFP '99). 
   Paris, France, September 1999
   
-1. *Type Analysis and Typed Compilation.*  
+1. [*Type Analysis and Typed Compilation.*](talks/princeton.ppt)  
   Princeton University, Princeton, NJ. June 1999
   
-1. *Intensional Polymorphism in Type-Erasure Semantics.*  
+1. [*Intensional Polymorphism in Type-Erasure Semantics.*](http://www.cs.cornell.edu/sweirich/talks/Typepass-final/index.htm)  
   International conference on Functional Programming (ICFP '98).
   Baltimore, MD, USA, September 1998

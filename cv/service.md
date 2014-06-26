@@ -14,7 +14,7 @@ Research Community Service
   Languages, 2012-present.
 - Nomination committee, SIGPLAN CACM Research Highlights, 2009-2011.
 
-## Conference and Workshop Organization
+## Conference and Workshop Leadership
 
 - Dependently-Typed Programming Workshop (DTP) 2013, program chair and organizer.
 - Shonan Village Dependently-Typed Programming, 2011, co-organizer.
@@ -71,9 +71,17 @@ Research Community Service
 - WGP, 2012-present
 - PLMW, 2012-present
 
+## Technical Society Membership
+  * Association for Computing Machinery, 1998-present
+  * ACM SIGPLAN, 1998-present
+  * ACM SIGLOG, 2014-present
+  * IFIP Working Group 2.8 (Functional Programming), 2003-present
+  * IFIP Working Group 2.11 (Program Generation), 2007-2012
+
+
 ## Other
 - NSF panel: June 2014, October 2012, December 2011, March 2008, December 2004.
-- Member: Haskell' language standard committee, 2005-2010.
+- Haskell' language standard committee, 2005-2010.
 - TYPES forum moderator: 2003-2009. 
 - PLDI External Review Committee: 2013, 2011, 2009
 - POPL External Review Committee: 2015, 2012.

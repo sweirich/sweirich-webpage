@@ -1,7 +1,7 @@
 Tutorials
 =========
 
-* [*Designing Dependently-Typed Programming Languages.*](https://www.cs.uoregon.edu/research/summerschool/summer14/curriculum.html)
+* [*Designing Dependently-Typed Programming Languages.*](https://www.cs.uoregon.edu/research/summerschool/summer14/curriculum.html)   
   Oregon Programming Languages Summer School: Types, Logic, 
   and Verification.
   Eugene OR, USA. June 2014

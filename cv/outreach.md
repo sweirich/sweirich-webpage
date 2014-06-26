@@ -10,7 +10,7 @@ Outreach
     - 2000, [Third Annual ICFP Programming Contest](http://www.cs.cornell.edu/icfp/)
 + Panelist/Speaker:
     - WICS high school day for girls, April 2014, April 2013, April 2012
-    - Functional programming in education. Haskell Symposium, September 2013
+    - Teaching Haskell in Academia and Industry (panel). Haskell Symposium, September 2013
     - Graduate Student Professional Seminars March 2013, March 2012
     - SWE Graduate Section Inspiration Lunch Talk, April 20, 2012
     - Philadelphia Area Aspirations in Computing Award presentation, March 21, 2012

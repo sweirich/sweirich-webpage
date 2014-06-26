@@ -8,7 +8,7 @@ Department, School and University Service
     organization). 2012-present.
 - Faculty advisor to AΩE International Engineering and Technical
     Science Sorority. 2012-present.
-- Diversity hiring committee char, 2012-2013.
+- Diversity hiring committee chair, 2012-2013.
 - CIS seminar series coordinator, 2011-2012.
 - Faculty Council, 2010-2012.
 - Academic Performance Committee, 2004-present.
