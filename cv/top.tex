@@ -1,0 +1,115 @@
+\documentclass[roman]{moderncv}
+
+\moderncvstyle{banking}
+\moderncvcolor{blue}
+
+
+\renewcommand{\familydefault}{\rmdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
+\nopagenumbers{}                    
+
+
+
+%% Numbering for bibitems.
+%\makeatletter
+%\renewcommand*\bibliographyitemlabel{\arabic{enumiv}. }
+%\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
+%\makeatother
+
+%\usepackage{fullpage}
+
+\usepackage{url}
+\usepackage{bibentry}
+%\usepackage{hyperref} %% loaded by moderncv
+\usepackage{xspace}
+
+\usepackage[numbers]{natbib}
+
+%% required by moderncv
+\usepackage{enumerate}
+\usepackage{fontspec}
+
+\usepackage{multibib}
+
+\usepackage[scale=0.75]{geometry}
+
+\firstname{Stephanie}
+\familyname{Weirich}
+%\title{Associate Professor}              % Your title (optional)
+\address{School of Engineering and Science, University of Pennsylvania}{Levine 510, 3330 Walnut St, Philadelphia, PA 19104} % Your current address
+%\mobile {number}    % Your mobile phone number
+\phone {215-573-2821}    % Your phone number
+\email {sweirich@cis.upenn.edu}          % Your email address
+%\homepage{\url{http://www.cis.upenn.edu/~sweirich}}    % Your website
+\extrainfo{\today}
+
+\newcites{conf,journal,chapter,thesis,techreport}
+  {Refereed Conference and Workshop Publications,%
+   Articles in Journals,%
+   Chapters in Books,%
+   Thesis,%
+   Technical Reports}
+
+\begin{document}
+
+\makecvtitle
+
+\section{Education}
+\cventry{August 2002}{Ph.D.}{Cornell University}{Ithaca, NY}{Computer Science}{}
+\cventry{August 2000}{M.S.}{Cornell University}{Ithaca, NY}{Computer Science}{}
+\cventry{May 1996}{B.A.}{Rice University}{Houston, TX}{Computer Science, magnum cum laude}{}
+
+\section{Positions}
+\cventry{July 2008-present}{Associate Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}
+\cventry{August 2009-July 2010}{Visitor}{University of Cambridge}{Cambridge, UK}{}{}
+\cventry{September-November 2009}{Visiting Researcher}{Microsoft Research}{Cambridge, UK}{}{}
+\cventry{July 2002-July 2008}{Assistant Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}
+\cventry{August 1996-July 2002}{Instructor, Research Assistant and Teaching Assistant}{Cornell University}{Ithaca, New York}{}{}
+\cventry{June-July 1999}{Intern}{Lucent Technologies}{Murray Hill, New Jersey}{}{}
+
+\section{Research Interests}
+Programming languages, Type systems, Functional programming, Generic programming, Dependent types, Program verification, Proof assistants
+
+\input{temp/cv}
+
+\input{temp/teaching}
+\input{temp/students}
+
+\input{temp/service}
+\input{temp/university-service}
+\input{temp/outreach}
+
+\input{temp/funding}
+
+\input{temp/talks}
+\input{temp/tutorials}
+
+
+%\section{Publications}
+
+\bibliographystyleconf{unsrtnat}
+\bibliographyconf{temp/conf}
+\nociteconf{*}
+
+\bibliographystylejournal{unsrtnat}
+\bibliographyjournal{temp/journal}
+\nocitejournal{*}
+
+\bibliographystylechapter{unsrtnat}
+\bibliographychapter{temp/chapter}
+\nocitechapter{*}
+
+\bibliographystylethesis{unsrtnat}
+\bibliographythesis{temp/thesis}
+\nocitethesis{*}
+
+\bibliographystyletechreport{unsrtnat}
+\bibliographytechreport{temp/techreport}
+\nocitetechreport{*}
+
+
+
+
+
+
+
+\end{document}
