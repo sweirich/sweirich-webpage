@@ -1,0 +1,42 @@
+FFiniteSets
+R104 Coq.FSets.FSets <> <> lib
+R126 ListFacts <> <> lib
+modtype 386 <> S
+R411 Coq.FSets.OrderedTypeEx <> <> mod
+mod 407 <> E
+R450 Coq.FSets.FSetInterface <> <> mod
+R483 FiniteSets E <> modtype
+mod 446 <> F
+ax 499 S eq_if_Equal
+R554 Coq.Init.Logic "x = y" not
+R536 FiniteSets S.F Equal def
+R531 FiniteSets S.F t defax
+R531 FiniteSets S.F t defax
+R565 FiniteSets S <> modtype
+R907 Coq.FSets.OrderedTypeEx <> <> mod
+R928 FiniteSets S <> mod
+R947 FiniteSets <> <> modtype
+mod 897 <> Make
+R985 FiniteSets <> <> modtype
+mod 980 <> E
+R1002 Coq.FSets.FSetList <> <> modtype
+R1016 FiniteSets E <> modtype
+mod 997 <> F
+R1038 Coq.FSets.OrderedType <> <> modtype
+R1067 FiniteSets E <> modtype
+mod 1028 <> OFacts
+ax 1079 Make sort_F_E_lt_proof_irrel
+R1141 Coq.Init.Logic "x = y" not
+R1122 Coq.Sorting.Sorting <> sort ind
+R1127 FiniteSets X lt defax
+R1122 Coq.Sorting.Sorting <> sort ind
+R1127 FiniteSets X lt defax
+prf 1155 Make eq_if_Equal
+R1210 Coq.Init.Logic "x = y" not
+R1192 FiniteSets Make.F Equal def
+R1187 FiniteSets Make.F t def
+R1187 FiniteSets Make.F t def
+R1273 Coq.Init.Logic "x = y" not
+R1273 Coq.Init.Logic "x = y" not
+R1320 ListFacts <> Sort_InA_eq_ext thm
+R1320 ListFacts <> Sort_InA_eq_ext thm

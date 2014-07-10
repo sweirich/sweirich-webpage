@@ -1,0 +1,532 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset="><link rel="stylesheet" href="style.css" type="text/css"><title>Swaps</title>
+</head>
+
+<body>
+
+<h1>Library Swaps</h1>
+
+<code>
+<code class="keyword">Require</code> <code class="keyword">Import</code> List.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> Setoid.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="Axioms.html">Axioms</a>.<br/>
+<code class="keyword">Require</code> <code class="keyword">Export</code> <a href="Atoms.html">Atoms</a>.<br/>
+
+<br/>
+<code class="keyword">Section</code> Swap.<br/>
+
+<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> X : Set.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Record</code> <a name="SwapT"></a>SwapT : Set := mkSwap {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swap : (A * A) -&gt; X -&gt; X;<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swap_same : forall a x, swap (a, a) x = x;<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swap_invol : forall ab x, swap ab (swap ab x) = x;<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swap_distrib :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall ab c d x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swap ab (swap (c, d) x) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swap (swapa A ab c, swapa A ab d) (swap ab x)<br/>
+&nbsp;&nbsp;}.<br/>
+
+<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> S : SwapT.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_same'"></a>swap_same' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a b x, a = b -&gt; swap S (a, b) x = x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_invol'"></a>swap_invol' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a b c d x, a = c -&gt; b = d -&gt; swap S (a, b) (swap S (c, d) x) = x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_injective"></a>swap_injective : forall ab x y, swap S ab x = swap S ab y -&gt; x = y.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_move_left"></a>swap_move_left : forall ab x y, swap S ab x = y -&gt; x = swap S ab y.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_move_right"></a>swap_move_right : forall ab x y, x = swap S ab y -&gt; swap S ab x = y.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_switch"></a>swap_switch : forall a b x, swap S (a, b) x = swap S (b, a) x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_switch_invol"></a>swap_switch_invol : forall a b x, swap S (a, b) (swap S (b, a) x) = x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_switch_invol'"></a>swap_switch_invol' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a b c d x, a = d -&gt; b = c -&gt; swap S (a, b) (swap S (c, d) x) = x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_undistrib"></a>swap_undistrib :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a b cd x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swap S (a, b) (swap S cd x) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swap S cd (swap S (swapa A cd a, swapa A cd b) x).<br/>
+
+<br/>
+<code class="keyword">End</code> Swap.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments mkSwap [A X].<br/>
+<code class="keyword">Implicit</code> Arguments swap [A X].<br/>
+<code class="keyword">Implicit</code> Arguments swap_same [A X].<br/>
+<code class="keyword">Implicit</code> Arguments swap_invol [A X].<br/>
+<code class="keyword">Implicit</code> Arguments swap_distrib [A X].<br/>
+<code class="keyword">Implicit</code> Arguments swap_same' [A X a b].<br/>
+<code class="keyword">Implicit</code> Arguments swap_invol' [A X a b c d].<br/>
+<code class="keyword">Implicit</code> Arguments swap_injective [A X S ab x y].<br/>
+<code class="keyword">Implicit</code> Arguments swap_move_left [A X].<br/>
+<code class="keyword">Implicit</code> Arguments swap_move_right [A X].<br/>
+<code class="keyword">Implicit</code> Arguments swap_switch [A X].<br/>
+<code class="keyword">Implicit</code> Arguments swap_switch_invol [A X].<br/>
+<code class="keyword">Implicit</code> Arguments swap_switch_invol' [A X a b c d].<br/>
+<code class="keyword">Implicit</code> Arguments swap_undistrib [A X].<br/>
+<code class="keyword">Hint</code> Resolve swap_same swap_invol swap_distrib : nominal.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> swap_injective swap_move_left swap_move_right : nominal.<br/>
+<code class="keyword">Hint</code> Resolve swap_switch swap_switch_invol swap_undistrib : nominal.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Rewrite swap_same : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite swap_invol : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite swap_same' using congruence : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite swap_invol' using congruence : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite swap_switch_invol : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite swap_switch_invol' using congruence : nominal.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> autorewrite_swap_in_hyp :=<br/>
+&nbsp;&nbsp;repeat (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : context [swap ?S (?a, ?a) ?x] |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite (@swap_same _ _ S a x) in H<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : context [swap ?S (?a, ?b) (swap ?S (?a, ?b) ?x)] |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite (@swap_switch _ _ S (a, b) x) in H<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : context [swap ?S (?a, ?b) (swap ?S (?b, ?a) ?x)] |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite (@swap_switch_invol _ _ S a b x) in H<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : context [swap ?S (?a, ?b) ?x] |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite (@swap_same' _ _ S a b x) in H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : context [swap ?S (?a, ?b) (swap ?S (?c, ?d) ?x)] |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (@swap_invol _ _ S a b c d x) in H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence] | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (@swap_switch_invol _ _ S a b c d x) in H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence] | solve [congruence]])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab34"></a><h2>Swapping on atoms</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> AtomSwap.<br/>
+
+<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> a b c : atom A.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="mkAtomSwap"></a>mkAtomSwap :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mkSwap<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(swapa A)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(@swapa_same A)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(@swapa_invol A)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(@swapa_distrib A).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="atom_swap_left"></a>atom_swap_left : swap mkAtomSwap (a, b) a = b.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="atom_swap_left'"></a>atom_swap_left' : a = c -&gt; swap mkAtomSwap (a, b) c = b.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="atom_swap_right"></a>atom_swap_right : swap mkAtomSwap (a, b) b = a.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="atom_swap_right'"></a>atom_swap_right' : b = c -&gt; swap mkAtomSwap (a, b) c = a.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="atom_swap_neither"></a>atom_swap_neither : a &lt;&gt; c -&gt; b &lt;&gt; c -&gt; swap mkAtomSwap (a, b) c = c.<br/>
+
+<br/>
+<code class="keyword">End</code> AtomSwap.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>atom_swap_simpl_once</code> is just an auxilary tactic.
+
+</td></tr></table>
+<code>
+<code class="keyword">Ltac</code> atom_swap_simpl_once a b c :=<br/>
+&nbsp;&nbsp;(rewrite (@atom_swap_left _ a b)) ||<br/>
+&nbsp;&nbsp;(rewrite (@atom_swap_left' _ a b c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;(rewrite (@atom_swap_right _ a b)) ||<br/>
+&nbsp;&nbsp;(rewrite (@atom_swap_right' _ a b c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;(rewrite (@atom_swap_neither _ a b c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence] | solve [congruence]]).<br/>
+
+<br/>
+<code class="keyword">Ltac</code> atom_swap_simpl_hyp H a b c :=<br/>
+&nbsp;&nbsp;(rewrite (@atom_swap_left _ a b) in H) ||<br/>
+&nbsp;&nbsp;(rewrite (@atom_swap_left' _ a b c) in H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;(rewrite (@atom_swap_right _ a b) in H) ||<br/>
+&nbsp;&nbsp;(rewrite (@atom_swap_right' _ a b c) in H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;(rewrite (@atom_swap_neither _ a b c) in H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence] | solve [congruence]]).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>atom_swap_simpl</code> performs all reductions of atom swaps (in the goal or in
+  the hypotheses) for which the result is inferrable from the context using
+  the <code>congruence</code> tactic.
+
+</td></tr></table>
+<code>
+<code class="keyword">Ltac</code> atom_swap_simpl :=<br/>
+&nbsp;&nbsp;repeat (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| |- context [swap (mkAtomSwap _) (?a, ?b) ?c] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;atom_swap_simpl_once a b c<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : context [swap (mkAtomSwap _) (?a, ?b) ?c] |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;atom_swap_simpl_hyp H a b c<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>atom_swap_case H1 H2 a b c</code> will reduce all expressions of the form
+  <code>atom_swap _ (a, b) c</code> to either <code>a</code>, <code>b</code>, or <code>c</code>, splitting the goal
+  as necessary, when the relationships between <code>a</code> and <code>c</code> and between
+  <code>b</code> and <code>c</code> cannot be inferred from the context.  <code>H1</code> will be used
+  as the name for a newly introduced assumption about the relationship
+  between <code>a</code> and <code>c</code>, and respectively <code>H2</code> for <code>b</code> and <code>c</code>.  Also,
+  any additional reductions of atom swaps that are inferrable from the
+  context will be performed.
+
+</td></tr></table>
+<code>
+<code class="keyword">Ltac</code> atom_swap_case H1 H2 a b c :=<br/>
+&nbsp;&nbsp;atom_swap_simpl;<br/>
+&nbsp;&nbsp;try match goal with<br/>
+&nbsp;&nbsp;| |- context [swap (mkAtomSwap _) (a, b) c] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case (atom_eqdec _ a c); intro H1; try congruence;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;atom_swap_simpl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try match goal with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |- context [swap (mkAtomSwap _) (a, b) c] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case (atom_eqdec _ b c); intro H2; try congruence;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;atom_swap_simpl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+The identity swap 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> IdSwap.<br/>
+
+<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> X : Set.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="id_swap"></a>id_swap (s : A * A) (x : X) := x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="id_swap_same"></a>id_swap_same : forall a x, id_swap (a, a) x = x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="id_swap_invol"></a>id_swap_invol : forall ab x, id_swap ab (id_swap ab x) = x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="id_swap_distrib"></a>id_swap_distrib :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall ab c d x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id_swap ab (id_swap (c, d) x) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id_swap (swapa A ab c, swapa A ab d) (id_swap ab x).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="mkIdSwap"></a>mkIdSwap :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mkSwap<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id_swap<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id_swap_same<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id_swap_invol<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id_swap_distrib.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="id_swap_reduce"></a>id_swap_reduce :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall ab x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swap mkIdSwap ab x = x.<br/>
+
+<br/>
+<code class="keyword">End</code> IdSwap.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments id_swap [A X].<br/>
+<code class="keyword">Implicit</code> Arguments id_swap_same [A X].<br/>
+<code class="keyword">Implicit</code> Arguments id_swap_invol [A X].<br/>
+<code class="keyword">Implicit</code> Arguments id_swap_distrib [A X].<br/>
+<code class="keyword">Implicit</code> Arguments id_swap_reduce [A X].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve id_swap_same id_swap_invol id_swap_distrib : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite id_swap_same id_swap_invol id_swap_reduce : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>id_swap_simpl</code> performs all reductions of id swaps (in the goal or in
+  the hypotheses) for which the result is inferrable from the context using
+  the <code>congruence</code> tactic.
+
+</td></tr></table>
+<code>
+<code class="keyword">Ltac</code> id_swap_simpl :=<br/>
+&nbsp;&nbsp;repeat (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| |- context [swap (mkIdSwap _) (?a, ?b) ?x] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite (@id_swap_reduce _ _ (a, b) x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : context [swap (mkIdSwap _) (?a, ?b) ?x] |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite (@id_swap_reduce _ _ (a, b) x) in H<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab35"></a><h2>Swapping on pairs</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> PairSwap.<br/>
+
+<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> X : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> XS : SwapT A X.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> Y : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> YS : SwapT A Y.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="pair_swap"></a>pair_swap (s : atom A * atom A) (p : X * Y) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;let (x, y) := p in (swap XS s x, swap YS s y).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="pair_swap_same"></a>pair_swap_same : forall a p, pair_swap (a, a) p = p.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="pair_swap_invol"></a>pair_swap_invol : forall ab p, pair_swap ab (pair_swap ab p) = p.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="pair_swap_distrib"></a>pair_swap_distrib :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall ab c d p,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pair_swap ab (pair_swap (c, d) p) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pair_swap (swapa A ab c, swapa A ab d) (pair_swap ab p).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="mkPairSwap"></a>mkPairSwap :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mkSwap<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pair_swap<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pair_swap_same<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pair_swap_invol<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pair_swap_distrib.<br/>
+
+<br/>
+<code class="keyword">End</code> PairSwap.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments pair_swap [A X Y].<br/>
+<code class="keyword">Implicit</code> Arguments pair_swap_same [A X Y].<br/>
+<code class="keyword">Implicit</code> Arguments pair_swap_invol [A X Y].<br/>
+<code class="keyword">Implicit</code> Arguments pair_swap_distrib [A X Y].<br/>
+<code class="keyword">Implicit</code> Arguments mkPairSwap [A X Y].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve pair_swap_same pair_swap_invol pair_swap_distrib : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite pair_swap_same pair_swap_distrib : nominal.<br/>
+
+<br/>
+<code class="keyword">Notation</code> "X ^* Y" := (mkPairSwap X Y) (at level 50, left associativity).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab36"></a><h2>Swapping on lists</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> ListSwap.<br/>
+
+<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> X : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> XS : SwapT A X.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Fixpoint</code> <a name="list_swap"></a>list_swap (s : A * A) (ls : list X) {struct ls} : list X :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;match ls with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| nil =&gt; nil<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| x :: ls' =&gt; swap XS s x :: list_swap s ls'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="list_swap_same"></a>list_swap_same : forall a ls, list_swap (a, a) ls = ls.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;induction ls.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;simpl...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;simpl; rewrite (swap_same XS); rewrite IHls...<br/>
+&nbsp;&nbsp;<code class="keyword">Qed</code>.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="list_swap_invol"></a>list_swap_invol : forall ab ls, list_swap ab (list_swap ab ls) = ls.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;induction ls.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;simpl...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;simpl; rewrite (swap_invol XS); rewrite IHls...<br/>
+&nbsp;&nbsp;<code class="keyword">Qed</code>.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="list_swap_distrib"></a>list_swap_distrib :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall ab c d ls,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list_swap ab (list_swap (c, d) ls) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list_swap (swapa A ab c, swapa A ab d) (list_swap ab ls).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;induction ls.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;simpl...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;simpl; rewrite (swap_distrib XS); rewrite IHls...<br/>
+&nbsp;&nbsp;<code class="keyword">Qed</code>.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="mkListSwap"></a>mkListSwap :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mkSwap<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list_swap<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list_swap_same<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list_swap_invol<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list_swap_distrib.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="list_swap_In"></a>list_swap_In :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall xs x ab,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;List.In x xs &lt;-&gt; List.In (swap XS ab x) (list_swap ab xs).<br/>
+
+<br/>
+<code class="keyword">End</code> ListSwap.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments list_swap [A X].<br/>
+<code class="keyword">Implicit</code> Arguments list_swap_same [A X].<br/>
+<code class="keyword">Implicit</code> Arguments list_swap_invol [A X].<br/>
+<code class="keyword">Implicit</code> Arguments list_swap_distrib [A X].<br/>
+<code class="keyword">Implicit</code> Arguments mkListSwap [A X].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve list_swap_same list_swap_invol list_swap_distrib : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite list_swap_same list_swap_invol : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab37"></a><h2>Swapping on functions.</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> FunctionSwap.<br/>
+
+<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> X : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> XS : SwapT A X.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> Y : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> YS : SwapT A Y.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="func_swap"></a>func_swap (s : atom A * atom A) (f : X -&gt; Y) (x : X) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swap YS s (f (swap XS s x)).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="func_swap_same"></a>func_swap_same : forall a f, func_swap (a, a) f = f.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="func_swap_invol"></a>func_swap_invol : forall ab f, func_swap ab (func_swap ab f) = f.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="func_swap_distrib"></a>func_swap_distrib :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall ab c d f,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;func_swap ab (func_swap (c, d) f) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;func_swap (swapa A ab c, swapa A ab d) (func_swap ab f).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="mkFuncSwap"></a>mkFuncSwap :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mkSwap<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;func_swap<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;func_swap_same<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;func_swap_invol<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;func_swap_distrib.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_app"></a>swap_app :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall ab f x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swap YS ab (f x) = (swap mkFuncSwap ab f) (swap XS ab x).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_func"></a>swap_func :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall ab f x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(swap mkFuncSwap ab f) x = swap YS ab (f (swap XS ab x)).<br/>
+
+<br/>
+<code class="keyword">End</code> FunctionSwap.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments func_swap [A X Y].<br/>
+<code class="keyword">Implicit</code> Arguments func_swap_same [A X Y].<br/>
+<code class="keyword">Implicit</code> Arguments func_swap_invol [A X Y].<br/>
+<code class="keyword">Implicit</code> Arguments func_swap_distrib [A X Y].<br/>
+<code class="keyword">Implicit</code> Arguments mkFuncSwap [A X Y].<br/>
+<code class="keyword">Implicit</code> Arguments swap_app [A X Y].<br/>
+<code class="keyword">Implicit</code> Arguments swap_func [A X Y].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve func_swap_same func_swap_invol func_swap_distrib : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite func_swap_same func_swap_invol : nominal.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve swap_app swap_func : nomimal.<br/>
+
+<br/>
+<code class="keyword">Notation</code> "X ^-&gt; Y" := (mkFuncSwap X Y) (at level 90, right associativity).<br/>
+</code>
+<hr/><a href="index.html">Index</a><hr/><font size="-1">This page has been generated by <a href="http://www.lri.fr/~filliatr/coqdoc/">coqdoc</a></font>
+</body>
+</html>

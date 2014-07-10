@@ -1,0 +1,649 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset="><link rel="stylesheet" href="style.css" type="text/css"><title>UseSTLC</title>
+</head>
+
+<body>
+
+<h1>Library UseSTLC</h1>
+
+<code>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="STLC.html">STLC</a>.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="Axioms.html">Axioms</a>.<br/>
+
+<br/>
+<code class="keyword">Module</code> <a name="UseSTLC"></a>UseSTLC (STLCImpl : STLC).<br/>
+<code class="keyword">Import</code> STLCImpl.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Prove a specialized induction principle for terms 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="tm_induction"></a>tm_induction :<br/>
+&nbsp;&nbsp;forall (P : tm -&gt; Type) (F : aset tmvar),<br/>
+&nbsp;&nbsp;(P dot) -&gt;<br/>
+&nbsp;&nbsp;(forall a, P (var a)) -&gt;<br/>
+&nbsp;&nbsp;(forall s, P s -&gt; forall t, P t -&gt; P (app s t)) -&gt;<br/>
+&nbsp;&nbsp;(forall a, ~ In a F -&gt; forall T s, P s -&gt; P (lam a T s)) -&gt;<br/>
+&nbsp;&nbsp;forall x : tm, P x.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  We can also show, trivially, that <code>tm_induction_weak</code> is derivable
+  from <code>tm_induction</code>.
+
+</td></tr></table>
+<code>
+<code class="keyword">Theorem</code> <a name="tm_induction_weak_derived"></a>tm_induction_weak_derived :<br/>
+&nbsp;&nbsp;forall (P : tm -&gt; Type),<br/>
+&nbsp;&nbsp;(P dot) -&gt;<br/>
+&nbsp;&nbsp;(forall a, P (var a)) -&gt;<br/>
+&nbsp;&nbsp;(forall s, P s -&gt; forall t, P t -&gt; P (app s t)) -&gt;<br/>
+&nbsp;&nbsp;(forall a T s, P s -&gt; P (lam a T s)) -&gt;<br/>
+&nbsp;&nbsp;forall x : tm, P x.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Support 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="supports_tm"></a>supports_tm : forall t : tm, supports tmP (fvar t) t.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve supports_tm : stlc.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Define substitution 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> Substitution.<br/>
+<code class="keyword">Variable</code> y : tmvar.<br/>
+<code class="keyword">Variable</code> s : tm.<br/>
+
+<br/>
+<code class="keyword">Definition</code> <a name="subst"></a>subst : tm -&gt; tm :=<br/>
+&nbsp;&nbsp;tm_rec tm<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;dot<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(fun x =&gt; if atom_eqdec tmvar x y then s else (var x))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(fun s s' t t' =&gt; app s' t')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(fun x T t t' =&gt; lam x T t')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(add y (fvar s)).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="subst_supp_dot"></a>subst_supp_dot :<br/>
+&nbsp;&nbsp;supports tmP (add y (fvar s)) dot.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="subst_supp_var"></a>subst_supp_var :<br/>
+&nbsp;&nbsp;supports (tmvarP ^-&gt; tmP) (add y (fvar s))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(fun x : tmvar =&gt; if atom_eqdec tmvar x y then s else var x).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="subst_supp_app"></a>subst_supp_app :<br/>
+&nbsp;&nbsp;supports (tmP ^-&gt; tmP ^-&gt; tmP ^-&gt; tmP ^-&gt; tmP)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(add y (fvar s)) (fun _ s' _ t' : tm =&gt; app s' t').<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="subst_supp_lam"></a>subst_supp_lam :<br/>
+&nbsp;&nbsp;supports (tmvarP ^-&gt; tyP ^-&gt; tmP ^-&gt; tmP ^-&gt; tmP)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(add y (fvar s))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(fun (x : tmvar) (T : ty) (_ t' : tm) =&gt; lam x T t').<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve subst_supp_dot subst_supp_var subst_supp_app subst_supp_lam : stlc.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="subst_dot"></a>subst_dot : subst dot = dot.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="subst_var_eq"></a>subst_var_eq : subst (var y) = s.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="subst_var_neq"></a>subst_var_neq : forall x, x &lt;&gt; y -&gt; subst (var x) = (var x).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="subst_app"></a>subst_app :<br/>
+&nbsp;&nbsp;forall q r, subst (app q r) = app (subst q) (subst r).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="subst_lam"></a>subst_lam :<br/>
+&nbsp;&nbsp;forall x T t, x &lt;&gt; y -&gt; ~ In x (fvar s) -&gt;<br/>
+&nbsp;&nbsp;subst (lam x T t) = lam x T (subst t).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="supports_subst"></a>supports_subst :<br/>
+&nbsp;&nbsp;supports (tmP ^-&gt; tmP) (add y (fvar s)) subst.<br/>
+
+<br/>
+<code class="keyword">End</code> Substitution.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve subst_dot subst_var_eq subst_var_neq subst_app subst_lam : stlc.<br/>
+<code class="keyword">Hint</code> Rewrite subst_dot subst_var_eq subst_app : stlc.<br/>
+<code class="keyword">Hint</code> Rewrite subst_var_neq using congruence : stlc.<br/>
+<code class="keyword">Hint</code> Rewrite subst_lam using (auto with stlc nominal; fail) : stlc.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab33"></a><h2>Simple substitution lemmas</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Notation</code> "'existsType' x : t , p" :=<br/>
+&nbsp;&nbsp;(sigT (fun x : t =&gt; p))<br/>
+&nbsp;&nbsp;(at level 200, x ident, format "'existsType' '/ ' x : t , '/ ' p") :<br/>
+&nbsp;&nbsp;type_scope.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="tm_induction'"></a>tm_induction' :<br/>
+&nbsp;&nbsp;forall (P : tm -&gt; Type),<br/>
+&nbsp;&nbsp;(P dot) -&gt;<br/>
+&nbsp;&nbsp;(forall (a : tmvar), P (var a)) -&gt;<br/>
+&nbsp;&nbsp;(forall s : tm, P s-&gt; forall t : tm, P t -&gt; P (app s t)) -&gt;<br/>
+&nbsp;&nbsp;(existsType E : aset tmvar,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall (a : tmvar), ~ In a E -&gt; forall (T : ty) (s : tm),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P s -&gt; P (lam a T s)) -&gt;<br/>
+&nbsp;&nbsp;forall x : tm, P x.<br/>
+
+<br/>
+<code class="keyword">Notation</code> "M ^[ x := N ]" := (subst x N M) (at level 59, left associativity).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="subst_var_same'"></a>subst_var_same' :<br/>
+&nbsp;&nbsp;forall (x : tmvar) (e : tm) (y : tmvar),<br/>
+&nbsp;&nbsp;y = x -&gt; (var y) ^[x := e] = e.<br/>
+<code class="keyword">Proof</code>.<br/>
+&nbsp;&nbsp;intros x e y H; rewrite H; apply subst_var_eq.<br/>
+<code class="keyword">Qed</code>.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Rewrite subst_var_same' using congruence : stlc.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> subst_var_simpl H x y :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| |- context [subst x ?e (var y)] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(progress (repeat<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (subst_var_same' x e y); [idtac | congruence]))) ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(progress (repeat<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (subst_var_neq x e y); [idtac | congruence]))) ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(case (atom_eqdec _ x y); intro H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[repeat (rewrite (subst_var_same' x e y)); [idtac | congruence] |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat (rewrite (subst_var_neq x e y)); [idtac | congruence]])<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> stlc_simpl :=<br/>
+&nbsp;&nbsp;repeat (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;progress (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unfold tmvarP ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite perm_atom ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc nominal ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swapa_simpl)).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="fvar_swap"></a>fvar_swap :<br/>
+&nbsp;&nbsp;forall x y z t,<br/>
+&nbsp;&nbsp;z &lt;&gt; x -&gt; z &lt;&gt; y -&gt;<br/>
+&nbsp;&nbsp;~ In z (fvar t) -&gt;<br/>
+&nbsp;&nbsp;~ In z (fvar (perm tmP [(x, y)] t)).<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve fvar_swap : stlc.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="subst_equivariant"></a>subst_equivariant :<br/>
+&nbsp;&nbsp;forall z v x y t,<br/>
+&nbsp;&nbsp;perm tmP [(x, y)] (t ^[z := v]) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(perm tmP [(x, y)] t) ^[(perm tmvarP [(x, y)] z) := (perm tmP [(x, y)] v)].<br/>
+<code class="keyword">Proof</code>.<br/>
+&nbsp;&nbsp;intros z v x y t.<br/>
+&nbsp;&nbsp;pattern t; apply tm_induction'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;stlc_simpl; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros a.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;subst_var_simpl za z a; stlc_simpl; trivial.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swapa_case xa ya x y a;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swapa_case xz yz x y z; stlc_simpl; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros u1 IHu1 u2 IHu2.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite subst_app.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite perm_app.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHu1.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHu2.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;stlc_simpl; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exists (add x (add y (add z (fvar v)))).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros a Ha T s IHs.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_add Ha ax Ha1.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_add Ha1 ay Ha2.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_add Ha2 az av.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;stlc_simpl.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHs.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;unfold tmvarP;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swapa_case xz yz x y z;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;stlc_simpl; trivial.<br/>
+<code class="keyword">Qed</code>.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Rewrite subst_equivariant : stlc.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="fvar_subst"></a>fvar_subst :<br/>
+&nbsp;&nbsp;forall (x : tmvar) (M N : tm),<br/>
+&nbsp;&nbsp;Subset (fvar (M ^[x := N])) (union (remove x (fvar M)) (fvar N)).<br/>
+<code class="keyword">Proof</code>.<br/>
+&nbsp;&nbsp;intros x M N.<br/>
+&nbsp;&nbsp;pattern M; apply tm_induction'.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc; auto with sets.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros y.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;subst_var_simpl xy x y.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auto with sets.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unfold Subset; intros z H.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;destruct_singleton H; rewrite H; auto with sets.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros s IHs t IHt.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with sets.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite union_union_distrib.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;auto with sets.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exists (add x (fvar N)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros y y_fresh T s IHs.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_add y_fresh yx y_fresh'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;unfold Subset; intros z H.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_remove H J K.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (L:= IHs z K).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_union L.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_remove L L1 L2; auto with sets.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;auto with sets.<br/>
+<code class="keyword">Qed</code>.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="subst_not_fv"></a>subst_not_fv :<br/>
+&nbsp;&nbsp;forall (x : tmvar) (N M: tm),<br/>
+&nbsp;&nbsp;~ In x (fvar M) -&gt;<br/>
+&nbsp;&nbsp;M ^[x := N] = M.<br/>
+<code class="keyword">Proof</code>.<br/>
+&nbsp;&nbsp;intros x N M.<br/>
+&nbsp;&nbsp;pattern M; apply tm_induction'.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros a H.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite fvar_var in H.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_singleton H.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros s IHs t IHt H.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite fvar_app in H.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_union H Hs Ht.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHs; trivial.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHt; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exists (add x (fvar N)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros y y_fresh T s IHs H.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_add y_fresh yx yN.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHs; trivial.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite fvar_lam in H.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_remove H; [congruence | trivial].<br/>
+<code class="keyword">Qed</code>.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Rewrite subst_not_fv using solve [auto with stlc] : stlc.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> fresh_atom name set hyp_name :=<br/>
+&nbsp;&nbsp;let H := fresh in (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (H:= atom_infinite _ set);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;elim H; clear H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros name hyp_name<br/>
+&nbsp;&nbsp;).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="subst_commute"></a>subst_commute :<br/>
+&nbsp;&nbsp;forall (x y : tmvar) (M N L : tm),<br/>
+&nbsp;&nbsp;x &lt;&gt; y -&gt;<br/>
+&nbsp;&nbsp;~ In x (fvar L) -&gt;<br/>
+&nbsp;&nbsp;M ^[x := N] ^[y := L] = M ^[y := L] ^[x := N ^[y := L]].<br/>
+<code class="keyword">Proof</code>.<br/>
+&nbsp;&nbsp;intros x y M N L xy xL.<br/>
+&nbsp;&nbsp;pattern M; apply tm_induction'.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intro z.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;subst_var_simpl xz x z;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;subst_var_simpl yz y z;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros s IHs t IHt.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHs; trivial.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHt; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exists (union (add x (fvar N)) (add y (fvar L))).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros z z_fresh T s IHs.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_union z_fresh z_fresh1 z_fresh2.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_add z_fresh1 zx zN.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_add z_fresh2 zy zL.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHs; trivial.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite subst_lam; trivial.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intro J.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (J':= fvar_subst _ _ _ _ J).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_union J'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_remove J' J1 J2; contradiction.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;contradiction.<br/>
+<code class="keyword">Qed</code>.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="subst_fresh_var"></a>subst_fresh_var :<br/>
+&nbsp;&nbsp;forall (x y : tmvar) (M : tm),<br/>
+&nbsp;&nbsp;~ In y (fvar M) -&gt;<br/>
+&nbsp;&nbsp;M ^[x := var y] = perm tmP [(x, y)] M.<br/>
+<code class="keyword">Proof</code>.<br/>
+&nbsp;&nbsp;intros x y M.<br/>
+&nbsp;&nbsp;pattern M; apply tm_induction'.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros z y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite fvar_var in y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_singleton y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;subst_var_simpl xz x z; stlc_simpl; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros s IHs t IHt y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite fvar_app in y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_union y_fresh ys yt.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHs; trivial; rewrite IHt; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exists (add x (fvar (var y))).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros z z_fresh T s IHs y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_add z_fresh zx z_var_y.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite fvar_lam in y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_remove y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;absurd (z &lt;&gt; x); trivial.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite fvar_var in z_var_y.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_singleton z_var_y.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;congruence.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHs; trivial.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite fvar_var in z_var_y.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_singleton z_var_y.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stlc_simpl; trivial.<br/>
+<code class="keyword">Qed</code>.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="subst_equal"></a>subst_equal :<br/>
+&nbsp;&nbsp;forall (x y : tmvar) (M N : tm),<br/>
+&nbsp;&nbsp;~ In y (fvar M) -&gt;<br/>
+&nbsp;&nbsp;M ^[x := N] = (perm tmP [(y, x)] M) ^[y := N].<br/>
+<code class="keyword">Proof</code>.<br/>
+&nbsp;&nbsp;intros x y M N.<br/>
+&nbsp;&nbsp;pattern M; apply tm_induction'.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros z y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite fvar_var in y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_singleton y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;subst_var_simpl xz x z; stlc_simpl; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros s IHs t IHt y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite fvar_app in y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_union y_fresh ys yt.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;autorewrite with stlc.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHs; trivial; rewrite IHt; trivial.<br/>
+
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exists (add x (add y (fvar N))).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;intros z z_fresh T s IHs y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_add z_fresh zx z_fresh'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_add z_fresh' zy zN.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rewrite fvar_lam in y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;destruct_neg_remove y_fresh.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;congruence.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stlc_simpl.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rewrite IHs; trivial.<br/>
+<code class="keyword">Qed</code>.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+CBV Reduction 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Inductive</code> <a name="value"></a>value : tm -&gt; Prop :=<br/>
+&nbsp;&nbsp;| <a name="unit_value"></a>unit_value :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value dot<br/>
+&nbsp;&nbsp;| <a name="abs_value"></a>abs_value :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall (x : tmvar) (T : ty) (t : tm),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value (lam x T t).<br/>
+
+<br/>
+<code class="keyword">Inductive</code> <a name="cbv"></a>cbv : tm -&gt; tm -&gt; Prop :=<br/>
+&nbsp;&nbsp;| <a name="cbv_left"></a>cbv_left :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall (t t' u : tm),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cbv t t' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cbv (app t u) (app t' u)<br/>
+&nbsp;&nbsp;| <a name="cbv_right"></a>cbv_right :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall (t u u' : tm),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value t -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cbv u u' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cbv (app t u) (app t u')<br/>
+&nbsp;&nbsp;| <a name="cbv_beta"></a>cbv_beta :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall (x : tmvar) (T : ty) (t u : tm),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value u -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cbv (app (lam x T t) u) (t ^[x := <a name="u"></a>u]).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="values_are_normal_forms"></a>values_are_normal_forms :<br/>
+&nbsp;&nbsp;forall (t t' : tm), value t -&gt; ~ cbv t t'.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="cbv_deterministic"></a>cbv_deterministic :<br/>
+&nbsp;&nbsp;forall (t t' t'' : tm),<br/>
+&nbsp;&nbsp;cbv t t' -&gt; cbv t t'' -&gt; t' = t''.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="value_equivariant"></a>value_equivariant :<br/>
+&nbsp;&nbsp;forall x y t,<br/>
+&nbsp;&nbsp;value t -&gt; value (perm tmP [(x, y)] t).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="cbv_equivariant"></a>cbv_equivariant :<br/>
+&nbsp;&nbsp;forall x y t t',<br/>
+&nbsp;&nbsp;cbv t t' -&gt; cbv (perm tmP [(x, y)] t) (perm tmP [(x, y)] t').<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Size function 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Inductive</code> <a name="size"></a>size : tm -&gt; nat -&gt; Prop :=<br/>
+&nbsp;&nbsp;| <a name="size_unit"></a>size_unit : size dot 1<br/>
+&nbsp;&nbsp;| <a name="size_var"></a>size_var : forall x, size (var x) 1<br/>
+&nbsp;&nbsp;| <a name="size_app"></a>size_app :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall t u m n,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size t m -&gt; size u n -&gt; size (app t u) (m + n + 1)<br/>
+&nbsp;&nbsp;| <a name="size_lam"></a>size_lam :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall x T t m,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size t m -&gt; size (lam x T t) (m + 1).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="size_total"></a>size_total :<br/>
+&nbsp;&nbsp;forall t, {n : nat | size t n}.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="size2"></a>size2 : forall x T, proj1_sig (size_total (lam x T (var x))) = 2. </code>
+
+<table width="100%"><tr class="doc"><td>
+Compiling to SK-combinators 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Inductive</code> <a name="SKtm"></a>SKtm : Set :=<br/>
+&nbsp;&nbsp;| <a name="SKvar"></a>SKvar : tmvar -&gt; SKtm<br/>
+&nbsp;&nbsp;| <a name="S"></a>S : SKtm<br/>
+&nbsp;&nbsp;| <a name="K"></a>K : SKtm<br/>
+&nbsp;&nbsp;| <a name="SKapp"></a>SKapp : SKtm -&gt; SKtm -&gt; SKtm.<br/>
+
+<br/>
+<code class="keyword">Fixpoint</code> <a name="SKperm"></a>SKperm (p : permt tmvar) (s : SKtm) {struct s} : SKtm :=<br/>
+&nbsp;&nbsp;match s with<br/>
+&nbsp;&nbsp;| SKvar z =&gt; SKvar (perm tmvarP p z)<br/>
+&nbsp;&nbsp;| S =&gt; S<br/>
+&nbsp;&nbsp;| K =&gt; K<br/>
+&nbsp;&nbsp;| SKapp q r =&gt; SKapp (SKperm p q) (SKperm p r)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Definition</code> <a name="SKP"></a>SKP : PsetT tmvar SKtm.<br/>
+
+<br/>
+<code class="keyword">Fixpoint</code> <a name="SKfvar"></a>SKfvar (s : SKtm) : aset tmvar :=<br/>
+&nbsp;&nbsp;match s with<br/>
+&nbsp;&nbsp;| SKvar x =&gt; singleton x<br/>
+&nbsp;&nbsp;| S =&gt; empty<br/>
+&nbsp;&nbsp;| K =&gt; empty<br/>
+&nbsp;&nbsp;| SKapp q r =&gt; union (SKfvar q) (SKfvar r)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Inductive</code> <a name="SKabs"></a>SKabs : tmvar -&gt; SKtm -&gt; SKtm -&gt; Prop :=<br/>
+&nbsp;&nbsp;| <a name="SKabs_I"></a>SKabs_I :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKabs x (SKvar x) (SKapp (SKapp S K) K)<br/>
+&nbsp;&nbsp;| <a name="SKabs_K"></a>SKabs_K :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall x s,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ In x (SKfvar s) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKabs x s (SKapp K s)<br/>
+&nbsp;&nbsp;| <a name="SKabs_S"></a>SKabs_S :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall x r s r' s',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKabs x r r' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKabs x s s' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKabs x (SKapp r s) (SKapp (SKapp S r') s').<br/>
+
+<br/>
+<code class="keyword">Inductive</code> <a name="SKcomp"></a>SKcomp : tm -&gt; SKtm -&gt; Prop :=<br/>
+&nbsp;&nbsp;| <a name="SKcomp_var"></a>SKcomp_var :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKcomp (var x) (SKvar x)<br/>
+&nbsp;&nbsp;| <a name="SKcomp_app"></a>SKcomp_app :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall t u q r,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKcomp t q -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKcomp u r -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKcomp (app t u) (SKapp q r)<br/>
+&nbsp;&nbsp;| <a name="SKcomp_lam"></a>SKcomp_lam :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall x T t s s',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKcomp t s -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKabs x s s' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKcomp (lam x T t) s'.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="SKvar_equivariant"></a>SKvar_equivariant :<br/>
+&nbsp;&nbsp;forall p z,<br/>
+&nbsp;&nbsp;perm SKP p (SKvar z) = SKvar (perm tmvarP p z).<br/>
+<code class="keyword">Hint</code> Rewrite SKvar_equivariant : stlc.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="S_equivariant"></a>S_equivariant :<br/>
+&nbsp;&nbsp;forall p,<br/>
+&nbsp;&nbsp;perm SKP p S = S.<br/>
+<code class="keyword">Hint</code> Rewrite S_equivariant : stlc.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="K_equivariant"></a>K_equivariant :<br/>
+&nbsp;&nbsp;forall p,<br/>
+&nbsp;&nbsp;perm SKP p K = K.<br/>
+<code class="keyword">Hint</code> Rewrite K_equivariant : stlc.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="SKapp_equivariant"></a>SKapp_equivariant :<br/>
+&nbsp;&nbsp;forall p r s,<br/>
+&nbsp;&nbsp;perm SKP p (SKapp r s) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;SKapp (perm SKP p r) (perm SKP p s).<br/>
+<code class="keyword">Hint</code> Rewrite SKapp_equivariant : stlc.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="SKfvar_equivariant"></a>SKfvar_equivariant :<br/>
+&nbsp;&nbsp;forall p z s,<br/>
+&nbsp;&nbsp;In z (SKfvar s) -&gt;<br/>
+&nbsp;&nbsp;In (perm tmvarP p z) (SKfvar (perm SKP p s)).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="SKabs_equivariant"></a>SKabs_equivariant :<br/>
+&nbsp;&nbsp;forall p z s s',<br/>
+&nbsp;&nbsp;SKabs z s s' -&gt;<br/>
+&nbsp;&nbsp;SKabs (perm tmvarP p z) (perm SKP p s) (perm SKP p s').<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="SKcomp_equivariant"></a>SKcomp_equivariant :<br/>
+&nbsp;&nbsp;forall p t s,<br/>
+&nbsp;&nbsp;SKcomp t s -&gt;<br/>
+&nbsp;&nbsp;SKcomp (perm tmP p t) (perm SKP p s).<br/>
+
+<br/>
+<code class="keyword">End</code> UseSTLC.<br/>
+</code>
+<hr/><a href="index.html">Index</a><hr/><font size="-1">This page has been generated by <a href="http://www.lri.fr/~filliatr/coqdoc/">coqdoc</a></font>
+</body>
+</html>

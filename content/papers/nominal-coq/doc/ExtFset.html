@@ -1,0 +1,852 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset="><link rel="stylesheet" href="style.css" type="text/css"><title>ExtFset</title>
+</head>
+
+<body>
+
+<h1>Library ExtFset</h1>
+
+<code>
+<code class="keyword">Require</code> <code class="keyword">Import</code> List.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab1"></a><h2>Finite sets with extensional equality</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Record</code> <a name="ExtFset"></a>ExtFset (A : Set) : Type := mkExtFset {<br/>
+&nbsp;&nbsp;extFset : Set;<br/>
+
+<br/>
+&nbsp;&nbsp;In : A -&gt; extFset -&gt; Prop;<br/>
+&nbsp;&nbsp;In_dec : forall x E, {In x E} + {~ In x E};<br/>
+
+<br/>
+&nbsp;&nbsp;eq_carrier_dec : forall (x y : A), {x = y} + {x &lt;&gt; y};<br/>
+&nbsp;&nbsp;eq_extFset : forall E F, (forall x, In x E &lt;-&gt; In x F) -&gt; E = F;<br/>
+
+<br/>
+&nbsp;&nbsp;empty : extFset;<br/>
+&nbsp;&nbsp;empty_neg_intro : forall x, ~ In x empty;<br/>
+
+<br/>
+&nbsp;&nbsp;add : A -&gt; extFset -&gt; extFset;<br/>
+&nbsp;&nbsp;add_intro_1 : forall x y E, x = y -&gt; In x (add y E);<br/>
+&nbsp;&nbsp;add_intro_2 : forall x y E, In x E -&gt; In x (add y E);<br/>
+&nbsp;&nbsp;add_elim : forall x y E, In x (add y E) -&gt; x = y \/ In x E;<br/>
+
+<br/>
+&nbsp;&nbsp;union : extFset -&gt; extFset -&gt; extFset;<br/>
+&nbsp;&nbsp;union_intro_1 : forall x E F, In x E -&gt; In x (union E F);<br/>
+&nbsp;&nbsp;union_intro_2 : forall x E F, In x F -&gt; In x (union E F);<br/>
+&nbsp;&nbsp;union_elim : forall x E F, In x (union E F) -&gt; In x E \/ In x F;<br/>
+
+<br/>
+&nbsp;&nbsp;intersection : extFset -&gt; extFset -&gt; extFset;<br/>
+&nbsp;&nbsp;intersection_intro :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall x E F, In x E -&gt; In x F -&gt; In x (intersection E F);<br/>
+&nbsp;&nbsp;intersection_elim_1 : forall x E F, In x (intersection E F) -&gt; In x E;<br/>
+&nbsp;&nbsp;intersection_elim_2 : forall x E F, In x (intersection E F) -&gt; In x F;<br/>
+
+<br/>
+&nbsp;&nbsp;diff : extFset -&gt; extFset -&gt; extFset;<br/>
+&nbsp;&nbsp;diff_intro : forall x E F, In x E -&gt; ~ In x F -&gt; In x (diff E F);<br/>
+&nbsp;&nbsp;diff_elim_1 : forall x E F, In x (diff E F) -&gt; In x E;<br/>
+&nbsp;&nbsp;diff_elim_2 : forall x E F, In x (diff E F) -&gt; ~ In x F;<br/>
+
+<br/>
+&nbsp;&nbsp;map : (A -&gt; A) -&gt; extFset -&gt; extFset;<br/>
+&nbsp;&nbsp;map_intro : forall x E f, In x E -&gt; In (f x) (map f E);<br/>
+&nbsp;&nbsp;map_elim : forall y E f, In y (map f E) -&gt; exists x, In x E /\ y = f x;<br/>
+
+<br/>
+&nbsp;&nbsp;elements : extFset -&gt; list A;<br/>
+&nbsp;&nbsp;elements_spec : forall x E, In x E &lt;-&gt; List.In x (elements E)<br/>
+}.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments extFset [A].<br/>
+<code class="keyword">Implicit</code> Arguments In [A e].<br/>
+<code class="keyword">Implicit</code> Arguments In_dec [A e].<br/>
+<code class="keyword">Implicit</code> Arguments eq_carrier_dec [A].<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments empty [A e].<br/>
+<code class="keyword">Implicit</code> Arguments empty_neg_intro [A e].<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments add [A e].<br/>
+<code class="keyword">Implicit</code> Arguments add_intro_1 [A e].<br/>
+<code class="keyword">Implicit</code> Arguments add_intro_2 [A e].<br/>
+<code class="keyword">Implicit</code> Arguments add_elim [A e].<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments union [A e].<br/>
+<code class="keyword">Implicit</code> Arguments union_intro_1 [A e].<br/>
+<code class="keyword">Implicit</code> Arguments union_intro_2 [A e].<br/>
+<code class="keyword">Implicit</code> Arguments union_elim [A e].<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments intersection [A e].<br/>
+<code class="keyword">Implicit</code> Arguments intersection_intro [A e].<br/>
+<code class="keyword">Implicit</code> Arguments intersection_elim_1 [A e].<br/>
+<code class="keyword">Implicit</code> Arguments intersection_elim_2 [A e].<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments diff [A e].<br/>
+<code class="keyword">Implicit</code> Arguments diff_intro [A e].<br/>
+<code class="keyword">Implicit</code> Arguments diff_elim_1 [A e].<br/>
+<code class="keyword">Implicit</code> Arguments diff_elim_2 [A e].<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments map [A e].<br/>
+<code class="keyword">Implicit</code> Arguments map_intro [A e].<br/>
+<code class="keyword">Implicit</code> Arguments map_elim [A e].<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments elements [A e].<br/>
+<code class="keyword">Implicit</code> Arguments elements_spec [A e].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve empty_neg_intro : sets.<br/>
+<code class="keyword">Hint</code> Resolve add_intro_1 add_intro_2 add_elim : sets.<br/>
+<code class="keyword">Hint</code> Resolve union_intro_1 union_intro_2 union_elim : sets.<br/>
+<code class="keyword">Hint</code> Resolve intersection_intro intersection_elim_1 intersection_elim_2 : sets.<br/>
+<code class="keyword">Hint</code> Resolve diff_intro diff_elim_1 diff_elim_2 : sets.<br/>
+<code class="keyword">Hint</code> Resolve map_intro map_elim : sets.<br/>
+<code class="keyword">Hint</code> Resolve elements_spec : sets.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_empty :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| H : In (e:= ?e) _ empty |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (fresh:= @empty_neg_intro _ e _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;contradiction<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_add H :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : In (e:= ?e) _ (add _ _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;let H' := fresh in (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert (H':= @add_elim _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inversion_clear H' as [H | H]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_union H :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : In (e:= ?e) _ (union _ _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;let H' := fresh in (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert (H':= @union_elim _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inversion_clear H' as [H | H]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_intersection H H1 H2 :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : In (e:= ?e) _ (intersection _ _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (H1:= @intersection_elim_1 _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (H2:= @intersection_elim_2 _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;clear H<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_diff H H1 H2 :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : In (e:= ?e) _ (diff _ _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (H1:= @diff_elim_1 _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (H2:= @diff_elim_2 _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;clear H<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_map H x H1 H2 :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : In (e:= ?e) _ (map _ _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case (@map_elim _ _ _ _ _ H); intros x [H1 H2];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;clear H<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab2"></a><h2>Additional theorems</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> AdditionalTheorems.<br/>
+
+<br/>
+<code class="keyword">Variable</code> A : Set.<br/>
+<code class="keyword">Variable</code> ER : ExtFset A.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Empty. 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="empty_elim"></a>empty_elim :<br/>
+&nbsp;&nbsp;forall (x : A) (E : extFset ER), In x (@empty _ ER) -&gt; In x E.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Add. 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="add_elim_1"></a>add_elim_1 :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER), In x (add y E) -&gt; ~ In x E -&gt; x = y.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="add_elim_2"></a>add_elim_2 :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER), In x (add y E) -&gt; x &lt;&gt; y -&gt; In x E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="add_neg_elim_1"></a>add_neg_elim_1 :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER), ~ In x (add y E) -&gt; x &lt;&gt; y.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="add_neg_elim_2"></a>add_neg_elim_2 :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER), ~ In x (add y E) -&gt; ~ In x E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="add_neg_intro"></a>add_neg_intro :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER), x &lt;&gt; y -&gt; ~ In x E -&gt; ~ In x (add y E).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Union. 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="union_elim_1"></a>union_elim_1 :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER), In x (union E F) -&gt; ~ In x F -&gt; In x E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="union_elim_2"></a>union_elim_2 :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER), In x (union E F) -&gt; ~ In x E -&gt; In x F.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="union_neg_elim_1"></a>union_neg_elim_1 :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER), ~ In x (union E F) -&gt; ~ In x E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="union_neg_elim_2"></a>union_neg_elim_2 :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER), ~ In x (union E F) -&gt; ~ In x F.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="union_neg_intro"></a>union_neg_intro :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER),<br/>
+&nbsp;&nbsp;~ In x E -&gt; ~ In x F -&gt; ~ In x (union E F).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Intersection. 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="intersection_neg_elim"></a>intersection_neg_elim :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER),<br/>
+&nbsp;&nbsp;~ In x (intersection E F) -&gt; ~ In x E \/ ~ In x F.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="intersection_neg_elim_1"></a>intersection_neg_elim_1 :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER),<br/>
+&nbsp;&nbsp;~ In x (intersection E F) -&gt; In x F -&gt; ~ In x E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="intersection_neg_elim_2"></a>intersection_neg_elim_2 :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER),<br/>
+&nbsp;&nbsp;~ In x (intersection E F) -&gt; In x E -&gt; ~ In x F.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="intersection_neg_intro_1"></a>intersection_neg_intro_1 :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER), ~ In x E -&gt; ~ In x (intersection E F).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="intersection_neg_intro_2"></a>intersection_neg_intro_2 :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER), ~ In x F -&gt; ~ In x (intersection E F).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Diff. 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="diff_neg_elim"></a>diff_neg_elim :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER), ~ In x (diff E F) -&gt; ~ In x E \/ In x F.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="diff_neg_elim_1"></a>diff_neg_elim_1 :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER), ~ In x (diff E F) -&gt; ~ In x F -&gt; ~ In x F.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="diff_neg_elim_2"></a>diff_neg_elim_2 :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER), ~ In x (diff E F) -&gt; In x E -&gt; In x F.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="diff_neg_intro_1"></a>diff_neg_intro_1 :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER), ~ In x E -&gt; ~ In x (diff E F).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="diff_neg_intro_2"></a>diff_neg_intro_2 :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER), In x F -&gt; ~ In x (diff E F).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Map. 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="map_compose"></a>map_compose :<br/>
+&nbsp;&nbsp;forall f g (F : extFset ER), map (fun x =&gt; f (g x)) F = map f (map g F).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Elements. 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="elements_empty"></a>elements_empty :<br/>
+&nbsp;&nbsp;elements (@empty _ ER) = nil.<br/>
+
+<br/>
+<code class="keyword">End</code> AdditionalTheorems.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments empty_elim [A ER].<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments add_elim_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments add_elim_2 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments add_neg_elim_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments add_neg_elim_2 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments add_neg_intro [A ER].<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments union_elim_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments union_elim_2 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments union_neg_elim_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments union_neg_elim_2 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments union_neg_intro [A ER].<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments intersection_neg_elim [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments intersection_neg_elim_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments intersection_neg_elim_2 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments intersection_neg_intro_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments intersection_neg_intro_2 [A ER].<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments diff_neg_elim [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments diff_neg_elim_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments diff_neg_elim_2 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments diff_neg_intro_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments diff_neg_intro_2 [A ER].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve empty_elim : sets.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> add_elim_1 : sets.<br/>
+<code class="keyword">Hint</code> Resolve add_elim_2 : sets.<br/>
+<code class="keyword">Hint</code> Resolve add_neg_elim_1 add_neg_elim_2 add_neg_intro : sets.<br/>
+<code class="keyword">Hint</code> Resolve union_elim_1 union_elim_2 : sets.<br/>
+<code class="keyword">Hint</code> Resolve union_neg_elim_1 union_neg_elim_2 union_neg_intro : sets.<br/>
+<code class="keyword">Hint</code> Resolve intersection_neg_elim : sets.<br/>
+<code class="keyword">Hint</code> Resolve intersection_neg_elim_1 intersection_neg_elim_2 : sets.<br/>
+<code class="keyword">Hint</code> Resolve intersection_neg_intro_1 intersection_neg_intro_2 : sets.<br/>
+<code class="keyword">Hint</code> Resolve diff_neg_elim diff_neg_elim_1 diff_neg_elim_2 : sets.<br/>
+<code class="keyword">Hint</code> Resolve diff_neg_intro_1 diff_neg_intro_2 : sets.<br/>
+<code class="keyword">Hint</code> Resolve map_compose : sets.<br/>
+<code class="keyword">Hint</code> Resolve elements_empty : sets.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Rewrite elements_empty : sets.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_neg_add H H1 H2 :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : ~ In (e:= ?e) _ (add _ _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (H1:= @add_neg_elim_1 _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (H2:= @add_neg_elim_2 _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;clear H<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_neg_union H H1 H2 :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : ~ In (e:= ?e) _ (union _ _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (H1:= @union_neg_elim_1 _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (H2:= @union_neg_elim_2 _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;clear H<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_neg_intersection H :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : ~ In (e:= ?e) _ (intersection _ _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;let H' := fresh in (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert (H':= @intersection_neg_elim _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inversion_clear H' as [H | H]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_neg_diff H :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : ~ In (e:= ?e) _ (diff _ _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;let H' := fresh in (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert (H':= @diff_neg_elim _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inversion_clear H' as [H | H]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab3"></a><h2>Singleton sets</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> Singleton.<br/>
+
+<br/>
+<code class="keyword">Variable</code> A : Set.<br/>
+<code class="keyword">Variable</code> ER : ExtFset A.<br/>
+
+<br/>
+<code class="keyword">Definition</code> <a name="singleton"></a>singleton (x : A) : extFset ER := add x empty.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="singleton_intro"></a>singleton_intro : forall (x y : A), x = y -&gt; In x (singleton y).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="singleton_elim"></a>singleton_elim : forall (x y : A), In x (singleton y) -&gt; x = y.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="singleton_neg_elim"></a>singleton_neg_elim : forall (x y : A), ~ In x (singleton y) -&gt; x &lt;&gt; y.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="singleton_neg_intro"></a>singleton_neg_intro : forall (x y : A), x &lt;&gt; y -&gt; ~ In x (singleton y).<br/>
+
+<br/>
+<code class="keyword">End</code> Singleton.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments singleton [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments singleton_intro [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments singleton_elim [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments singleton_neg_elim [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments singleton_neg_intro [A ER].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve singleton_intro : sets.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> singleton_elim : sets.<br/>
+<code class="keyword">Hint</code> Resolve singleton_neg_elim singleton_neg_intro : sets.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_singleton H :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : In (e:= ?e) _ (singleton _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;let H' := fresh in (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rename H into H';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert (H:= @singleton_elim _ e _ _ H');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear H'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_neg_singleton H :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : ~ In (e:= ?e) _ (singleton _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;let H' := fresh in (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rename H into H';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert (H:= @singleton_neg_elim _ e _ _ H');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear H'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab4"></a><h2>Removing an element from a set</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> Remove.<br/>
+
+<br/>
+<code class="keyword">Variable</code> A : Set.<br/>
+<code class="keyword">Variable</code> ER : ExtFset A.<br/>
+
+<br/>
+<code class="keyword">Definition</code> <a name="remove"></a>remove (x : A) (E : extFset ER) : extFset ER :=<br/>
+&nbsp;&nbsp;diff E (singleton x).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="remove_intro"></a>remove_intro :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER), x &lt;&gt; y -&gt; In x E -&gt; In x (remove y E).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="remove_elim_1"></a>remove_elim_1 :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER), In x (remove y E) -&gt; x &lt;&gt; y.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="remove_elim_2"></a>remove_elim_2 :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER), In x (remove y E) -&gt; In x E.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="remove_neg_elim"></a>remove_neg_elim :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER),<br/>
+&nbsp;&nbsp;~ In x (remove y E) -&gt; x = y \/ ~ In x E.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="remove_neg_elim_strong_1"></a>remove_neg_elim_strong_1 :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER),<br/>
+&nbsp;&nbsp;~ In x (remove y E) -&gt; x = y \/ (x &lt;&gt; y /\ ~ In x E).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="remove_neg_elim_strong_2"></a>remove_neg_elim_strong_2 :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER),<br/>
+&nbsp;&nbsp;~ In x (remove y E) -&gt; (x = y /\ In x E) \/ ~ In x E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="remove_neg_intro_1"></a>remove_neg_intro_1 :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER), x = y -&gt; ~ In x (remove y E).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="remove_neg_intro_2"></a>remove_neg_intro_2 :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER), ~ In x E -&gt; ~ In x (remove y E).<br/>
+
+<br/>
+<code class="keyword">End</code> Remove.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments remove [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments remove_intro [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments remove_elim_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments remove_elim_2 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments remove_neg_elim [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments remove_neg_elim_strong_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments remove_neg_elim_strong_2 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments remove_neg_intro_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments remove_neg_intro_2 [A ER].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve remove_intro remove_elim_1 remove_elim_2 : sets.<br/>
+<code class="keyword">Hint</code> Resolve remove_neg_elim remove_neg_intro_1 remove_neg_intro_2 : sets.<br/>
+<code class="keyword">Hint</code> Resolve remove_neg_elim_strong_1 remove_neg_elim_strong_2 : sets.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_remove H H1 H2 :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : In (e:= ?e) _ (remove _ _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (H1:= @remove_elim_1 _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert (H2:= @remove_elim_2 _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;clear H<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> destruct_neg_remove H :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| _ : ~ In (e:= ?e) _ (remove _ _) |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;let H' := fresh in (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert (H':= @remove_neg_elim _ e _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;clear H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inversion_clear H' as [H | H]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab5"></a><h2>Equivalence theorems</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> EquivalenceTheorems.<br/>
+
+<br/>
+<code class="keyword">Variable</code> A : Set.<br/>
+<code class="keyword">Variable</code> ER : ExtFset A.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Add. 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="add_add_incl"></a>add_add_incl :<br/>
+&nbsp;&nbsp;forall (x y z: A) (E : extFset ER),<br/>
+&nbsp;&nbsp;In x (add y (add z E)) -&gt; In x (add z (add y E)).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="add_add"></a>add_add :<br/>
+&nbsp;&nbsp;forall (x y : A) (E : extFset ER), add x (add y E) = add y (add x E).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="add_union"></a>add_union :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER),<br/>
+&nbsp;&nbsp;add x (union E F) = union (add x E) (add x F).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Union. 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="union_empty_1"></a>union_empty_1 :<br/>
+&nbsp;&nbsp;forall (E : extFset ER), union empty E = E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="union_empty_2"></a>union_empty_2 :<br/>
+&nbsp;&nbsp;forall (E : extFset ER), union E empty = E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="union_commute"></a>union_commute :<br/>
+&nbsp;&nbsp;forall (E F : extFset ER), union E F = union F E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="union_union_distrib"></a>union_union_distrib :<br/>
+&nbsp;&nbsp;forall (E F G : extFset ER),<br/>
+&nbsp;&nbsp;union (union E F) G = union (union E G) (union F G).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Intersection. 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="intersection_empty_1"></a>intersection_empty_1 :<br/>
+&nbsp;&nbsp;forall (E : extFset ER), intersection empty E = empty.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="intersection_empty_2"></a>intersection_empty_2 :<br/>
+&nbsp;&nbsp;forall (E : extFset ER), intersection E empty = empty.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Diff. 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="diff_empty_1"></a>diff_empty_1 :<br/>
+&nbsp;&nbsp;forall (E : extFset ER), diff E empty = E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="diff_empty_2"></a>diff_empty_2 :<br/>
+&nbsp;&nbsp;forall (E : extFset ER), diff empty E = empty.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Remove. 
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="remove_empty"></a>remove_empty :<br/>
+&nbsp;&nbsp;forall (x : A), remove x (@empty _ ER) = empty.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="remove_union"></a>remove_union :<br/>
+&nbsp;&nbsp;forall (x : A) (E F : extFset ER),<br/>
+&nbsp;&nbsp;remove x (union E F) = union (remove x E) (remove x F).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="remove_singleton_1"></a>remove_singleton_1 :<br/>
+&nbsp;&nbsp;forall (x y : A), x = y -&gt; remove x (singleton y) = @empty _ ER.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="remove_singleton_2"></a>remove_singleton_2 :<br/>
+&nbsp;&nbsp;forall (x y : A),<br/>
+&nbsp;&nbsp;x &lt;&gt; y -&gt; remove (ER:= ER) x (singleton y) = (singleton y).<br/>
+
+<br/>
+<code class="keyword">End</code> EquivalenceTheorems.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments add_add_incl [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments add_add [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments add_union [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments union_empty_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments union_empty_2 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments union_union_distrib [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments intersection_empty_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments intersection_empty_2 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments diff_empty_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments diff_empty_2 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments remove_empty [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments remove_union [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments remove_singleton_1 [A ER].<br/>
+<code class="keyword">Implicit</code> Arguments remove_singleton_2 [A ER].<br/>
+
+<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> add_add_incl : sets.<br/>
+<code class="keyword">Hint</code> Resolve add_add add_union : sets.<br/>
+<code class="keyword">Hint</code> Resolve union_empty_1 union_empty_2 : sets.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> union_commute : sets.<br/>
+<code class="keyword">Hint</code> Resolve union_union_distrib : sets.<br/>
+<code class="keyword">Hint</code> Resolve intersection_empty_1 intersection_empty_2 : sets.<br/>
+<code class="keyword">Hint</code> Resolve diff_empty_1 diff_empty_2 : sets.<br/>
+<code class="keyword">Hint</code> Resolve remove_empty remove_union : sets.<br/>
+<code class="keyword">Hint</code> Resolve remove_singleton_1 remove_singleton_2 : sets.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Rewrite add_union : sets.<br/>
+<code class="keyword">Hint</code> Rewrite union_empty_1 union_empty_2 : sets.<br/>
+<code class="keyword">Hint</code> Rewrite intersection_empty_1 intersection_empty_2 : sets.<br/>
+<code class="keyword">Hint</code> Rewrite diff_empty_1 diff_empty_2 : sets.<br/>
+<code class="keyword">Hint</code> Rewrite remove_empty remove_union : sets.<br/>
+<code class="keyword">Hint</code> Rewrite remove_singleton_1 using (auto; fail) : sets.<br/>
+<code class="keyword">Hint</code> Rewrite remove_singleton_2 using (auto; fail) : sets.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab6"></a><h2>Predicates on sets.</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> Predicates.<br/>
+
+<br/>
+<code class="keyword">Variable</code> A : Set.<br/>
+<code class="keyword">Variable</code> ER : ExtFset A.<br/>
+
+<br/>
+<code class="keyword">Definition</code> <a name="Subset"></a>Subset (E F : extFset ER) := forall x, In x E -&gt; In x F.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="Subset_refl"></a>Subset_refl :<br/>
+&nbsp;&nbsp;forall (E : extFset ER), Subset E E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="Subset_trans"></a>Subset_trans :<br/>
+&nbsp;&nbsp;forall (E F G : extFset ER),<br/>
+&nbsp;&nbsp;Subset E F -&gt; Subset F G -&gt; Subset E G.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="Subset_empty"></a>Subset_empty :<br/>
+&nbsp;&nbsp;forall (E : extFset ER), Subset empty E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="Subset_singleton_l"></a>Subset_singleton_l :<br/>
+&nbsp;&nbsp;forall (E : extFset ER) (x : A), In x E -&gt; Subset (singleton x) E.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="Subset_union_l"></a>Subset_union_l :<br/>
+&nbsp;&nbsp;forall (E F G : extFset ER), Subset E G -&gt; Subset F G -&gt; Subset (union E F) G.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="Subset_union_r1"></a>Subset_union_r1 :<br/>
+&nbsp;&nbsp;forall (E F : extFset ER), Subset E (union E F).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="Subset_union_r2"></a>Subset_union_r2 :<br/>
+&nbsp;&nbsp;forall (E F : extFset ER), Subset F (union E F).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="Subset_union_union"></a>Subset_union_union :<br/>
+&nbsp;&nbsp;forall (A B C D : extFset ER),<br/>
+&nbsp;&nbsp;Subset A C -&gt; Subset B D -&gt; Subset (union A B) (union C D).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="Subset_add"></a>Subset_add :<br/>
+&nbsp;&nbsp;forall (E F : extFset ER) (x : A),<br/>
+&nbsp;&nbsp;Subset E F -&gt; Subset (add x E) (add x F).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="Subset_add_r"></a>Subset_add_r :<br/>
+&nbsp;&nbsp;forall (E F G : extFset ER) (x : A),<br/>
+&nbsp;&nbsp;Subset F G -&gt; Subset E (add x F) -&gt; Subset E (add x G).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="Subset_remove_l_to_add"></a>Subset_remove_l_to_add :<br/>
+&nbsp;&nbsp;forall (E F : extFset ER) (x : A),<br/>
+&nbsp;&nbsp;Subset (remove x E) F -&gt; Subset E (add x F).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="Subset_add_l_to_remove"></a>Subset_add_l_to_remove :<br/>
+&nbsp;&nbsp;forall (E F : extFset ER) (x : A),<br/>
+&nbsp;&nbsp;Subset E (add x F) -&gt; Subset (remove x E) F.<br/>
+
+<br/>
+<code class="keyword">End</code> Predicates.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments Subset [A ER].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve Subset_refl : sets.<br/>
+<code class="keyword">Hint</code> Resolve Subset_empty Subset_singleton_l : sets.<br/>
+<code class="keyword">Hint</code> Resolve Subset_union_l : sets.<br/>
+<code class="keyword">Hint</code> Resolve Subset_union_r1 Subset_union_r2 Subset_union_union : sets.<br/>
+<code class="keyword">Hint</code> Resolve Subset_add Subset_add_r : sets.<br/>
+<code class="keyword">Hint</code> Resolve Subset_remove_l_to_add Subset_add_l_to_remove : sets.<br/>
+</code>
+<hr/><a href="index.html">Index</a><hr/><font size="-1">This page has been generated by <a href="http://www.lri.fr/~filliatr/coqdoc/">coqdoc</a></font>
+</body>
+</html>

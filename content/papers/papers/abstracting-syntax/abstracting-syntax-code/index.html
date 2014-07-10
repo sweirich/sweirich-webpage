@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC
+   "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+   <meta name="robots" content="all" />
+   <style type="text/css">
+   <!--
+    A {
+      background: transparent;
+      font-weight: bolder;
+      text-decoration: underline;
+    }
+
+    A:link    { color: rgb(0,0,255); }
+    A:visited { color: rgb(153,0,153); }
+    A:active  { color: rgb(255,0,0); }
+    A:hover   { color: rgb(255,0,0); }
+   -->
+   </style>
+   <title>Abstracting Syntax: Coq Code</title>
+</head>
+
+<body>
+
+<h1>Abstracting Syntax: Coq Code</h1>
+
+<p>These are the Coq sources for the paper "Abstracting Syntax" by Brian
+Aydemir, Stephanie Weirich, and Steve Zdancewic.  From this page, you can view
+HTML versions of each of the files in our developments.  We provide this mainly
+to make it easy to browse the developments at a high level.  For more details
+about our particular formulation of locally nameless representation, see the
+paper Engineering Formal Metatheory by Aydemir, Charg&eacute;raud, Pierce,
+Pollack, and Weirich.</p>
+
+<h2>Metatheory library</h2>
+
+<p>This is our library for programming language metatheory that we
+  developed as part of previous work.</p>
+
+<ul>
+<li><a href="doc/AdditionalTactics.html">AdditionalTactics</a></li>
+<li><a href="doc/Atom.html">Atom</a></li>
+<li><a href="doc/Environment.html">Environment</a></li>
+<li><a href="doc/FSetDecide.html">FSetDecide</a></li>
+<li><a href="doc/FSetNotin.html">FSetNotin</a></li>
+<li><a href="doc/ListFacts.html">ListFacts</a></li>
+<li><a href="doc/Metatheory.html">Metatheory</a></li>
+</ul>
+
+<p>All the developments also share a common "tag" type.</p>
+
+<ul>
+<li><a href="doc/Common.html">Common</a></li>
+</ul>
+
+<h2>Locally nameless reference implementation</h2>
+
+<ul>
+<li><a href="doc/Fsub_LetSum_Definitions.html">Fsub_LetSum_Definitions</a></li>
+<li><a href="doc/Fsub_LetSum_Infrastructure.html">Fsub_LetSum_Infrastructure</a></li>
+<li><a href="doc/Fsub_LetSum_Soundness.html">Fsub_LetSum_Soundness</a></li>
+</ul>
+
+<h2>Collapsed implementation</h2>
+
+<ul>
+<li><a href="doc/Collapsed_Definitions.html">Collapsed_Definitions</a></li>
+<li><a href="doc/Collapsed_Infrastructure.html">Collapsed_Infrastructure</a></li>
+<li><a href="doc/Collapsed_Soundness.html">Collapsed_Soundness</a></li>
+</ul>
+
+<h2>Tagged implementation</h2>
+
+<ul>
+<li><a href="doc/Tagged_Definitions.html">Tagged_Definitions</a></li>
+<li><a href="doc/Tagged_Infrastructure.html">Tagged_Infrastructure</a></li>
+<li><a href="doc/Tagged_Soundness.html">Tagged_Soundness</a></li>
+</ul>
+
+<h2>Collapsed implementation, including collapsed binding</h2>
+
+<ul>
+<li><a href="doc/HOAS_Object_Definitions.html">HOAS_Object_Definitions</a></li>
+<li><a href="doc/HOAS_Object_Infrastructure.html">HOAS_Object_Infrastructure</a></li>
+<li><a href="doc/HOAS_Object_Soundness.html">HOAS_Object_Soundness</a></li>
+</ul>
+
+<h2>HOAS implementation with untyped lambda calculus</h2>
+
+<p>Library code:</p>
+
+<ul>
+<li><a href="doc/Lib_Untyped_Lambda.html">Lib_Untyped_Lambda</a></li>
+</ul>
+
+<p>Fsub development:</p>
+
+<ul>
+<li><a href="doc/HOAS_Untyped_Definitions.html">HOAS_Untyped_Definitions</a></li>
+<li><a href="doc/HOAS_Untyped_Soundness.html">HOAS_Untyped_Soundness</a></li>
+</ul>
+
+<h2>HOAS implementation with typed lambda calculus</h2>
+
+<p>Library code:</p>
+
+<ul>
+<li><a href="doc/Lib_Typed_Lambda.html">Lib_Typed_Lambda</a></li>
+</ul>
+
+<p>Fsub development:</p>
+
+<ul>
+<li><a href="doc/HOAS_Typed_Definitions.html">HOAS_Typed_Definitions</a></li>
+<li><a href="doc/HOAS_Typed_Soundness.html">HOAS_Typed_Soundness</a></li>
+</ul>
+
+<h2>Adequacy proofs</h2>
+
+<p>The proof scripts for the files below here are somewhat ugly and
+  take a significant amount of time to process.  However, the
+  developments themselves, should be reasonably readable; the scripts
+  are elided from the HTML documentation.  Note that the definition
+  of <code>senv_bijection</code> is actually interesting in
+  HOAS_Typed.  For the other developments, the definition is trivial
+  and included mainly to make comparisons to HOAS_Typed a bit
+  easier.</p>
+
+<ul>
+<li><a href="doc/Collapsed_Adequacy.html">Collapsed_Adequacy</a></li>
+<li><a href="doc/Tagged_Adequacy.html">Tagged_Adequacy</a></li>
+<li><a href="doc/HOAS_Object_Adequacy.html">HOAS_Object_Adequacy</a></li>
+<li><a href="doc/HOAS_Untyped_Adequacy.html">HOAS_Untyped_Adequacy</a></li>
+<li><a href="doc/HOAS_Typed_Adequacy.html">HOAS_Typed_Adequacy</a></li>
+</ul>
+
+<hr />
+<p class="footer">
+   <a href="http://validator.w3.org/check?uri=referer">Valid XHTML 1.0</a>
+   and <a href="http://jigsaw.w3.org/css-validator/check/referer">Valid
+   CSS</a>.
+</p>
+</body>
+</html>

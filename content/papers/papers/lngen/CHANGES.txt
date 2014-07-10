@@ -1,0 +1,42 @@
+Change log for LNgen
+====================
+
+
+Version 0.3
+-----------
+
+* LNgen generates  local closure predicates  for both `Prop`  and `Set`.
+  Theorems are stated using the version in `Prop`.
+
+* The distribution includes the Coq formalizations for the paper "LNgen:
+  Tool Support for Locally Nameless Representations."
+
+
+Version 0.2
+-----------
+
+* Output from LNgen integrates more nicely with the output from Ott.  In
+  fact, the output from LNgen must  be combined with the output from Ott
+  in order  for everything to compile.   For this all  to work, however,
+  you must patch Ott and structure your input files in a particular way.
+  Details are in the README file that comes with the distribution.
+
+* Output  from LNgen requires  "the regular"  metatheory library,  not a
+  customized version  that departs  radically from previous  releases of
+  the library.
+
+* LNgen accepts  additional command-line arguments---in  particular, one
+  to admit  all generated lemmas (useful during  language development to
+  avoid repeated recompilation).
+
+* LNgen,  in concert with  Ott, generates  local closure  predicates for
+  `Set`  and `Prop`.   The two  version  are proved  equivalent to  each
+  other.  Most lemmas are proved for the version in Prop.
+
+* LNgen generates statements and proofs of more lemmas.
+
+
+Version 0.1
+-----------
+
+* Initial release.

@@ -1,0 +1,722 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HOAS_Typed_Soundness</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HOAS_Typed_Soundness</h1>
+
+<code>
+</code>
+
+<div class="doc">
+Type-safety proofs for Fsub.
+
+<br/><br/>
+    Authors: Brian Aydemir and Arthur Charguéraud, with help from
+    Aaron Bohannon, Jeffrey Vaughan, and Dimitrios Vytiniotis.
+
+<br/><br/>
+    In parentheses are given the label of the corresponding lemma in
+    the appendix (informal proofs) of the POPLmark Challenge. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Require</span> <span class="keyword">Export</span> <a class="modref" href="HOAS_Typed_Definitions.html">HOAS_Typed_Definitions</a>.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab371"></a><h1 class="section">Equalities concerning <code>senv</code>s</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="to_tag_subst_tb_ident"></a>to_tag_subst_tb_ident : forall Z P b,<br/>
+&nbsp;&nbsp;to_tag (subst_tb Z P b) = to_tag b.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Rewrite to_tag_subst_tb_ident : rew_env.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="to_senv_map_ident"></a>to_senv_map_ident : forall Z P F,<br/>
+&nbsp;&nbsp;to_senv (map (subst_tb Z P) F) = to_senv F.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Rewrite to_senv_map_ident : rew_env.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab372"></a><h1 class="section">Properties of <code>wf_senv</code></h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="ok_from_wf_senv"></a>ok_from_wf_senv : forall E,<br/>
+&nbsp;&nbsp;wf_senv E -&gt;<br/>
+&nbsp;&nbsp;ok E.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_senv_from_wf_typ"></a>wf_senv_from_wf_typ : forall E T,<br/>
+&nbsp;&nbsp;wf_typ E T -&gt;<br/>
+&nbsp;&nbsp;wf_senv E.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_senv_from_wf_exp"></a>wf_senv_from_wf_exp : forall E e,<br/>
+&nbsp;&nbsp;wf_exp E e -&gt;<br/>
+&nbsp;&nbsp;wf_senv E.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_senv_from_wf_env"></a>wf_senv_from_wf_env : forall E,<br/>
+&nbsp;&nbsp;wf_env E -&gt;<br/>
+&nbsp;&nbsp;wf_senv (to_senv E).<br/>
+
+<br/>
+<span class="keyword">Theorem</span> <a name="wf_senv_strengthening"></a>wf_senv_strengthening : forall E F x b,<br/>
+&nbsp;&nbsp;wf_senv (F ++ [(x, b)] ++ E) -&gt;<br/>
+&nbsp;&nbsp;wf_senv (F ++ E).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab373"></a><h1 class="section"><a name="wft"></a> Properties of <code>wf_typ</code></h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="ok_from_wf_typ"></a>ok_from_wf_typ : forall E T,<br/>
+&nbsp;&nbsp;wf_typ E T -&gt; ok E.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="type_from_wf_typ"></a>type_from_wf_typ : forall E T,<br/>
+&nbsp;&nbsp;wf_typ E T -&gt; lc E T Typ.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_typ_weakening"></a>wf_typ_weakening : forall T E F G,<br/>
+&nbsp;&nbsp;wf_typ (G ++ E) T -&gt;<br/>
+&nbsp;&nbsp;wf_senv (G ++ F ++ E) -&gt;<br/>
+&nbsp;&nbsp;wf_typ (G ++ F ++ E) T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_typ_weaken_head"></a>wf_typ_weaken_head : forall T E F,<br/>
+&nbsp;&nbsp;wf_typ E T -&gt;<br/>
+&nbsp;&nbsp;wf_senv (F ++ E) -&gt;<br/>
+&nbsp;&nbsp;wf_typ (F ++ E) T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_typ_strengthening"></a>wf_typ_strengthening : forall E F x T,<br/>
+&nbsp;wf_typ (F ++ [(x, Exp)] ++ E) T -&gt;<br/>
+&nbsp;wf_typ (F ++ E) T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_typ_subst_tb"></a>wf_typ_subst_tb : forall F E Z P T,<br/>
+&nbsp;&nbsp;wf_typ (F ++ [(Z, Typ)] ++ E) T -&gt;<br/>
+&nbsp;&nbsp;wf_typ E P -&gt;<br/>
+&nbsp;&nbsp;wf_typ (F ++ E) (subst_tt Z P T).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_typ_open"></a>wf_typ_open : forall E U T1 T2,<br/>
+&nbsp;&nbsp;wf_typ E (typ_all T1 <span class="keyword">in</span> T2) -&gt;<br/>
+&nbsp;&nbsp;wf_typ E U -&gt;<br/>
+&nbsp;&nbsp;wf_typ E (open_tt T2 U).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab374"></a><h1 class="section"><a name="oktwft"></a> Properties of <code>wf_env</code> and <code>wf_typ</code></h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="ok_from_wf_env"></a>ok_from_wf_env : forall E,<br/>
+&nbsp;&nbsp;wf_env E -&gt;<br/>
+&nbsp;&nbsp;ok E.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve ok_from_wf_env.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_typ_from_binds_sub"></a>wf_typ_from_binds_sub : forall x U E,<br/>
+&nbsp;&nbsp;wf_env E -&gt;<br/>
+&nbsp;&nbsp;binds x (bind_sub U) E -&gt;<br/>
+&nbsp;&nbsp;wf_typ (to_senv E) U.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_typ_from_binds_typ"></a>wf_typ_from_binds_typ : forall x U E,<br/>
+&nbsp;&nbsp;wf_env E -&gt;<br/>
+&nbsp;&nbsp;binds x (bind_typ U) E -&gt;<br/>
+&nbsp;&nbsp;wf_typ (to_senv E) U.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_typ_from_wf_env_typ"></a>wf_typ_from_wf_env_typ : forall x T E,<br/>
+&nbsp;&nbsp;wf_env ([(x, bind_typ T)] ++ E) -&gt;<br/>
+&nbsp;&nbsp;wf_typ (to_senv E) T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_typ_from_wf_env_sub"></a>wf_typ_from_wf_env_sub : forall x T E,<br/>
+&nbsp;&nbsp;wf_env ([(x, bind_sub T)] ++ E) -&gt;<br/>
+&nbsp;&nbsp;wf_typ (to_senv E) T.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab375"></a><h1 class="section"><a name="okt"></a> Properties of <code>wf_env</code></h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_env_narrowing"></a>wf_env_narrowing : forall V E F U X,<br/>
+&nbsp;&nbsp;wf_env (F ++ [(X, bind_sub V)] ++ E) -&gt;<br/>
+&nbsp;&nbsp;wf_typ (to_senv E) U -&gt;<br/>
+&nbsp;&nbsp;wf_env (F ++ [(X, bind_sub U)] ++ E).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_env_strengthening"></a>wf_env_strengthening : forall x T E F,<br/>
+&nbsp;&nbsp;wf_env (F ++ [(x, bind_typ T)] ++ E) -&gt;<br/>
+&nbsp;&nbsp;wf_env (F ++ E).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_env_subst_tb"></a>wf_env_subst_tb : forall Q Z P E F,<br/>
+&nbsp;&nbsp;wf_env (F ++ [(Z, bind_sub Q)] ++ E) -&gt;<br/>
+&nbsp;&nbsp;wf_typ (to_senv E) P -&gt;<br/>
+&nbsp;&nbsp;wf_env (map (subst_tb Z P) F ++ E).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab376"></a><h1 class="section"><a name="subst"></a> Environment is unchanged by substitution for a fresh name</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="notin_fv_tt_open"></a>notin_fv_tt_open : forall (Y X : atom) T,<br/>
+&nbsp;&nbsp;X `notin` fv_tt (open_tt T Y) -&gt;<br/>
+&nbsp;&nbsp;X `notin` fv_tt T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="notin_fv_wf"></a>notin_fv_wf : forall E (X : atom) T,<br/>
+&nbsp;&nbsp;wf_typ (to_senv E) T -&gt;<br/>
+&nbsp;&nbsp;X `notin` dom E -&gt;<br/>
+&nbsp;&nbsp;X `notin` fv_tt T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="map_subst_tb_id"></a>map_subst_tb_id : forall G Z P,<br/>
+&nbsp;&nbsp;wf_env G -&gt;<br/>
+&nbsp;&nbsp;Z `notin` dom G -&gt;<br/>
+&nbsp;&nbsp;G = map (subst_tb Z P) G.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab377"></a><h1 class="section">Other lemmas</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="bind_typ_fresh"></a>bind_typ_fresh : forall E F x V,<br/>
+&nbsp;&nbsp;wf_typ (F ++ [(x, Exp)] ++ E) V -&gt;<br/>
+&nbsp;&nbsp;x `notin` fv V.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_fresh_exp_typ"></a>subst_fresh_exp_typ : forall E F x u V,<br/>
+&nbsp;&nbsp;wf_typ (F ++ [(x, Exp)] ++ E) V -&gt;<br/>
+&nbsp;&nbsp;subst x u V = V.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab378"></a><h1 class="section">Facts about <code>wf_exp</code></h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="ok_from_wf_exp"></a>ok_from_wf_exp : forall E e,<br/>
+&nbsp;&nbsp;wf_exp E e -&gt; ok E.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="expr_from_wf_exp"></a>expr_from_wf_exp : forall E e,<br/>
+&nbsp;&nbsp;wf_exp E e -&gt; lc E e Exp.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_exp_weakening"></a>wf_exp_weakening : forall e E F G,<br/>
+&nbsp;&nbsp;wf_exp (G ++ E) e -&gt;<br/>
+&nbsp;&nbsp;wf_senv (G ++ F ++ E) -&gt;<br/>
+&nbsp;&nbsp;wf_exp (G ++ F ++ E) e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_exp_weaken_head"></a>wf_exp_weaken_head : forall e E F,<br/>
+&nbsp;&nbsp;wf_exp E e -&gt;<br/>
+&nbsp;&nbsp;wf_senv (F ++ E) -&gt;<br/>
+&nbsp;&nbsp;wf_exp (F ++ E) e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_exp_subst_ee"></a>wf_exp_subst_ee : forall F E z g e,<br/>
+&nbsp;&nbsp;wf_exp (F ++ [(z, Exp)] ++ E) e -&gt;<br/>
+&nbsp;&nbsp;wf_exp E g -&gt;<br/>
+&nbsp;&nbsp;wf_exp (F ++ E) (subst_ee z g e).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_exp_subst_te"></a>wf_exp_subst_te : forall F E Z T e,<br/>
+&nbsp;&nbsp;wf_exp (F ++ [(Z, Typ)] ++ E) e -&gt;<br/>
+&nbsp;&nbsp;wf_typ E T -&gt;<br/>
+&nbsp;&nbsp;wf_exp (F ++ E) (subst_te Z T e).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_exp_open_ee"></a>wf_exp_open_ee : forall L E e v,<br/>
+&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt; wf_exp ([(x,Exp)] ++ E) (open_ee e x)) -&gt;<br/>
+&nbsp;&nbsp;wf_exp E v -&gt;<br/>
+&nbsp;&nbsp;wf_exp E (open_ee e v).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_exp_open_te"></a>wf_exp_open_te : forall L E e V,<br/>
+&nbsp;&nbsp;(forall X : atom, X `notin` L -&gt; wf_exp ([(X,Typ)] ++ E) (open_te e X)) -&gt;<br/>
+&nbsp;&nbsp;wf_typ E V -&gt;<br/>
+&nbsp;&nbsp;wf_exp E (open_te e V).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab379"></a><h1 class="section"><a name="regularity"></a> Regularity of relations</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="sub_regular"></a>sub_regular : forall E S T,<br/>
+&nbsp;&nbsp;sub E S T -&gt;<br/>
+&nbsp;&nbsp;wf_env E /\ wf_typ (to_senv E) S /\ wf_typ (to_senv E) T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typing_regular"></a>typing_regular : forall E e T,<br/>
+&nbsp;&nbsp;typing E e T -&gt;<br/>
+&nbsp;&nbsp;wf_env E /\ wf_exp (to_senv E) e /\ wf_typ (to_senv E) T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="value_regular"></a>value_regular : forall e,<br/>
+&nbsp;&nbsp;value e -&gt;<br/>
+&nbsp;&nbsp;exists E, wf_exp E e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="red_regular_l"></a>red_regular_l : forall e e',<br/>
+&nbsp;&nbsp;red e e' -&gt;<br/>
+&nbsp;&nbsp;exists E, wf_exp E e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="red_regular_r"></a>red_regular_r : forall E e e',<br/>
+&nbsp;&nbsp;red e e' -&gt;<br/>
+&nbsp;&nbsp;wf_exp E e -&gt;<br/>
+&nbsp;&nbsp;wf_exp E e'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="red_regular"></a>red_regular : forall e e',<br/>
+&nbsp;&nbsp;red e e' -&gt;<br/>
+&nbsp;&nbsp;exists E, wf_exp E e /\ wf_exp E e'.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab380"></a><h1 class="section"><a name="auto"></a> Automation</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (wf_env ?E) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;| H: sub _ _ _ |- _ =&gt; apply (proj1 (sub_regular _ _ _ H))<br/>
+&nbsp;&nbsp;| H: typing _ _ _ |- _ =&gt; apply (proj1 (typing_regular _ _ _ H))<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (wf_typ (to_senv ?E) ?T) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;| H: typing E _ T |- _ =&gt; apply (proj2 (proj2 (typing_regular _ _ _ H)))<br/>
+&nbsp;&nbsp;| H: sub E T _ |- _ =&gt; apply (proj1 (proj2 (sub_regular _ _ _ H)))<br/>
+&nbsp;&nbsp;| H: sub E _ T |- _ =&gt; apply (proj2 (proj2 (sub_regular _ _ _ H)))<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (lc _ ?T Typ) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> go E := (apply (type_from_wf_typ (to_senv E))) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;| H: typing ?E _ T |- _ =&gt; go E<br/>
+&nbsp;&nbsp;| H: sub ?E T _ |- _ =&gt; go E<br/>
+&nbsp;&nbsp;| H: sub ?E _ T |- _ =&gt; go E<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (lc _ ?e Exp) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;| H: typing _ ?e _ |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply (expr_from_wf_exp _ _ (proj1 (proj2 (typing_regular _ _ _ H))))<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (wf_exp _ ?e) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : typing _ e _ |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;apply (proj1 (proj2 (typing_regular _ _ _ H)))<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab381"></a><h1 class="section"><a name="subtyping"></a> Properties of subtyping</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab382"></a><h2 class="section">Reflexivity (1)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="sub_reflexivity"></a>sub_reflexivity : forall E T,<br/>
+&nbsp;&nbsp;wf_env E -&gt;<br/>
+&nbsp;&nbsp;wf_typ (to_senv E) T -&gt;<br/>
+&nbsp;&nbsp;sub E T T.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab383"></a><h2 class="section">Weakening (2)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Section</span> Weakening.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (wf_typ _ _) =&gt;<br/>
+&nbsp;&nbsp;repeat rewrite &lt;- map_concat.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (ok _) =&gt;<br/>
+&nbsp;&nbsp;repeat rewrite &lt;- map_concat.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="sub_weakening"></a>sub_weakening : forall E F G S T,<br/>
+&nbsp;&nbsp;sub (G ++ E) S T -&gt;<br/>
+&nbsp;&nbsp;wf_env (G ++ F ++ E) -&gt;<br/>
+&nbsp;&nbsp;sub (G ++ F ++ E) S T.<br/>
+
+<br/>
+<span class="keyword">End</span> Weakening.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab384"></a><h2 class="section">Narrowing and transitivity (3)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Section</span> Narrowing_and_transitivity.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (wf_typ _ ?S) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : wf_typ _ S |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;simpl_env <span class="keyword">in</span> H; simpl <span class="keyword">in</span> H; simpl_env <span class="keyword">in</span> H<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="sub_narrowing_aux"></a>sub_narrowing_aux : forall Q F E Z P S T,<br/>
+&nbsp;&nbsp;(forall E S T, sub E S Q -&gt; sub E Q T -&gt; sub E S T) -&gt;<br/>
+&nbsp;&nbsp;sub (F ++ [(Z, bind_sub Q)] ++ E) S T -&gt;<br/>
+&nbsp;&nbsp;sub E P Q -&gt;<br/>
+&nbsp;&nbsp;sub (F ++ [(Z, bind_sub P)] ++ E) S T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="sub_transitivity_aux"></a>sub_transitivity_aux : forall E' Q E S T,<br/>
+&nbsp;&nbsp;wf_typ E' Q -&gt;<br/>
+&nbsp;&nbsp;sub E S Q -&gt;<br/>
+&nbsp;&nbsp;sub E Q T -&gt;<br/>
+&nbsp;&nbsp;sub E S T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="sub_narrowing"></a>sub_narrowing : forall Q E F Z P S T,<br/>
+&nbsp;&nbsp;sub E P Q -&gt;<br/>
+&nbsp;&nbsp;sub (F ++ [(Z, bind_sub Q)] ++ E) S T -&gt;<br/>
+&nbsp;&nbsp;sub (F ++ [(Z, bind_sub P)] ++ E) S T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="sub_transitivity"></a>sub_transitivity : forall Q E S T,<br/>
+&nbsp;&nbsp;sub E S Q -&gt;<br/>
+&nbsp;&nbsp;sub E Q T -&gt;<br/>
+&nbsp;&nbsp;sub E S T.<br/>
+
+<br/>
+<span class="keyword">End</span> Narrowing_and_transitivity.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab385"></a><h2 class="section">Type substitution preserves subtyping (10)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="sub_through_subst_tt"></a>sub_through_subst_tt : forall Q E F Z S T P,<br/>
+&nbsp;&nbsp;sub (F ++ [(Z, bind_sub Q)] ++ E) S T -&gt;<br/>
+&nbsp;&nbsp;sub E P Q -&gt;<br/>
+&nbsp;&nbsp;sub (map (subst_tb Z P) F ++ E) (subst_tt Z P S) (subst_tt Z P T).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab386"></a><h1 class="section"><a name="typing"></a> Properties of typing</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab387"></a><h2 class="section">Weakening (5)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Section</span> Typing_weakening.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 4 (wf_typ _ _) =&gt;<br/>
+&nbsp;&nbsp;apply wf_typ_weakening; repeat rewrite &lt;- map_concat.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typing_weakening"></a>typing_weakening : forall E F G e T,<br/>
+&nbsp;&nbsp;typing (G ++ E) e T -&gt;<br/>
+&nbsp;&nbsp;wf_env (G ++ F ++ E) -&gt;<br/>
+&nbsp;&nbsp;typing (G ++ F ++ E) e T.<br/>
+
+<br/>
+<span class="keyword">End</span> Typing_weakening.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab388"></a><h2 class="section">Strengthening (6)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="sub_strengthening"></a>sub_strengthening : forall x U E F S T,<br/>
+&nbsp;&nbsp;sub (F ++ [(x, bind_typ U)] ++ E) S T -&gt;<br/>
+&nbsp;&nbsp;sub (F ++ E) S T.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab389"></a><h2 class="section">Narrowing for typing (7)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typing_narrowing"></a>typing_narrowing : forall Q E F X P e T,<br/>
+&nbsp;&nbsp;sub E P Q -&gt;<br/>
+&nbsp;&nbsp;typing (F ++ [(X, bind_sub Q)] ++ E) e T -&gt;<br/>
+&nbsp;&nbsp;typing (F ++ [(X, bind_sub P)] ++ E) e T.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab390"></a><h2 class="section">Substitution preserves typing (8)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typing_through_subst_ee"></a>typing_through_subst_ee : forall U E F x T e u,<br/>
+&nbsp;&nbsp;typing (F ++ [(x, bind_typ U)] ++ E) e T -&gt;<br/>
+&nbsp;&nbsp;typing E u U -&gt;<br/>
+&nbsp;&nbsp;typing (F ++ E) (subst_ee x u e) T.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab391"></a><h2 class="section">Type substitution preserves typing (11)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typing_through_subst_te"></a>typing_through_subst_te : forall Q E F Z e T P,<br/>
+&nbsp;&nbsp;typing (F ++ [(Z, bind_sub Q)] ++ E) e T -&gt;<br/>
+&nbsp;&nbsp;sub E P Q -&gt;<br/>
+&nbsp;&nbsp;typing (map (subst_tb Z P) F ++ E) (subst_te Z P e) (subst_tt Z P T).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab392"></a><h1 class="section"><a name="preservation"></a> Preservation</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab393"></a><h2 class="section">Inversion of typing (13)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typing_inv_abs"></a>typing_inv_abs : forall E S1 e1 T,<br/>
+&nbsp;&nbsp;typing E (exp_abs S1 <span class="keyword">in</span> e1) T -&gt;<br/>
+&nbsp;&nbsp;forall U1 U2, sub E T (typ_arrow U1 U2) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E U1 S1<br/>
+&nbsp;&nbsp;/\ exists S2, exists L, forall x, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing ([(x, bind_typ S1)] ++ E) (open_ee e1 x) S2 /\ sub E S2 U2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typing_inv_tabs"></a>typing_inv_tabs : forall E S1 e1 T,<br/>
+&nbsp;&nbsp;typing E (exp_tabs S1 <span class="keyword">in</span> e1) T -&gt;<br/>
+&nbsp;&nbsp;forall U1 U2, sub E T (typ_all U1 <span class="keyword">in</span> U2) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E U1 S1<br/>
+&nbsp;&nbsp;/\ exists S2, exists L, forall X, X `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing ([(X, bind_sub U1)] ++ E) (open_te e1 X) (open_tt S2 X)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/\ sub ([(X, bind_sub U1)] ++ E) (open_tt S2 X) (open_tt U2 X).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typing_inv_inl"></a>typing_inv_inl : forall E e1 T,<br/>
+&nbsp;&nbsp;typing E (exp_inl e1) T -&gt;<br/>
+&nbsp;&nbsp;forall U1 U2, sub E T (typ_sum U1 U2) -&gt;<br/>
+&nbsp;&nbsp;exists S1, typing E e1 S1 /\ sub E S1 U1.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typing_inv_inr"></a>typing_inv_inr : forall E e1 T,<br/>
+&nbsp;&nbsp;typing E (exp_inr e1) T -&gt;<br/>
+&nbsp;&nbsp;forall U1 U2, sub E T (typ_sum U1 U2) -&gt;<br/>
+&nbsp;&nbsp;exists S1, typing E e1 S1 /\ sub E S1 U2.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab394"></a><h2 class="section">Preservation (20)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="preservation"></a>preservation : forall E e e' T,<br/>
+&nbsp;&nbsp;typing E e T -&gt;<br/>
+&nbsp;&nbsp;red e e' -&gt;<br/>
+&nbsp;&nbsp;typing E e' T.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab395"></a><h1 class="section"><a name="progress"></a> Progress</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab396"></a><h2 class="section">Canonical forms (14)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="canonical_form_abs"></a>canonical_form_abs : forall e U1 U2,<br/>
+&nbsp;&nbsp;value e -&gt;<br/>
+&nbsp;&nbsp;typing empty e (typ_arrow U1 U2) -&gt;<br/>
+&nbsp;&nbsp;exists V, exists e1, e = exp_abs V <span class="keyword">in</span> e1.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="canonical_form_tabs"></a>canonical_form_tabs : forall e U1 U2,<br/>
+&nbsp;&nbsp;value e -&gt;<br/>
+&nbsp;&nbsp;typing empty e (typ_all U1 <span class="keyword">in</span> U2) -&gt;<br/>
+&nbsp;&nbsp;exists V, exists e1, e = exp_tabs V <span class="keyword">in</span> e1.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="canonical_form_sum"></a>canonical_form_sum : forall e T1 T2,<br/>
+&nbsp;&nbsp;value e -&gt; typing empty e (typ_sum T1 T2) -&gt;<br/>
+&nbsp;&nbsp;exists e1, e = exp_inl e1 \/ e = exp_inr e1.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab397"></a><h2 class="section">Progress (16)</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="progress"></a>progress : forall e T,<br/>
+&nbsp;&nbsp;typing empty e T -&gt;<br/>
+&nbsp;&nbsp;value e \/ exists e', red e e'.<br/>
+</code>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

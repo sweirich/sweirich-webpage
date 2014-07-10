@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Nominal Reasoning Techniques in Coq</title>
+</head>
+<body>
+<span style="font-weight: bold;">Nominal Reasoning Techniques in Coq
+(Work in Progress)</span>. Brian Aydemir, Aaron Bohannon, and Stephanie
+Weirich. In <span style="font-style: italic;">International Workshop
+on Logical Frameworks and Meta-Languages:Theory and Practice (LFMTP
+2006)</span>.<br>
+<br>
+&nbsp; We explore an axiomatized nominal approach to variable binding
+in Coq, using an untyped lambda-calculus as our test case.&nbsp; In our
+nominal&nbsp; approach, alpha-equality of lambda terms coincides with
+Coq's
+built-in equality.&nbsp; Our axiomatization includes a nominal
+induction
+principle and functions for calculating free variables and
+substitution.&nbsp;
+These axioms are collected in a module signature and proved sound using
+locally nameless terms as the underlying representation.&nbsp; Our
+experience so far suggests that it is
+feasible to work from such axiomatized theories in Coq and that the
+nominal
+style of variable binding corresponds closely with paper proofs.&nbsp;
+We
+are currently working on proving the soundness of a primitive recursion
+combinator and developing a method of generating these axioms and their
+proof of soundness from a grammar describing the syntax of terms and
+binding.&nbsp;&nbsp;&nbsp;&nbsp; <br>
+<br>
+[<a href="lfmtp06.pdf">full paper</a> (pdf)] [<a href="presentation.pdf">slides</a>
+(pdf)]
+[<a href="abw06nominal-code.tar.gz">source code</a> (tar.gz)] [<a
+ href="doc/STLC.html">source documentation</a>]<br>
+<br>
+The source code requires <a href="http://coq.inria.fr/V8.1beta/">Coq
+8.1beta</a> to compile. The included README file details differences
+between the code and the description in the paper.<br>
+<br>
+<pre>@InProceedings{aydemir+:nominal-coq,<br>&nbsp; author = &nbsp;&nbsp;&nbsp;  {Brian Aydemir and Aaron Bohannon and Stephanie Weirich},<br>&nbsp; title = &nbsp;&nbsp;&nbsp; &nbsp; {Nominal Reasoning Techniques in {Coq}},<br>&nbsp; booktitle =   {International Workshop on Logical Frameworks and <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Meta-Languages:Theory and Practice (LFMTP) },<br>&nbsp; year =&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 2006,<br>&nbsp; address =&nbsp;&nbsp;&nbsp;  {Seattle, WA, USA},<br>&nbsp; month =&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; aug<br>}</pre>
+<br>
+This material is based upon work supported by the National Science
+Foundation under Grant No. 0551589. Any opinions, findings, and
+conclusions or recommendations expressed in
+this material are those of the author(s) and do not necessarily reflect
+the views of the National Science Foundation.
+<hr style="width: 100%; height: 2px;"><a
+ href="http://www.seas.upenn.edu/%7Esweirich"><span
+ style="font-style: italic;">Stephanie Weirich</span></a>
+</body>
+</html>

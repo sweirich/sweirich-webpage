@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HOAS_Object_Infrastructure</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HOAS_Object_Infrastructure</h1>
+
+<code>
+</code>
+
+<div class="doc">
+Infrastructure lemmas and tactic definitions for Fsub. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Require</span> <span class="keyword">Export</span> <a class="modref" href="HOAS_Object_Definitions.html">HOAS_Object_Definitions</a>.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab240"></a><h1 class="section"><a name="pick_fresh"></a> The "<code>pick fresh</code>" tactic</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Ltac</span> gather_atoms :=<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> A := gather_atoms_with (fun x : atoms =&gt; x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> B := gather_atoms_with (fun x : atom =&gt; singleton x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> C := gather_atoms_with (fun x : exp =&gt; fv_te x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> D := gather_atoms_with (fun x : exp =&gt; fv_ee x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> E := gather_atoms_with (fun x : typ =&gt; fv_tt x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> F := gather_atoms_with (fun x : env =&gt; dom x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> G := gather_atoms_with (fun x : senv =&gt; dom x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;constr:(A `union` B `union` C `union` D `union` E `union` F `union` G).<br/>
+
+<br/>
+<span class="keyword">Tactic Notation</span> "pick" "fresh" ident(x) :=<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> L := gather_atoms <span class="keyword">in</span> (pick fresh x for L).<br/>
+
+<br/>
+<span class="keyword">Tactic Notation</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pick" "fresh" ident(atom_name) "and" "apply" constr(lemma) :=<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> L := gather_atoms <span class="keyword">in</span><br/>
+&nbsp;&nbsp;pick fresh atom_name excluding L and apply lemma.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab241"></a><h1 class="section"><a name="properties"></a> Properties of opening and substitution</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_rec_lc_aux"></a>open_rec_lc_aux : forall T j V i U,<br/>
+&nbsp;&nbsp;i &lt;&gt; j -&gt;<br/>
+&nbsp;&nbsp;open_rec j V T = open_rec i U (open_rec j V T) -&gt;<br/>
+&nbsp;&nbsp;T = open_rec i U T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_rec_lc"></a>open_rec_lc : forall T U k,<br/>
+&nbsp;&nbsp;lc T -&gt;<br/>
+&nbsp;&nbsp;T = open_rec k U T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_fresh"></a>subst_fresh : forall (Z : atom) U T,<br/>
+&nbsp;&nbsp;&nbsp;Z `notin` fv T -&gt;<br/>
+&nbsp;&nbsp;&nbsp;T = subst Z U T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_open_rec"></a>subst_open_rec : forall T1 T2 (X : atom) P k,<br/>
+&nbsp;&nbsp;lc P -&gt;<br/>
+&nbsp;&nbsp;subst X P (open_rec k T2 T1) = open_rec k (subst X P T2) (subst X P T1).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_open"></a>subst_open : forall T1 T2 (X : atom) P,<br/>
+&nbsp;&nbsp;lc P -&gt;<br/>
+&nbsp;&nbsp;subst X P (open T1 T2) = open (subst X P T1) (subst X P T2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_open_var"></a>subst_open_var : forall (X Y : atom) P T,<br/>
+&nbsp;&nbsp;Y &lt;&gt; X -&gt;<br/>
+&nbsp;&nbsp;lc P -&gt;<br/>
+&nbsp;&nbsp;open (subst X P T) Y = subst X P (open T Y).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_intro_rec"></a>subst_intro_rec : forall (X : atom) T2 U k,<br/>
+&nbsp;&nbsp;X `notin` fv T2 -&gt;<br/>
+&nbsp;&nbsp;open_rec k U T2 = subst X U (open_rec k (fvar X) T2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_intro"></a>subst_intro : forall (X : atom) T2 U,<br/>
+&nbsp;&nbsp;X `notin` fv T2 -&gt;<br/>
+&nbsp;&nbsp;open T2 U = subst X U (open T2 X).<br/>
+
+<br/>
+<span class="keyword">Notation</span> subst_tt_open_tt := subst_open (only parsing).<br/>
+
+<br/>
+<span class="keyword">Notation</span> subst_tt_open_tt_var := subst_open_var (only parsing).<br/>
+<span class="keyword">Notation</span> subst_te_open_te_var := subst_open_var (only parsing).<br/>
+<span class="keyword">Notation</span> subst_te_open_ee_var := subst_open_var (only parsing).<br/>
+<span class="keyword">Notation</span> subst_ee_open_te_var := subst_open_var (only parsing).<br/>
+<span class="keyword">Notation</span> subst_ee_open_ee_var := subst_open_var (only parsing).<br/>
+
+<br/>
+<span class="keyword">Notation</span> subst_tt_intro := subst_intro (only parsing).<br/>
+<span class="keyword">Notation</span> subst_te_intro := subst_intro (only parsing).<br/>
+<span class="keyword">Notation</span> subst_ee_intro := subst_intro (only parsing).<br/>
+
+<br/>
+<span class="keyword">Notation</span> subst_tt_fresh := subst_fresh (only parsing).<br/>
+<span class="keyword">Notation</span> subst_te_fresh := subst_fresh (only parsing).<br/>
+<span class="keyword">Notation</span> subst_ee_fresh := subst_fresh (only parsing).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab242"></a><h1 class="section"><a name="lc"></a> Local closure is preserved under substitution</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_lc"></a>subst_lc : forall Z P T,<br/>
+&nbsp;&nbsp;lc T -&gt;<br/>
+&nbsp;&nbsp;lc P -&gt;<br/>
+&nbsp;&nbsp;lc (subst Z P T).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab243"></a><h1 class="section"><a name="auto"></a> Automation</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Hint</span> Resolve subst_lc.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (binds _ (?F (subst_tt ?X ?U ?T)) _) =&gt;<br/>
+&nbsp;&nbsp;unsimpl (subst_tb X U (F T)).<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (binds _ Typ _) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : binds _ (bind_sub ?U) _ |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change Typ <span class="keyword">with</span> (to_tag (bind_sub U))<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (binds _ Exp _) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : binds _ (bind_typ ?U) _ |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change Exp <span class="keyword">with</span> (to_tag (bind_typ U))<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+</code>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

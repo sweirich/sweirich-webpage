@@ -1,0 +1,600 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HOAS_Typed_Definitions</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HOAS_Typed_Definitions</h1>
+
+<code>
+</code>
+
+<div class="doc">
+Definition of Fsub (System F with subtyping).
+
+<br/><br/>
+    We represent syntax with an encoding into the lambda calculus.
+
+<br/><br/>
+    NOTE: We define a number of <code><span class="keyword">Notation</span></code>s which are used only for
+    parsing, since the code here is directly copied from another
+    development.  The notations help smooth over trivial differences
+    in the names of lemmas and functions. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Require</span> <span class="keyword">Export</span> <a class="modref" href="Metatheory.html">Metatheory</a>.<br/>
+<span class="keyword">Require</span> <span class="keyword">Export</span> <a class="modref" href="Lib_Typed_Lambda.html">Lib_Typed_Lambda</a>.<br/>
+<span class="keyword">Require</span> <span class="keyword">Export</span> <a class="modref" href="Common.html">Common</a>.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab361"></a><h1 class="section">Pre-terms</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Module</span> <span class="keyword">Export</span> Const &lt;: CONST.<br/>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Export.syntax_c"></a>syntax_c : <span class="keyword">Set</span> :=<br/>
+| <a name="Export.typ_top_c"></a>typ_top_c   : syntax_c<br/>
+| <a name="Export.typ_arrow_c"></a>typ_arrow_c : syntax_c<br/>
+| <a name="Export.typ_all_c"></a>typ_all_c   : syntax_c<br/>
+| <a name="Export.typ_sum_c"></a>typ_sum_c   : syntax_c<br/>
+| <a name="Export.exp_abs_c"></a>exp_abs_c   : syntax_c<br/>
+| <a name="Export.exp_app_c"></a>exp_app_c   : syntax_c<br/>
+| <a name="Export.exp_tabs_c"></a>exp_tabs_c  : syntax_c<br/>
+| <a name="Export.exp_tapp_c"></a>exp_tapp_c  : syntax_c<br/>
+| <a name="Export.exp_let_c"></a>exp_let_c   : syntax_c<br/>
+| <a name="Export.exp_inl_c"></a>exp_inl_c   : syntax_c<br/>
+| <a name="Export.exp_inr_c"></a>exp_inr_c   : syntax_c<br/>
+| <a name="Export.exp_case_c"></a>exp_case_c  : syntax_c.<br/>
+
+<br/>
+<span class="keyword">Definition</span> <a name="Export.const"></a>const := syntax_c.<br/>
+<span class="keyword">Definition</span> <a name="Export.base_sort"></a>base_sort := tag.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Export.eq_base_sort_dec"></a>eq_base_sort_dec : forall (x y : base_sort), {x = y} + {x &lt;&gt; y}.<br/>
+
+<br/>
+<span class="keyword">Notation</span> Typ := (lt_base Typ).<br/>
+<span class="keyword">Notation</span> Exp := (lt_base Exp).<br/>
+<span class="keyword">Notation</span> sort := (lambda_sort base_sort).<br/>
+
+<br/>
+<span class="keyword">Definition</span> <a name="Export.signature"></a>signature (c : const) : sort :=<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> c <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| typ_top_c =&gt; Typ<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| typ_arrow_c =&gt; lt_arrow Typ (lt_arrow Typ Typ)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| typ_all_c =&gt; lt_arrow Typ (lt_arrow (lt_arrow Typ Typ) Typ)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| typ_sum_c =&gt; lt_arrow Typ (lt_arrow Typ Typ)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| exp_abs_c =&gt; lt_arrow Typ (lt_arrow (lt_arrow Exp Exp) Exp)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| exp_app_c =&gt; lt_arrow Exp (lt_arrow Exp Exp)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| exp_tabs_c =&gt; lt_arrow Typ (lt_arrow (lt_arrow Typ Exp) Exp)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| exp_tapp_c =&gt; lt_arrow Exp (lt_arrow Typ Exp)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| exp_let_c =&gt; lt_arrow Exp (lt_arrow (lt_arrow Exp Exp) Exp)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| exp_inl_c =&gt; lt_arrow Exp Exp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| exp_inr_c =&gt; lt_arrow Exp Exp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| exp_case_c =&gt; lt_arrow Exp (lt_arrow (lt_arrow Exp Exp)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(lt_arrow (lt_arrow Exp Exp) Exp))<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">End</span> Const.<br/>
+
+<br/>
+<span class="keyword">Module</span> <span class="keyword">Export</span> L := Lam Const.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab362"></a><h1 class="section">Notations</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+NOTE: The block of notations below is purely to smooth over
+    differences stemming from the fact that much of the code in this
+    development is copied directly from another Fsub development. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Notation</span> exp := syntax (only parsing).<br/>
+<span class="keyword">Notation</span> typ := syntax (only parsing).<br/>
+
+<br/>
+<span class="keyword">Notation</span> fv_tt := fv (only parsing).<br/>
+
+<br/>
+<span class="keyword">Notation</span> open_tt := open (only parsing).<br/>
+<span class="keyword">Notation</span> open_te := open (only parsing).<br/>
+<span class="keyword">Notation</span> open_ee := open (only parsing).<br/>
+
+<br/>
+<span class="keyword">Notation</span> subst_tt := subst (only parsing).<br/>
+<span class="keyword">Notation</span> subst_te := subst (only parsing).<br/>
+<span class="keyword">Notation</span> subst_ee := subst (only parsing).<br/>
+
+<br/>
+<span class="keyword">Notation</span> subst_tt_open_tt := subst_open (only parsing).<br/>
+
+<br/>
+<span class="keyword">Notation</span> subst_tt_open_tt_var := subst_open_var (only parsing).<br/>
+<span class="keyword">Notation</span> subst_te_open_te_var := subst_open_var (only parsing).<br/>
+<span class="keyword">Notation</span> subst_te_open_ee_var := subst_open_var (only parsing).<br/>
+<span class="keyword">Notation</span> subst_ee_open_te_var := subst_open_var (only parsing).<br/>
+<span class="keyword">Notation</span> subst_ee_open_ee_var := subst_open_var (only parsing).<br/>
+
+<br/>
+<span class="keyword">Notation</span> subst_tt_intro := subst_intro (only parsing).<br/>
+<span class="keyword">Notation</span> subst_te_intro := subst_intro (only parsing).<br/>
+<span class="keyword">Notation</span> subst_ee_intro := subst_intro (only parsing).<br/>
+
+<br/>
+<span class="keyword">Notation</span> subst_tt_fresh := subst_fresh (only parsing).<br/>
+<span class="keyword">Notation</span> subst_te_fresh := subst_fresh (only parsing).<br/>
+<span class="keyword">Notation</span> subst_ee_fresh := subst_fresh (only parsing).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+NOTE: The block of notations below is needed to provide a
+    reasonable way of writing terms. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Notation</span> "r @ s" := (app r s) (at level 40, left associativity).<br/>
+
+<br/>
+<span class="keyword">Notation</span> typ_fvar := fvar.<br/>
+<span class="keyword">Notation</span> exp_fvar := fvar.<br/>
+
+<br/>
+<span class="keyword">Notation</span> typ_top :=<br/>
+&nbsp;&nbsp;(const typ_top_c).<br/>
+<span class="keyword">Notation</span> "'typ_arrow' s1"       :=<br/>
+&nbsp;&nbsp;(app (const typ_arrow_c @ s1)) (at level 2).<br/>
+<span class="keyword">Notation</span> "'typ_all' s1 'in' s2" :=<br/>
+&nbsp;&nbsp;(const typ_all_c @ s1 @ (abs Typ s2)) (at level 2).<br/>
+<span class="keyword">Notation</span> "'typ_sum' s1"         :=<br/>
+&nbsp;&nbsp;(app (const typ_sum_c @ s1 )) (at level 2).<br/>
+<span class="keyword">Notation</span> "'exp_abs' s1 'in' s2" :=<br/>
+&nbsp;&nbsp;(const exp_abs_c @ s1 @ (abs Exp s2)) (at level 2).<br/>
+<span class="keyword">Notation</span> "'exp_app' s1"         :=<br/>
+&nbsp;&nbsp;(app (const exp_app_c @ s1 )) (at level 2).<br/>
+<span class="keyword">Notation</span> "'exp_tabs' s1 'in' s2":=<br/>
+&nbsp;&nbsp;(const exp_tabs_c @ s1 @ (abs Typ s2)) (at level 2).<br/>
+<span class="keyword">Notation</span> "'exp_tapp' s1"        :=<br/>
+&nbsp;&nbsp;(app (const exp_tapp_c @ s1 )) (at level 2).<br/>
+<span class="keyword">Notation</span> "'exp_let' s1 'in' s2" :=<br/>
+&nbsp;&nbsp;(const exp_let_c @ s1 @ (abs Exp s2)) (at level 2).<br/>
+<span class="keyword">Notation</span> "'exp_inl' s1"         :=<br/>
+&nbsp;&nbsp;(const exp_inl_c @ s1) (at level 2).<br/>
+<span class="keyword">Notation</span> "'exp_inr' s1"         :=<br/>
+&nbsp;&nbsp;(const exp_inr_c @ s1) (at level 2).<br/>
+<span class="keyword">Notation</span> "'exp_case' s1 'left' s2 'right' s3" :=<br/>
+&nbsp;&nbsp;(const exp_case_c @ s1 @ (abs Exp s2) @ (abs Exp s3)) (at level 2).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab363"></a><h1 class="section"><a name="env"></a> Environments</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Export.Export.binding"></a>binding : <span class="keyword">Set</span> :=<br/>
+&nbsp;&nbsp;| <a name="Export.Export.bind_sub"></a>bind_sub : typ -&gt; binding<br/>
+&nbsp;&nbsp;| <a name="Export.Export.bind_typ"></a>bind_typ : typ -&gt; binding.<br/>
+
+<br/>
+<span class="keyword">Notation</span> env := (list (atom * binding)).<br/>
+<span class="keyword">Notation</span> empty := (@nil (atom * binding)).<br/>
+
+<br/>
+<span class="keyword">Notation</span> "[ x ]" := (x :: nil).<br/>
+
+<br/>
+<span class="keyword">Definition</span> <a name="Export.Export.subst_tb"></a>subst_tb (Z : atom) (P : typ) (b : binding) : binding :=<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> b <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| bind_sub T =&gt; bind_sub (subst_tt Z P T)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| bind_typ T =&gt; bind_typ (subst_tt Z P T)<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Notation</span> senv := (list (atom * sort)).<br/>
+
+<br/>
+<span class="keyword">Definition</span> <a name="Export.Export.to_tag"></a>to_tag (b : binding) : sort :=<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> b <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| bind_sub _ =&gt; Typ<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| bind_typ _ =&gt; Exp<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Notation</span> to_senv := (map to_tag).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab364"></a><h1 class="section"><a name="wf"></a> Well-formedness</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Export.Export.wf_senv"></a>wf_senv : senv -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_senv_nil"></a>wf_senv_nil :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_senv nil<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_senv_Exp"></a>wf_senv_Exp : forall E x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x `notin` dom E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_senv E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_senv ([(x,Exp)] ++ E)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_senv_Typ"></a>wf_senv_Typ : forall E X,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X `notin` dom E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_senv E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_senv ([(X,Typ)] ++ E).<br/>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Export.Export.wf_typ"></a>wf_typ : senv -&gt; typ -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_typ_top"></a>wf_typ_top : forall E,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_senv E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E typ_top<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_typ_var"></a>wf_typ_var : forall E (X : atom),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_senv E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binds X Typ E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E (typ_fvar X)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_typ_arrow"></a>wf_typ_arrow : forall E T1 T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E T1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E T2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E (typ_arrow T1 T2)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_typ_all"></a>wf_typ_all : forall L E T1 T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E T1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall X : atom, X `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ ([(X, Typ)] ++ E) (open_tt T2 X)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E (typ_all T1 <span class="keyword">in</span> T2)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_typ_sum"></a>wf_typ_sum : forall E T1 T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E T1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E T2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E (typ_sum T1 T2)<br/>
+.<br/>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Export.Export.wf_exp"></a>wf_exp : senv -&gt; exp -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_exp_var"></a>wf_exp_var : forall E (x : atom),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_senv E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binds x Exp E-&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_fvar x)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_exp_abs"></a>wf_exp_abs : forall L E T e,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E T -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp ([(x,Exp)] ++ E) (open_ee e x)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_abs T <span class="keyword">in</span> e)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_exp_app"></a>wf_exp_app : forall E e1 e2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E e2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_app e1 e2)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_exp_tabs"></a>wf_exp_tabs : forall L E T e,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E T -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall X : atom, X `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp ([(X,Typ)] ++ E) (open_te e X)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_tabs T <span class="keyword">in</span> e)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_exp_tapp"></a>wf_exp_tapp : forall E e T,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E e -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ E T -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_tapp e T)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_exp_let"></a>wf_exp_let : forall L E e1 e2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp ([(x,Exp)] ++ E) (open_ee e2 x)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_let e1 <span class="keyword">in</span> e2)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_exp_inl"></a>wf_exp_inl : forall E e,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E e -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_inl e)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_exp_inr"></a>wf_exp_inr : forall E e,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E e -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_inr e)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_exp_case"></a>wf_exp_case : forall L E e1 e2 e3,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp ([(x,Exp)] ++ E) (open_ee e2 x)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp ([(x,Exp)] ++ E) (open_ee e3 x)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_case e1 left e2 right e3).<br/>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Export.Export.wf_env"></a>wf_env : env -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_env_empty"></a>wf_env_empty :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_env empty<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_env_sub"></a>wf_env_sub : forall (E : env) (X : atom) (T : typ),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_env E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ (to_senv E) T -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X `notin` dom E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_env ([(X, bind_sub T)] ++ E)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.wf_env_typ"></a>wf_env_typ : forall (E : env) (x : atom) (T : typ),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_env E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ (to_senv E) T -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x `notin` dom E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_env ([(x, bind_typ T)] ++ E)<br/>
+.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab365"></a><h1 class="section"><a name="sub"></a> Subtyping</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Export.Export.sub"></a>sub : env -&gt; typ -&gt; typ -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <a name="Export.Export.sub_top"></a>sub_top : forall E S,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_env E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ (to_senv E) S -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E S typ_top<br/>
+&nbsp;&nbsp;| <a name="Export.Export.sub_refl_tvar"></a>sub_refl_tvar : forall E X,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_env E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ (to_senv E) (typ_fvar X) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E (typ_fvar X) (typ_fvar X)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.sub_trans_tvar"></a>sub_trans_tvar : forall U E T X,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binds X (bind_sub U) E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E U T -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E (typ_fvar X) T<br/>
+&nbsp;&nbsp;| <a name="Export.Export.sub_arrow"></a>sub_arrow : forall E S1 S2 T1 T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E T1 S1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E S2 T2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E (typ_arrow S1 S2) (typ_arrow T1 T2)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.sub_all"></a>sub_all : forall L E S1 S2 T1 T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E T1 S1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall X : atom, X `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub ([(X, bind_sub T1)] ++ E) (open_tt S2 X) (open_tt T2 X)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E (typ_all S1 <span class="keyword">in</span> S2) (typ_all T1 <span class="keyword">in</span> T2)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.sub_sum"></a>sub_sum : forall E S1 S2 T1 T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E S1 T1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E S2 T2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E (typ_sum S1 S2) (typ_sum T1 T2)<br/>
+.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab366"></a><h1 class="section"><a name="typing_doc"></a> Typing</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Export.Export.typing"></a>typing : env -&gt; exp -&gt; typ -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <a name="Export.Export.typing_var"></a>typing_var : forall E x T,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_env E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binds x (bind_typ T) E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E (exp_fvar x) T<br/>
+&nbsp;&nbsp;| <a name="Export.Export.typing_abs"></a>typing_abs : forall L E V e1 T1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing ([(x, bind_typ V)] ++ E) (open_ee e1 x) T1) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E (exp_abs V <span class="keyword">in</span> e1) (typ_arrow V T1)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.typing_app"></a>typing_app : forall T1 E e1 e2 T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E e1 (typ_arrow T1 T2) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E e2 T1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E (exp_app e1 e2) T2<br/>
+&nbsp;&nbsp;| <a name="Export.Export.typing_tabs"></a>typing_tabs : forall L E V e1 T1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall X : atom, X `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing ([(X, bind_sub V)] ++ E) (open_te e1 X) (open_tt T1 X)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E (exp_tabs V <span class="keyword">in</span> e1) (typ_all V <span class="keyword">in</span> T1)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.typing_tapp"></a>typing_tapp : forall T1 E e1 T T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E e1 (typ_all T1 <span class="keyword">in</span> T2) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E T T1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E (exp_tapp e1 T) (open_tt T2 T)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.typing_sub"></a>typing_sub : forall S E e T,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E e S -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub E S T -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E e T<br/>
+&nbsp;&nbsp;| <a name="Export.Export.typing_let"></a>typing_let : forall L T1 T2 e1 e2 E,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E e1 T1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing ([(x, bind_typ T1)] ++ E) (open_ee e2 x) T2) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E (exp_let e1 <span class="keyword">in</span> e2) T2<br/>
+&nbsp;&nbsp;| <a name="Export.Export.typing_inl"></a>typing_inl : forall T1 T2 e1 E,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E e1 T1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ (to_senv E) T2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E (exp_inl e1) (typ_sum T1 T2)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.typing_inr"></a>typing_inr : forall T1 T2 e1 E,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E e1 T2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_typ (to_senv E) T1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E (exp_inr e1) (typ_sum T1 T2)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.typing_case"></a>typing_case : forall L T1 T2 T e1 e2 e3 E,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E e1 (typ_sum T1 T2) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing ([(x, bind_typ T1)] ++ E) (open_ee e2 x) T) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing ([(x, bind_typ T2)] ++ E) (open_ee e3 x) T) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typing E (exp_case e1 left e2 right e3) T<br/>
+.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab367"></a><h1 class="section"><a name="values"></a> Values</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Export.Export.value"></a>value : exp -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <a name="Export.Export.value_abs"></a>value_abs : forall E T e1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_abs T <span class="keyword">in</span> e1) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value (exp_abs T <span class="keyword">in</span> e1)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.value_tabs"></a>value_tabs : forall E T e1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_tabs T <span class="keyword">in</span> e1) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value (exp_tabs T <span class="keyword">in</span> e1)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.value_inl"></a>value_inl : forall e1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value (exp_inl e1)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.value_inr"></a>value_inr : forall e1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value (exp_inr e1)<br/>
+.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab368"></a><h1 class="section"><a name="reduction"></a> Reduction</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Export.Export.red"></a>red : exp -&gt; exp -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <a name="Export.Export.red_app_1"></a>red_app_1 : forall E e1 e1' e2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_app e1 e2) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red e1 e1' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red (exp_app e1 e2) (exp_app e1' e2)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.red_app_2"></a>red_app_2 : forall E e1 e2 e2',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_app e1 e2) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red e2 e2' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red (exp_app e1 e2) (exp_app e1 e2')<br/>
+&nbsp;&nbsp;| <a name="Export.Export.red_tapp"></a>red_tapp : forall E e1 e1' V,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_tapp e1 V) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red e1 e1' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red (exp_tapp e1 V) (exp_tapp e1' V)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.red_abs"></a>red_abs : forall E T e1 v2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_app (exp_abs T <span class="keyword">in</span> e1) v2) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value v2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red (exp_app (exp_abs T <span class="keyword">in</span> e1) v2) (open_ee e1 v2)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.red_tabs"></a>red_tabs : forall E T1 e1 T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_tapp (exp_tabs T1 <span class="keyword">in</span> e1) T2) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red (exp_tapp (exp_tabs T1 <span class="keyword">in</span> e1) T2) (open_te e1 T2)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.red_let_1"></a>red_let_1 : forall E e1 e1' e2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_let e1 <span class="keyword">in</span> e2) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red e1 e1' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red (exp_let e1 <span class="keyword">in</span> e2) (exp_let e1' <span class="keyword">in</span> e2)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.red_let"></a>red_let : forall E v1 e2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_let v1 <span class="keyword">in</span> e2) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value v1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red (exp_let v1 <span class="keyword">in</span> e2) (open_ee e2 v1)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.red_inl_1"></a>red_inl_1 : forall e1 e1',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red e1 e1' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red (exp_inl e1) (exp_inl e1')<br/>
+&nbsp;&nbsp;| <a name="Export.Export.red_inr_1"></a>red_inr_1 : forall e1 e1',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red e1 e1' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red (exp_inr e1) (exp_inr e1')<br/>
+&nbsp;&nbsp;| <a name="Export.Export.red_case_1"></a>red_case_1 : forall E e1 e1' e2 e3,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_case e1 left e2 right e3) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red e1 e1' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red (exp_case e1 left e2 right e3) (exp_case e1' left e2 right e3)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.red_case_inl"></a>red_case_inl : forall E v1 e2 e3,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_case (exp_inl v1) left e2 right e3)  -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value v1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red (exp_case (exp_inl v1) left e2 right e3) (open_ee e2 v1)<br/>
+&nbsp;&nbsp;| <a name="Export.Export.red_case_inr"></a>red_case_inr : forall E v1 e2 e3,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wf_exp E (exp_case (exp_inr v1) left e2 right e3)  -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value v1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;red (exp_case (exp_inr v1) left e2 right e3) (open_ee e3 v1)<br/>
+.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab369"></a><h1 class="section">Automation</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Hint</span> Constructors wf_senv wf_exp wf_typ wf_env value red.<br/>
+<span class="keyword">Hint</span> Resolve sub_top sub_refl_tvar sub_arrow.<br/>
+<span class="keyword">Hint</span> Resolve sub_sum typing_inl typing_inr.<br/>
+<span class="keyword">Hint</span> Resolve typing_var typing_app typing_tapp typing_sub.<br/>
+<span class="keyword">Hint</span> Resolve typing_inl typing_inr.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (binds _ (?F (subst_tt ?X ?U ?T)) _) =&gt;<br/>
+&nbsp;&nbsp;unsimpl (subst_tb X U (F T)).<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (binds _ Typ _) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : binds _ (bind_sub ?U) _ |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change Typ <span class="keyword">with</span> (to_tag (bind_sub U))<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (binds _ Exp _) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : binds _ (bind_typ ?U) _ |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change Exp <span class="keyword">with</span> (to_tag (bind_typ U))<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab370"></a><h1 class="section"><a name="pick_fresh"></a> The "<code>pick fresh</code>" tactic</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Ltac</span> gather_atoms :=<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> A := gather_atoms_with (fun x : atoms =&gt; x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> B := gather_atoms_with (fun x : atom =&gt; singleton x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> C := gather_atoms_with (fun x : syntax =&gt; fv x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> F := gather_atoms_with (fun x : env =&gt; dom x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> G := gather_atoms_with (fun x : senv =&gt; dom x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;constr:(A `union` B `union` C `union` F `union` G).<br/>
+
+<br/>
+<span class="keyword">Tactic Notation</span> "pick" "fresh" ident(x) :=<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> L := gather_atoms <span class="keyword">in</span> (pick fresh x for L).<br/>
+
+<br/>
+<span class="keyword">Tactic Notation</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pick" "fresh" ident(atom_name) "and" "apply" constr(lemma) :=<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> L := gather_atoms <span class="keyword">in</span><br/>
+&nbsp;&nbsp;pick fresh atom_name excluding L and apply lemma.<br/>
+</code>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

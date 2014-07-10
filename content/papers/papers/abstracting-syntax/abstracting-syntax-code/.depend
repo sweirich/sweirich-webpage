@@ -1,0 +1,32 @@
+AdditionalTactics.vo: AdditionalTactics.v
+Atom.vo: Atom.v FiniteSets.vo FSetDecide.vo FSetNotin.vo ListFacts.vo
+Environment.vo: Environment.v ListFacts.vo Atom.vo
+FiniteSets.vo: FiniteSets.v ListFacts.vo
+FSetDecide.vo: FSetDecide.v
+FSetNotin.vo: FSetNotin.v
+ListFacts.vo: ListFacts.v
+Metatheory.vo: Metatheory.v AdditionalTactics.vo Atom.vo Environment.vo
+Common.vo: Common.v Metatheory.vo
+Fsub_LetSum_Definitions.vo: Fsub_LetSum_Definitions.v Metatheory.vo Common.vo
+Fsub_LetSum_Infrastructure.vo: Fsub_LetSum_Infrastructure.v Fsub_LetSum_Definitions.vo
+Fsub_LetSum_Soundness.vo: Fsub_LetSum_Soundness.v Fsub_LetSum_Infrastructure.vo
+Collapsed_Definitions.vo: Collapsed_Definitions.v Metatheory.vo Common.vo
+Collapsed_Infrastructure.vo: Collapsed_Infrastructure.v Collapsed_Definitions.vo
+Collapsed_Soundness.vo: Collapsed_Soundness.v Collapsed_Infrastructure.vo
+Collapsed_Adequacy.vo: Collapsed_Adequacy.v Fsub_LetSum_Soundness.vo Collapsed_Soundness.vo
+Tagged_Definitions.vo: Tagged_Definitions.v Metatheory.vo Common.vo
+Tagged_Infrastructure.vo: Tagged_Infrastructure.v Tagged_Definitions.vo
+Tagged_Soundness.vo: Tagged_Soundness.v Tagged_Infrastructure.vo
+Tagged_Adequacy.vo: Tagged_Adequacy.v Fsub_LetSum_Soundness.vo Tagged_Soundness.vo
+HOAS_Object_Definitions.vo: HOAS_Object_Definitions.v Metatheory.vo Common.vo
+HOAS_Object_Infrastructure.vo: HOAS_Object_Infrastructure.v HOAS_Object_Definitions.vo
+HOAS_Object_Soundness.vo: HOAS_Object_Soundness.v HOAS_Object_Infrastructure.vo
+HOAS_Object_Adequacy.vo: HOAS_Object_Adequacy.v Fsub_LetSum_Soundness.vo HOAS_Object_Soundness.vo
+Lib_Untyped_Lambda.vo: Lib_Untyped_Lambda.v Metatheory.vo
+HOAS_Untyped_Definitions.vo: HOAS_Untyped_Definitions.v Metatheory.vo Lib_Untyped_Lambda.vo Common.vo
+HOAS_Untyped_Soundness.vo: HOAS_Untyped_Soundness.v HOAS_Untyped_Definitions.vo
+HOAS_Untyped_Adequacy.vo: HOAS_Untyped_Adequacy.v Fsub_LetSum_Soundness.vo HOAS_Untyped_Soundness.vo
+Lib_Typed_Lambda.vo: Lib_Typed_Lambda.v Metatheory.vo
+HOAS_Typed_Definitions.vo: HOAS_Typed_Definitions.v Metatheory.vo Lib_Typed_Lambda.vo Common.vo
+HOAS_Typed_Soundness.vo: HOAS_Typed_Soundness.v HOAS_Typed_Definitions.vo
+HOAS_Typed_Adequacy.vo: HOAS_Typed_Adequacy.v Fsub_LetSum_Soundness.vo HOAS_Typed_Soundness.vo

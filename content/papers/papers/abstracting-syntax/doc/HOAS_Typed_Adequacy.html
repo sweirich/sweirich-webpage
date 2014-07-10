@@ -1,0 +1,1495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HOAS_Typed_Adequacy</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HOAS_Typed_Adequacy</h1>
+
+<code>
+</code>
+
+<div class="doc">
+Adequacy of the HOAS presentation (using the typed lambda
+    calculus) with respect to our original locally nameless
+    presentation.
+
+<br/><br/>
+    Author: Brian Aydemir (baydemir <code>at</code> cis.upenn.edu) 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Require</span> <span class="keyword">Export</span> Omega.<br/>
+<span class="keyword">Require</span> <span class="keyword">Export</span> <a class="modref" href="Fsub_LetSum_Soundness.html">Fsub_LetSum_Soundness</a>.<br/>
+<span class="keyword">Require</span> <span class="keyword">Export</span> <a class="modref" href="HOAS_Typed_Soundness.html">HOAS_Typed_Soundness</a>.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+Because both developments use the same names, we use the module
+    system to provide convenient shorthand prefixes that enable us to
+    distinguish symbols.  The downside to doing this is that it seems
+    to interfere with Coq's tactic automation, in ways I do not
+    entirely understand. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Module</span> A   := Fsub_LetSum_Definitions.<br/>
+<span class="keyword">Module</span> A'  := Fsub_LetSum_Infrastructure.<br/>
+<span class="keyword">Module</span> A'' := Fsub_LetSum_Soundness.<br/>
+<span class="keyword">Module</span> B   := HOAS_Typed_Definitions.<br/>
+<span class="keyword">Module</span> B'' := HOAS_Typed_Soundness.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab398"></a><h1 class="section">Tactics</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+We redefine some tactics so that they are effective in our current
+    setting. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Ltac</span> gather_atoms :=<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> A := gather_atoms_with (fun x : atoms =&gt; x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> B := gather_atoms_with (fun x : atom =&gt; singleton x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> C := gather_atoms_with (fun x : A.exp =&gt; A.fv_te x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> D := gather_atoms_with (fun x : A.exp =&gt; A.fv_ee x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> E := gather_atoms_with (fun x : A.typ =&gt; A.fv_tt x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> F := gather_atoms_with (fun x : A.senv =&gt; dom x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> G := gather_atoms_with (fun x : A.env =&gt; dom x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> H := gather_atoms_with (fun x : B.senv =&gt; dom x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> J := gather_atoms_with (fun x : B.env =&gt; dom x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> K := gather_atoms_with (fun x : syntax =&gt; fv x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;constr:(A `union` B `union` C `union` D `union`<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E `union` F `union` G `union` H `union` J `union` K).<br/>
+
+<br/>
+<span class="keyword">Tactic Notation</span> "pick" "fresh" ident(x) :=<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> L := gather_atoms <span class="keyword">in</span> (pick fresh x for L).<br/>
+
+<br/>
+<span class="keyword">Tactic Notation</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pick" "fresh" ident(atom_name) "and" "apply" constr(lemma) :=<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> L := gather_atoms <span class="keyword">in</span><br/>
+&nbsp;&nbsp;pick fresh atom_name excluding L and apply lemma.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab399"></a><h1 class="section">Other infrastructure</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+Opening a term with a variable is an injective operation if the
+    variable is sufficiently fresh. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_tt_injective_rec"></a>open_tt_injective_rec : forall T S k (X : atom),<br/>
+&nbsp;&nbsp;X `notin` (A.fv_tt T `union` A.fv_tt S) -&gt;<br/>
+&nbsp;&nbsp;A.open_tt_rec k X T = A.open_tt_rec k X S -&gt;<br/>
+&nbsp;&nbsp;T = S.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_tt_injective"></a>open_tt_injective : forall T S (X : atom),<br/>
+&nbsp;&nbsp;X `notin` (A.fv_tt T `union` A.fv_tt S) -&gt;<br/>
+&nbsp;&nbsp;A.open_tt T X = A.open_tt S X -&gt;<br/>
+&nbsp;&nbsp;T = S.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_te_injective_rec"></a>open_te_injective_rec : forall e f k (X : atom),<br/>
+&nbsp;&nbsp;X `notin` (A.fv_te e `union` A.fv_te f) -&gt;<br/>
+&nbsp;&nbsp;A.open_te_rec k X e = A.open_te_rec k X f -&gt;<br/>
+&nbsp;&nbsp;e = f.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_te_injective"></a>open_te_injective : forall e f (X : atom),<br/>
+&nbsp;&nbsp;X `notin` (A.fv_te e `union` A.fv_te f) -&gt;<br/>
+&nbsp;&nbsp;A.open_te e X = A.open_te f X -&gt;<br/>
+&nbsp;&nbsp;e = f.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_ee_injective_rec"></a>open_ee_injective_rec : forall e f k (X : atom),<br/>
+&nbsp;&nbsp;X `notin` (A.fv_ee e `union` A.fv_ee f) -&gt;<br/>
+&nbsp;&nbsp;A.open_ee_rec k X e = A.open_ee_rec k X f -&gt;<br/>
+&nbsp;&nbsp;e = f.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_ee_injective"></a>open_ee_injective : forall e f (X : atom),<br/>
+&nbsp;&nbsp;X `notin` (A.fv_ee e `union` A.fv_ee f) -&gt;<br/>
+&nbsp;&nbsp;A.open_ee e X = A.open_ee f X -&gt;<br/>
+&nbsp;&nbsp;e = f.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab400"></a><h1 class="section">Level</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab401"></a><h2 class="section">Definitions</h2>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+A term is at level <code>n</code> if the greatest index in the term is
+    strictly less than <code>n</code>. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="level_t"></a>level_t : nat -&gt; A.typ -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| level_t_top : forall n,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n A.typ_top<br/>
+&nbsp;&nbsp;| level_t_bvar : forall n i,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i &lt; n -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n (A.typ_bvar i)<br/>
+&nbsp;&nbsp;| level_t_fvar : forall n X,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n (A.typ_fvar X)<br/>
+&nbsp;&nbsp;| level_t_arrow : forall n T1 T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n T1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n T2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n (A.typ_arrow T1 T2)<br/>
+&nbsp;&nbsp;| level_t_all : forall n T1 T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n T1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t (S n) T2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n (A.typ_all T1 T2)<br/>
+&nbsp;&nbsp;| level_t_sum : forall n T1 T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n T1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n T2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n (A.typ_sum T1 T2).<br/>
+
+<br/>
+<span class="keyword">Hint</span> Constructors level_t.<br/>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="level_e"></a>level_e : nat -&gt; A.exp -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| level_e_bvar : forall n i,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i &lt; n -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n (A.exp_bvar i)<br/>
+&nbsp;&nbsp;| level_e_fvar : forall n X,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n (A.exp_fvar X)<br/>
+&nbsp;&nbsp;| level_e_abs : forall n T e,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n T -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e (S n) e -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n (A.exp_abs T e)<br/>
+&nbsp;&nbsp;| level_e_app : forall n e1 e2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n e2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n (A.exp_app e1 e2)<br/>
+&nbsp;&nbsp;| level_e_tabs : forall n T e,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n T -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e (S n) e -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n (A.exp_tabs T e)<br/>
+&nbsp;&nbsp;| level_e_tapp : forall n e1 T2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_t n T2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n (A.exp_tapp e1 T2)<br/>
+&nbsp;&nbsp;| level_e_let : forall n e1 e2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e (S n) e2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n (A.exp_let e1 e2)<br/>
+&nbsp;&nbsp;| level_e_inl : forall n e1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n (A.exp_inl e1)<br/>
+&nbsp;&nbsp;| level_e_inr : forall n e1,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n (A.exp_inr e1)<br/>
+&nbsp;&nbsp;| level_e_case : forall n e1 e2 e3,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e (S n) e2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e (S n) e3 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level_e n (A.exp_case e1 e2 e3).<br/>
+
+<br/>
+<span class="keyword">Hint</span> Constructors level_e.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab402"></a><h2 class="section">Properties</h2>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+A term at level <code>n</code> is also a term at level <code>(S n)</code>. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="level_t_promote"></a>level_t_promote : forall n T,<br/>
+&nbsp;&nbsp;level_t n T -&gt;<br/>
+&nbsp;&nbsp;level_t (S n) T.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve level_t_promote.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="level_e_promote"></a>level_e_promote : forall n e,<br/>
+&nbsp;&nbsp;level_e n e -&gt;<br/>
+&nbsp;&nbsp;level_e (S n) e.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve level_e_promote.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+The following lemmas establish the relationship between the level
+    of a term and opening. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="level_t_open_tt"></a>level_t_open_tt : forall T2 n (X : atom),<br/>
+&nbsp;&nbsp;level_t n (A.open_tt_rec n X T2) -&gt;<br/>
+&nbsp;&nbsp;level_t (S n) T2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="level_e_open_te"></a>level_e_open_te : forall e n (x : atom),<br/>
+&nbsp;&nbsp;level_e n (A.open_te_rec n x e) -&gt;<br/>
+&nbsp;&nbsp;level_e (S n) e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="level_e_open_ee"></a>level_e_open_ee : forall e n (x : atom),<br/>
+&nbsp;&nbsp;level_e n (A.open_ee_rec n x e) -&gt;<br/>
+&nbsp;&nbsp;level_e (S n) e.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+Locally closed terms are at level 0. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="level_t_of_type"></a>level_t_of_type : forall T,<br/>
+&nbsp;&nbsp;A.type T -&gt; level_t 0 T.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve level_t_of_type.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="level_e_of_expr"></a>level_e_of_expr : forall e,<br/>
+&nbsp;&nbsp;A.expr e -&gt; level_e 0 e.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve level_e_of_expr.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab403"></a><h1 class="section">Closing</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab404"></a><h2 class="section">Definitions</h2>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+Closing replaces a free variable with an index.  The definition
+    below assumes that <code>K</code> is greater than the greatest index
+    appearing in <code>T</code>. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Fixpoint</span> <a name="close_tt_rec"></a>close_tt_rec (K : nat) (X : atom) (T : A.typ) {struct T} : A.typ :=<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> T <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.typ_top =&gt; A.typ_top<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.typ_bvar n =&gt; A.typ_bvar n<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.typ_fvar Y =&gt; <span class="keyword">if</span> X == Y <span class="keyword">then</span> (A.typ_bvar K) <span class="keyword">else</span> (A.typ_fvar Y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.typ_arrow T1 T2 =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.typ_arrow (close_tt_rec K X T1) (close_tt_rec K X T2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.typ_all T1 T2 =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.typ_all (close_tt_rec K X T1) (close_tt_rec (S K) X T2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.typ_sum T1 T2 =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.typ_sum (close_tt_rec K X T1) (close_tt_rec K X T2)<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Definition</span> <a name="close_tt"></a>close_tt T X := close_tt_rec 0 X T.<br/>
+
+<br/>
+<span class="keyword">Fixpoint</span> <a name="close_te_rec"></a>close_te_rec (k : nat) (X : atom) (e : A.exp) {struct e} : A.exp :=<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> e <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_bvar n =&gt; A.exp_bvar n<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_fvar x =&gt; A.exp_fvar x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_abs T e =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.exp_abs (close_tt_rec k X T) (close_te_rec (S k) X e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_app e1 e2 =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.exp_app (close_te_rec k X e1) (close_te_rec k X e2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_tabs T e =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.exp_tabs (close_tt_rec k X T) (close_te_rec (S k) X e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_tapp e1 T2 =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.exp_tapp (close_te_rec k X e1) (close_tt_rec k X T2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_let e1 e2 =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.exp_let (close_te_rec k X e1) (close_te_rec (S k) X e2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_inl e1 =&gt; A.exp_inl (close_te_rec k X e1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_inr e1 =&gt; A.exp_inr (close_te_rec k X e1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_case e1 e2 e3 =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.exp_case (close_te_rec k X e1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(close_te_rec (S k) X e2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(close_te_rec (S k) X e3)<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Definition</span> <a name="close_te"></a>close_te e X := close_te_rec 0 X e.<br/>
+
+<br/>
+<span class="keyword">Fixpoint</span> <a name="close_ee_rec"></a>close_ee_rec (k : nat) (y : atom) (e : A.exp) {struct e} : A.exp :=<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> e <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_bvar n =&gt; A.exp_bvar n<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_fvar x =&gt; <span class="keyword">if</span> y == x <span class="keyword">then</span> (A.exp_bvar k) <span class="keyword">else</span> (A.exp_fvar x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_abs T e =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.exp_abs T (close_ee_rec (S k) y e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_app e1 e2 =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.exp_app (close_ee_rec k y e1) (close_ee_rec k y e2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_tabs T e =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.exp_tabs T (close_ee_rec (S k) y e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_tapp e1 T2 =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.exp_tapp (close_ee_rec k y e1) T2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_let e1 e2 =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.exp_let (close_ee_rec k y e1) (close_ee_rec (S k) y e2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_inl e1 =&gt; A.exp_inl (close_ee_rec k y e1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_inr e1 =&gt; A.exp_inr (close_ee_rec k y e1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| A.exp_case e1 e2 e3 =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A.exp_case (close_ee_rec k y e1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(close_ee_rec (S k) y e2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(close_ee_rec (S k) y e3)<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Definition</span> <a name="close_ee"></a>close_ee e y := close_ee_rec 0 y e.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab405"></a><h2 class="section">Properties</h2>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+Opening and closing are inverses of each other under certain
+    conditions. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_tt_close_tt_inv_rec"></a>open_tt_close_tt_inv_rec : forall (T : A.typ) (K : nat) (X : atom),<br/>
+&nbsp;&nbsp;level_t K T -&gt;<br/>
+&nbsp;&nbsp;A.open_tt_rec K (A.typ_fvar X) (close_tt_rec K X T) = T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_tt_close_tt_inv"></a>open_tt_close_tt_inv : forall (T : A.typ) (X : atom),<br/>
+&nbsp;&nbsp;A.type T -&gt;<br/>
+&nbsp;&nbsp;A.open_tt (close_tt T X) X = T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_te_close_te_inv_rec"></a>open_te_close_te_inv_rec : forall (e : A.exp) (K : nat) (X : atom),<br/>
+&nbsp;&nbsp;level_e K e -&gt;<br/>
+&nbsp;&nbsp;A.open_te_rec K (A.typ_fvar X) (close_te_rec K X e) = e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_te_close_te_inv"></a>open_te_close_te_inv : forall (e : A.exp) (X : atom),<br/>
+&nbsp;&nbsp;A.expr e -&gt;<br/>
+&nbsp;&nbsp;A.open_te (close_te e X) X = e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_ee_close_ee_inv_rec"></a>open_ee_close_ee_inv_rec : forall (e : A.exp) (k : nat) (x : atom),<br/>
+&nbsp;&nbsp;level_e k e -&gt;<br/>
+&nbsp;&nbsp;A.open_ee_rec k (A.exp_fvar x) (close_ee_rec k x e) = e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_ee_close_ee_inv"></a>open_ee_close_ee_inv : forall (e : A.exp) (x : atom),<br/>
+&nbsp;&nbsp;A.expr e -&gt;<br/>
+&nbsp;&nbsp;A.open_ee (close_ee e x) x = e.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+If we close a term with a particular name, that name will be fresh
+    for the result. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="close_tt_fresh_rec"></a>close_tt_fresh_rec : forall (T : A.typ) (K : nat) (X : atom),<br/>
+&nbsp;&nbsp;X `notin` A.fv_tt (close_tt_rec K X T).<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve close_tt_fresh_rec.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="close_tt_fresh"></a>close_tt_fresh : forall (T : A.typ) (X : atom),<br/>
+&nbsp;&nbsp;X `notin` A.fv_tt (close_tt T X).<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve close_tt_fresh.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="close_te_fresh_te_rec"></a>close_te_fresh_te_rec : forall e1 (X : atom) (k : nat),<br/>
+&nbsp;&nbsp;X `notin` A.fv_te (close_te_rec k X e1).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="close_te_fresh_te"></a>close_te_fresh_te : forall e1 (X : atom),<br/>
+&nbsp;&nbsp;X `notin` A.fv_te (close_te e1 X).<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve close_te_fresh_te.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="close_ee_fresh_ee_rec"></a>close_ee_fresh_ee_rec : forall e1 (x : atom) (k : nat),<br/>
+&nbsp;&nbsp;x `notin` A.fv_ee (close_ee_rec k x e1).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="close_ee_fresh_ee"></a>close_ee_fresh_ee : forall e1 (x : atom),<br/>
+&nbsp;&nbsp;x `notin` A.fv_ee (close_ee e1 x).<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve close_ee_fresh_ee.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab406"></a><h1 class="section">Bijection on senvs</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+In general, two developments may use different environments (given
+    by the type <code>senv</code> in each development, according to our naming
+    convention) for checking the well-formedness of Fsub types and
+    expressions.  In order to define the bijection between Fsub terms,
+    we need a bijection on <code>senv</code>s. 
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab407"></a><h2 class="section">Definition</h2>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+The definition here is trivial because <code>A.senv</code> and <code>B.senv</code> are
+    the same type.  The definition specifically does not check that
+    the environments are ok; that must be done elsewhere. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="senv_bijection"></a>senv_bijection : A.senv -&gt; B.senv -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| senv_bijection_nil :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;senv_bijection nil nil<br/>
+&nbsp;&nbsp;| senv_bijection_Exp : forall E E' x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;senv_bijection ([(x,Common.Exp)] ++ E) ([(x,Exp)] ++ E')<br/>
+&nbsp;&nbsp;| senv_bijection_Typ : forall E E' X,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;senv_bijection ([(X,Common.Typ)] ++ E) ([(X,Typ)] ++ E').<br/>
+
+<br/>
+<span class="keyword">Hint</span> Constructors senv_bijection.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab408"></a><h2 class="section">Properties</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_singleton_Exp"></a>senv_bijection_singleton_Exp : forall x,<br/>
+&nbsp;&nbsp;senv_bijection [(x,Common.Exp)] [(x,Exp)].<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve senv_bijection_singleton_Exp.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_singleton_Typ"></a>senv_bijection_singleton_Typ : forall x,<br/>
+&nbsp;&nbsp;senv_bijection [(x,Common.Typ)] [(x,Typ)].<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve senv_bijection_singleton_Typ.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_binds_1"></a>senv_bijection_binds_1 : forall E E' x,<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;binds x Common.Typ E -&gt;<br/>
+&nbsp;&nbsp;binds x Typ E'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_binds_2"></a>senv_bijection_binds_2 : forall E E' x,<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;binds x Typ E' -&gt;<br/>
+&nbsp;&nbsp;binds x Common.Typ E.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_binds_3"></a>senv_bijection_binds_3 : forall E E' x,<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;binds x Common.Exp E -&gt;<br/>
+&nbsp;&nbsp;binds x Exp E'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_binds_4"></a>senv_bijection_binds_4 : forall E E' x,<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;binds x Exp E' -&gt;<br/>
+&nbsp;&nbsp;binds x Common.Exp E.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+The bijection respects environment concatentation. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_app"></a>senv_bijection_app : forall E E' F F',<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;senv_bijection F F' -&gt;<br/>
+&nbsp;&nbsp;senv_bijection (E ++ F) (E' ++ F').<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve senv_bijection_app.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_length"></a>senv_bijection_length : forall E E',<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;length E = length E'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_head"></a>senv_bijection_head : forall E E' F F',<br/>
+&nbsp;&nbsp;senv_bijection (F ++ E) (F' ++ E') -&gt;<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;senv_bijection F F'.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+The bijection maps well-formed <code>senv</code>s to <code>senv</code>s. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_notin_1"></a>senv_bijection_notin_1 : forall E E' x,<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;x `notin` dom E -&gt;<br/>
+&nbsp;&nbsp;x `notin` dom E'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_notin_2"></a>senv_bijection_notin_2 : forall E E' x,<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;x `notin` dom E' -&gt;<br/>
+&nbsp;&nbsp;x `notin` dom E.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_wf_1"></a>senv_bijection_wf_1 : forall E E',<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;ok E -&gt;<br/>
+&nbsp;&nbsp;B.wf_senv E'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> senv_bijection_wf_2: forall E E',<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;B.wf_senv E' -&gt;<br/>
+&nbsp;&nbsp;ok E.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_wf_3"></a>senv_bijection_wf_3 : forall E E',<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;ok E -&gt;<br/>
+&nbsp;&nbsp;ok E'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> senv_bijection_wf_4: forall E E',<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;B.wf_senv E' -&gt;<br/>
+&nbsp;&nbsp;ok E.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+The bijection really is a bijection, at least on well-formed <code>senv</code>s. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_total"></a>senv_bijection_total : forall E,<br/>
+&nbsp;&nbsp;exists E', senv_bijection E E'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_unique"></a>senv_bijection_unique : forall E E1 E2,<br/>
+&nbsp;&nbsp;senv_bijection E E1 -&gt;<br/>
+&nbsp;&nbsp;senv_bijection E E2 -&gt;<br/>
+&nbsp;&nbsp;E1 = E2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_injective"></a>senv_bijection_injective : forall E E1 E2,<br/>
+&nbsp;&nbsp;senv_bijection E1 E -&gt;<br/>
+&nbsp;&nbsp;senv_bijection E2 E -&gt;<br/>
+&nbsp;&nbsp;E1 = E2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="senv_bijection_surjective"></a>senv_bijection_surjective : forall E',<br/>
+&nbsp;&nbsp;B.wf_senv E' -&gt;<br/>
+&nbsp;&nbsp;exists E, senv_bijection E E'.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab409"></a><h1 class="section">Bijection on types</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+We first define a relation on well-formed Fsub types and then show that
+    the relation defines a bijection on such terms. 
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab410"></a><h2 class="section">Definition</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="typ_bijection"></a>typ_bijection : A.senv -&gt; A.typ -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.senv -&gt; syntax -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| typ_bijection_var : forall E E' X,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok E' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binds X Common.Typ E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binds X Typ E' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E (A.typ_fvar X) E' (fvar X)<br/>
+&nbsp;&nbsp;| typ_bijection_top : forall E E',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok E' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E (A.typ_top) E' (B.typ_top)<br/>
+&nbsp;&nbsp;| typ_bijection_arrow : forall E E' T1 T1' T2 T2',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E T1 E' T1' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E T2 E' T2' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E (A.typ_arrow T1 T2) E' (typ_arrow T1' T2')<br/>
+&nbsp;&nbsp;| typ_bijection_all : forall L E E' T1 T1' T2 T2',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E T1 E' T1' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall X : atom, X `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection ([(X,Common.Typ)] ++ E)  (A.open_tt T2 X)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;([(X,Typ)] ++ E') (open T2' X)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E (A.typ_all T1 T2) E' (typ_all T1' <span class="keyword">in</span> T2')<br/>
+&nbsp;&nbsp;| typ_bijection_sum : forall E E' T1 T1' T2 T2',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E T1 E' T1' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E T2 E' T2' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E (A.typ_sum T1 T2) E' (typ_sum T1' T2').<br/>
+
+<br/>
+<span class="keyword">Hint</span> Constructors typ_bijection.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab411"></a><h2 class="section">Properties</h2>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+The relation contains only related environments. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_senv"></a>typ_bijection_senv : forall E E' T1 T2,<br/>
+&nbsp;&nbsp;typ_bijection E T1 E' T2 -&gt;<br/>
+&nbsp;&nbsp;senv_bijection E E'.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve typ_bijection_senv.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+The relation contains only well-formed types. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_regular_1"></a>typ_bijection_regular_1 : forall E E' T1 T2,<br/>
+&nbsp;&nbsp;typ_bijection E T1 E' T2 -&gt;<br/>
+&nbsp;&nbsp;A.wf_typ E T1.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve typ_bijection_regular_1.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_regular_2"></a>typ_bijection_regular_2 : forall E E' T1 T2,<br/>
+&nbsp;&nbsp;typ_bijection E T1 E' T2 -&gt;<br/>
+&nbsp;&nbsp;B.wf_typ E' T2.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve typ_bijection_regular_2.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+The bijection only holds for ok environments. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_ok_1"></a>typ_bijection_ok_1 : forall E T1 E' T2,<br/>
+&nbsp;&nbsp;typ_bijection E T1 E' T2 -&gt;<br/>
+&nbsp;&nbsp;ok E.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve typ_bijection_ok_1.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_ok_2"></a>typ_bijection_ok_2 : forall E E' T1 T2,<br/>
+&nbsp;&nbsp;typ_bijection E T1 E' T2 -&gt;<br/>
+&nbsp;&nbsp;ok E'.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve typ_bijection_ok_2.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+Define a tactic to simplify proving well-formedness goals. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Ltac</span> solve_lc_1 := try first [<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;solve [apply lc_var]<br/>
+&nbsp;&nbsp;| solve [apply type_var]<br/>
+&nbsp;&nbsp;| solve [eapply B''.type_from_wf_typ; eapply typ_bijection_regular_2; eauto]<br/>
+&nbsp;&nbsp;| solve [eapply A''.type_from_wf_typ; eapply typ_bijection_regular_1; eauto]<br/>
+&nbsp;&nbsp;].<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+Weakening holds for the bijection. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_weakening"></a>typ_bijection_weakening : forall E E' F F' G G' T1 T2,<br/>
+&nbsp;&nbsp;typ_bijection (F ++ E) T1 (F' ++ E') T2 -&gt;<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;senv_bijection F F' -&gt;<br/>
+&nbsp;&nbsp;senv_bijection G G' -&gt;<br/>
+&nbsp;&nbsp;ok (F ++ G ++ E) -&gt;<br/>
+&nbsp;&nbsp;ok (F' ++ G' ++ E') -&gt;<br/>
+&nbsp;&nbsp;typ_bijection (F ++ G ++ E) T1 (F' ++ G' ++ E') T2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_weakening_head"></a>typ_bijection_weakening_head : forall E E' F F' T1 T2,<br/>
+&nbsp;&nbsp;typ_bijection E T1 E' T2 -&gt;<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;senv_bijection F F' -&gt;<br/>
+&nbsp;&nbsp;ok (F ++ E) -&gt;<br/>
+&nbsp;&nbsp;ok (F' ++ E') -&gt;<br/>
+&nbsp;&nbsp;typ_bijection (F ++ E) T1 (F' ++ E') T2.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve typ_bijection_weakening_head.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+Substitution commutes with the bijection. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_subst"></a>typ_bijection_subst : forall E E' F F' T1 T2 U1 U2 X,<br/>
+&nbsp;&nbsp;typ_bijection (F ++ [(X,Common.Typ)] ++ E) T1 (F' ++ [(X,Typ)] ++ E') T2 -&gt;<br/>
+&nbsp;&nbsp;typ_bijection E U1 E' U2 -&gt;<br/>
+&nbsp;&nbsp;typ_bijection (F ++ E) (A.subst_tt X U1 T1) (F' ++ E') (subst X U2 T2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_rename"></a>typ_bijection_rename : forall E E' T1 T2 (X Y : atom),<br/>
+&nbsp;&nbsp;X &lt;&gt; Y -&gt;<br/>
+&nbsp;&nbsp;X `notin` (A.fv_tt T1 `union` fv T2) -&gt;<br/>
+&nbsp;&nbsp;ok ([(Y,Common.Typ)] ++ E) -&gt;<br/>
+&nbsp;&nbsp;ok ([(Y,Typ)] ++ E') -&gt;<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;typ_bijection ([(X,Common.Typ)]++E) (A.open_tt T1 X) ([(X,Typ)]++E') (open T2 X) -&gt;<br/>
+&nbsp;&nbsp;typ_bijection ([(Y,Common.Typ)]++E) (A.open_tt T1 Y) ([(Y,Typ)]++E') (open T2 Y).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+Now prove that the bijection actually is a bijection. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_total"></a>typ_bijection_total : forall E T1,<br/>
+&nbsp;&nbsp;A.wf_typ E T1 -&gt;<br/>
+&nbsp;&nbsp;exists E', exists T2, senv_bijection E E' /\ typ_bijection E T1 E' T2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_unique"></a>typ_bijection_unique : forall E E' T1 T2 T3,<br/>
+&nbsp;&nbsp;typ_bijection E T1 E' T2 -&gt;<br/>
+&nbsp;&nbsp;typ_bijection E T1 E' T3 -&gt;<br/>
+&nbsp;&nbsp;T2 = T3.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_injective"></a>typ_bijection_injective : forall E E' T1 T2 T3,<br/>
+&nbsp;&nbsp;typ_bijection E T1 E' T3 -&gt;<br/>
+&nbsp;&nbsp;typ_bijection E T2 E' T3 -&gt; T1 = T2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_surjective"></a>typ_bijection_surjective : forall E' T2,<br/>
+&nbsp;&nbsp;B.wf_typ E' T2 -&gt;<br/>
+&nbsp;&nbsp;exists E, exists T1, senv_bijection E E' /\ typ_bijection E T1 E' T2.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab412"></a><h1 class="section">Bijection on expressions</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+We first define a relation on well-formed Fsub expressions and
+    then show that the relation defines a bijection on such terms. 
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab413"></a><h2 class="section">Definition</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="exp_bijection"></a>exp_bijection : A.senv -&gt; A.exp -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B.senv -&gt; syntax -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| exp_bijection_var : forall E E' x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok E' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binds x Common.Exp E -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binds x Exp E' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E (A.exp_fvar x) E' (B.exp_fvar x)<br/>
+&nbsp;&nbsp;| exp_bijection_abs : forall L E E' T T' e e',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E T E' T' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection ([(x,Common.Exp)]++E) (A.open_ee e x) ([(x,Exp)]++E') (open e' x)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E (A.exp_abs T e) E' (exp_abs T' <span class="keyword">in</span> e')<br/>
+&nbsp;&nbsp;| exp_bijection_app : forall E E' e1 e1' e2 e2',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E e1 E' e1' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E e2 E' e2' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E (A.exp_app e1 e2) E' (exp_app e1' e2')<br/>
+&nbsp;&nbsp;| exp_bijection_tabs : forall L E E' T T' e e',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E T E' T' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall X : atom, X `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection ([(X,Common.Typ)]++E) (A.open_te e X) ([(X,Typ)]++E') (open e' X)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E (A.exp_tabs T e) E' (exp_tabs T' <span class="keyword">in</span> e')<br/>
+&nbsp;&nbsp;| exp_bijection_tapp : forall E E' e e' T T',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E e E' e' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection E T E' T' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E (A.exp_tapp e T) E' (exp_tapp e' T')<br/>
+&nbsp;&nbsp;| exp_bijection_let : forall L E E' e1 e1' e2 e2',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E e1 E' e1' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection ([(x,Common.Exp)]++E) (A.open_ee e2 x) ([(x,Exp)]++E') (open e2' x)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E (A.exp_let e1 e2) E' (exp_let e1' <span class="keyword">in</span> e2')<br/>
+&nbsp;&nbsp;| exp_bijection_inl : forall E E' e e',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E e E' e' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E (A.exp_inl e) E' (exp_inl e')<br/>
+&nbsp;&nbsp;| exp_bijection_inr : forall E E' e e',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E e E' e' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E (A.exp_inr e) E' (exp_inr e')<br/>
+&nbsp;&nbsp;| exp_bijection_case : forall L E E' e1 e1' e2 e2' e3 e3',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E e1 E' e1' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection ([(x,Common.Exp)]++E) (A.open_ee e2 x) ([(x,Exp)]++E') (open e2' x)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection ([(x,Common.Exp)]++E) (A.open_ee e3 x) ([(x,Exp)]++E') (open e3' x)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp_bijection E (A.exp_case e1 e2 e3) E' (exp_case e1' left e2' right e3').<br/>
+
+<br/>
+<span class="keyword">Hint</span> Constructors exp_bijection.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab414"></a><h2 class="section">Properties</h2>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+The relation contains only related environments. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_senv"></a>exp_bijection_senv : forall E E' T1 T2,<br/>
+&nbsp;&nbsp;exp_bijection E T1 E' T2 -&gt;<br/>
+&nbsp;&nbsp;senv_bijection E E'.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve exp_bijection_senv.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+The relation contains only well-formed expressions. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_regular_1"></a>exp_bijection_regular_1 : forall E E' e1 e2,<br/>
+&nbsp;&nbsp;exp_bijection E e1 E' e2 -&gt;<br/>
+&nbsp;&nbsp;A.wf_exp E e1.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve exp_bijection_regular_1.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_regular_2"></a>exp_bijection_regular_2 : forall E E' e1 e2,<br/>
+&nbsp;&nbsp;exp_bijection E e1 E' e2 -&gt;<br/>
+&nbsp;&nbsp;B.wf_exp E' e2.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve exp_bijection_regular_2.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+The bijection only holds for ok environments. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_ok_1"></a>exp_bijection_ok_1 : forall E E' e1 e2,<br/>
+&nbsp;&nbsp;exp_bijection E e1 E' e2 -&gt;<br/>
+&nbsp;&nbsp;ok E.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve exp_bijection_ok_1.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_ok_2"></a>exp_bijection_ok_2 : forall E E' e1 e2,<br/>
+&nbsp;&nbsp;exp_bijection E e1 E' e2 -&gt;<br/>
+&nbsp;&nbsp;ok E'.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve exp_bijection_ok_2.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+Define a tactic to simplify proving well-formedness goals. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Ltac</span> solve_lc_2 := try first [<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;solve [solve_lc_1]<br/>
+&nbsp;&nbsp;| solve [apply expr_var]<br/>
+&nbsp;&nbsp;| solve [eapply B''.expr_from_wf_exp; eapply exp_bijection_regular_2; eauto]<br/>
+&nbsp;&nbsp;| solve [eapply A''.expr_from_wf_exp; eapply exp_bijection_regular_1; eauto]<br/>
+&nbsp;&nbsp;].<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+Weakening holds for the bijection. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_weakening"></a>exp_bijection_weakening : forall E E' F F' G G' e1 e2,<br/>
+&nbsp;&nbsp;exp_bijection (F ++ E) e1 (F' ++ E') e2 -&gt;<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;senv_bijection F F' -&gt;<br/>
+&nbsp;&nbsp;senv_bijection G G' -&gt;<br/>
+&nbsp;&nbsp;ok (F ++ G ++ E) -&gt;<br/>
+&nbsp;&nbsp;ok (F' ++ G' ++ E') -&gt;<br/>
+&nbsp;&nbsp;exp_bijection (F ++ G ++ E) e1 (F' ++ G' ++ E') e2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_weakening_head"></a>exp_bijection_weakening_head : forall E E' F F' e1 e2,<br/>
+&nbsp;&nbsp;exp_bijection E e1 E' e2 -&gt;<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;senv_bijection F F' -&gt;<br/>
+&nbsp;&nbsp;ok (F ++ E) -&gt;<br/>
+&nbsp;&nbsp;ok (F' ++ E') -&gt;<br/>
+&nbsp;&nbsp;exp_bijection (F ++ E) e1 (F' ++ E') e2.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve exp_bijection_weakening_head.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+Substitution commutes with the bijection. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_strengthening"></a>typ_bijection_strengthening : forall E E' F F' x T1 T2,<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;senv_bijection F F' -&gt;<br/>
+&nbsp;&nbsp;typ_bijection (F ++ [(x,Common.Exp)] ++ E) T1 (F' ++ [(x,Exp)] ++ E') T2 -&gt;<br/>
+&nbsp;&nbsp;typ_bijection (F ++ E) T1 (F' ++ E') T2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_subst_ee"></a>exp_bijection_subst_ee : forall E E' F F' e1 e2 U1 U2 X,<br/>
+&nbsp;&nbsp;exp_bijection (F ++ [(X,Common.Exp)] ++ E) e1 (F' ++ [(X,Exp)] ++ E') e2 -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E U1 E' U2 -&gt;<br/>
+&nbsp;&nbsp;exp_bijection (F ++ E) (A.subst_ee X U1 e1) (F' ++ E') (subst X U2 e2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_subst_te"></a>exp_bijection_subst_te : forall E E' F F' e1 e2 U1 U2 X,<br/>
+&nbsp;&nbsp;exp_bijection (F ++ [(X,Common.Typ)] ++ E) e1 (F' ++ [(X,Typ)] ++ E') e2 -&gt;<br/>
+&nbsp;&nbsp;typ_bijection E U1 E' U2 -&gt;<br/>
+&nbsp;&nbsp;exp_bijection (F ++ E) (A.subst_te X U1 e1) (F' ++ E') (subst X U2 e2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_rename_open_ee"></a>exp_bijection_rename_open_ee : forall E E' e1 e2 (x y : atom),<br/>
+&nbsp;&nbsp;x &lt;&gt; y -&gt;<br/>
+&nbsp;&nbsp;x `notin` (A.fv_ee e1 `union` fv e2) -&gt;<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;ok ([(y,Common.Exp)]++E) -&gt;<br/>
+&nbsp;&nbsp;ok ([(y,Exp)]++E') -&gt;<br/>
+&nbsp;&nbsp;exp_bijection ([(x,Common.Exp)]++E) (A.open_ee e1 x) ([(x,Exp)]++E') (open e2 x) -&gt;<br/>
+&nbsp;&nbsp;exp_bijection ([(y,Common.Exp)]++E) (A.open_ee e1 y) ([(y,Exp)]++E') (open e2 y).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_rename_open_te"></a>exp_bijection_rename_open_te : forall E E' e1 e2 (x y : atom),<br/>
+&nbsp;&nbsp;x &lt;&gt; y -&gt;<br/>
+&nbsp;&nbsp;x `notin` (A.fv_te e1 `union` fv e2) -&gt;<br/>
+&nbsp;&nbsp;senv_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;ok ([(y,Common.Typ)]++E) -&gt;<br/>
+&nbsp;&nbsp;ok ([(y,Typ)]++E') -&gt;<br/>
+&nbsp;&nbsp;exp_bijection ([(x,Common.Typ)]++E) (A.open_te e1 x) ([(x,Typ)]++E') (open e2 x) -&gt;<br/>
+&nbsp;&nbsp;exp_bijection ([(y,Common.Typ)]++E) (A.open_te e1 y) ([(y,Typ)]++E') (open e2 y).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+Now prove that the bijection actually is a bijection. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_total"></a>exp_bijection_total : forall E e,<br/>
+&nbsp;&nbsp;A.wf_exp E e -&gt;<br/>
+&nbsp;&nbsp;exists E', exists e', senv_bijection E E' /\ exp_bijection E e E' e'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_unique"></a>exp_bijection_unique : forall E E' e1 e2 e3,<br/>
+&nbsp;&nbsp;exp_bijection E e1 E' e2 -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E e1 E' e3 -&gt;<br/>
+&nbsp;&nbsp;e2 = e3.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_injective"></a>exp_bijection_injective : forall E E' e1 e2 e3,<br/>
+&nbsp;&nbsp;exp_bijection E e1 E' e3 -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E e2 E' e3 -&gt;<br/>
+&nbsp;&nbsp;e1 = e2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_surjective"></a>exp_bijection_surjective : forall E' e2,<br/>
+&nbsp;&nbsp;B.wf_exp E' e2 -&gt;<br/>
+&nbsp;&nbsp;exists E, exists e1, senv_bijection E E' /\ exp_bijection E e1 E' e2.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab415"></a><h1 class="section">Bijection on environments</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab416"></a><h2 class="section">Definition</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="env_bijection"></a>env_bijection : A.env -&gt; B.env -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| env_bijection_nil :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;env_bijection nil nil<br/>
+&nbsp;&nbsp;| env_bijection_typ : forall E E' x T T',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x `notin` (dom E `union` dom E') -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection (A.to_senv E) T (B.to_senv E') T' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;env_bijection ([(x, A.bind_typ T)] ++ E) ([(x, B.bind_typ T')] ++ E')<br/>
+&nbsp;&nbsp;| env_bijection_sub : forall E E' X T T',<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;X `notin` (dom E `union` dom E') -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;typ_bijection (A.to_senv E) T (B.to_senv E') T' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;env_bijection ([(X, A.bind_sub T)] ++ E) ([(X, B.bind_sub T')] ++ E').<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab417"></a><h2 class="section">Properties</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="env_bijection_senv"></a>env_bijection_senv : forall E E',<br/>
+&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;senv_bijection (A.to_senv E) (B.to_senv E').<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve env_bijection_senv.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="env_bijection_binds_sub_1"></a>env_bijection_binds_sub_1 : forall E E' X U,<br/>
+&nbsp;&nbsp;binds X (A.bind_sub U) E -&gt;<br/>
+&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;exists U', typ_bijection (A.to_senv E) U (B.to_senv E') U' /\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binds X (B.bind_sub U') E'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="env_bijection_binds_sub_2"></a>env_bijection_binds_sub_2 : forall E' E X U',<br/>
+&nbsp;&nbsp;binds X (B.bind_sub U') E' -&gt;<br/>
+&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;exists U, typ_bijection (A.to_senv E) U (B.to_senv E') U' /\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binds X (A.bind_sub U) E.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="env_bijection_binds_typ_1"></a>env_bijection_binds_typ_1 : forall E E' X U,<br/>
+&nbsp;&nbsp;binds X (A.bind_typ U) E -&gt;<br/>
+&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;exists U', typ_bijection (A.to_senv E) U (B.to_senv E') U' /\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binds X (B.bind_typ U') E'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="env_bijection_binds_typ_2"></a>env_bijection_binds_typ_2 : forall E' E X U',<br/>
+&nbsp;&nbsp;binds X (B.bind_typ U') E' -&gt;<br/>
+&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;exists U, typ_bijection (A.to_senv E) U (B.to_senv E') U' /\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;binds X (A.bind_typ U) E.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+The relation holds for only well-formed environments. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="env_bijection_wf_env_1"></a>env_bijection_wf_env_1 : forall E E',<br/>
+&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;A.wf_env E.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve env_bijection_wf_env_1.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="env_bijection_wf_env_2"></a>env_bijection_wf_env_2 : forall E E',<br/>
+&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;B.wf_env E'.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve env_bijection_wf_env_2.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab418"></a><h1 class="section">Relations derive the same judgements</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+These first lemmas are trivial, given our definitions. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_typ_bijection"></a>wf_typ_bijection : forall E E' T T',<br/>
+&nbsp;&nbsp;typ_bijection E T E' T' -&gt;<br/>
+&nbsp;&nbsp;(A.wf_typ E T &lt;-&gt; B.wf_typ E' T').<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_exp_bijection"></a>wf_exp_bijection : forall E E' e e',<br/>
+&nbsp;&nbsp;exp_bijection E e E' e' -&gt;<br/>
+&nbsp;&nbsp;(A.wf_exp E e &lt;-&gt; B.wf_exp E' e').<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="wf_env_bijection"></a>wf_env_bijection : forall E E',<br/>
+&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;(A.wf_env E &lt;-&gt; B.wf_env E').<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+We need a few corollaries of the substitution lemmas for
+    the bijections. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_subst_head"></a>typ_bijection_subst_head : forall E E' T1 T2 U1 U2 X,<br/>
+&nbsp;&nbsp;typ_bijection ([(X,Common.Typ)] ++ E) T1 ([(X,Typ)] ++ E') T2 -&gt;<br/>
+&nbsp;&nbsp;typ_bijection E U1 E' U2 -&gt;<br/>
+&nbsp;&nbsp;typ_bijection E (A.subst_tt X U1 T1) E' (subst X U2 T2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typ_bijection_subst_head_open"></a>typ_bijection_subst_head_open : forall E E' T1 T2 U1 U2 X,<br/>
+&nbsp;&nbsp;X `notin` (A.fv_tt T1 `union` fv T2) -&gt;<br/>
+&nbsp;&nbsp;typ_bijection ([(X,Common.Typ)] ++ E) (A.open_tt T1 X) ([(X,Typ)] ++ E') (open T2 X) -&gt;<br/>
+&nbsp;&nbsp;typ_bijection E U1 E' U2 -&gt;<br/>
+&nbsp;&nbsp;typ_bijection E (A.open_tt T1 U1) E' (open T2 U2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_subst_ee_head"></a>exp_bijection_subst_ee_head : forall E E' e1 e2 U1 U2 X,<br/>
+&nbsp;&nbsp;exp_bijection ([(X,Common.Exp)] ++ E) e1 ([(X,Exp)] ++ E') e2 -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E U1 E' U2 -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E (A.subst_ee X U1 e1) E' (subst X U2 e2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_subst_ee_head_open"></a>exp_bijection_subst_ee_head_open : forall E E' e1 e2 U1 U2 X,<br/>
+&nbsp;&nbsp;X `notin` (A.fv_ee e1 `union` fv e2) -&gt;<br/>
+&nbsp;&nbsp;exp_bijection ([(X,Common.Exp)] ++ E) (A.open_ee e1 X) ([(X,Exp)] ++ E') (open e2 X) -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E U1 E' U2 -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E (A.open_ee e1 U1) E' (open e2 U2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_subst_te_head"></a>exp_bijection_subst_te_head : forall E E' e1 e2 U1 U2 X,<br/>
+&nbsp;&nbsp;exp_bijection ([(X,Common.Typ)] ++ E) e1 ([(X,Typ)] ++ E') e2 -&gt;<br/>
+&nbsp;&nbsp;typ_bijection E U1 E' U2 -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E (A.subst_te X U1 e1) E' (subst X U2 e2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="exp_bijection_subst_te_head_open"></a>exp_bijection_subst_te_head_open : forall E E' e1 e2 U1 U2 X,<br/>
+&nbsp;&nbsp;X `notin` (A.fv_te e1 `union` fv e2) -&gt;<br/>
+&nbsp;&nbsp;exp_bijection ([(X,Common.Typ)] ++ E) (A.open_te e1 X) ([(X,Typ)] ++ E') (open e2 X) -&gt;<br/>
+&nbsp;&nbsp;typ_bijection E U1 E' U2 -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E (A.open_te e1 U1) E' (open e2 U2).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+We now prove that the main Fsub relations derive the same sets of
+    judgements. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="sub_bijection_1"></a>sub_bijection_1 : forall E E' T T' S S',<br/>
+&nbsp;&nbsp;A.sub E S T -&gt;<br/>
+&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;typ_bijection (A.to_senv E) S (B.to_senv E') S' -&gt;<br/>
+&nbsp;&nbsp;typ_bijection (A.to_senv E) T (B.to_senv E') T' -&gt;<br/>
+&nbsp;&nbsp;B.sub E' S' T'.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve sub_bijection_1.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="sub_bijection_2"></a>sub_bijection_2 : forall E E' T T' S S',<br/>
+&nbsp;&nbsp;B.sub E' S' T' -&gt;<br/>
+&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;typ_bijection (A.to_senv E) S (B.to_senv E') S' -&gt;<br/>
+&nbsp;&nbsp;typ_bijection (A.to_senv E) T (B.to_senv E') T' -&gt;<br/>
+&nbsp;&nbsp;A.sub E S T.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve sub_bijection_2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typing_bijection_1"></a>typing_bijection_1 : forall E E' e e' T T',<br/>
+&nbsp;&nbsp;A.typing E e T -&gt;<br/>
+&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;exp_bijection (A.to_senv E) e (B.to_senv E') e' -&gt;<br/>
+&nbsp;&nbsp;typ_bijection (A.to_senv E) T (B.to_senv E') T' -&gt;<br/>
+&nbsp;&nbsp;B.typing E' e' T'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="typing_bijection_2"></a>typing_bijection_2 : forall E E' e e' T T',<br/>
+&nbsp;&nbsp;B.typing E' e' T' -&gt;<br/>
+&nbsp;&nbsp;env_bijection E E' -&gt;<br/>
+&nbsp;&nbsp;exp_bijection (A.to_senv E) e (B.to_senv E') e' -&gt;<br/>
+&nbsp;&nbsp;typ_bijection (A.to_senv E) T (B.to_senv E') T' -&gt;<br/>
+&nbsp;&nbsp;A.typing E e T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="value_bijection_1"></a>value_bijection_1 : forall E E' e e',<br/>
+&nbsp;&nbsp;A.value e -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E e E' e' -&gt;<br/>
+&nbsp;&nbsp;B.value e'.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve value_bijection_1.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="value_bijection_2"></a>value_bijection_2 : forall E E' e e',<br/>
+&nbsp;&nbsp;B.value e' -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E e E' e' -&gt;<br/>
+&nbsp;&nbsp;A.value e.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Resolve value_bijection_2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="red_bijection_1"></a>red_bijection_1 : forall E E' e1 e1' e2 e2',<br/>
+&nbsp;&nbsp;A.red e1 e2 -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E e1 E' e1' -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E e2 E' e2' -&gt;<br/>
+&nbsp;&nbsp;B.red e1' e2'.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="red_bijection_2"></a>red_bijection_2 : forall E E' e1 e1' e2 e2',<br/>
+&nbsp;&nbsp;B.red e1' e2' -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E e1 E' e1' -&gt;<br/>
+&nbsp;&nbsp;exp_bijection E e2 E' e2' -&gt;<br/>
+&nbsp;&nbsp;A.red e1 e2.<br/>
+</code>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

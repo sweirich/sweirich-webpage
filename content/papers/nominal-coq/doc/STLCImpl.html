@@ -1,0 +1,826 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset="><link rel="stylesheet" href="style.css" type="text/css"><title>STLCImpl</title>
+</head>
+
+<body>
+
+<h1>Library STLCImpl</h1>
+
+<code>
+<code class="keyword">Require</code> <code class="keyword">Import</code> Arith.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="Axioms.html">Axioms</a>.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="AuxLib.html">AuxLib</a>.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="Nominal.html">Nominal</a>.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="STLC.html">STLC</a>.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> Wf_nat.<br/>
+
+<br/>
+<code class="keyword">Module</code> <a name="MakeSTLC"></a>MakeSTLC &lt;: STLC.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab22"></a><h2>Basic definitions</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Term variables.
+
+</td></tr></table>
+<code>
+<code class="keyword">Definition</code> <a name="tmvar"></a>tmvar := mkAtomRec 0.<br/>
+<code class="keyword">Definition</code> <a name="tmvarP"></a>tmvarP := mkAtomPset tmvar.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  STLC types.
+
+</td></tr></table>
+<code>
+<code class="keyword">Inductive</code> <a name="ty"></a>ty : Set :=<br/>
+&nbsp;&nbsp;| <a name="unit"></a>unit : ty<br/>
+&nbsp;&nbsp;| <a name="arrow"></a>arrow : ty -&gt; ty -&gt; ty.<br/>
+
+<br/>
+<code class="keyword">Definition</code> <a name="tyP"></a>tyP := mkIdPset tmvar ty.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>Phi n</code> is the set of all terms whose bound variables have index
+  less than <code>n</code>.  Thus, <code>Phi 0</code> corresponds to those terms with no
+  dangling bound variables.  Free variables are still represented
+  using names.
+
+</td></tr></table>
+<code>
+<code class="keyword">Inductive</code> <a name="Phi"></a>Phi : nat -&gt; Set :=<br/>
+&nbsp;&nbsp;| <a name="pdot"></a>pdot : forall (n : nat), Phi n<br/>
+&nbsp;&nbsp;| <a name="pfree"></a>pfree : forall (n : nat), tmvar -&gt; Phi n<br/>
+&nbsp;&nbsp;| <a name="pbound"></a>pbound : forall (n i : nat), i &lt; n -&gt; Phi n<br/>
+&nbsp;&nbsp;| <a name="papp"></a>papp : forall (n : nat), Phi n -&gt; Phi n -&gt; Phi n<br/>
+&nbsp;&nbsp;| <a name="plam"></a>plam : forall (n : nat), ty -&gt; Phi (S n) -&gt; Phi n.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  We need to take advantage of proof irrelevance when considering
+  equality on <code>Phi</code>.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="pbound_eq"></a>pbound_eq :<br/>
+&nbsp;&nbsp;forall (n i i': nat), (i = i') -&gt;<br/>
+&nbsp;&nbsp;forall (p : i &lt; n) (q : i' &lt; n),<br/>
+&nbsp;&nbsp;pbound n i p = pbound n i' q.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve pbound_eq : core nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Free variables.
+
+</td></tr></table>
+<code>
+<code class="keyword">Fixpoint</code> <a name="Phi_fv"></a>Phi_fv (n : nat) (x : Phi n) {struct x} : aset tmvar :=<br/>
+&nbsp;&nbsp;match x with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pdot _ =&gt; empty<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pfree _ a =&gt; singleton a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pbound _ _ _ =&gt; empty<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| papp _ s t =&gt; union (Phi_fv _ s) (Phi_fv _ t)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| plam _ _ s =&gt; Phi_fv _ s<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments Phi_fv [n].<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Size.  The fact that <code>1 + x</code> converts to <code>S x</code> is helpful when defining
+  the recursion combinator below, since it proceeds by induction on natural
+  numbers (the initial value being the size of a term).
+
+</td></tr></table>
+<code>
+<code class="keyword">Fixpoint</code> <a name="Phi_size"></a>Phi_size (n : nat) (x : Phi n) {struct x} : nat :=<br/>
+&nbsp;&nbsp;match x with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pdot _ =&gt; 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pfree _ _ =&gt; 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pbound _ _ _ =&gt; 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| papp _ s t =&gt; 1 + (Phi_size _ s) + (Phi_size _ t)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| plam _ _ s =&gt; 1 + (Phi_size _ s)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments Phi_size [n].<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="Phi_size_eq_O"></a>Phi_size_eq_O :<br/>
+&nbsp;&nbsp;forall (T : Type) (n : nat) (x : Phi n), Phi_size x = 0 -&gt; T.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="Phi_size_lt_O"></a>Phi_size_lt_O :<br/>
+&nbsp;&nbsp;forall (T : Type) (n : nat) (x : Phi n), Phi_size x &lt;= 0 -&gt; T.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  We need ``weakening'' on terms in order to define substitution:
+  Any term in <code>Phi n</code> is also a term in <code>Phi (S n)</code> modulo the proofs
+  carried by <code>pbound</code> subterms.
+
+</td></tr></table>
+<code>
+<code class="keyword">Fixpoint</code> <a name="Phi_weaken"></a>Phi_weaken (n : nat) (x : Phi n) {struct x} : Phi (S n) :=<br/>
+&nbsp;&nbsp;match x in Phi n return Phi (S n) with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pdot _ =&gt; pdot _<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pfree _ a =&gt; pfree _ a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pbound _ i pf =&gt; pbound _ i (le_S _ _ pf)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| papp _ s t =&gt; papp _ (Phi_weaken _ s) (Phi_weaken _ t)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| plam _ T s =&gt; plam _ T (Phi_weaken _ s)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments Phi_weaken [n].<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Case analysis.  This lemma is useful when built-in tactics fail to provide
+  similar functionality, for example when you want to analyze <code>x : Phi (S n)</code>
+  and <code>case</code> fails.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="Phi_case"></a>Phi_case :<br/>
+&nbsp;&nbsp;forall (n : nat) (P : Phi n -&gt; Type),<br/>
+&nbsp;&nbsp;(P (pdot n)) -&gt;<br/>
+&nbsp;&nbsp;(forall a, P (pfree n a)) -&gt;<br/>
+&nbsp;&nbsp;(forall i pf, P (pbound n i pf)) -&gt;<br/>
+&nbsp;&nbsp;(forall s t, P (papp n s t)) -&gt;<br/>
+&nbsp;&nbsp;(forall T s, P (plam n T s)) -&gt;<br/>
+&nbsp;&nbsp;(forall x, P x).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Well-founded induction on size.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="Phi_ind_size_multi"></a>Phi_ind_size_multi :<br/>
+&nbsp;&nbsp;forall (P : forall (n : nat), Phi (S n) -&gt; Type),<br/>
+&nbsp;&nbsp;(forall n x, (forall m y, Phi_size y &lt; Phi_size x -&gt; P m y) -&gt; P n x) -&gt;<br/>
+&nbsp;&nbsp;(forall n x, P n x).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="Phi_ind_size_single"></a>Phi_ind_size_single :<br/>
+&nbsp;&nbsp;forall (n : nat) (P : Phi n -&gt; Type),<br/>
+&nbsp;&nbsp;(forall x, (forall y, Phi_size y &lt; Phi_size x -&gt; P y) -&gt; P x) -&gt;<br/>
+&nbsp;&nbsp;(forall x, P x).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab23"></a><h2>Permutations</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Fixpoint</code> <a name="Phi_perm"></a>Phi_perm<br/>
+&nbsp;&nbsp;(n : nat) (p : permt tmvar) (x : Phi n) {struct x} : Phi n<br/>
+:=<br/>
+&nbsp;&nbsp;match x in Phi n return Phi n with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pdot _ =&gt; pdot _<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pfree _ a =&gt; pfree _ (perm tmvarP p a)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pbound _ i pf =&gt; pbound _ i pf<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| papp _ s t =&gt; papp _ (Phi_perm _ p s) (Phi_perm _ p t)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| plam _ T s =&gt; plam _ T (Phi_perm _ p s)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments Phi_perm [n].<br/>
+
+<br/>
+<code class="keyword">Definition</code> <a name="PhiPermR"></a>PhiPermR (n : nat) : PsetT tmvar (Phi n).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Permutation preserves the size of a term.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="Phi_size_perm"></a>Phi_size_perm :<br/>
+&nbsp;&nbsp;forall (n : nat) (p : permt tmvar) (x : Phi n),<br/>
+&nbsp;&nbsp;Phi_size (Phi_perm p x) = Phi_size x.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab24"></a><h2>Abstraction and instantiation</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Turn a free variable into a bound variable (an index).  We turn a term
+  in <code>Phi n</code> into a term in <code>Phi (S n)</code> and choose <code>n</code> as the new index.
+
+</td></tr></table>
+<code>
+<code class="keyword">Fixpoint</code> <a name="abs"></a>abs<br/>
+&nbsp;&nbsp;(n : nat) (a : tmvar) (x : Phi n) {struct x}<br/>
+&nbsp;&nbsp;:  Phi (S n)<br/>
+:=<br/>
+&nbsp;&nbsp;match x in Phi n return Phi (S n) with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pdot _ =&gt; pdot _<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pfree i a' =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if atom_eqdec tmvar a a' then pbound (S i) i (lt_n_Sn _)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else pfree _ a'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| pbound i m pf =&gt; pbound (S i) m (lt_S _ _ pf)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| papp _ s t =&gt; papp _ (abs _ a s) (abs _ a t)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| plam _ T s =&gt; plam _ T (abs _ a s)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments abs [n].<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Turn the greatest index (bound variable) in a term into a free variable.
+  A more general version of this function would instantiate the index with
+  an arbitrary term.
+
+</td></tr></table>
+<code>
+<code class="keyword">Definition</code> <a name="inst_aux"></a>inst_aux<br/>
+&nbsp;&nbsp;(n' : nat) (a : tmvar) (x : Phi n') (n : nat) (wf : n' = S n) : Phi n.<br/>
+
+<br/>
+<code class="keyword">Definition</code> <a name="inst"></a>inst (n : nat) (a : tmvar) (x : Phi (S n)) : Phi n :=<br/>
+&nbsp;&nbsp;inst_aux (S n) a x n (refl_equal _).<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments inst [n].<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  The following rewrites make it easier to work with <code>inst</code>.  It is
+  not usually helpful to unfold <code>inst</code> to <code>inst_aux</code>.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="inst_papp"></a>inst_papp :<br/>
+&nbsp;&nbsp;forall (n : nat) (a : tmvar) (s t : Phi (S n)),<br/>
+&nbsp;&nbsp;inst a (papp _ s t) = papp _ (inst a s) (inst a t).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="inst_plam"></a>inst_plam :<br/>
+&nbsp;&nbsp;forall (n : nat) (a : tmvar) (s : Phi (S (S n))) (T : ty),<br/>
+&nbsp;&nbsp;inst a (plam _ T s) = plam _ T (inst a s).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>abs</code> preserves the size of terms.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="Phi_size_abs"></a>Phi_size_abs :<br/>
+&nbsp;&nbsp;forall (n : nat) (x : Phi n) (a : tmvar),<br/>
+&nbsp;&nbsp;Phi_size (abs a x) = Phi_size x.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>inst</code> preserves the size of terms.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="Phi_size_inst"></a>Phi_size_inst :<br/>
+&nbsp;&nbsp;forall (n : nat) (x : Phi (S n)) (a : tmvar),<br/>
+&nbsp;&nbsp;Phi_size (inst a x) = Phi_size x.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Permutations commute with <code>abs</code>.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="Phi_perm_abs"></a>Phi_perm_abs :<br/>
+&nbsp;&nbsp;forall n p c (s : Phi n),<br/>
+&nbsp;&nbsp;Phi_perm p (abs c s) = abs (perm tmvarP p c) (Phi_perm p s).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Swapping pseudo-commutes with <code>inst</code> under certain conditions.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="Phi_swap_inst"></a>Phi_swap_inst :<br/>
+&nbsp;&nbsp;forall (n : nat) (x : Phi (S n)) (a c d : tmvar),<br/>
+&nbsp;&nbsp;~ In c (Phi_fv x) -&gt; ~ In d (Phi_fv x) -&gt;<br/>
+&nbsp;&nbsp;perm (PhiPermR n) [(c, d)] (inst a x) = inst (perm tmvarP [(c, d)] a) x.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Swapping commutes with <code>inst</code> under certain conditions.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="Phi_swap_inst_commute"></a>Phi_swap_inst_commute :<br/>
+&nbsp;&nbsp;forall (n : nat) (x : Phi (S n)) (a c d : tmvar),<br/>
+&nbsp;&nbsp;a &lt;&gt; c -&gt; a &lt;&gt; d -&gt;<br/>
+&nbsp;&nbsp;perm (PhiPermR n) [(c, d)] (inst a x) =<br/>
+&nbsp;&nbsp;inst a (perm (PhiPermR (S n)) [(c, d)] x).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>inst</code> is the inverse of <code>abs</code>.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="inst_abs_inv"></a>inst_abs_inv :<br/>
+&nbsp;&nbsp;forall (n : nat) (x : Phi n) (a : tmvar), inst a (abs a x) = x.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>abs</code> is the inverse of <code>inst</code> under certain conditions.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="abs_inst_inv"></a>abs_inst_inv :<br/>
+&nbsp;&nbsp;forall (n : nat) (x : Phi (S n)) (a : tmvar),<br/>
+&nbsp;&nbsp;~ In a (Phi_fv x) -&gt; abs a (inst a x) = x.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  The free variables of <code>abs a x</code> are the obvious ones.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="Phi_fv_abs"></a>Phi_fv_abs :<br/>
+&nbsp;&nbsp;forall (n : nat) (x : Phi n) (a : tmvar),<br/>
+&nbsp;&nbsp;Phi_fv (abs a x) = remove a (Phi_fv x).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab25"></a><h2>User-level abstraction for terms</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Definition</code> <a name="tm"></a>tm : Set := Phi 0.<br/>
+<code class="keyword">Definition</code> <a name="tmP"></a>tmP := PhiPermR 0.<br/>
+<code class="keyword">Definition</code> <a name="dot"></a>dot : tm := pdot 0.<br/>
+<code class="keyword">Definition</code> <a name="var"></a>var (a : tmvar) : tm := pfree 0 a.<br/>
+<code class="keyword">Definition</code> <a name="app"></a>app (s t : tm) : tm:= papp 0 s t.<br/>
+<code class="keyword">Definition</code> <a name="lam"></a>lam (x : tmvar) (T : ty) (b : tm) : tm := plam 0 T (abs x b).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab26"></a><h2>Permutations</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> STLCPermutations.<br/>
+<code class="keyword">Variable</code> p : permt tmvar.<br/>
+<code class="keyword">Variable</code> c : tmvar.<br/>
+<code class="keyword">Variable</code> T : ty.<br/>
+<code class="keyword">Variables</code> s t : tm.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="perm_dot"></a>perm_dot : perm tmP p dot = dot.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="perm_var"></a>perm_var : perm tmP p (var c) = var (perm tmvarP p c).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="perm_app"></a>perm_app :<br/>
+&nbsp;&nbsp;perm tmP p (app s t) = app (perm tmP p s) (perm tmP p t).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="perm_lam"></a>perm_lam :<br/>
+&nbsp;&nbsp;perm tmP p (lam c T s) = lam (perm tmvarP p c) T (perm tmP p s).<br/>
+
+<br/>
+<code class="keyword">End</code> STLCPermutations.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab27"></a><h2>Free variables</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Definition</code> <a name="fvar"></a>fvar : tm -&gt; aset tmvar := Phi_fv (n:= 0).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="fvar_dot"></a>fvar_dot : fvar dot = empty.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="fvar_var"></a>fvar_var : forall a, fvar (var a) = singleton a.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="fvar_app"></a>fvar_app : forall s t, fvar (app s t) = union (fvar s) (fvar t).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="fvar_lam"></a>fvar_lam : forall a T s, fvar (lam a T s) = remove a (fvar s).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab28"></a><h2>Alpha-equality</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="swap_in_abs"></a>swap_in_abs :<br/>
+&nbsp;&nbsp;forall (n : nat) (s : Phi n) (a b : tmvar),<br/>
+&nbsp;&nbsp;b &lt;&gt; a -&gt;<br/>
+&nbsp;&nbsp;~ In a (Phi_fv (Phi_perm [(a, b)] s)) -&gt;<br/>
+&nbsp;&nbsp;abs b (Phi_perm [(a, b)] s) = abs a s.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="eq_lam_diff"></a>eq_lam_diff :<br/>
+&nbsp;&nbsp;forall a b T T' s s',<br/>
+&nbsp;&nbsp;T = T' -&gt;<br/>
+&nbsp;&nbsp;a &lt;&gt; b -&gt;<br/>
+&nbsp;&nbsp;&nbsp;~ In b (fvar s) -&gt;<br/>
+&nbsp;&nbsp;s = perm tmP [(a, b)] s' -&gt;<br/>
+&nbsp;&nbsp;lam a T s = lam b T' s'.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="eq_lam"></a>eq_lam :<br/>
+&nbsp;&nbsp;forall a b T s,<br/>
+&nbsp;&nbsp;&nbsp;~ In b (fvar s) -&gt;<br/>
+&nbsp;&nbsp;lam a T s = lam b T (perm tmP [(a, b)] s).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab29"></a><h2>Structural induction</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="tm_induction_weak"></a>tm_induction_weak :<br/>
+&nbsp;&nbsp;forall (P : tm -&gt; Type),<br/>
+&nbsp;&nbsp;(P dot) -&gt;<br/>
+&nbsp;&nbsp;(forall a, P (var a)) -&gt;<br/>
+&nbsp;&nbsp;(forall s, P s -&gt; forall t, P t -&gt; P (app s t)) -&gt;<br/>
+&nbsp;&nbsp;(forall a T s, P s -&gt; P (lam a T s)) -&gt;<br/>
+&nbsp;&nbsp;forall x : tm, P x.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="tm_induction"></a>tm_induction :<br/>
+&nbsp;&nbsp;forall (P : tm -&gt; Type) (F : aset tmvar),<br/>
+&nbsp;&nbsp;(P dot) -&gt;<br/>
+&nbsp;&nbsp;(forall a, P (var a)) -&gt;<br/>
+&nbsp;&nbsp;(forall s, P s -&gt; forall t, P t -&gt; P (app s t)) -&gt;<br/>
+&nbsp;&nbsp;(forall a, ~ In a F -&gt; forall T, forall s, P s -&gt; P (lam a T s)) -&gt;<br/>
+&nbsp;&nbsp;forall x : tm, P x.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab30"></a><h2>Recursion</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> Recursion.<br/>
+
+<br/>
+<code class="keyword">Variables</code> (R : Set) (RP : PsetT tmvar R).<br/>
+<code class="keyword">Variable</code> (f_dot : R).<br/>
+<code class="keyword">Variable</code> (f_var : tmvar -&gt; R).<br/>
+<code class="keyword">Variable</code> (f_app : tm -&gt; R -&gt; tm -&gt; R -&gt; R).<br/>
+<code class="keyword">Variable</code> (f_lam : tmvar -&gt; ty -&gt; tm -&gt; R -&gt; R).<br/>
+<code class="keyword">Variable</code> (F : aset tmvar).<br/>
+<code class="keyword">Variable</code> (supp_dot : supports RP F f_dot).<br/>
+<code class="keyword">Variable</code> (supp_var : supports (tmvarP ^-&gt; RP) F f_var).<br/>
+<code class="keyword">Variable</code> (supp_app : supports (tmP ^-&gt; RP ^-&gt; tmP ^-&gt; RP ^-&gt; RP) F f_app).<br/>
+<code class="keyword">Variable</code> (supp_lam : supports (tmvarP ^-&gt; tyP ^-&gt; tmP ^-&gt; RP ^-&gt; RP) F f_lam).<br/>
+<code class="keyword">Variable</code> (fcb :<br/>
+&nbsp;&nbsp;exists b, ~ In b F /\ forall x y z, freshP RP b (f_lam b x y z)).<br/>
+
+<br/>
+Derive Dependent Inversion tm_inv with (Phi 0) Sort Set.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="Phi_size_lt_papp_fun"></a>Phi_size_lt_papp_fun :<br/>
+&nbsp;&nbsp;forall n m s t, Phi_size (papp n s t) &lt;= S m -&gt; Phi_size s &lt;= m.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments Phi_size_lt_papp_fun [n m s t].<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="Phi_size_lt_papp_arg"></a>Phi_size_lt_papp_arg :<br/>
+&nbsp;&nbsp;forall n m s t, Phi_size (papp n s t) &lt;= S m -&gt; Phi_size t &lt;= m.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments Phi_size_lt_papp_arg [n m s t].<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="Phi_size_lt_plam"></a>Phi_size_lt_plam :<br/>
+&nbsp;&nbsp;forall n m a T s, Phi_size (plam n T s) &lt;= S m -&gt; Phi_size (inst a s) &lt;= m.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments Phi_size_lt_plam [n m a T s].<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Our goal here is to define recursive functions over terms by induction
+  on their size.  This translates to induction on a natural number which
+  bounds the size of the term.  All the arguments here are important: <code>n</code>
+  is required since the function is defined by induction on the structure
+  of <code>n</code>, <code>x</code> is the term we actually care about, and the proof ensures
+  that we don't have to deal with non-sensical combinations of <code>n</code> and <code>x</code>.
+
+<br/><br/>
+  The proof is of an <code>le</code> relation and not an <code>eq</code> relation due to how
+  <code>recF</code> makes recursive calls.  We could, in theory, use an <code>eq</code> relation
+  if we were willing to define <code>recF</code> by well-founded induction on <code>n</code>, but
+  that seems to pose its own problems.
+
+</td></tr></table>
+<code>
+<code class="keyword">Definition</code> <a name="recF"></a>recF :<br/>
+&nbsp;&nbsp;forall (n : nat) (x : Phi 0), Phi_size x &lt;= n -&gt; R.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  The particular <code>n</code> and proof supplied to <code>recF</code> don't matter.
+
+</td></tr></table>
+<code>
+<code class="keyword">Lemma</code> <a name="recF_stable"></a>recF_stable :<br/>
+&nbsp;&nbsp;forall (n m : nat) (x : tm) (pfn : Phi_size x &lt;= n) (pfm : Phi_size x &lt;= m),<br/>
+&nbsp;&nbsp;recF n x pfn = recF m x pfm.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="recF_stable_gen"></a>recF_stable_gen :<br/>
+&nbsp;&nbsp;forall (n m : nat) (x y : tm), x = y -&gt;<br/>
+&nbsp;&nbsp;forall (pfn : Phi_size x &lt;= n) (pfm : Phi_size y &lt;= m),<br/>
+&nbsp;&nbsp;recF n x pfn = recF m y pfm.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve recF_stable_gen : core.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Define the recursion combinator, as seen by the user.  Most
+  of the cases for how it evaluates are straightforward.
+
+</td></tr></table>
+<code>
+<code class="keyword">Definition</code> <a name="tm_rec"></a>tm_rec (x : tm) : R := recF (Phi_size x) x (le_n _).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="tm_rec_dot"></a>tm_rec_dot : tm_rec dot = f_dot.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="tm_rec_var"></a>tm_rec_var : forall a, tm_rec (var a) = f_var a.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="tm_rec_app"></a>tm_rec_app :<br/>
+&nbsp;&nbsp;forall s t, tm_rec (app s t) = f_app s (tm_rec s) t (tm_rec t).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Proving the rewrite rule for the <code>lam</code> case requires that we prove
+  the following two properties simultaneously.  There may be an easier
+  way, but at least it doesn't seem that this particular method is
+  specific to the object-language at hand.
+
+<br/><br/>
+  It's only at this point where we need to know the support of <code>f_dot</code>,
+  <code>f_var</code>, <code>f_app</code>, and <code>f_lam</code>, and know that <code>fcb</code> holds.
+
+</td></tr></table>
+<code>
+<code class="keyword">Let</code> rewrite_prop (n : nat) :=<br/>
+&nbsp;&nbsp;forall a T s, Phi_size (lam a T s) &lt;= n -&gt;<br/>
+&nbsp;&nbsp;~ In a F -&gt; tm_rec (lam a T s) = f_lam a T s (tm_rec s).<br/>
+
+<br/>
+<code class="keyword">Let</code> swap_prop (n : nat) :=<br/>
+&nbsp;&nbsp;forall x c d pf pf', ~ In c F -&gt; ~ In d F -&gt;<br/>
+&nbsp;&nbsp;perm RP [(c, d)] (recF n x pf) = recF n (perm tmP [(c, d)] x) pf'.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="rewrite_to_swap"></a>rewrite_to_swap :<br/>
+&nbsp;&nbsp;forall (n : nat), (forall m, m &lt;= n -&gt; rewrite_prop m) -&gt; swap_prop n.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="swap_to_rewrite"></a>swap_to_rewrite :<br/>
+&nbsp;&nbsp;forall (n : nat), (forall m, m &lt; n -&gt; swap_prop m) -&gt; rewrite_prop n.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="rewrite_and_swap"></a>rewrite_and_swap : forall m, rewrite_prop m /\ swap_prop m.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="tm_rec_lam"></a>tm_rec_lam :<br/>
+&nbsp;&nbsp;forall a T s, ~ In a F -&gt; tm_rec (lam a T s) = f_lam a T s (tm_rec s).<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="tm_rec_supp"></a>tm_rec_supp :<br/>
+&nbsp;&nbsp;supports (tmP ^-&gt; RP) F tm_rec.<br/>
+
+<br/>
+<code class="keyword">End</code> Recursion.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab31"></a><h2>Constructor distinctness</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> Distinctness.<br/>
+<code class="keyword">Variables</code> a b : tmvar.<br/>
+<code class="keyword">Variables</code> T : ty.<br/>
+<code class="keyword">Variables</code> s t q r : tm.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="distinctness_dot_var"></a>distinctness_dot_var: dot &lt;&gt; var a.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="distinctness_dot_app"></a>distinctness_dot_app : dot &lt;&gt; app s t.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="distinctness_dot_lam"></a>distinctness_dot_lam : dot &lt;&gt; lam a T s.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="distinctness_var_dot"></a>distinctness_var_dot : var a &lt;&gt; dot.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="distinctness_var_app"></a>distinctness_var_app : var a &lt;&gt; app s t.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="distinctness_var_lam"></a>distinctness_var_lam : var a &lt;&gt; lam b T s.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="distinctness_app_dot"></a>distinctness_app_dot : app s t &lt;&gt; dot.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="distinctness_app_var"></a>distinctness_app_var : app s t &lt;&gt; var a.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="distinctness_app_lam"></a>distinctness_app_lam : app s t &lt;&gt; lam a T q.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="distinctness_lam_dot"></a>distinctness_lam_dot : lam a T s &lt;&gt; dot.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="distinctness_lam_var"></a>distinctness_lam_var : lam a T s &lt;&gt; var b.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="distinctness_lam_app"></a>distinctness_lam_app : lam a T s &lt;&gt; app q r.<br/>
+
+<br/>
+<code class="keyword">End</code> Distinctness.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab32"></a><h2>Injectivity for constructors</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Some of the lemmas in this section are needed because the <code>injection</code>
+  tactic fails to produce useful hypotheses.
+
+</td></tr></table>
+<code>
+<code class="keyword">Theorem</code> <a name="injection_var"></a>injection_var : forall a b, var a = var b -&gt; a = b.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="injection_papp_fun"></a>injection_papp_fun :<br/>
+&nbsp;&nbsp;forall n s s' t t', papp n s t = papp n s' t' -&gt; s = s'.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="injection_app_fun"></a>injection_app_fun : forall s s' t t', app s t = app s' t' -&gt; s = s'.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="injection_papp_arg"></a>injection_papp_arg :<br/>
+&nbsp;&nbsp;forall n s s' t t', papp n s t = papp n s' t' -&gt; t = t'.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="injection_app_arg"></a>injection_app_arg : forall s s' t t', app s t = app s' t' -&gt; t = t'.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="injection_lam_ty"></a>injection_lam_ty :<br/>
+&nbsp;&nbsp;forall a a' T T' s s',<br/>
+&nbsp;&nbsp;lam a T s = lam a' T' s' -&gt;<br/>
+&nbsp;&nbsp;(T = T').<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="injection_plam"></a>injection_plam :<br/>
+&nbsp;&nbsp;forall (n : nat) (T T' : ty) (s s' : Phi (S n)),<br/>
+&nbsp;&nbsp;plam n T s = plam n T' s' -&gt; s = s'.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="abs_eq"></a>abs_eq :<br/>
+&nbsp;&nbsp;forall (n : nat) (a : tmvar) (s s' : Phi n),<br/>
+&nbsp;&nbsp;abs a s = abs a s' -&gt; s = s'.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="abs_neq"></a>abs_neq :<br/>
+&nbsp;&nbsp;forall (n : nat) (a a' : tmvar) (s s' : Phi n),<br/>
+&nbsp;&nbsp;a &lt;&gt; a' -&gt;<br/>
+&nbsp;&nbsp;abs a s = abs a' s' -&gt;<br/>
+&nbsp;&nbsp;~ In a (Phi_fv s') /\ s = Phi_perm [(a, a')] s'.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="injection_lam_body"></a>injection_lam_body :<br/>
+&nbsp;&nbsp;forall a a' T T' s s',<br/>
+&nbsp;&nbsp;lam a T s = lam a' T' s' -&gt;<br/>
+&nbsp;&nbsp;(a = a' /\ s = s') \/<br/>
+&nbsp;&nbsp;(a &lt;&gt; a' /\ ~ In a (fvar s') /\ s = perm tmP [(a, a')] s').<br/>
+
+<br/>
+<code class="keyword">End</code> MakeSTLC.<br/>
+</code>
+<hr/><a href="index.html">Index</a><hr/><font size="-1">This page has been generated by <a href="http://www.lri.fr/~filliatr/coqdoc/">coqdoc</a></font>
+</body>
+</html>

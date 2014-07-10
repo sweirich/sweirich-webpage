@@ -1,0 +1,402 @@
+FListFacts
+R169 Coq.Logic.Eqdep_dec <> <> lib
+R195 Coq.Lists.List <> <> lib
+R216 Coq.omega.Omega <> <> lib
+R238 Coq.Lists.SetoidList <> <> lib
+R265 Coq.Sorting.Sorting <> <> lib
+R289 Coq.Relations.Relations <> <> lib
+prf 411 <> app_head_eq_nil
+R489 Coq.Init.Logic "x = y" not
+R491 Coq.Lists.List <> nil constr
+R470 Coq.Init.Logic "x = y" not
+R475 Coq.Lists.List "x ++ y" not
+R456 Coq.Lists.List <> list ind
+R456 Coq.Lists.List <> list ind
+R562 Coq.Init.Logic "x = y" not
+R552 Coq.Lists.List <> length def
+R564 Coq.Lists.List <> length def
+R580 Coq.Lists.List "x ++ y" not
+R575 Coq.Lists.List "x :: y" not
+R562 Coq.Init.Logic "x = y" not
+R552 Coq.Lists.List <> length def
+R564 Coq.Lists.List <> length def
+R580 Coq.Lists.List "x ++ y" not
+R575 Coq.Lists.List "x :: y" not
+R663 Coq.Init.Logic <> False ind
+R663 Coq.Init.Logic <> False ind
+prf 702 <> app_inj_head
+R788 Coq.Init.Logic "x = y" not
+R768 Coq.Init.Logic "x = y" not
+R762 Coq.Lists.List "x ++ y" not
+R774 Coq.Lists.List "x ++ y" not
+R748 Coq.Lists.List <> list ind
+R748 Coq.Lists.List <> list ind
+R748 Coq.Lists.List <> list ind
+R889 ListFacts <> app_head_eq_nil thm
+R889 ListFacts <> app_head_eq_nil thm
+R974 Coq.Init.Logic "x = y" not
+R951 Coq.Lists.List <> length def
+R961 Coq.Lists.List "x :: y" not
+R967 Coq.Lists.List "x ++ y" not
+R976 Coq.Lists.List <> length def
+R974 Coq.Init.Logic "x = y" not
+R951 Coq.Lists.List <> length def
+R961 Coq.Lists.List "x :: y" not
+R967 Coq.Lists.List "x ++ y" not
+R976 Coq.Lists.List <> length def
+R1072 Coq.Init.Logic <> False ind
+R1072 Coq.Init.Logic <> False ind
+prf 1270 <> not_in_cons
+R1348 Coq.Init.Logic "~ x" not
+R1350 Coq.Lists.List <> In def
+R1358 Coq.Lists.List "x :: y" not
+R1335 Coq.Init.Logic "~ x" not
+R1337 Coq.Lists.List <> In def
+R1327 Coq.Init.Logic "x <> y" not
+R1310 Coq.Lists.List <> list ind
+prf 1419 <> not_In_app
+R1500 Coq.Init.Logic "~ x" not
+R1502 Coq.Lists.List <> In def
+R1511 Coq.Lists.List "x ++ y" not
+R1487 Coq.Init.Logic "~ x" not
+R1489 Coq.Lists.List <> In def
+R1474 Coq.Init.Logic "~ x" not
+R1476 Coq.Lists.List <> In def
+R1461 Coq.Lists.List <> list ind
+R1461 Coq.Lists.List <> list ind
+R1564 Coq.Lists.List <> in_app_or thm
+R1564 Coq.Lists.List <> in_app_or thm
+prf 1602 <> elim_not_In_cons
+R1701 Coq.Init.Logic "A /\ B" not
+R1696 Coq.Init.Logic "x <> y" not
+R1704 Coq.Init.Logic "~ x" not
+R1706 Coq.Lists.List <> In def
+R1674 Coq.Init.Logic "~ x" not
+R1676 Coq.Lists.List <> In def
+R1684 Coq.Lists.List "x :: y" not
+R1655 Coq.Lists.List <> list ind
+prf 1762 <> elim_not_In_app
+R1859 Coq.Init.Logic "A /\ B" not
+R1849 Coq.Init.Logic "~ x" not
+R1851 Coq.Lists.List <> In def
+R1862 Coq.Init.Logic "~ x" not
+R1864 Coq.Lists.List <> In def
+R1828 Coq.Init.Logic "~ x" not
+R1830 Coq.Lists.List <> In def
+R1839 Coq.Lists.List "x ++ y" not
+R1809 Coq.Lists.List <> list ind
+R1809 Coq.Lists.List <> list ind
+R1900 Coq.Lists.List <> in_or_app thm
+R1900 Coq.Lists.List <> in_or_app thm
+R1900 Coq.Lists.List <> in_or_app thm
+prf 2026 <> incl_nil
+R2072 Coq.Lists.List <> incl def
+R2077 Coq.Lists.List <> nil constr
+R2063 Coq.Lists.List <> list ind
+prf 2151 <> incl_trans
+R2235 Coq.Lists.List <> incl def
+R2221 Coq.Lists.List <> incl def
+R2207 Coq.Lists.List <> incl def
+R2196 Coq.Lists.List <> list ind
+R2196 Coq.Lists.List <> list ind
+R2196 Coq.Lists.List <> list ind
+prf 2293 <> In_incl
+R2376 Coq.Lists.List <> In def
+R2362 Coq.Lists.List <> incl def
+R2351 Coq.Lists.List <> In def
+R2340 Coq.Lists.List <> list ind
+R2340 Coq.Lists.List <> list ind
+prf 2425 <> elim_incl_cons
+R2519 Coq.Init.Logic "A /\ B" not
+R2511 Coq.Lists.List <> In def
+R2522 Coq.Lists.List <> incl def
+R2490 Coq.Lists.List <> incl def
+R2498 Coq.Lists.List "x :: y" not
+R2479 Coq.Lists.List <> list ind
+R2479 Coq.Lists.List <> list ind
+prf 2589 <> elim_incl_app
+R2681 Coq.Init.Logic "A /\ B" not
+R2670 Coq.Lists.List <> incl def
+R2684 Coq.Lists.List <> incl def
+R2648 Coq.Lists.List <> incl def
+R2657 Coq.Lists.List "x ++ y" not
+R2637 Coq.Lists.List <> list ind
+R2637 Coq.Lists.List <> list ind
+R2637 Coq.Lists.List <> list ind
+prf 2852 <> InA_iff_In
+R2907 Coq.Init.Logic "A <-> B" not
+R2890 Coq.Lists.SetoidList <> InA ind
+R2896 Coq.Init.Logic <> eq ind
+R2911 Coq.Lists.List <> In def
+R2949 Coq.Lists.SetoidList <> In_InA thm
+R2949 Coq.Lists.SetoidList <> In_InA thm
+sec 3199 <> EqRectList
+var 3221 EqRectList A
+var 3240 EqRectList eq_A_dec
+R3269 Coq.Init.Specif "{ A } + { B }" not
+R3272 Coq.Init.Logic "x = y" not
+R3282 Coq.Init.Logic "x <> y" not
+prf 3296 <> eq_rect_eq_list
+R3400 Coq.Init.Logic "x = y" not
+R3382 Coq.Init.Logic <> eq_rect def
+R3374 Coq.Init.Logic "x = y" not
+R3341 Coq.Lists.List <> list ind
+R3328 Coq.Lists.List <> list ind
+R3440 Coq.Logic.Eqdep_dec <> K_dec thm
+R3440 Coq.Logic.Eqdep_dec <> K_dec thm
+R3520 ListFacts EqRectList <> sec
+sec 3672 <> DecidableSorting
+var 3700 DecidableSorting A
+var 3718 DecidableSorting leA
+R3724 Coq.Relations.Relation_Definitions <> relation def
+var 3747 DecidableSorting leA_dec
+R3769 Coq.Init.Specif "{ A } + { B }" not
+R3782 Coq.Init.Logic "~ x" not
+prf 3803 <> lelistA_dec
+R3832 Coq.Init.Specif "{ A } + { B }" not
+R3833 Coq.Sorting.Sorting <> lelistA ind
+R3854 Coq.Init.Logic "~ x" not
+R3856 Coq.Sorting.Sorting <> lelistA ind
+prf 4035 <> sort_dec
+R4059 Coq.Init.Specif "{ A } + { B }" not
+R4060 Coq.Sorting.Sorting <> sort ind
+R4076 Coq.Init.Logic "~ x" not
+R4078 Coq.Sorting.Sorting <> sort ind
+R4178 ListFacts <> lelistA_dec thm
+R4178 ListFacts <> lelistA_dec thm
+R4178 ListFacts <> lelistA_dec thm
+sec 4346 DecidableSorting UniqueSortingProofs
+var 4381 DecidableSorting.UniqueSortingProofs eq_A_dec
+R4410 Coq.Init.Specif "{ A } + { B }" not
+R4413 Coq.Init.Logic "x = y" not
+R4423 Coq.Init.Logic "x <> y" not
+var 4443 DecidableSorting.UniqueSortingProofs leA_unique
+R4492 Coq.Init.Logic "x = y" not
+prf 4619 <> lelistA_unique
+R4697 Coq.Init.Logic "x = y" not
+R4676 Coq.Sorting.Sorting <> lelistA ind
+R4676 Coq.Sorting.Sorting <> lelistA ind
+R4661 Coq.Lists.List <> list ind
+R4743 ListFacts <> lelistA_ind' scheme
+R4743 ListFacts <> lelistA_ind' scheme
+R4804 Coq.Sorting.Sorting <> nil_leA constr
+R4825 Coq.Init.Logic <> eq_rect def
+R4889 Coq.Init.Logic <> refl_equal constr
+R4902 Coq.Lists.List <> nil constr
+R4871 Coq.Sorting.Sorting <> nil_leA constr
+R4846 Coq.Sorting.Sorting <> lelistA ind
+R4804 Coq.Sorting.Sorting <> nil_leA constr
+R4825 Coq.Init.Logic <> eq_rect def
+R4889 Coq.Init.Logic <> refl_equal constr
+R4902 Coq.Lists.List <> nil constr
+R4871 Coq.Sorting.Sorting <> nil_leA constr
+R4846 Coq.Sorting.Sorting <> lelistA ind
+R4930 Coq.Init.Logic <> refl_equal constr
+R4943 Coq.Lists.List <> nil constr
+R4930 Coq.Init.Logic <> refl_equal constr
+R4943 Coq.Lists.List <> nil constr
+R4966 Coq.Lists.List <> nil constr
+R4966 Coq.Lists.List <> nil constr
+R5044 ListFacts <> eq_rect_eq_list thm
+R5044 ListFacts <> eq_rect_eq_list thm
+R5102 Coq.Sorting.Sorting <> cons_leA constr
+R5131 Coq.Init.Logic <> eq_rect def
+R5203 Coq.Init.Logic <> refl_equal constr
+R5217 Coq.Lists.List "x :: y" not
+R5177 Coq.Sorting.Sorting <> cons_leA constr
+R5152 Coq.Sorting.Sorting <> lelistA ind
+R5102 Coq.Sorting.Sorting <> cons_leA constr
+R5131 Coq.Init.Logic <> eq_rect def
+R5203 Coq.Init.Logic <> refl_equal constr
+R5217 Coq.Lists.List "x :: y" not
+R5177 Coq.Sorting.Sorting <> cons_leA constr
+R5152 Coq.Sorting.Sorting <> lelistA ind
+R5244 Coq.Init.Logic <> refl_equal constr
+R5258 Coq.Lists.List "x :: y" not
+R5244 Coq.Init.Logic <> refl_equal constr
+R5258 Coq.Lists.List "x :: y" not
+R5281 Coq.Lists.List "x :: y" not
+R5281 Coq.Lists.List "x :: y" not
+R5382 ListFacts <> eq_rect_eq_list thm
+R5382 ListFacts <> eq_rect_eq_list thm
+prf 5453 <> sort_unique
+R5515 Coq.Init.Logic "x = y" not
+R5499 Coq.Sorting.Sorting <> sort ind
+R5499 Coq.Sorting.Sorting <> sort ind
+R5484 Coq.Lists.List <> list ind
+R5561 ListFacts <> sort_ind' scheme
+R5561 ListFacts <> sort_ind' scheme
+R5620 Coq.Sorting.Sorting <> nil_sort constr
+R5640 Coq.Init.Logic <> eq_rect def
+R5698 Coq.Init.Logic <> refl_equal constr
+R5711 Coq.Lists.List <> nil constr
+R5681 Coq.Sorting.Sorting <> nil_sort constr
+R5661 Coq.Sorting.Sorting <> sort ind
+R5620 Coq.Sorting.Sorting <> nil_sort constr
+R5640 Coq.Init.Logic <> eq_rect def
+R5698 Coq.Init.Logic <> refl_equal constr
+R5711 Coq.Lists.List <> nil constr
+R5681 Coq.Sorting.Sorting <> nil_sort constr
+R5661 Coq.Sorting.Sorting <> sort ind
+R5739 Coq.Init.Logic <> refl_equal constr
+R5752 Coq.Lists.List <> nil constr
+R5739 Coq.Init.Logic <> refl_equal constr
+R5752 Coq.Lists.List <> nil constr
+R5775 Coq.Lists.List <> nil constr
+R5775 Coq.Lists.List <> nil constr
+R5853 ListFacts <> eq_rect_eq_list thm
+R5853 ListFacts <> eq_rect_eq_list thm
+R5911 Coq.Sorting.Sorting <> cons_sort constr
+R5933 Coq.Init.Logic <> eq_rect def
+R5993 Coq.Init.Logic <> refl_equal constr
+R6007 Coq.Lists.List "x :: y" not
+R5974 Coq.Sorting.Sorting <> cons_sort constr
+R5954 Coq.Sorting.Sorting <> sort ind
+R5911 Coq.Sorting.Sorting <> cons_sort constr
+R5933 Coq.Init.Logic <> eq_rect def
+R5993 Coq.Init.Logic <> refl_equal constr
+R6007 Coq.Lists.List "x :: y" not
+R5974 Coq.Sorting.Sorting <> cons_sort constr
+R5954 Coq.Sorting.Sorting <> sort ind
+R6034 Coq.Init.Logic <> refl_equal constr
+R6048 Coq.Lists.List "x :: y" not
+R6034 Coq.Init.Logic <> refl_equal constr
+R6048 Coq.Lists.List "x :: y" not
+R6071 Coq.Lists.List "x :: y" not
+R6071 Coq.Lists.List "x :: y" not
+R6172 ListFacts <> eq_rect_eq_list thm
+R6172 ListFacts <> eq_rect_eq_list thm
+R6204 ListFacts <> lelistA_unique thm
+R6204 ListFacts <> lelistA_unique thm
+R6262 ListFacts DecidableSorting.UniqueSortingProofs <> sec
+R6287 ListFacts DecidableSorting <> sec
+sec 6427 <> Equality_ext
+var 6451 Equality_ext A
+var 6469 Equality_ext ltA
+R6475 Coq.Relations.Relation_Definitions <> relation def
+var 6498 Equality_ext ltA_trans
+var 6566 Equality_ext ltA_not_eqA
+R6605 Coq.Init.Logic "x <> y" not
+var 6622 Equality_ext ltA_eqA
+R6659 Coq.Init.Logic "x = y" not
+var 6686 Equality_ext eqA_ltA
+R6712 Coq.Init.Logic "x = y" not
+syndef 6806 <> Inf
+R6814 Coq.Sorting.Sorting <> lelistA ind
+syndef 6837 <> Sort
+R6846 Coq.Sorting.Sorting <> sort ind
+prf 6864 <> not_InA_if_Sort_Inf
+R6924 Coq.Init.Logic "~ x" not
+R6926 Coq.Lists.SetoidList <> InA ind
+R6932 Coq.Init.Logic <> eq ind
+R6912 ListFacts <> Inf syndef
+R6901 ListFacts <> Sort syndef
+R7087 Coq.Init.Logic "x <> y" not
+R7087 Coq.Init.Logic "x <> y" not
+R7171 ListFacts <> Inf syndef
+R7196 Coq.Lists.SetoidList <> InfA_ltA thm
+R7171 ListFacts <> Inf syndef
+R7196 Coq.Lists.SetoidList <> InfA_ltA thm
+R7220 Coq.Init.Logic "~ x" not
+R7222 Coq.Lists.SetoidList <> InA ind
+R7228 Coq.Init.Logic <> eq ind
+R7220 Coq.Init.Logic "~ x" not
+R7222 Coq.Lists.SetoidList <> InA ind
+R7228 Coq.Init.Logic <> eq ind
+prf 7278 <> Sort_eq_head
+R7426 Coq.Init.Logic "x = y" not
+R7390 Coq.Init.Logic "A <-> B" not
+R7366 Coq.Lists.SetoidList <> InA ind
+R7383 Coq.Lists.List "x :: y" not
+R7372 Coq.Init.Logic <> eq ind
+R7394 Coq.Lists.SetoidList <> InA ind
+R7411 Coq.Lists.List "x :: y" not
+R7400 Coq.Init.Logic <> eq ind
+R7335 ListFacts <> Sort syndef
+R7343 Coq.Lists.List "x :: y" not
+R7315 ListFacts <> Sort syndef
+R7323 Coq.Lists.List "x :: y" not
+R7534 Coq.Lists.SetoidList <> InA ind
+R7551 Coq.Lists.List "x :: y" not
+R7540 Coq.Init.Logic <> eq ind
+R7534 Coq.Lists.SetoidList <> InA ind
+R7551 Coq.Lists.List "x :: y" not
+R7540 Coq.Init.Logic <> eq ind
+R7589 Coq.Lists.SetoidList <> InA ind
+R7606 Coq.Lists.List "x :: y" not
+R7595 Coq.Init.Logic <> eq ind
+R7589 Coq.Lists.SetoidList <> InA ind
+R7606 Coq.Lists.List "x :: y" not
+R7595 Coq.Init.Logic <> eq ind
+R7718 Coq.Lists.SetoidList <> SortA_InfA_InA thm
+R7718 Coq.Lists.SetoidList <> SortA_InfA_InA thm
+R7792 Coq.Lists.SetoidList <> SortA_InfA_InA thm
+R7792 Coq.Lists.SetoidList <> SortA_InfA_InA thm
+R7847 Coq.Init.Logic "x <> y" not
+R7847 Coq.Init.Logic "x <> y" not
+prf 7888 <> Sort_InA_eq_ext
+R8008 Coq.Init.Logic "x = y" not
+R7978 Coq.Init.Logic "A <-> B" not
+R7961 Coq.Lists.SetoidList <> InA ind
+R7967 Coq.Init.Logic <> eq ind
+R7982 Coq.Lists.SetoidList <> InA ind
+R7988 Coq.Init.Logic <> eq ind
+R7937 ListFacts <> Sort syndef
+R7924 ListFacts <> Sort syndef
+R8172 Coq.Lists.SetoidList <> InA ind
+R8186 Coq.Lists.List <> nil constr
+R8178 Coq.Init.Logic <> eq ind
+R8172 Coq.Lists.SetoidList <> InA ind
+R8186 Coq.Lists.List <> nil constr
+R8178 Coq.Init.Logic <> eq ind
+R8268 Coq.Lists.SetoidList <> InA ind
+R8282 Coq.Lists.List <> nil constr
+R8274 Coq.Init.Logic <> eq ind
+R8268 Coq.Lists.SetoidList <> InA ind
+R8282 Coq.Lists.List <> nil constr
+R8274 Coq.Init.Logic <> eq ind
+R8411 Coq.Init.Logic "x = y" not
+R8431 ListFacts <> Sort_eq_head thm
+R8411 Coq.Init.Logic "x = y" not
+R8431 ListFacts <> Sort_eq_head thm
+R8479 Coq.Init.Logic "A <-> B" not
+R8462 Coq.Lists.SetoidList <> InA ind
+R8468 Coq.Init.Logic <> eq ind
+R8483 Coq.Lists.SetoidList <> InA ind
+R8489 Coq.Init.Logic <> eq ind
+R8479 Coq.Init.Logic "A <-> B" not
+R8462 Coq.Lists.SetoidList <> InA ind
+R8468 Coq.Init.Logic <> eq ind
+R8483 Coq.Lists.SetoidList <> InA ind
+R8489 Coq.Init.Logic <> eq ind
+R8523 Coq.Init.Logic "x = y" not
+R8523 Coq.Init.Logic "x = y" not
+R8597 Coq.Lists.SetoidList <> InA ind
+R8614 Coq.Lists.List "x :: y" not
+R8603 Coq.Init.Logic <> eq ind
+R8597 Coq.Lists.SetoidList <> InA ind
+R8614 Coq.Lists.List "x :: y" not
+R8603 Coq.Init.Logic <> eq ind
+R8689 Coq.Init.Logic "~ x" not
+R8691 Coq.Lists.SetoidList <> InA ind
+R8697 Coq.Init.Logic <> eq ind
+R8723 ListFacts <> not_InA_if_Sort_Inf thm
+R8689 Coq.Init.Logic "~ x" not
+R8691 Coq.Lists.SetoidList <> InA ind
+R8697 Coq.Init.Logic <> eq ind
+R8723 ListFacts <> not_InA_if_Sort_Inf thm
+R8778 Coq.Lists.SetoidList <> InA ind
+R8795 Coq.Lists.List "x :: y" not
+R8784 Coq.Init.Logic <> eq ind
+R8778 Coq.Lists.SetoidList <> InA ind
+R8795 Coq.Lists.List "x :: y" not
+R8784 Coq.Init.Logic <> eq ind
+R8870 Coq.Init.Logic "~ x" not
+R8872 Coq.Lists.SetoidList <> InA ind
+R8878 Coq.Init.Logic <> eq ind
+R8904 ListFacts <> not_InA_if_Sort_Inf thm
+R8870 Coq.Init.Logic "~ x" not
+R8872 Coq.Lists.SetoidList <> InA ind
+R8878 Coq.Init.Logic <> eq ind
+R8904 ListFacts <> not_InA_if_Sort_Inf thm
+R8952 ListFacts Equality_ext <> sec

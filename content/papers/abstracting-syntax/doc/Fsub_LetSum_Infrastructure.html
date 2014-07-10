@@ -1,0 +1,344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>Fsub_LetSum_Infrastructure</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library Fsub_LetSum_Infrastructure</h1>
+
+<code>
+</code>
+
+<div class="doc">
+Infrastructure lemmas and tactic definitions for Fsub.
+
+<br/><br/>
+    Authors: Brian Aydemir and Arthur Charguéraud, with help from
+    Aaron Bohannon, Jeffrey Vaughan, and Dimitrios Vytiniotis.
+
+<br/><br/>
+    This file contains a number of definitions, tactics, and lemmas
+    that are based only on the syntax of the language at hand.  While
+    the exact statements of everything here would change for a
+    different language, the general structure of this file (i.e., the
+    sequence of definitions, tactics, and lemmas) would remain the
+    same. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Require</span> <span class="keyword">Export</span> <a class="modref" href="Fsub_LetSum_Definitions.html">Fsub_LetSum_Definitions</a>.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab68"></a><h1 class="section"><a name="pick_fresh"></a> The "<code>pick fresh</code>" tactic</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Ltac</span> gather_atoms :=<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> A := gather_atoms_with (fun x : atoms =&gt; x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> B := gather_atoms_with (fun x : atom =&gt; singleton x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> C := gather_atoms_with (fun x : exp =&gt; fv_te x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> D := gather_atoms_with (fun x : exp =&gt; fv_ee x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> E := gather_atoms_with (fun x : typ =&gt; fv_tt x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> F := gather_atoms_with (fun x : env =&gt; dom x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="keyword">let</span> G := gather_atoms_with (fun x : senv =&gt; dom x) <span class="keyword">in</span><br/>
+&nbsp;&nbsp;constr:(A `union` B `union` C `union` D `union` E `union` F `union` G).<br/>
+
+<br/>
+<span class="keyword">Tactic Notation</span> "pick" "fresh" ident(x) :=<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> L := gather_atoms <span class="keyword">in</span> (pick fresh x for L).<br/>
+
+<br/>
+<span class="keyword">Tactic Notation</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"pick" "fresh" ident(atom_name) "and" "apply" constr(lemma) :=<br/>
+&nbsp;&nbsp;<span class="keyword">let</span> L := gather_atoms <span class="keyword">in</span><br/>
+&nbsp;&nbsp;pick fresh atom_name excluding L and apply lemma.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab69"></a><h1 class="section"><a name="properties"></a> Properties of opening and substitution</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab70"></a><h2 class="section">Properties of type substitution in types</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_tt_rec_type_aux"></a>open_tt_rec_type_aux : forall T j V i U,<br/>
+&nbsp;&nbsp;i &lt;&gt; j -&gt;<br/>
+&nbsp;&nbsp;open_tt_rec j V T = open_tt_rec i U (open_tt_rec j V T) -&gt;<br/>
+&nbsp;&nbsp;T = open_tt_rec i U T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_tt_rec_type"></a>open_tt_rec_type : forall T U k,<br/>
+&nbsp;&nbsp;type T -&gt;<br/>
+&nbsp;&nbsp;T = open_tt_rec k U T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_tt_fresh"></a>subst_tt_fresh : forall Z U T,<br/>
+&nbsp;&nbsp;&nbsp;Z `notin` fv_tt T -&gt;<br/>
+&nbsp;&nbsp;&nbsp;T = subst_tt Z U T.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_tt_open_tt_rec"></a>subst_tt_open_tt_rec : forall T1 T2 X P k,<br/>
+&nbsp;&nbsp;type P -&gt;<br/>
+&nbsp;&nbsp;subst_tt X P (open_tt_rec k T2 T1) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;open_tt_rec k (subst_tt X P T2) (subst_tt X P T1).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_tt_open_tt"></a>subst_tt_open_tt : forall T1 T2 (X:atom) P,<br/>
+&nbsp;&nbsp;type P -&gt;<br/>
+&nbsp;&nbsp;subst_tt X P (open_tt T1 T2) = open_tt (subst_tt X P T1) (subst_tt X P T2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_tt_open_tt_var"></a>subst_tt_open_tt_var : forall (X Y:atom) P T,<br/>
+&nbsp;&nbsp;Y &lt;&gt; X -&gt;<br/>
+&nbsp;&nbsp;type P -&gt;<br/>
+&nbsp;&nbsp;open_tt (subst_tt X P T) Y = subst_tt X P (open_tt T Y).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_tt_intro_rec"></a>subst_tt_intro_rec : forall X T2 U k,<br/>
+&nbsp;&nbsp;X `notin` fv_tt T2 -&gt;<br/>
+&nbsp;&nbsp;open_tt_rec k U T2 = subst_tt X U (open_tt_rec k (typ_fvar X) T2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_tt_intro"></a>subst_tt_intro : forall X T2 U,<br/>
+&nbsp;&nbsp;X `notin` fv_tt T2 -&gt;<br/>
+&nbsp;&nbsp;open_tt T2 U = subst_tt X U (open_tt T2 X).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab71"></a><h2 class="section">Properties of type substitution in expressions</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_te_rec_expr_aux"></a>open_te_rec_expr_aux : forall e j u i P ,<br/>
+&nbsp;&nbsp;open_ee_rec j u e = open_te_rec i P (open_ee_rec j u e) -&gt;<br/>
+&nbsp;&nbsp;e = open_te_rec i P e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_te_rec_type_aux"></a>open_te_rec_type_aux : forall e j Q i P,<br/>
+&nbsp;&nbsp;i &lt;&gt; j -&gt;<br/>
+&nbsp;&nbsp;open_te_rec j Q e = open_te_rec i P (open_te_rec j Q e) -&gt;<br/>
+&nbsp;&nbsp;e = open_te_rec i P e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_te_rec_expr"></a>open_te_rec_expr : forall e U k,<br/>
+&nbsp;&nbsp;expr e -&gt;<br/>
+&nbsp;&nbsp;e = open_te_rec k U e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_te_fresh"></a>subst_te_fresh : forall X U e,<br/>
+&nbsp;&nbsp;X `notin` fv_te e -&gt;<br/>
+&nbsp;&nbsp;e = subst_te X U e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_te_open_te_rec"></a>subst_te_open_te_rec : forall e T X U k,<br/>
+&nbsp;&nbsp;type U -&gt;<br/>
+&nbsp;&nbsp;subst_te X U (open_te_rec k T e) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;open_te_rec k (subst_tt X U T) (subst_te X U e).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_te_open_te"></a>subst_te_open_te : forall e T X U,<br/>
+&nbsp;&nbsp;type U -&gt;<br/>
+&nbsp;&nbsp;subst_te X U (open_te e T) = open_te (subst_te X U e) (subst_tt X U T).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_te_open_te_var"></a>subst_te_open_te_var : forall (X Y:atom) U e,<br/>
+&nbsp;&nbsp;Y &lt;&gt; X -&gt;<br/>
+&nbsp;&nbsp;type U -&gt;<br/>
+&nbsp;&nbsp;open_te (subst_te X U e) Y = subst_te X U (open_te e Y).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_te_intro_rec"></a>subst_te_intro_rec : forall X e U k,<br/>
+&nbsp;&nbsp;X `notin` fv_te e -&gt;<br/>
+&nbsp;&nbsp;open_te_rec k U e = subst_te X U (open_te_rec k (typ_fvar X) e).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_te_intro"></a>subst_te_intro : forall X e U,<br/>
+&nbsp;&nbsp;X `notin` fv_te e -&gt;<br/>
+&nbsp;&nbsp;open_te e U = subst_te X U (open_te e X).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab72"></a><h2 class="section">Properties of expression substitution in expressions</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_ee_rec_expr_aux"></a>open_ee_rec_expr_aux : forall e j v u i,<br/>
+&nbsp;&nbsp;i &lt;&gt; j -&gt;<br/>
+&nbsp;&nbsp;open_ee_rec j v e = open_ee_rec i u (open_ee_rec j v e) -&gt;<br/>
+&nbsp;&nbsp;e = open_ee_rec i u e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_ee_rec_type_aux"></a>open_ee_rec_type_aux : forall e j V u i,<br/>
+&nbsp;&nbsp;open_te_rec j V e = open_ee_rec i u (open_te_rec j V e) -&gt;<br/>
+&nbsp;&nbsp;e = open_ee_rec i u e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="open_ee_rec_expr"></a>open_ee_rec_expr : forall u e k,<br/>
+&nbsp;&nbsp;expr e -&gt;<br/>
+&nbsp;&nbsp;e = open_ee_rec k u e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_ee_fresh"></a>subst_ee_fresh : forall (x: atom) u e,<br/>
+&nbsp;&nbsp;x `notin` fv_ee e -&gt;<br/>
+&nbsp;&nbsp;e = subst_ee x u e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_ee_open_ee_rec"></a>subst_ee_open_ee_rec : forall e1 e2 x u k,<br/>
+&nbsp;&nbsp;expr u -&gt;<br/>
+&nbsp;&nbsp;subst_ee x u (open_ee_rec k e2 e1) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;open_ee_rec k (subst_ee x u e2) (subst_ee x u e1).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_ee_open_ee"></a>subst_ee_open_ee : forall e1 e2 x u,<br/>
+&nbsp;&nbsp;expr u -&gt;<br/>
+&nbsp;&nbsp;subst_ee x u (open_ee e1 e2) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;open_ee (subst_ee x u e1) (subst_ee x u e2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_ee_open_ee_var"></a>subst_ee_open_ee_var : forall (x y:atom) u e,<br/>
+&nbsp;&nbsp;y &lt;&gt; x -&gt;<br/>
+&nbsp;&nbsp;expr u -&gt;<br/>
+&nbsp;&nbsp;open_ee (subst_ee x u e) y = subst_ee x u (open_ee e y).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_te_open_ee_rec"></a>subst_te_open_ee_rec : forall e1 e2 Z P k,<br/>
+&nbsp;&nbsp;subst_te Z P (open_ee_rec k e2 e1) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;open_ee_rec k (subst_te Z P e2) (subst_te Z P e1).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_te_open_ee"></a>subst_te_open_ee : forall e1 e2 Z P,<br/>
+&nbsp;&nbsp;subst_te Z P (open_ee e1 e2) = open_ee (subst_te Z P e1) (subst_te Z P e2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_te_open_ee_var"></a>subst_te_open_ee_var : forall Z (x:atom) P e,<br/>
+&nbsp;&nbsp;open_ee (subst_te Z P e) x = subst_te Z P (open_ee e x).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_ee_open_te_rec"></a>subst_ee_open_te_rec : forall e P z u k,<br/>
+&nbsp;&nbsp;expr u -&gt;<br/>
+&nbsp;&nbsp;subst_ee z u (open_te_rec k P e) = open_te_rec k P (subst_ee z u e).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_ee_open_te"></a>subst_ee_open_te : forall e P z u,<br/>
+&nbsp;&nbsp;expr u -&gt;<br/>
+&nbsp;&nbsp;subst_ee z u (open_te e P) = open_te (subst_ee z u e) P.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_ee_open_te_var"></a>subst_ee_open_te_var : forall z (X:atom) u e,<br/>
+&nbsp;&nbsp;expr u -&gt;<br/>
+&nbsp;&nbsp;open_te (subst_ee z u e) X = subst_ee z u (open_te e X).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_ee_intro_rec"></a>subst_ee_intro_rec : forall x e u k,<br/>
+&nbsp;&nbsp;x `notin` fv_ee e -&gt;<br/>
+&nbsp;&nbsp;open_ee_rec k u e = subst_ee x u (open_ee_rec k (exp_fvar x) e).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_ee_intro"></a>subst_ee_intro : forall x e u,<br/>
+&nbsp;&nbsp;x `notin` fv_ee e -&gt;<br/>
+&nbsp;&nbsp;open_ee e u = subst_ee x u (open_ee e x).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab73"></a><h1 class="section"><a name="lc"></a> Local closure is preserved under substitution</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_tt_type"></a>subst_tt_type : forall Z P T,<br/>
+&nbsp;&nbsp;type T -&gt;<br/>
+&nbsp;&nbsp;type P -&gt;<br/>
+&nbsp;&nbsp;type (subst_tt Z P T).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_te_expr"></a>subst_te_expr : forall Z P e,<br/>
+&nbsp;&nbsp;expr e -&gt;<br/>
+&nbsp;&nbsp;type P -&gt;<br/>
+&nbsp;&nbsp;expr (subst_te Z P e).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="subst_ee_expr"></a>subst_ee_expr : forall z e1 e2,<br/>
+&nbsp;&nbsp;expr e1 -&gt;<br/>
+&nbsp;&nbsp;expr e2 -&gt;<br/>
+&nbsp;&nbsp;expr (subst_ee z e2 e1).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab74"></a><h1 class="section"><a name="auto"></a> Automation</h1>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Hint</span> Resolve subst_tt_type subst_te_expr subst_ee_expr.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (binds _ (?F (subst_tt ?X ?U ?T)) _) =&gt;<br/>
+&nbsp;&nbsp;unsimpl (subst_tb X U (F T)).<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (binds _ Typ _) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : binds _ (bind_sub ?U) _ |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change Typ <span class="keyword">with</span> (to_tag (bind_sub U))<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (binds _ Exp _) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : binds _ (bind_typ ?U) _ |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change Exp <span class="keyword">with</span> (to_tag (bind_typ U))<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+</code>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

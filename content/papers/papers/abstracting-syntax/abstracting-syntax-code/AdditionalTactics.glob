@@ -1,0 +1,4 @@
+FAdditionalTactics
+R56 Coq.Strings.String <> <> lib
+R713 Coq.Init.Logic "x = y" not
+R2643 Coq.Init.Logic "x = y" not

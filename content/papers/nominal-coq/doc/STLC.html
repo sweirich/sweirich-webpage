@@ -1,0 +1,368 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset="><link rel="stylesheet" href="style.css" type="text/css"><title>STLC</title>
+</head>
+
+<body>
+
+<h1>Library STLC</h1>
+
+<code>
+<code class="keyword">Require</code> <code class="keyword">Export</code> <a href="Nominal.html">Nominal</a>.<br/>
+
+<br/>
+<code class="keyword">Module Type</code> <a name="STLC"></a>STLC.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Datatypes.
+
+</td></tr></table>
+<code>
+<code class="keyword">Parameter</code> <a name="tmvar"></a>tmvar : AtomT.<br/>
+<code class="keyword">Definition</code> <a name="tmvarP"></a>tmvarP := mkAtomPset tmvar.<br/>
+
+<br/>
+<code class="keyword">Inductive</code> <a name="ty"></a>ty : Set :=<br/>
+&nbsp;&nbsp;| <a name="unit"></a>unit : ty<br/>
+&nbsp;&nbsp;| <a name="arrow"></a>arrow : ty -&gt; ty -&gt; ty.<br/>
+
+<br/>
+<code class="keyword">Definition</code> <a name="tyP"></a>tyP : PsetT tmvar ty := mkIdPset tmvar ty.<br/>
+
+<br/>
+<code class="keyword">Parameter</code> <a name="tm"></a>tm : Set.<br/>
+<code class="keyword">Parameter</code> <a name="tmP"></a>tmP : PsetT tmvar tm.<br/>
+
+<br/>
+<code class="keyword">Parameter</code> <a name="dot"></a>dot : tm.<br/>
+<code class="keyword">Parameter</code> <a name="var"></a>var : tmvar -&gt; tm.<br/>
+<code class="keyword">Parameter</code> <a name="app"></a>app : tm -&gt; tm -&gt; tm.<br/>
+<code class="keyword">Parameter</code> <a name="lam"></a>lam : tmvar -&gt; ty -&gt; tm -&gt; tm.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Constructor distinctness.
+
+</td></tr></table>
+<code>
+<code class="keyword">Section</code> Distinctness.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> a b : tmvar.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> T : ty.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> s t q r : tm.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="distinctness_dot_var"></a>distinctness_dot_var : dot &lt;&gt; var a.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="distinctness_dot_app"></a>distinctness_dot_app : dot &lt;&gt; app s t.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="distinctness_dot_lam"></a>distinctness_dot_lam : dot &lt;&gt; lam a T s.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="distinctness_var_dot"></a>distinctness_var_dot : var a &lt;&gt; dot.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="distinctness_var_app"></a>distinctness_var_app : var a &lt;&gt; app s t.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="distinctness_var_lam"></a>distinctness_var_lam : var a &lt;&gt; lam b T s.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="distinctness_app_dot"></a>distinctness_app_dot : app s t &lt;&gt; dot.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="distinctness_app_var"></a>distinctness_app_var : app s t &lt;&gt; var a.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="distinctness_app_lam"></a>distinctness_app_lam : app s t &lt;&gt; lam a T q.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="distinctness_lam_dot"></a>distinctness_lam_dot : lam a T s &lt;&gt; dot.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="distinctness_lam_var"></a>distinctness_lam_var : lam a T s &lt;&gt; var b.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="distinctness_lam_app"></a>distinctness_lam_app : lam a T s &lt;&gt; app q r.<br/>
+<code class="keyword">End</code> Distinctness.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> stlc_discriminate :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (var _ = dot) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (distinctness_var_dot _ H); intuition; fail<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (app _ _ = dot) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (distinctness_app_dot _ _ H); intuition; fail<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (lam _ _ _ = dot) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (distinctness_lam_dot _ _ _ H); intuition; fail<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (dot = var _) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (distinctness_dot_var _ H); intuition; fail<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (app _ _ = var _) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (distinctness_app_var _ _ _ H); intuition; fail<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (lam _ _ _ = var _) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (distinctness_lam_var _ _ _ _ H); intuition; fail<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (dot = app _ _) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (distinctness_dot_app _ _ H); intuition fail<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (var _ = app _ _) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (distinctness_var_app _ _ _ H); intuition; fail<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (lam _ _ _ = app _ _) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (distinctness_lam_app _ _ _ _ _ H); intuition; fail<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (dot = lam _ _ _) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (distinctness_dot_lam _ _ _ H); intuition; fail<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (var _ = lam _ _ _) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (distinctness_var_lam _ _ _ _ H); intuition; fail<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (app _ _ = lam _ _ _) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (distinctness_app_lam _ _ _ _ _ H); intuition; fail<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Permutation on terms.
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> STLCPermutations.<br/>
+<code class="keyword">Variable</code> p : permt tmvar.<br/>
+<code class="keyword">Variable</code> c : tmvar.<br/>
+<code class="keyword">Variable</code> T : ty.<br/>
+<code class="keyword">Variables</code> s t : tm.<br/>
+
+<br/>
+<code class="keyword">Axiom</code> <a name="perm_dot"></a>perm_dot : perm tmP p dot = dot.<br/>
+
+<br/>
+<code class="keyword">Axiom</code> <a name="perm_var"></a>perm_var : perm tmP p (var c) = var (perm tmvarP p c).<br/>
+
+<br/>
+<code class="keyword">Axiom</code> <a name="perm_app"></a>perm_app :<br/>
+&nbsp;&nbsp;perm tmP p (app s t) = app (perm tmP p s) (perm tmP p t).<br/>
+
+<br/>
+<code class="keyword">Axiom</code> <a name="perm_lam"></a>perm_lam :<br/>
+&nbsp;&nbsp;perm tmP p (lam c T s) = lam (perm tmvarP p c) T (perm tmP p s).<br/>
+
+<br/>
+<code class="keyword">End</code> STLCPermutations.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Free variables.
+
+</td></tr></table>
+<code>
+<code class="keyword">Section</code> FreeVariables.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> a : tmvar.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> T : ty.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> s t : tm.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Parameter</code> <a name="fvar"></a>fvar : tm -&gt; aset tmvar.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="fvar_dot"></a>fvar_dot : fvar dot = empty.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="fvar_var"></a>fvar_var : fvar (var a) = singleton a.<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="fvar_app"></a>fvar_app : fvar (app s t) = union (fvar s) (fvar t).<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="fvar_lam"></a>fvar_lam : fvar (lam a T s) = remove a (fvar s).<br/>
+<code class="keyword">End</code> FreeVariables.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Alpha-Equality.
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Axiom</code> <a name="eq_lam"></a>eq_lam :<br/>
+&nbsp;&nbsp;forall (a b : tmvar) (T : ty) (t : tm),<br/>
+&nbsp;&nbsp;~ In b (fvar t) -&gt;<br/>
+&nbsp;&nbsp;lam a T t = lam b T (perm tmP [(a, b)] t).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Injectivity for constructors.
+
+</td></tr></table>
+<code>
+<code class="keyword">Section</code> Injectivity.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> a a' : tmvar.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> T T' : ty.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> s s' t t' : tm.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="injection_var"></a>injection_var : var a = var a' -&gt; a = a'.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="injection_app_fun"></a>injection_app_fun : app s t = app s' t' -&gt; s = s'.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="injection_app_arg"></a>injection_app_arg : app s t = app s' t' -&gt; t = t'.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="injection_lam_ty"></a>injection_lam_ty : lam a T s = lam a' T' s' -&gt; T = T'.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="injection_lam_body"></a>injection_lam_body :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;lam a T s = lam a' T' s' -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(a = a' /\ s = s') \/<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(a &lt;&gt; a' /\ ~ In a (fvar s') /\ s = perm tmP [(a, a')] s').<br/>
+<code class="keyword">End</code> Injectivity.<br/>
+
+<br/>
+<code class="keyword">Ltac</code> stlc_injection :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (var _ = var _) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (injection_var _ _ H)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (app _ _ = app _ _) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (injection_app_fun _ _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (injection_app_arg _ _ _ _ H)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| [H : (lam _ _ _ = lam _ _ _) |- _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (injection_lam_ty _ _ _ _ _ _ H);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pose (injection_lam_body _ _ _ _ _ _ H)<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Structural induction.
+
+</td></tr></table>
+<code>
+<code class="keyword">Axiom</code> <a name="tm_induction_weak"></a>tm_induction_weak :<br/>
+&nbsp;&nbsp;forall (P : tm -&gt; Type),<br/>
+&nbsp;&nbsp;(P dot) -&gt;<br/>
+&nbsp;&nbsp;(forall a, P (var a)) -&gt;<br/>
+&nbsp;&nbsp;(forall s, P s -&gt; forall t, P t -&gt; P (app s t)) -&gt;<br/>
+&nbsp;&nbsp;(forall a T s, P s -&gt; P (lam a T s)) -&gt;<br/>
+&nbsp;&nbsp;forall x : tm, P x.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Primitive recursion.
+
+</td></tr></table>
+<code>
+<code class="keyword">Parameter</code> <a name="tm_rec"></a>tm_rec<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: forall R : Set,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(tmvar -&gt; R) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(tm -&gt; R -&gt; tm -&gt; R -&gt; R) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(tmvar -&gt; ty -&gt; tm -&gt; R -&gt; R) -&gt; aset tmvar -&gt; tm -&gt; R.<br/>
+
+<br/>
+<code class="keyword">Axiom</code> <a name="tm_rec_dot"></a>tm_rec_dot<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: forall (R : Set) (f_dot : R) (f_var : tmvar -&gt; R)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(f_app : tm -&gt; R -&gt; tm -&gt; R -&gt; R)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(f_lam : tmvar -&gt; ty -&gt; tm -&gt; R -&gt; R) (F : aset tmvar),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tm_rec R f_dot f_var f_app f_lam F dot = f_dot.<br/>
+
+<br/>
+<code class="keyword">Axiom</code> <a name="tm_rec_var"></a>tm_rec_var<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: forall (R : Set) (f_dot : R) (f_var : tmvar -&gt; R)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(f_app : tm -&gt; R -&gt; tm -&gt; R -&gt; R)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(f_lam : tmvar -&gt; ty -&gt; tm -&gt; R -&gt; R) (F : aset tmvar) (a : tmvar),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tm_rec R f_dot f_var f_app f_lam F (var a) = f_var a.<br/>
+
+<br/>
+<code class="keyword">Axiom</code> <a name="tm_rec_app"></a>tm_rec_app<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: forall (R : Set) (f_dot : R) (f_var : tmvar -&gt; R)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(f_app : tm -&gt; R -&gt; tm -&gt; R -&gt; R)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(f_lam : tmvar -&gt; ty -&gt; tm -&gt; R -&gt; R) (F : aset tmvar) (s t : tm),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tm_rec R f_dot f_var f_app f_lam F (app s t) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f_app s (tm_rec R f_dot f_var f_app f_lam F s) t<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(tm_rec R f_dot f_var f_app f_lam F t).<br/>
+
+<br/>
+<code class="keyword">Axiom</code> <a name="tm_rec_lam"></a>tm_rec_lam<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: forall (R : Set) (RP : PsetT tmvar R) (f_dot : R) (f_var : tmvar -&gt; R)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(f_app : tm -&gt; R -&gt; tm -&gt; R -&gt; R)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(f_lam : tmvar -&gt; ty -&gt; tm -&gt; R -&gt; R) (F : aset tmvar),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supports RP F f_dot -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supports (tmvarP ^-&gt; RP) F f_var -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supports (tmP ^-&gt; RP ^-&gt; tmP ^-&gt; RP ^-&gt; RP) F f_app -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supports (tmvarP ^-&gt; tyP ^-&gt; tmP ^-&gt; RP ^-&gt; RP) F f_lam -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(exists b : tmvar,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ In (e:=asetR tmvar) b F /\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall (x : ty) (y : tm) (z : R), freshP RP b (f_lam b x y z))) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall (a : tmvar) (T : ty) (s : tm),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ In (e:=asetR tmvar) a F -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tm_rec R f_dot f_var f_app f_lam F (lam a T s) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f_lam a T s (tm_rec R f_dot f_var f_app f_lam F s).<br/>
+
+<br/>
+<code class="keyword">Axiom</code> <a name="tm_rec_supp"></a>tm_rec_supp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: forall (R : Set) (RP : PsetT tmvar R) (f_dot : R) (f_var : tmvar -&gt; R)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(f_app : tm -&gt; R -&gt; tm -&gt; R -&gt; R)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(f_lam : tmvar -&gt; ty -&gt; tm -&gt; R -&gt; R) (F : aset tmvar),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supports RP F f_dot -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supports (tmvarP ^-&gt; RP) F f_var -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supports (tmP ^-&gt; RP ^-&gt; tmP ^-&gt; RP ^-&gt; RP) F f_app -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supports (tmvarP ^-&gt; tyP ^-&gt; tmP ^-&gt; RP ^-&gt; RP) F f_lam -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(exists b : tmvar,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ In (e:=asetR tmvar) b F /\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall (x : ty) (y : tm) (z : R), freshP RP b (f_lam b x y z))) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;supports (tmP ^-&gt; RP) F (tm_rec R f_dot f_var f_app f_lam F).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Automation hints.
+
+</td></tr></table>
+<code>
+<code class="keyword">Hint</code> Resolve distinctness_dot_var : stlc.<br/>
+<code class="keyword">Hint</code> Resolve distinctness_dot_app : stlc.<br/>
+<code class="keyword">Hint</code> Resolve distinctness_dot_lam : stlc.<br/>
+<code class="keyword">Hint</code> Resolve distinctness_var_dot : stlc.<br/>
+<code class="keyword">Hint</code> Resolve distinctness_var_app : stlc.<br/>
+<code class="keyword">Hint</code> Resolve distinctness_var_lam : stlc.<br/>
+<code class="keyword">Hint</code> Resolve distinctness_app_dot : stlc.<br/>
+<code class="keyword">Hint</code> Resolve distinctness_app_var : stlc.<br/>
+<code class="keyword">Hint</code> Resolve distinctness_app_lam : stlc.<br/>
+<code class="keyword">Hint</code> Resolve distinctness_lam_dot : stlc.<br/>
+<code class="keyword">Hint</code> Resolve distinctness_lam_var : stlc.<br/>
+<code class="keyword">Hint</code> Resolve distinctness_lam_app : stlc.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve perm_dot : stlc.<br/>
+<code class="keyword">Hint</code> Resolve perm_var : stlc.<br/>
+<code class="keyword">Hint</code> Resolve perm_app : stlc.<br/>
+<code class="keyword">Hint</code> Resolve perm_lam : stlc.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Rewrite perm_dot : stlc.<br/>
+<code class="keyword">Hint</code> Rewrite perm_var : stlc.<br/>
+<code class="keyword">Hint</code> Rewrite perm_app : stlc.<br/>
+<code class="keyword">Hint</code> Rewrite perm_lam : stlc.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve fvar_dot : stlc.<br/>
+<code class="keyword">Hint</code> Resolve fvar_var : stlc.<br/>
+<code class="keyword">Hint</code> Resolve fvar_app : stlc.<br/>
+<code class="keyword">Hint</code> Resolve fvar_lam : stlc.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Rewrite fvar_dot : stlc.<br/>
+<code class="keyword">Hint</code> Rewrite fvar_var : stlc.<br/>
+<code class="keyword">Hint</code> Rewrite fvar_app : stlc.<br/>
+<code class="keyword">Hint</code> Rewrite fvar_lam : stlc.<br/>
+
+<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> injection_var : stlc.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> injection_app_fun : stlc.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> injection_app_arg : stlc.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> injection_lam_ty : stlc.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> injection_lam_body : stlc.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve tm_rec_dot tm_rec_var tm_rec_app : stlc.<br/>
+<code class="keyword">Hint</code> Rewrite tm_rec_dot tm_rec_var tm_rec_app : stlc.<br/>
+
+<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> tm_rec_lam : stlc.<br/>
+<code class="keyword">Hint</code> Rewrite tm_rec_lam using (auto with stlc nominal; fail) : stlc.<br/>
+
+<br/>
+<code class="keyword">End</code> STLC.<br/>
+</code>
+<hr/><a href="index.html">Index</a><hr/><font size="-1">This page has been generated by <a href="http://www.lri.fr/~filliatr/coqdoc/">coqdoc</a></font>
+</body>
+</html>

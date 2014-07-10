@@ -1,0 +1,617 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset="><link rel="stylesheet" href="style.css" type="text/css"><title>Psets</title>
+</head>
+
+<body>
+
+<h1>Library Psets</h1>
+
+<code>
+<code class="keyword">Require</code> <code class="keyword">Import</code> List.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="Atoms.html">Atoms</a>.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="Axioms.html">Axioms</a>.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="Permutations.html">Permutations</a>.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  A <code>PsetT</code> record is the evidence that we can define permutations
+  over a type <code>X</code>.  Both <code>perm_id</code> and <code>perm_compose</code> are standard
+  axioms of group actions (in this case, of permutations acting on <code>X</code>).
+
+</td></tr></table>
+<code>
+<code class="keyword">Record</code> <a name="PsetT"></a>PsetT (A : AtomT) (X : Set) : Set := mkPset {<br/>
+&nbsp;&nbsp;perm : permt A -&gt; X -&gt; X;<br/>
+
+<br/>
+&nbsp;&nbsp;perm_id : forall x, perm [] x = x;<br/>
+
+<br/>
+&nbsp;&nbsp;perm_compose :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall p q x, perm (p :++ q) x = perm p (perm q x)<br/>
+}.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments mkPset [A X].<br/>
+<code class="keyword">Implicit</code> Arguments perm [A X].<br/>
+<code class="keyword">Implicit</code> Arguments perm_id [A X].<br/>
+<code class="keyword">Implicit</code> Arguments perm_compose [A X].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve perm_id perm_compose : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perm_id perm_compose : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab13"></a><h2>Basic properties about psets</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> BasicPsetTheorems.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> X : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> P : PsetT A X.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_eq"></a>perm_eq : forall p q x, p = q -&gt; perm P p x = perm P q x.<br/>
+
+<br/>
+&nbsp;&nbsp;  <code class="keyword">Hint</code> Resolve perm_eq : nominal.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_inv"></a>perm_inv : forall p x, perm P (-p) (perm P p x) = x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_inv'"></a>perm_inv' : forall p x, perm P (p) (perm P (-p) x) = x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_injective"></a>perm_injective :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall p x y, perm P p x = perm P p y -&gt; x = y.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_swap_same"></a>perm_swap_same :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a x, perm P [(a, a)] x = x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_swap_invol"></a>perm_swap_invol :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall ab x, perm P [ab] (perm P [ab] x) = x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_swap_move"></a>perm_swap_move :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall ab x y, x = perm P [ab] y -&gt; perm P [ab] x = y.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_swap_move'"></a>perm_swap_move' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall ab x y, perm P [ab] x = y -&gt; x = perm P [ab] y.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_swap_switch"></a>perm_swap_switch :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a b x, perm P [(a, b)] x = perm P [(b, a)] x.<br/>
+
+<br/>
+<code class="keyword">End</code> BasicPsetTheorems.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve perm_inv perm_inv' : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perm_inv perm_inv' : nominal.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> perm_injective : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perm_swap_same perm_swap_invol : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perm_swap_same perm_swap_invol : nominal.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> perm_swap_move perm_swap_move' : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perm_swap_switch : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab14"></a><h2>Support</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  We define what it means for a finite set of atoms to support an
+  element of a pset.
+
+</td></tr></table>
+<code>
+<code class="keyword">Section</code> Support.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> X : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> P : PsetT A X.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="supports"></a>supports (F : aset A) (x : X) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a b, ~ In a F -&gt; ~ In b F -&gt; perm P [(a, b)] x = x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_non_supports"></a>swap_non_supports :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall F x a b, supports F x -&gt; ~ In a F -&gt; ~ In b F -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;perm P [(a, b)] x = x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="Subset_supports"></a>Subset_supports :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall (E F : aset A) (x : X),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports E x -&gt; Subset E F -&gt; supports F x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="intersection_supports"></a>intersection_supports :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall (E F : aset A) (x : X),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports E x -&gt; supports F x -&gt; supports (intersection E F) x.<br/>
+
+<br/>
+<code class="keyword">End</code> Support.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments supports [A X].<br/>
+<code class="keyword">Implicit</code> Arguments swap_non_supports [A X].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve swap_non_supports : nominal.<br/>
+<code class="keyword">Hint</code> Resolve Subset_supports intersection_supports : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab15"></a><h2>Identity permutation</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> IdPermutations.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> X : Set.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="mkIdPset"></a>mkIdPset : PsetT A X :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mkPset (fun _ x =&gt; x) (fun _ =&gt; refl_equal _) (fun _ _ _ =&gt; refl_equal _).<br/>
+
+<br/>
+<code class="keyword">End</code> IdPermutations.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab16"></a><h2>Permutations on atoms</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> AtomPermutations.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="mkAtomPset"></a>mkAtomPset :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mkPset (@perma A) (perma_id A) (perma_compose A).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="supports_atom"></a>supports_atom :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a : A, supports mkAtomPset (singleton a) a.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_atom"></a>perm_atom : forall p a, perm mkAtomPset p a = p @ a.<br/>
+
+<br/>
+<code class="keyword">End</code> AtomPermutations.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments perm_atom [A].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve supports_atom : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab17"></a><h2>Permutations on pairs</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> PairPermutations.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> X Y : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> (XP : PsetT A X) (YP : PsetT A Y).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="perm_on_pair"></a>perm_on_pair (p : permt A) (xy : X * Y) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;let (x, y) := xy in (perm XP p x, perm YP p y).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="mkPairPset"></a>mkPairPset : PsetT A (X * Y).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_pair"></a>perm_pair :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall p x y, perm mkPairPset p (x, y) = (perm XP p x, perm YP p y).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="supports_pair"></a>supports_pair :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall x y F G,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports XP F x -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports YP G y -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports mkPairPset (union F G) (x, y).<br/>
+
+<br/>
+<code class="keyword">End</code> PairPermutations.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments mkPairPset [A X Y].<br/>
+
+<br/>
+<code class="keyword">Notation</code> "X ^* Y" := (mkPairPset X Y) (at level 50, left associativity).<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve perm_pair supports_pair : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perm_pair : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab18"></a><h2>Permutations on lists</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> ListPermutations.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> X : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> P : PsetT A X.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Fixpoint</code> <a name="perm_on_list"></a>perm_on_list (p : permt A) (xs : list X) {struct xs} : list X :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;match xs with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| nil =&gt; nil<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| y :: ys =&gt; (perm P p y) :: (perm_on_list p ys)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="mkListPset"></a>mkListPset : PsetT A (list X).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_list_nil"></a>perm_list_nil : forall p, perm mkListPset p nil = nil.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_list_cons"></a>perm_list_cons :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall p x xs,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;perm mkListPset p (x :: xs) = perm P p x :: perm mkListPset p xs.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_list_In"></a>perm_list_In :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall xs x p,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;List.In x xs -&gt; List.In (perm P p x) (perm mkListPset p xs).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_list_In'"></a>perm_list_In' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall xs x p,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;List.In (perm P p x) (perm mkListPset p xs) -&gt; List.In x xs.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_list_not_In"></a>perm_list_not_In :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall xs x p,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ List.In x xs -&gt; ~ List.In (perm P p x) (perm mkListPset p xs).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_list_not_In'"></a>perm_list_not_In' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall xs x p,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ List.In (perm P p x) (perm mkListPset p xs) -&gt; ~ List.In x xs.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="supports_list_nil"></a>supports_list_nil : supports mkListPset empty nil.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="supports_list_cons"></a>supports_list_cons :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall F G x xs, supports P F x -&gt; supports mkListPset G xs -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports mkListPset (union F G) (x :: xs).<br/>
+
+<br/>
+<code class="keyword">End</code> ListPermutations.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments mkListPset [A X].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve perm_list_nil perm_list_cons : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perm_list_nil perm_list_cons : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perm_list_In perm_list_In' : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perm_list_not_In perm_list_not_In' : nominal.<br/>
+<code class="keyword">Hint</code> Resolve supports_list_nil supports_list_cons : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab19"></a><h2>Permutations on finite sets</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> FiniteSetPermutations.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> X : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> E : ExtFset X.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> P : PsetT A X.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="perm_on_extFset"></a>perm_on_extFset (p : permt A) (F : extFset E) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;map (fun x =&gt; perm P p x) F.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_on_extFset_In_raw"></a>perm_on_extFset_In_raw :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall x F p, In x F -&gt; In (perm P p x) (perm_on_extFset p F).<br/>
+
+<br/>
+&nbsp;&nbsp;  <code class="keyword">Hint</code> Resolve perm_on_extFset_In_raw : nominal.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="mkExtFsetPset"></a>mkExtFsetPset : PsetT A (extFset E).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_extFset_In"></a>perm_extFset_In :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall x F p, In x F -&gt; In (perm P p x) (perm mkExtFsetPset p F).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_extFset_In'"></a>perm_extFset_In' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall x F p,  In (perm P p x) (perm mkExtFsetPset p F) -&gt; In x F.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_extFset_neg_In"></a>perm_extFset_neg_In :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall x F p, ~ In x F -&gt; ~ In (perm P p x) (perm mkExtFsetPset p F).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_extFset_neg_In'"></a>perm_extFset_neg_In' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall x F p,  ~ In (perm P p x) (perm mkExtFsetPset p F) -&gt; ~ In x F.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_extFset_empty"></a>perm_extFset_empty : forall p, perm mkExtFsetPset p empty = empty.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_extFset_add"></a>perm_extFset_add :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall x F p,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;perm mkExtFsetPset p (add x F) = add (perm P p x) (perm mkExtFsetPset p F).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_extFset_singleton"></a>perm_extFset_singleton :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall x p,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;perm mkExtFsetPset p (singleton x) = singleton (perm P p x).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_extFset_union"></a>perm_extFset_union :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall p G F,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;perm mkExtFsetPset p (union G F) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;union (perm mkExtFsetPset p G) (perm mkExtFsetPset p F).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_extFset_diff"></a>perm_extFset_diff :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall p G F,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;perm mkExtFsetPset p (diff G F) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;diff (perm mkExtFsetPset p G) (perm mkExtFsetPset p F).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_extFset_remove"></a>perm_extFset_remove :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall p x F,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;perm mkExtFsetPset p (remove x F) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;remove (perm P p x) (perm mkExtFsetPset p F).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_extFset_Subset"></a>perm_extFset_Subset :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall p G F, Subset G F -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Subset (perm mkExtFsetPset p G) (perm mkExtFsetPset p F).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_not_in_set"></a>swap_not_in_set :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall (a c d : A) (F : aset A),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ In a F -&gt; ~ In c F -&gt; ~ In d F -&gt; ~ In ([(c,d)] @ a) F.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_not_in_set'"></a>swap_not_in_set' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall (a c d : A) (F : aset A),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~ In a F -&gt; ~ In c F -&gt; ~ In d F -&gt; ~ In (perm (mkAtomPset A) [(c,d)] a) F.<br/>
+
+<br/>
+<code class="keyword">End</code> FiniteSetPermutations.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments mkExtFsetPset [A X].<br/>
+<code class="keyword">Implicit</code> Arguments perm_extFset_In [A X E x F].<br/>
+<code class="keyword">Implicit</code> Arguments perm_extFset_In' [A X E x F].<br/>
+<code class="keyword">Implicit</code> Arguments perm_extFset_neg_In [A X E x F].<br/>
+<code class="keyword">Implicit</code> Arguments perm_extFset_neg_In' [A X E x F].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve perm_extFset_In : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perm_extFset_neg_In : nominal.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> perm_extFset_In' : nominal.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> perm_extFset_neg_In' : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perm_extFset_empty perm_extFset_add : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perm_extFset_empty perm_extFset_add : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perm_extFset_singleton perm_extFset_union : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perm_extFset_singleton perm_extFset_union : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perm_extFset_diff perm_extFset_remove : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perm_extFset_diff perm_extFset_remove : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perm_extFset_Subset : nominal.<br/>
+<code class="keyword">Hint</code> Resolve swap_not_in_set swap_not_in_set' : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab20"></a><h2>Freshness as a predicate</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> Fresh.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> X : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> P : PsetT A X.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_supports"></a>perm_supports :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall F x p,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports P F x -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports P (perm (mkExtFsetPset (asetR A) (mkAtomPset A)) p F) (perm P p x).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_supports'"></a>perm_supports' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall F x p,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports P (perm (mkExtFsetPset (asetR A) (mkAtomPset A)) p F) (perm P p x) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports P F x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="freshP"></a>freshP (a : A) (x : X) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;exists F : aset A, ~ In a F /\ supports P F x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="freshP_from_supports"></a>freshP_from_supports :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a x F, ~ In a F -&gt; supports P F x -&gt; freshP a x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_freshP"></a>perm_freshP :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a x p, freshP a x -&gt; freshP (perm (mkAtomPset A) p a) (perm P p x).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_freshP'"></a>perm_freshP' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a x p, freshP (perm (mkAtomPset A) p a) (perm P p x) -&gt; freshP a x.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swap_freshP_atoms"></a>swap_freshP_atoms :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a b x, freshP a x -&gt; freshP b x -&gt; perm P [(a,b)] x = x.<br/>
+
+<br/>
+<code class="keyword">End</code> Fresh.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments freshP [A X].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve perm_supports : nominal.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> perm_supports' : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perm_freshP : nominal.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> perm_freshP' : nominal.<br/>
+
+<br/>
+<code class="keyword">Section</code> FreshFacts.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="freshP_atom"></a>freshP_atom :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a b, a &lt;&gt; b -&gt; freshP (mkAtomPset A) a b.<br/>
+
+<br/>
+<code class="keyword">End</code> FreshFacts.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve freshP_from_supports : nominal.<br/>
+<code class="keyword">Hint</code> Resolve freshP_atom : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab21"></a><h2>Permutations on functions</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> FunctionPermutations.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> X Y : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> (XP : PsetT A X) (YP : PsetT A Y).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="perm_on_fun"></a>perm_on_fun (p : permt A) (f : X -&gt; Y) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;fun x =&gt; perm YP p (f (perm XP (-p) x)).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="mkFunPset"></a>mkFunPset : PsetT A (X -&gt; Y).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_fun"></a>perm_fun :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall f p, perm mkFunPset p f = fun x =&gt; perm YP p (f (perm XP (-p) x)).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="perm_app"></a>perm_app :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall f x p, perm YP p (f x) = (perm mkFunPset p f) (perm XP p x).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="supports_fun"></a>supports_fun :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall (F : aset A) (f : X -&gt; Y),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(forall a b x, ~ In a F -&gt; ~ In b F -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;perm YP [(a, b)] (f x) = f (perm XP [(a, b)] x)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports mkFunPset F f.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="supports_application"></a>supports_application :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall f x F G,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports mkFunPset F f -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports XP G x -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports YP (union F G) (f x).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="freshP_application"></a>freshP_application :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall f x a, freshP mkFunPset a f -&gt; freshP XP a x -&gt; freshP YP a (f x).<br/>
+
+<br/>
+<code class="keyword">End</code> FunctionPermutations.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments mkFunPset [A X Y].<br/>
+
+<br/>
+<code class="keyword">Notation</code> "X ^-&gt; Y" := (mkFunPset X Y) (at level 90, right associativity).<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve perm_fun perm_app : nominal.<br/>
+<code class="keyword">Hint</code> Resolve supports_fun : nominal.<br/>
+<code class="keyword">Hint</code> Resolve supports_application freshP_application : nominal.<br/>
+
+<br/>
+<code class="keyword">Section</code> FunctionPermutationFacts.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> X Y : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> (XP : PsetT A X) (YP : PsetT A Y).<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Theorem</code> <a name="function_constancy_v1"></a>function_constancy_v1 :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall (F : aset A) (f : A -&gt; X),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports (mkAtomPset A ^-&gt; XP) F f -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall (a : A), ~ In a F -&gt; freshP XP a (f a) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forall (b : A), ~ In b F -&gt; f a = f b.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Theorem</code> <a name="function_constancy_v2"></a>function_constancy_v2 :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall (F : aset A) (f : A -&gt; X),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;supports (mkAtomPset A ^-&gt; XP) F f -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(exists a : A, ~ In a F /\ freshP XP a (f a)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a b : A, ~ In a F -&gt; ~ In b F -&gt; f a = f b.<br/>
+
+<br/>
+<code class="keyword">End</code> FunctionPermutationFacts.<br/>
+
+<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> function_constancy_v1 function_constancy_v2 : nominal.<br/>
+</code>
+<hr/><a href="index.html">Index</a><hr/><font size="-1">This page has been generated by <a href="http://www.lri.fr/~filliatr/coqdoc/">coqdoc</a></font>
+</body>
+</html>

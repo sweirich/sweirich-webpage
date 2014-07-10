@@ -1,0 +1,51 @@
+a:link, a:visited {
+    background-color: inherit;
+    color: #00f;
+    text-decoration: none;
+}
+
+a:active, a:hover {
+    background-color: inherit;
+    color: #f00;
+    text-decoration: underline;
+}
+
+html body {
+    background-color: #eee;
+    color: #000;
+    margin: 1em 2em 1em 2em;
+    padding: 0em;
+}
+
+h1 { font-size: 200%; font-weight: bolder; }
+h2 { font-size: 150%; font-weight: bolder; }
+h3 { font-size: 120%; font-weight: bolder; }
+
+#footer    { clear: both; font-size: 80%; }
+#header    { margin: 0em; padding: 0em; }
+#header h1 { margin: 0em; padding: 1.25em 1em 1.5em 1em; text-align: center; }
+#header    { background-color: #069; border: 1px solid #036; color: #fff; }
+
+#content, #footer {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #000;
+    margin: 1em 0em 0em 0em;
+    padding: 1em;
+}
+
+#footer h1, #footer h2, #footer h3 {
+    display: none;
+}
+
+#footer p {
+    margin: 0em;
+}
+
+/* Valid CSS 3 but not valid CSS 2.1? */
+
+#header, #content, #footer {
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}

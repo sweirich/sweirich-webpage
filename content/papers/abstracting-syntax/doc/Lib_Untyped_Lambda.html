@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>Lib_Untyped_Lambda</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library Lib_Untyped_Lambda</h1>
+
+<code>
+<span class="keyword">Require</span> <span class="keyword">Import</span> <a class="modref" href="Metatheory.html">Metatheory</a>.<br/>
+
+<br/>
+<span class="keyword">Module</span> <span class="keyword">Type</span> <a name="CONST"></a>CONST.<br/>
+&nbsp;&nbsp;<span class="keyword">Parameter</span> <a name="const"></a>const : <span class="keyword">Set</span>.<br/>
+<span class="keyword">End</span> CONST.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab291"></a><h1 class="section">Parameterized lambda calculus</h1>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+We parameterize the lambda calculus over a set of base constants. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Module</span> <a name="Lam"></a>Lam (Const : CONST).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab292"></a><h2 class="section">Pre-terms</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Lam.syntax"></a>syntax : <span class="keyword">Set</span> :=<br/>
+&nbsp;&nbsp;| <a name="Lam.bvar"></a>bvar : nat -&gt; syntax<br/>
+&nbsp;&nbsp;| <a name="Lam.fvar"></a>fvar : atom -&gt; syntax<br/>
+&nbsp;&nbsp;| <a name="Lam.abs"></a>abs : syntax -&gt; syntax<br/>
+&nbsp;&nbsp;| <a name="Lam.app"></a>app : syntax -&gt; syntax -&gt; syntax<br/>
+&nbsp;&nbsp;| <a name="Lam.const"></a>const : Const.const -&gt; syntax.<br/>
+
+<br/>
+Coercion bvar : nat &gt;-&gt; syntax.<br/>
+Coercion fvar : atom &gt;-&gt; syntax.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab293"></a><h2 class="section">Basic operations</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Fixpoint</span> <a name="Lam.open_rec"></a>open_rec (k : nat) (u : syntax) (e : syntax) {struct e} : syntax :=<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> e <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| bvar i =&gt; <span class="keyword">if</span> k === i <span class="keyword">then</span> u <span class="keyword">else</span> (bvar i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| fvar x =&gt; fvar x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| abs e1 =&gt; abs (open_rec (S k) u e1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| app e1 e2 =&gt; app (open_rec k u e1) (open_rec k u e2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| const c =&gt; const c<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Notation</span> <span class="keyword">Local</span> "{ k ~&gt; u } t" := (open_rec k u t) (at level 67).<br/>
+
+<br/>
+<span class="keyword">Definition</span> <a name="Lam.open"></a>open e u := open_rec 0 u e.<br/>
+
+<br/>
+<span class="keyword">Fixpoint</span> <a name="Lam.subst"></a>subst (z : atom) (u : syntax) (e : syntax) {struct e} : syntax :=<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> e <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| bvar i =&gt; bvar i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| fvar x =&gt; <span class="keyword">if</span> x == z <span class="keyword">then</span> u <span class="keyword">else</span> (fvar x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| abs e1 =&gt; abs (subst z u e1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| app e1 e2 =&gt; app (subst z u e1) (subst z u e2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| const c =&gt; const c<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Notation</span> <span class="keyword">Local</span> "[ z ~&gt; u ] e" := (subst z u e) (at level 68).<br/>
+
+<br/>
+<span class="keyword">Fixpoint</span> <a name="Lam.fv"></a>fv (e : syntax) {struct e} : atoms :=<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> e <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| bvar i =&gt; {}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| fvar x =&gt; singleton x<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| abs e1 =&gt; (fv e1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| app e1 e2 =&gt; (fv e1) `union` (fv e2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| const c =&gt; {}<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Fixpoint</span> <a name="Lam.close_rec"></a>close_rec (k : nat) (x : atom) (e : syntax) {struct e} : syntax :=<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> e <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| bvar i =&gt; bvar i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| fvar y =&gt; <span class="keyword">if</span> x == y <span class="keyword">then</span> (bvar k) <span class="keyword">else</span> (fvar y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| abs e1 =&gt; abs (close_rec (S k) x e1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| app e1 e2 =&gt; app (close_rec k x e1) (close_rec k x e2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| const c =&gt; const c<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">Definition</span> <a name="Lam.close"></a>close e x := close_rec 0 x e.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab294"></a><h2 class="section">Local closure</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Lam.lc"></a>lc : syntax -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <a name="Lam.lc_var"></a>lc_var : forall x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lc (fvar x)<br/>
+&nbsp;&nbsp;| <a name="Lam.lc_abs"></a>lc_abs : forall L e,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(forall x : atom, x `notin` L -&gt; lc (open e x)) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lc (abs e)<br/>
+&nbsp;&nbsp;| <a name="Lam.lc_app"></a>lc_app : forall e1 e2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lc e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lc e2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lc (app e1 e2)<br/>
+&nbsp;&nbsp;| <a name="Lam.lc_const"></a>lc_const : forall s,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lc (const s).<br/>
+
+<br/>
+<span class="keyword">Hint</span> Constructors lc.<br/>
+
+<br/>
+<span class="keyword">Definition</span> <a name="Lam.body"></a>body (e : syntax) :=<br/>
+&nbsp;&nbsp;exists L, forall x : atom, x `notin` L -&gt; lc (open e x).<br/>
+
+<br/>
+<span class="keyword">Inductive</span> <a name="Lam.level"></a>level : nat -&gt; syntax -&gt; <span class="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <a name="Lam.level_bvar"></a>level_bvar : forall n i,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i &lt; n -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level n (bvar i)<br/>
+&nbsp;&nbsp;| <a name="Lam.level_fvar"></a>level_fvar : forall n x,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level n (fvar x)<br/>
+&nbsp;&nbsp;| <a name="Lam.level_abs"></a>level_abs : forall n e,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level (S n) e -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level n (abs e)<br/>
+&nbsp;&nbsp;| <a name="Lam.level_app"></a>level_app : forall n e1 e2,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level n e1 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level n e2 -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level n (app e1 e2)<br/>
+&nbsp;&nbsp;| <a name="Lam.level_const"></a>level_const : forall n c,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;level n (const c).<br/>
+
+<br/>
+<span class="keyword">Hint</span> Constructors level.<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab295"></a><h2 class="section">Essential properties</h2>
+
+</div>
+<code>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.open_rec_lc_core"></a>open_rec_lc_core : forall e j v i u,<br/>
+&nbsp;&nbsp;i &lt;&gt; j -&gt;<br/>
+&nbsp;&nbsp;{j ~&gt; v} e = {i ~&gt; u} ({j ~&gt; v} e) -&gt;<br/>
+&nbsp;&nbsp;e = {i ~&gt; u} e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.open_rec_lc"></a>open_rec_lc : forall k u e,<br/>
+&nbsp;&nbsp;lc e -&gt;<br/>
+&nbsp;&nbsp;e = {k ~&gt; u} e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.subst_open_rec"></a>subst_open_rec : forall (x : atom) e1 e2 u k,<br/>
+&nbsp;&nbsp;lc u -&gt;<br/>
+&nbsp;&nbsp;[x ~&gt; u] ({k ~&gt; e2} e1) = {k ~&gt; [x ~&gt; u] e2} ([x ~&gt; u] e1).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.subst_open"></a>subst_open : forall (x : atom) e1 e2 u,<br/>
+&nbsp;&nbsp;lc u -&gt;<br/>
+&nbsp;&nbsp;[x ~&gt; u] (open e1 e2) = open ([x ~&gt; u] e1) ([x ~&gt; u] e2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.subst_open_var"></a>subst_open_var : forall (x y : atom) u e,<br/>
+&nbsp;&nbsp;y &lt;&gt; x -&gt;<br/>
+&nbsp;&nbsp;lc u -&gt;<br/>
+&nbsp;&nbsp;open ([x ~&gt; u] e) y = [x ~&gt; u] (open e y).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.subst_intro_rec"></a>subst_intro_rec : forall (x : atom) e u k,<br/>
+&nbsp;&nbsp;x `notin` fv e -&gt;<br/>
+&nbsp;&nbsp;{k ~&gt; u} e = [x ~&gt; u] ({k ~&gt; x} e).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.subst_intro"></a>subst_intro : forall x e u,<br/>
+&nbsp;&nbsp;x `notin` fv e -&gt;<br/>
+&nbsp;&nbsp;open e u = subst x u (open e x).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.subst_lc"></a>subst_lc : forall (x : atom) u e,<br/>
+&nbsp;&nbsp;lc e -&gt;<br/>
+&nbsp;&nbsp;lc u -&gt;<br/>
+&nbsp;&nbsp;lc ([x ~&gt; u] e).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.subst_fresh"></a>subst_fresh : forall (x : atom) u e,<br/>
+&nbsp;&nbsp;x `notin` fv e -&gt;<br/>
+&nbsp;&nbsp;e = [x ~&gt; u] e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.lc_open_from_body"></a>lc_open_from_body : forall e1 e2,<br/>
+&nbsp;&nbsp;body e1 -&gt;<br/>
+&nbsp;&nbsp;lc e2 -&gt;<br/>
+&nbsp;&nbsp;lc (open e1 e2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.lc_open_from_abs"></a>lc_open_from_abs : forall e1 e2,<br/>
+&nbsp;&nbsp;lc (abs e1) -&gt;<br/>
+&nbsp;&nbsp;lc e2 -&gt;<br/>
+&nbsp;&nbsp;lc (open e1 e2).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.lc_abs_from_body"></a>lc_abs_from_body : forall e,<br/>
+&nbsp;&nbsp;body e -&gt;<br/>
+&nbsp;&nbsp;lc (abs e).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.body_from_lc_abs"></a>body_from_lc_abs : forall e,<br/>
+&nbsp;&nbsp;lc (abs e) -&gt;<br/>
+&nbsp;&nbsp;body e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.open_injective_rec"></a>open_injective_rec : forall (x : atom) e1 e2 k,<br/>
+&nbsp;&nbsp;x `notin` (fv e1 `union` fv e2) -&gt;<br/>
+&nbsp;&nbsp;open_rec k x e1 = open_rec k x e2 -&gt;<br/>
+&nbsp;&nbsp;e1 = e2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.open_injective"></a>open_injective : forall (x : atom) e1 e2,<br/>
+&nbsp;&nbsp;x `notin` (fv e1 `union` fv e2) -&gt;<br/>
+&nbsp;&nbsp;open e1 x = open e2 x -&gt;<br/>
+&nbsp;&nbsp;e1 = e2.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.level_promote"></a>level_promote : forall n e,<br/>
+&nbsp;&nbsp;level n e -&gt;<br/>
+&nbsp;&nbsp;level (S n) e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.level_open"></a>level_open : forall e n (x : atom),<br/>
+&nbsp;&nbsp;level n (open_rec n x e) -&gt;<br/>
+&nbsp;&nbsp;level (S n) e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.level_of_lc"></a>level_of_lc : forall e,<br/>
+&nbsp;&nbsp;lc e -&gt; level 0 e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.open_close_inv_rec"></a>open_close_inv_rec : forall e k (x : atom),<br/>
+&nbsp;&nbsp;level k e -&gt;<br/>
+&nbsp;&nbsp;open_rec k x (close_rec k x e) = e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.open_close_inv"></a>open_close_inv : forall e (x : atom),<br/>
+&nbsp;&nbsp;lc e -&gt;<br/>
+&nbsp;&nbsp;open (close e x) x = e.<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.close_fresh_rec"></a>close_fresh_rec : forall e k x,<br/>
+&nbsp;&nbsp;x `notin` fv (close_rec k x e).<br/>
+
+<br/>
+<span class="keyword">Lemma</span> <a name="Lam.close_fresh"></a>close_fresh : forall e x,<br/>
+&nbsp;&nbsp;x `notin` fv (close e x).<br/>
+
+<br/>
+</code>
+
+<div class="doc">
+<a name="lab296"></a><h2 class="section">Automation</h2>
+
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+NOTE: "<code><span class="keyword">Hint</span> Constructors lc</code>" is declared above. 
+</div>
+<code>
+
+<br/>
+</code>
+
+<div class="doc">
+NOTE: <code>lc_open_from_body</code> interacts poorly with <code>lc_abs</code>. 
+</div>
+<code>
+
+<br/>
+<span class="keyword">Hint</span> Resolve<br/>
+&nbsp;&nbsp;subst_lc<br/>
+&nbsp;&nbsp;lc_open_from_abs<br/>
+&nbsp;&nbsp;lc_abs_from_body body_from_lc_abs<br/>
+&nbsp;&nbsp;level_of_lc close_fresh_rec close_fresh.<br/>
+
+<br/>
+<span class="keyword">Hint</span> Extern 1 (body ?e) =&gt;<br/>
+&nbsp;&nbsp;<span class="keyword">match</span> goal <span class="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : lc (app ?e _) |- _ =&gt; inversion_clear H<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : lc (app _ ?e) |- _ =&gt; inversion_clear H<br/>
+&nbsp;&nbsp;<span class="keyword">end</span>.<br/>
+
+<br/>
+<span class="keyword">End</span> Lam.<br/>
+</code>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

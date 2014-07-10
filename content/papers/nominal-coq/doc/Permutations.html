@@ -1,0 +1,315 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset="><link rel="stylesheet" href="style.css" type="text/css"><title>Permutations</title>
+</head>
+
+<body>
+
+<h1>Library Permutations</h1>
+
+<code>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="Atoms.html">Atoms</a>.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="Axioms.html">Axioms</a>.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  The main purpose of this file is to provide an implementation of the
+  following module signature.  We use modules here to purposefully keep the
+  implementation opaque.
+
+<br/><br/>
+  We then prove a variety of theorems from the signature (see below).
+
+</td></tr></table>
+<code>
+<code class="keyword">Module Type</code> <a name="PermutationsAbstraction"></a>PermutationsAbstraction.<br/>
+
+<br/>
+<code class="keyword">Section</code> PermutationDefinitions.<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<code>permt A</code> is the type of permutations of atoms of type <code>A</code>. 
+</td></tr></table>
+<code>
+&nbsp;&nbsp;<code class="keyword">Parameter</code> <a name="permt"></a>permt : AtomT -&gt; Set.<br/>
+
+<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Apply a permutation to an atom. 
+</td></tr></table>
+<code>
+&nbsp;&nbsp;<code class="keyword">Parameter</code> <a name="perma"></a>perma : permt A -&gt; A -&gt; A.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Identity permutation. 
+</td></tr></table>
+<code>
+&nbsp;&nbsp;<code class="keyword">Parameter</code> <a name="pid"></a>pid : permt A.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Inverse of a permutation. 
+</td></tr></table>
+<code>
+&nbsp;&nbsp;<code class="keyword">Parameter</code> <a name="pinv"></a>pinv : permt A -&gt; permt A.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Compose two permutations. 
+</td></tr></table>
+<code>
+&nbsp;&nbsp;<code class="keyword">Parameter</code> <a name="pcompose"></a>pcompose : permt A -&gt; permt A -&gt; permt A.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+Extend a permutation by a swap. 
+</td></tr></table>
+<code>
+&nbsp;&nbsp;<code class="keyword">Parameter</code> <a name="pextend"></a>pextend : (A * A) -&gt; permt A -&gt; permt A.<br/>
+
+<br/>
+<code class="keyword">End</code> PermutationDefinitions.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments perma [A].<br/>
+<code class="keyword">Implicit</code> Arguments pid [A].<br/>
+<code class="keyword">Implicit</code> Arguments pinv [A].<br/>
+<code class="keyword">Implicit</code> Arguments pcompose [A].<br/>
+<code class="keyword">Implicit</code> Arguments pextend [A].<br/>
+
+<br/>
+<code class="keyword">Notation</code> "[]" := (pid) : perms_scope.<br/>
+
+<br/>
+Arguments Scope perma [_ perms_scope _ _].<br/>
+Arguments Scope pinv [_ perms_scope].<br/>
+Arguments Scope pcompose [_ perms_scope perms_scope].<br/>
+Arguments Scope pextend [_ _ perms_scope].<br/>
+
+<br/>
+<code class="keyword">Notation</code> "p @ a" :=<br/>
+&nbsp;&nbsp;(perma p a)<br/>
+&nbsp;&nbsp;(at level 65, right associativity) : perms_scope.<br/>
+
+<br/>
+<code class="keyword">Notation</code> "- p" :=<br/>
+&nbsp;&nbsp;(pinv p)<br/>
+&nbsp;&nbsp;(at level 35, right associativity) : perms_scope.<br/>
+
+<br/>
+<code class="keyword">Notation</code> "p :++ q" :=<br/>
+&nbsp;&nbsp;(pcompose p q)<br/>
+&nbsp;&nbsp;(at level 60, right associativity) : perms_scope.<br/>
+
+<br/>
+<code class="keyword">Notation</code> "x :+ p" :=<br/>
+&nbsp;&nbsp;(pextend x p)<br/>
+&nbsp;&nbsp;(at level 60, right associativity) : perms_scope.<br/>
+
+<br/>
+<code class="keyword">Notation</code> "[ x ; .. ; y ]" := (pextend x .. (pextend y pid) ..) : perms_scope.<br/>
+
+<br/>
+Bind Scope perms_scope with permt.<br/>
+Open Scope perms_scope.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Basic properties of permutations.
+
+</td></tr></table>
+<code>
+<code class="keyword">Section</code> PermutationBaseProperties.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="perma_id"></a>perma_id :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall a : A, [] @ a = a.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="perma_inverse"></a>perma_inverse :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall (p : permt A) (a : A), (- p) @ p @ a = a.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="perma_compose"></a>perma_compose :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall (p q : permt A) (a : A), (p :++ q) @ a = p @ q @ a.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="perma_eq"></a>perma_eq :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall (p q : permt A), (forall a, p @ a = q @ a) -&gt; p = q.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Axiom</code> <a name="perma_extend"></a>perma_extend :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;forall (p : permt A) (ab : A * A) (c : A),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(ab :+ p) @ c = swapa A ab (p @ c).<br/>
+
+<br/>
+<code class="keyword">End</code> PermutationBaseProperties.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve perma_id perma_inverse perma_compose perma_extend : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perma_id perma_inverse perma_compose perma_extend : nominal.<br/>
+
+<br/>
+<code class="keyword">End</code> PermutationsAbstraction.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab11"></a><h2>Implementation of atom permutations</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Module</code> <a name="PermutationsImplementation"></a>PermutationsImplementation : PermutationsAbstraction.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  We hide the implementation for documentation purposes.  Note that we need
+  extensional equality on functions and proof irrelevance here.
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">End</code> PermutationsImplementation.<br/>
+
+<br/>
+<code class="keyword">Export</code> PermutationsImplementation.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab12"></a><h2>Theorems about atom permutations</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> PermutationEqualities.<br/>
+<code class="keyword">Variable</code> A : AtomT.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_double_inv_eq"></a>perma_double_inv_eq : forall (p : permt A), - - p = p.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_compose_inv_eq"></a>perma_compose_inv_eq : forall (p : permt A), -p :++ p = [].<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_compose_inv_eq'"></a>perma_compose_inv_eq' : forall (p : permt A), p :++ -p = [].<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_inverse'"></a>perma_inverse' : forall (p : permt A) a, p @ -p @ a = a.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_inv_id"></a>perma_inv_id : forall (a : A), (- []) @ a = a.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_inv_id_eq"></a>perma_inv_id_eq : - [] = ([] : permt A).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_injective"></a>perma_injective :<br/>
+&nbsp;&nbsp;forall (p : permt A) (a b : A),<br/>
+&nbsp;&nbsp;p @ a = p @ b -&gt; a = b.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_inv_compose"></a>perma_inv_compose :<br/>
+&nbsp;&nbsp;forall (p q : permt A) a, - (p :++ q) @ a = (-q) :++ (-p) @ a.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_inv_compose_eq"></a>perma_inv_compose_eq :<br/>
+&nbsp;&nbsp;forall (p q : permt A), - (p :++ q) = (-q) :++ (-p).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_swap_commute"></a>perma_swap_commute :<br/>
+&nbsp;&nbsp;forall (p : permt A) (a b : A),<br/>
+&nbsp;&nbsp;p :++ [(a,b)] = [(p @ a, p @ b)] :++ p.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_swap_same"></a>perma_swap_same : forall (a b : A), [(a, a)] @ b = b.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_swap_same_eq"></a>perma_swap_same_eq : forall (a b : A), [(a, a)] = [].<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_swap_invol"></a>perma_swap_invol :<br/>
+&nbsp;&nbsp;forall (ab : A * A) (c : A), [ab] @ [ab] @ c = c.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_swap_invol_eq"></a>perma_swap_invol_eq :<br/>
+&nbsp;&nbsp;forall (ab : A * A), [ab] :++ [ab] = [].<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_swap_switch"></a>perma_swap_switch :<br/>
+&nbsp;&nbsp;forall (a b c : A), [(a, b)] @ c = [(b, a)] @ c.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_swap_switch_eq"></a>perma_swap_switch_eq :<br/>
+&nbsp;&nbsp;forall (a b : A), [(a, b)] = [(b, a)].<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_inv_swap"></a>perma_inv_swap :<br/>
+&nbsp;&nbsp;forall (ab : A * A) (c : A), (- [ab]) @ c = [ab] @ c.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_inv_swap_eq"></a>perma_inv_swap_eq :<br/>
+&nbsp;&nbsp;forall (ab : A * A), - [ab] = [ab].<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="perma_swap_distrib"></a>perma_swap_distrib :<br/>
+&nbsp;&nbsp;forall ab (c d x : A),<br/>
+&nbsp;&nbsp;[ab] @ [(c,d)] @ x =<br/>
+&nbsp;&nbsp;[(swapa A ab c, swapa A ab d)] @ [ab] @ x.<br/>
+
+<br/>
+<code class="keyword">End</code> PermutationEqualities.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve perma_double_inv_eq : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perma_double_inv_eq : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perma_compose_inv_eq perma_compose_inv_eq': nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perma_compose_inv_eq perma_compose_inv_eq': nominal.<br/>
+<code class="keyword">Hint</code> Resolve perma_inverse' : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perma_inverse' : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perma_inv_id perma_inv_id_eq : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perma_inv_id perma_inv_id_eq : nominal.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> perma_injective : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perma_inv_compose perma_inv_compose_eq : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perma_inv_compose perma_inv_compose_eq : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perma_swap_commute : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perma_swap_same perma_swap_same_eq : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perma_swap_same perma_swap_same_eq : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perma_swap_invol perma_swap_invol_eq : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perma_swap_invol perma_swap_invol_eq : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perma_swap_switch perma_swap_switch_eq : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perma_inv_swap perma_inv_swap_eq : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite perma_inv_swap perma_inv_swap_eq : nominal.<br/>
+<code class="keyword">Hint</code> Resolve perma_swap_distrib : nominal.<br/>
+</code>
+<hr/><a href="index.html">Index</a><hr/><font size="-1">This page has been generated by <a href="http://www.lri.fr/~filliatr/coqdoc/">coqdoc</a></font>
+</body>
+</html>

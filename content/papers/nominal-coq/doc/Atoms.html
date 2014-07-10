@@ -1,0 +1,397 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset="><link rel="stylesheet" href="style.css" type="text/css"><title>Atoms</title>
+</head>
+
+<body>
+
+<h1>Library Atoms</h1>
+
+<code>
+<code class="keyword">Require</code> <code class="keyword">Import</code> OrderedType.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> OrderedTypeEx.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> Arith.<br/>
+
+<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="AuxLib.html">AuxLib</a>.<br/>
+<code class="keyword">Require</code> <code class="keyword">Export</code> <a href="ExtFset.html">ExtFset</a>.<br/>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="ExtFsetImpl.html">ExtFsetImpl</a>.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab7"></a><h2>Atoms</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>A : AtomT</code> is a record containing the fundamental properties of atoms in a
+  nominal setting.
+
+</td></tr></table>
+<code>
+<code class="keyword">Record</code> <a name="AtomT"></a>AtomT : Type := mkAtom {<br/>
+&nbsp;&nbsp;atom : Set;<br/>
+&nbsp;&nbsp;asetR : ExtFset atom;<br/>
+&nbsp;&nbsp;aset := extFset asetR;<br/>
+&nbsp;&nbsp;atom_eqdec : forall (a b : atom), {a = b} + {a &lt;&gt; b};<br/>
+&nbsp;&nbsp;atom_infinite : forall (S : aset), { a : atom | ~ In a S }<br/>
+}.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve atom_eqdec : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Declare <code>atom</code> as a coercion.  For example, if we have <code>tmvar : AtomT</code>, then
+  we can say <code>a b : tmvar</code> instead of <code>a b : atom tmvar</code>.
+
+</td></tr></table>
+<code>
+Coercion atom : AtomT &gt;-&gt; Sortclass.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab8"></a><h2>Infrastructure for reasoning about atoms</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  This tactic splits the proof into the cases where <code>a = b</code> and <code>a &lt;&gt; b</code>.
+  Then it eliminates situations where one of these statements contradicts
+  other information in the environment using the <code>congruence</code> tactic.  In the
+  case of <code>a = b</code>, we rewrite instances of <code>a</code> in the goal to <code>b</code>.
+
+<br/><br/>
+  The first argument to <code>atom_eqdec</code> is inferable since the types of <code>a</code> and
+  <code>b</code> must already be in the context.
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> AtomComparisons.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> a b : atom A.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> X : Set.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> x1 x2 : X.<br/>
+
+<br/>
+&nbsp;&nbsp;  <code class="keyword">Ltac</code> compare_atoms H a b :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case (atom_eqdec _ a b); intro H; congruence.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="atom_eqdec_eq"></a>atom_eqdec_eq :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a = b -&gt; (if atom_eqdec A a b then x1 else x2) = x1.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="atom_eqdec_neq"></a>atom_eqdec_neq :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a &lt;&gt; b -&gt; (if atom_eqdec A a b then x1 else x2) = x2.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="atom_eqdec_contract"></a>atom_eqdec_contract :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;x1 = x2 -&gt; (if atom_eqdec A a b then x1 else x2) = x1.<br/>
+
+<br/>
+<code class="keyword">End</code> AtomComparisons.<br/>
+
+<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> atom_eqdec_eq atom_eqdec_neq atom_eqdec_contract : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite atom_eqdec_eq using congruence : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite atom_eqdec_neq using congruence : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite atom_eqdec_contract using congruence : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>atom_eqdec_simpl</code> performs all reductions of conditionals on atom equality
+  (in the goal or context) for which the relationship of the atoms is
+  inferrable from the context using the <code>congruence</code> tactic.
+
+</td></tr></table>
+<code>
+<code class="keyword">Ltac</code> atom_eqdec_simpl :=<br/>
+&nbsp;&nbsp;repeat (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| |- context [if atom_eqdec _ ?a ?b then _ else _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (@atom_eqdec_eq _ a b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (@atom_eqdec_neq _ a b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (@atom_eqdec_contract _ a b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : context [if atom_eqdec _ ?a ?b then _ else _] |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (@atom_eqdec_eq _ a b) in H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (@atom_eqdec_neq _ a b) in H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (@atom_eqdec_contract _ a b) in H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>atom_eqdec_case H a b</code> is guaranteed to reduce all subexpressions
+  of the form <code>if atom_eqdec A a b then _ else _</code>, splitting the goal
+  into two cases whenever the equality of <code>a</code> and <code>b</code> cannot be
+  determined from the context using the <code>congruence</code> tactic.  If the
+  goal is split, the name <code>H</code> will be used for the new assumption
+  about the relationship between <code>a</code> and <code>b</code>.
+
+</td></tr></table>
+<code>
+<code class="keyword">Ltac</code> atom_eqdec_case H a b :=<br/>
+&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;| |- context [if atom_eqdec _ a b then _ else _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (@atom_eqdec_eq _ a b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (@atom_eqdec_neq _ a b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(rewrite (@atom_eqdec_contract _ a b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try match goal with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |- context [if atom_eqdec _ a b then _ else _] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case (atom_eqdec _ a b); intro H<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab9"></a><h2>Definition and properties of swapping</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> AtomSwapping.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> a b c : atom A.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Definition</code> <a name="swapa"></a>swapa (s : atom A * atom A) (c : atom A) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;let (a, b) := s in<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if atom_eqdec _ a c then b<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else if atom_eqdec _ b c then a<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else c.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swapa_left"></a>swapa_left :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swapa (a, b) a = b.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swapa_left'"></a>swapa_left' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a = c -&gt; swapa (a, b) c = b.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swapa_right"></a>swapa_right :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swapa (a, b) b = a.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swapa_right'"></a>swapa_right' :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;b = c -&gt; swapa (a, b) c = a.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swapa_neither"></a>swapa_neither :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a &lt;&gt; c -&gt; b &lt;&gt; c -&gt; swapa (a, b) c = c.<br/>
+
+<br/>
+<code class="keyword">End</code> AtomSwapping.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments swapa_left [A].<br/>
+<code class="keyword">Implicit</code> Arguments swapa_left' [A].<br/>
+<code class="keyword">Implicit</code> Arguments swapa_right [A].<br/>
+<code class="keyword">Implicit</code> Arguments swapa_right' [A].<br/>
+<code class="keyword">Implicit</code> Arguments swapa_neither [A].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Rewrite swapa_left : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite swapa_left' using congruence : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite swapa_right : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite swapa_right' using congruence : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite swapa_neither using congruence : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>swapa_simpl_once</code> and <code>swapa_simpl_hyp</code> are just auxilary tactics.
+
+</td></tr></table>
+<code>
+<code class="keyword">Ltac</code> swapa_simpl_once a b c :=<br/>
+&nbsp;&nbsp;(rewrite (@swapa_left' _ a b c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;(rewrite (@swapa_right' _ a b c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;(rewrite (@swapa_neither _ a b c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence] | solve [congruence]]).<br/>
+
+<br/>
+<code class="keyword">Ltac</code> swapa_simpl_hyp H a b c :=<br/>
+&nbsp;&nbsp;(rewrite (@swapa_left' _ a b c) in H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;(rewrite (@swapa_right' _ a b c) in H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence]]) ||<br/>
+&nbsp;&nbsp;(rewrite (@swapa_neither _ a b c) in H;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[idtac | solve [congruence] | solve [congruence]]).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>swapa_simpl</code> performs all reductions of atom swaps (in the goal or
+  assumptions) for which the result is inferrable from the context using the
+  <code>congruence</code> tactic.
+
+</td></tr></table>
+<code>
+<code class="keyword">Ltac</code> swapa_simpl :=<br/>
+&nbsp;&nbsp;repeat (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;match goal with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| |- context [swapa _ (?a, ?b) ?c] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swapa_simpl_once a b c<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| H : context [swapa _ (?a, ?b) ?c] |- _ =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swapa_simpl_hyp H a b c<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end).<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  <code>swapa_case H1 H2 a b c</code> will reduce all expressions of the form
+  <code>swapa _ (a, b) c</code> in the goal to either <code>a</code>, <code>b</code>, or <code>c</code>, splitting the
+  goal as necessary, when the relationships between <code>a</code> and <code>c</code> and between
+  <code>b</code> and <code>c</code> cannot be inferred from the context.  <code>H1</code> will be used as the
+  name for a newly introduced assumption about the relationship between <code>a</code>
+  and <code>c</code>, and respectively <code>H2</code> for <code>b</code> and <code>c</code>.  Also, any additional
+  reductions of atom swaps that are inferrable from the context will be
+  performed.
+
+</td></tr></table>
+<code>
+<code class="keyword">Ltac</code> swapa_case H1 H2 a b c :=<br/>
+&nbsp;&nbsp;swapa_simpl;<br/>
+&nbsp;&nbsp;try match goal with<br/>
+&nbsp;&nbsp;| |- context [swapa _ (a, b) c] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case (atom_eqdec _ a c); intro H1; try congruence;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swapa_simpl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try match goal with<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| |- context [swapa _ (a, b) c] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case (atom_eqdec _ b c); intro H2; try congruence;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swapa_simpl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;end.<br/>
+
+<br/>
+<code class="keyword">Section</code> BasicAtomSwappingProperties.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> s : A * A.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> a b c d e: A.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swapa_same"></a>swapa_same :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swapa A (a, a) b = b.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swapa_invol"></a>swapa_invol :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swapa A s (swapa A s c) = c.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swapa_distrib"></a>swapa_distrib :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swapa A s (swapa A (c, d) e) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swapa A (swapa A s c, swapa A s d) (swapa A s e).<br/>
+
+<br/>
+<code class="keyword">End</code> BasicAtomSwappingProperties.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments swapa_same [A].<br/>
+<code class="keyword">Implicit</code> Arguments swapa_invol [A].<br/>
+<code class="keyword">Implicit</code> Arguments swapa_distrib [A].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve swapa_same swapa_invol swapa_distrib : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite swapa_same swapa_invol : nominal.<br/>
+
+<br/>
+<code class="keyword">Section</code> MoreAtomSwappingProperties.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variable</code> A : AtomT.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> s : A * A.<br/>
+&nbsp;&nbsp;  <code class="keyword">Variables</code> x y z : A.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swapa_injective"></a>swapa_injective : swapa A s x = swapa A s y -&gt; x = y.<br/>
+
+<br/>
+&nbsp;&nbsp;<code class="keyword">Lemma</code> <a name="swapa_switch"></a>swapa_switch : swapa A (x, y) z = swapa A (y, x) z.<br/>
+
+<br/>
+<code class="keyword">End</code> MoreAtomSwappingProperties.<br/>
+
+<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> swapa_injective : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab10"></a><h2>Implementing atoms</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  Keep opaque our means for constructing <code>AtomT</code> records.  The opaque nature
+  of atoms is for convinience; since we don't declare any axioms based on this
+  fact, our development doesn't become unsound if we make them transparent.
+
+</td></tr></table>
+<code>
+<code class="keyword">Module Type</code> <a name="AtomImplementationSig"></a>AtomImplementationSig.<br/>
+<code class="keyword">Parameter</code> <a name="mkAtomRec"></a>mkAtomRec : nat -&gt; AtomT.<br/>
+<code class="keyword">End</code> AtomImplementationSig.<br/>
+
+<br/>
+<code class="keyword">Module</code> <a name="AtomImplementation"></a>AtomImplementation : AtomImplementationSig.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+  We hide the implementation for documentation purposes.
+  Indirectly, we require proof irrelevance here.
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">End</code> AtomImplementation.<br/>
+<code class="keyword">Export</code> AtomImplementation.<br/>
+</code>
+<hr/><a href="index.html">Index</a><hr/><font size="-1">This page has been generated by <a href="http://www.lri.fr/~filliatr/coqdoc/">coqdoc</a></font>
+</body>
+</html>

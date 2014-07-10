@@ -1,0 +1,203 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset="><link rel="stylesheet" href="style.css" type="text/css"><title>Support</title>
+</head>
+
+<body>
+
+<h1>Library Support</h1>
+
+<code>
+<code class="keyword">Require</code> <code class="keyword">Import</code> <a href="Axioms.html">Axioms</a>.<br/>
+<code class="keyword">Require</code> <code class="keyword">Export</code> <a href="Swaps.html">Swaps</a>.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab38"></a><h2>Support</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> Support.<br/>
+
+<br/>
+<code class="keyword">Variable</code> AR : AtomT.<br/>
+<code class="keyword">Variable</code> X : Set.<br/>
+<code class="keyword">Variable</code> S : SwapT AR X.<br/>
+
+<br/>
+<code class="keyword">Definition</code> <a name="supports"></a>supports (E : aset AR) (x : X) : Prop :=<br/>
+&nbsp;&nbsp;forall (a b : atom AR), ~ In a E -&gt; ~ In b E -&gt; swap S (a, b) x = x.<br/>
+
+<br/>
+<code class="keyword">Definition</code> <a name="fresh"></a>fresh (a : atom AR) (x : X) : Prop :=<br/>
+&nbsp;&nbsp;exists E : aset AR, supports E x /\ ~ In a E.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="swap_non_supports"></a>swap_non_supports :<br/>
+&nbsp;&nbsp;forall (F : aset AR) (a b : atom AR) (x : X),<br/>
+&nbsp;&nbsp;supports F x -&gt; ~ In a F -&gt; ~ In b F -&gt; swap S (a, b) x = x.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="supports_subset"></a>supports_subset :<br/>
+&nbsp;&nbsp;forall (E F : aset AR) (x : X),<br/>
+&nbsp;&nbsp;supports E x -&gt; Subset E F -&gt; supports F x.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="supports_intersection"></a>supports_intersection :<br/>
+&nbsp;&nbsp;forall (E F : aset AR) (x : X),<br/>
+&nbsp;&nbsp;supports E x -&gt; supports F x -&gt; supports (intersection E F) x.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve supports_intersection : nominal.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="supports_to_fresh"></a>supports_to_fresh :<br/>
+&nbsp;&nbsp;forall (E : aset AR) (a : atom AR) (x : X),<br/>
+&nbsp;&nbsp;supports E x -&gt; ~ In a E -&gt; fresh a x.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="swap_fresh_atoms"></a>swap_fresh_atoms :<br/>
+&nbsp;&nbsp;forall (a b : atom AR) (x : X),<br/>
+&nbsp;&nbsp;fresh a x -&gt; fresh b x -&gt; swap S (a, b) x = x.<br/>
+
+<br/>
+<code class="keyword">End</code> Support.<br/>
+
+<br/>
+<code class="keyword">Implicit</code> Arguments supports [AR X].<br/>
+<code class="keyword">Implicit</code> Arguments fresh [AR X].<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve swap_non_supports : nominal.<br/>
+<code class="keyword">Hint</code> Resolve supports_subset : nominal.<br/>
+<code class="keyword">Hint</code> Resolve supports_intersection : nominal.<br/>
+<code class="keyword">Hint</code> Resolve supports_to_fresh : nominal.<br/>
+<code class="keyword">Hint</code> Resolve swap_fresh_atoms : nominal.<br/>
+<code class="keyword">Hint</code> Rewrite swap_fresh_atoms using (auto with nominal; fail) : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab39"></a><h2>Support for atoms</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="supports_atom"></a>supports_atom :<br/>
+&nbsp;&nbsp;forall (A : AtomT) (a : atom A), supports (mkAtomSwap A) (singleton a) a.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve supports_atom : nominal.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="fresh_atom_from_neq"></a>fresh_atom_from_neq :<br/>
+&nbsp;&nbsp;forall (A : AtomT) (a a' : atom A), a &lt;&gt; a' -&gt; fresh (mkAtomSwap A) a a'.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve fresh_atom_from_neq : nominal.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="swap_not_in_set"></a>swap_not_in_set :<br/>
+&nbsp;&nbsp;forall (A : AtomT) (E : aset A) (a b c : atom A),<br/>
+&nbsp;&nbsp;~ In a E -&gt;<br/>
+&nbsp;&nbsp;~ In b E -&gt;<br/>
+&nbsp;&nbsp;~ In c E -&gt;<br/>
+&nbsp;&nbsp;~ In (swap (mkAtomSwap A) (a, b) c) E.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve swap_not_in_set : nominal.<br/>
+
+<br/>
+</code>
+
+<table width="100%"><tr class="doc"><td>
+<a name="lab40"></a><h2>Additional theorems.</h2>
+
+</td></tr></table>
+<code>
+
+<br/>
+<code class="keyword">Section</code> GeneralTheorems.<br/>
+
+<br/>
+<code class="keyword">Variable</code> AR : AtomT.<br/>
+<code class="keyword">Variable</code> X : Set.<br/>
+<code class="keyword">Variable</code> XS : SwapT AR X.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="swap_fresh"></a>swap_fresh :<br/>
+&nbsp;&nbsp;forall a cd x, fresh XS a x -&gt; fresh XS (swapa AR cd a) (swap XS cd x). <code class="keyword">Lemma</code> <a name="unswap_fresh"></a>unswap_fresh :<br/>
+&nbsp;&nbsp;forall a cd x, fresh XS (swapa AR cd a) (swap XS cd x) -&gt; fresh XS a x.<br/>
+
+<br/>
+<code class="keyword">End</code> GeneralTheorems.<br/>
+
+<br/>
+<code class="keyword">Hint</code> Resolve swap_fresh : nominal.<br/>
+<code class="keyword">Hint</code> <code class="keyword">Immediate</code> unswap_fresh : nominal.<br/>
+
+<br/>
+<code class="keyword">Section</code> FunctionTheorems.<br/>
+
+<br/>
+<code class="keyword">Variables</code> AR : AtomT.<br/>
+<code class="keyword">Variables</code> X Y : Set.<br/>
+<code class="keyword">Variables</code> XS : SwapT AR X.<br/>
+<code class="keyword">Variables</code> YS : SwapT AR Y.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="function_supports"></a>function_supports :<br/>
+&nbsp;&nbsp;forall (F : aset AR) (f : X -&gt; Y),<br/>
+&nbsp;&nbsp;(forall a b x, ~ In a F -&gt; ~ In b F -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;swap YS (a, b) (f x) = f (swap XS (a, b) x)) -&gt;<br/>
+&nbsp;&nbsp;supports (XS ^-&gt; YS) F f.<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="application_supports"></a>application_supports :<br/>
+&nbsp;&nbsp;forall (F : aset AR) (f : X -&gt; Y) (x : X),<br/>
+&nbsp;&nbsp;supports (XS ^-&gt; YS) F f -&gt;<br/>
+&nbsp;&nbsp;supports XS F x -&gt;<br/>
+&nbsp;&nbsp;supports YS F (f x).<br/>
+
+<br/>
+<code class="keyword">Lemma</code> <a name="application_fresh"></a>application_fresh :<br/>
+&nbsp;&nbsp;forall (a : AR) (f : X -&gt; Y) (x : X),<br/>
+&nbsp;&nbsp;fresh (XS ^-&gt; YS) a f -&gt; fresh XS a x -&gt; fresh YS a (f x).<br/>
+
+<br/>
+<code class="keyword">End</code> FunctionTheorems.<br/>
+
+<br/>
+<code class="keyword">Section</code> MajorTheorems.<br/>
+
+<br/>
+<code class="keyword">Variables</code> AR : AtomT.<br/>
+<code class="keyword">Variables</code> X : Set.<br/>
+<code class="keyword">Variables</code> XS : SwapT AR X.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="function_constancy_v1"></a>function_constancy_v1 :<br/>
+&nbsp;&nbsp;forall (F : aset AR) (f : AR -&gt; X),<br/>
+&nbsp;&nbsp;supports (mkAtomSwap AR ^-&gt; XS) F f -&gt;<br/>
+&nbsp;&nbsp;forall (a : AR), ~ In a F -&gt; fresh XS a (f a) -&gt;<br/>
+&nbsp;&nbsp;forall (b : AR), ~ In b F -&gt; f a = f b.<br/>
+
+<br/>
+<code class="keyword">Theorem</code> <a name="function_constancy_v2"></a>function_constancy_v2 :<br/>
+&nbsp;&nbsp;forall (F : aset AR) (f : AR -&gt; X),<br/>
+&nbsp;&nbsp;supports (mkAtomSwap AR ^-&gt; XS) F f -&gt;<br/>
+&nbsp;&nbsp;(exists a : AR, ~ In a F /\ fresh XS a (f a)) -&gt;<br/>
+&nbsp;&nbsp;forall a b : AR, ~ In a F -&gt; ~ In b F -&gt; f a = f b.<br/>
+
+<br/>
+<code class="keyword">End</code> MajorTheorems.<br/>
+</code>
+<hr/><a href="index.html">Index</a><hr/><font size="-1">This page has been generated by <a href="http://www.lri.fr/~filliatr/coqdoc/">coqdoc</a></font>
+</body>
+</html>

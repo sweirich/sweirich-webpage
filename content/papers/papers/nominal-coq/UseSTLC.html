@@ -1,0 +1,509 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>UseSTLC</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library UseSTLC</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <span class="id" type="library"><a class="idref" href="STLC.html#">STLC</a></span>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <span class="id" type="library"><a class="idref" href="Axioms.html#">Axioms</a></span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Module</span> <span class="id" type="module"><a name="UseSTLC">UseSTLC</a></span> (<span class="id" type="var">STLCImpl</span> : <span class="id" type="module"><a class="idref" href="STLC.html#">STLC</a></span>).<br/>
+<span class="id" type="keyword">Import</span> <span class="id" type="var">STLCImpl</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab58"></a><h2 class="section">Prove a specialized induction principle for terms</h2>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <span class="id" type="lemma"><a name="UseSTLC.tm_induction">tm_induction</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">P</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span> -&gt; <span class="id" type="keyword">Type</span>) (<span class="id" type="var">F</span> : <span class="id" type="projection"><a class="idref" href="Atoms.html#aset">aset</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>),<br/>
+&nbsp;&nbsp;(<span class="id" type="var">P</span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.dot">dot</a></span>) -&gt;<br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">forall</span> <span class="id" type="var">a</span>, <span class="id" type="var">P</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">a</span>)) -&gt;<br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">forall</span> <span class="id" type="var">s</span>, <span class="id" type="var">P</span> <span class="id" type="var">s</span> -&gt; <span class="id" type="keyword">forall</span> <span class="id" type="var">t</span>, <span class="id" type="var">P</span> <span class="id" type="var">t</span> -&gt; <span class="id" type="var">P</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> <span class="id" type="var">s</span> <span class="id" type="var">t</span>)) -&gt;<br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">forall</span> <span class="id" type="var">a</span>, ~ <span class="id" type="projection"><a class="idref" href="ExtFset.html#In">In</a></span> <span class="id" type="var">a</span> <span class="id" type="var">F</span> -&gt; <span class="id" type="keyword">forall</span> <span class="id" type="var">T</span> <span class="id" type="var">s</span>, <span class="id" type="var">P</span> <span class="id" type="var">s</span> -&gt; <span class="id" type="var">P</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.lam">lam</a></span> <span class="id" type="var">a</span> <span class="id" type="var">T</span> <span class="id" type="var">s</span>)) -&gt;<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>, <span class="id" type="var">P</span> <span class="id" type="var">x</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+  We can also show, trivially, that <span class="inlinecode"><span class="id" type="var">tm_induction_weak</span></span> is derivable
+  from <span class="inlinecode"><span class="id" type="var">tm_induction</span></span>.
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <span class="id" type="lemma"><a name="UseSTLC.tm_induction_weak_derived">tm_induction_weak_derived</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">P</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span> -&gt; <span class="id" type="keyword">Type</span>),<br/>
+&nbsp;&nbsp;(<span class="id" type="var">P</span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.dot">dot</a></span>) -&gt;<br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">forall</span> <span class="id" type="var">a</span>, <span class="id" type="var">P</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">a</span>)) -&gt;<br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">forall</span> <span class="id" type="var">s</span>, <span class="id" type="var">P</span> <span class="id" type="var">s</span> -&gt; <span class="id" type="keyword">forall</span> <span class="id" type="var">t</span>, <span class="id" type="var">P</span> <span class="id" type="var">t</span> -&gt; <span class="id" type="var">P</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> <span class="id" type="var">s</span> <span class="id" type="var">t</span>)) -&gt;<br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">forall</span> <span class="id" type="var">a</span> <span class="id" type="var">T</span> <span class="id" type="var">s</span>, <span class="id" type="var">P</span> <span class="id" type="var">s</span> -&gt; <span class="id" type="var">P</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.lam">lam</a></span> <span class="id" type="var">a</span> <span class="id" type="var">T</span> <span class="id" type="var">s</span>)) -&gt;<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>, <span class="id" type="var">P</span> <span class="id" type="var">x</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab59"></a><h2 class="section">Support</h2>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <span class="id" type="lemma"><a name="UseSTLC.supports_tm">supports_tm</a></span> : <span class="id" type="keyword">forall</span> <span class="id" type="var">t</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>, <span class="id" type="definition"><a class="idref" href="Psets.html#supports">supports</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">t</span>) <span class="id" type="var">t</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="keyword">Resolve</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.supports_tm">supports_tm</a></span> : <span class="id" type="var">stlc</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab60"></a><h2 class="section">Define substitution</h2>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Section</span> <span class="id" type="section"><a name="UseSTLC.Substitution">Substitution</a></span>.<br/>
+<span class="id" type="keyword">Variable</span> <span class="id" type="variable"><a name="UseSTLC.Substitution.y">y</a></span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>.<br/>
+<span class="id" type="keyword">Variable</span> <span class="id" type="variable"><a name="UseSTLC.Substitution.s">s</a></span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <span class="id" type="definition"><a name="UseSTLC.subst">subst</a></span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span> -&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span> :=<br/>
+&nbsp;&nbsp;<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm_rec">tm_rec</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.dot">dot</a></span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> =&gt; <span class="id" type="keyword">if</span> <span class="id" type="projection"><a class="idref" href="Atoms.html#atom_eqdec">atom_eqdec</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span> <span class="id" type="var">x</span> <span class="id" type="var">y</span> <span class="id" type="keyword">then</span> <span class="id" type="var">s</span> <span class="id" type="keyword">else</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">x</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">s</span> <span class="id" type="var">s'</span> <span class="id" type="var">t</span> <span class="id" type="var">t'</span> =&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> <span class="id" type="var">s'</span> <span class="id" type="var">t'</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> <span class="id" type="var">T</span> <span class="id" type="var">t</span> <span class="id" type="var">t'</span> =&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.lam">lam</a></span> <span class="id" type="var">x</span> <span class="id" type="var">T</span> <span class="id" type="var">t'</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="projection"><a class="idref" href="ExtFset.html#add">add</a></span> <span class="id" type="var">y</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">s</span>)).<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.subst_supp_dot">subst_supp_dot</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="definition"><a class="idref" href="Psets.html#supports">supports</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> (<span class="id" type="projection"><a class="idref" href="ExtFset.html#add">add</a></span> <span class="id" type="var">y</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">s</span>)) <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.dot">dot</a></span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.subst_supp_var">subst_supp_var</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="definition"><a class="idref" href="Psets.html#supports">supports</a></span> (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#STLCImpl.tmvarP">tmvarP</a></span> ^-&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span>) (<span class="id" type="projection"><a class="idref" href="ExtFset.html#add">add</a></span> <span class="id" type="var">y</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">s</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span> =&gt; <span class="id" type="keyword">if</span> <span class="id" type="projection"><a class="idref" href="Atoms.html#atom_eqdec">atom_eqdec</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span> <span class="id" type="var">x</span> <span class="id" type="var">y</span> <span class="id" type="keyword">then</span> <span class="id" type="var">s</span> <span class="id" type="keyword">else</span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">x</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.subst_supp_app">subst_supp_app</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="definition"><a class="idref" href="Psets.html#supports">supports</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> ^-&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> ^-&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> ^-&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> ^-&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="projection"><a class="idref" href="ExtFset.html#add">add</a></span> <span class="id" type="var">y</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">s</span>)) (<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> <span class="id" type="var">s'</span> <span class="id" type="var">_</span> <span class="id" type="var">t'</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span> =&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> <span class="id" type="var">s'</span> <span class="id" type="var">t'</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.subst_supp_lam">subst_supp_lam</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="definition"><a class="idref" href="Psets.html#supports">supports</a></span> (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#STLCImpl.tmvarP">tmvarP</a></span> ^-&gt; <span class="id" type="definition"><a class="idref" href="UseSTLC.html#STLCImpl.tyP">tyP</a></span> ^-&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> ^-&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> ^-&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="projection"><a class="idref" href="ExtFset.html#add">add</a></span> <span class="id" type="var">y</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">s</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> (<span class="id" type="var">x</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>) (<span class="id" type="var">T</span> : <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#STLCImpl.ty">ty</a></span>) (<span class="id" type="var">_</span> <span class="id" type="var">t'</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>) =&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.lam">lam</a></span> <span class="id" type="var">x</span> <span class="id" type="var">T</span> <span class="id" type="var">t'</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="keyword">Resolve</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_supp_dot">subst_supp_dot</a></span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_supp_var">subst_supp_var</a></span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_supp_app">subst_supp_app</a></span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_supp_lam">subst_supp_lam</a></span> : <span class="id" type="var">stlc</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <span class="id" type="lemma"><a name="UseSTLC.subst_dot">subst_dot</a></span> : <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.subst">subst</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.dot">dot</a></span> = <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.dot">dot</a></span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <span class="id" type="lemma"><a name="UseSTLC.subst_var_eq">subst_var_eq</a></span> : <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.subst">subst</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">y</span>) = <span class="id" type="var">s</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <span class="id" type="lemma"><a name="UseSTLC.subst_var_neq">subst_var_neq</a></span> : <span class="id" type="keyword">forall</span> <span class="id" type="var">x</span>, <span class="id" type="var">x</span> &lt;&gt; <span class="id" type="var">y</span> -&gt; <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.subst">subst</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">x</span>) = (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">x</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <span class="id" type="lemma"><a name="UseSTLC.subst_app">subst_app</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">q</span> <span class="id" type="var">r</span>, <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.subst">subst</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> <span class="id" type="var">q</span> <span class="id" type="var">r</span>) = <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.subst">subst</a></span> <span class="id" type="var">q</span>) (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.subst">subst</a></span> <span class="id" type="var">r</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <span class="id" type="lemma"><a name="UseSTLC.subst_lam">subst_lam</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span> <span class="id" type="var">T</span> <span class="id" type="var">t</span>, <span class="id" type="var">x</span> &lt;&gt; <span class="id" type="var">y</span> -&gt; ~ <span class="id" type="projection"><a class="idref" href="ExtFset.html#In">In</a></span> <span class="id" type="var">x</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">s</span>) -&gt;<br/>
+&nbsp;&nbsp;<span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.subst">subst</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.lam">lam</a></span> <span class="id" type="var">x</span> <span class="id" type="var">T</span> <span class="id" type="var">t</span>) = <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.lam">lam</a></span> <span class="id" type="var">x</span> <span class="id" type="var">T</span> (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.subst">subst</a></span> <span class="id" type="var">t</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <span class="id" type="lemma"><a name="UseSTLC.supports_subst">supports_subst</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="definition"><a class="idref" href="Psets.html#supports">supports</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> ^-&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span>) (<span class="id" type="projection"><a class="idref" href="ExtFset.html#add">add</a></span> <span class="id" type="var">y</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">s</span>)) <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.subst">subst</a></span>.<br/>
+
+<br/>
+<span class="id" type="keyword">End</span> <span class="id" type="section"><a class="idref" href="UseSTLC.html#UseSTLC.Substitution">Substitution</a></span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="keyword">Resolve</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_dot">subst_dot</a></span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_var_eq">subst_var_eq</a></span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_var_neq">subst_var_neq</a></span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_app">subst_app</a></span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_lam">subst_lam</a></span> : <span class="id" type="var">stlc</span>.<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="var">Rewrite</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_dot">subst_dot</a></span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_var_eq">subst_var_eq</a></span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_app">subst_app</a></span> : <span class="id" type="var">stlc</span>.<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="var">Rewrite</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_var_neq">subst_var_neq</a></span> <span class="id" type="keyword">using</span> <span class="id" type="tactic">congruence</span> : <span class="id" type="var">stlc</span>.<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="var">Rewrite</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_lam">subst_lam</a></span> <span class="id" type="keyword">using</span> (<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">stlc</span> <span class="id" type="var">nominal</span>; <span class="id" type="tactic">fail</span>) : <span class="id" type="var">stlc</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab61"></a><h2 class="section">Simple substitution lemmas</h2>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Notation</span> "'existsType' x : t , p" :=<br/>
+&nbsp;&nbsp;(<span class="id" type="inductive"><a class="idref" href="http://coq.inria.fr/library/Coq.Init.Specif.html#sigT">sigT</a></span> (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> : <span class="id" type="var">t</span> =&gt; <span class="id" type="var">p</span>))<br/>
+&nbsp;&nbsp;(<span class="id" type="tactic">at</span> <span class="id" type="var">level</span> 200, <span class="id" type="var">x</span> <span class="id" type="var">ident</span>, <span class="id" type="var">format</span> "'existsType' '/ ' x : t , '/ ' p") :<br/>
+&nbsp;&nbsp;<span class="id" type="var">type_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.tm_induction'">tm_induction'</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">P</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span> -&gt; <span class="id" type="keyword">Type</span>),<br/>
+&nbsp;&nbsp;(<span class="id" type="var">P</span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.dot">dot</a></span>) -&gt;<br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">forall</span> (<span class="id" type="var">a</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>), <span class="id" type="var">P</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">a</span>)) -&gt;<br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">forall</span> <span class="id" type="var">s</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>, <span class="id" type="var">P</span> <span class="id" type="var">s</span>-&gt; <span class="id" type="keyword">forall</span> <span class="id" type="var">t</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>, <span class="id" type="var">P</span> <span class="id" type="var">t</span> -&gt; <span class="id" type="var">P</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> <span class="id" type="var">s</span> <span class="id" type="var">t</span>)) -&gt;<br/>
+&nbsp;&nbsp;(<span class="id" type="var">existsType</span> <span class="id" type="var">E</span> : <span class="id" type="projection"><a class="idref" href="Atoms.html#aset">aset</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">a</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>), ~ <span class="id" type="projection"><a class="idref" href="ExtFset.html#In">In</a></span> <span class="id" type="var">a</span> <span class="id" type="var">E</span> -&gt; <span class="id" type="keyword">forall</span> (<span class="id" type="var">T</span> : <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#STLCImpl.ty">ty</a></span>) (<span class="id" type="var">s</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">P</span> <span class="id" type="var">s</span> -&gt; <span class="id" type="var">P</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.lam">lam</a></span> <span class="id" type="var">a</span> <span class="id" type="var">T</span> <span class="id" type="var">s</span>)) -&gt;<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>, <span class="id" type="var">P</span> <span class="id" type="var">x</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span> "M ^[ x := N ]" := (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.subst">subst</a></span> <span class="id" type="var">x</span> <span class="id" type="var">N</span> <span class="id" type="var">M</span>) (<span class="id" type="tactic">at</span> <span class="id" type="var">level</span> 59, <span class="id" type="var">left</span> <span class="id" type="var">associativity</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.subst_var_same'">subst_var_same'</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">x</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>) (<span class="id" type="var">e</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>) (<span class="id" type="var">y</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>),<br/>
+&nbsp;&nbsp;<span class="id" type="var">y</span> = <span class="id" type="var">x</span> -&gt; (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">y</span>) ^[<span class="id" type="var">x</span> := <span class="id" type="var">e</span>] = <span class="id" type="var">e</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="var">Rewrite</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_var_same'">subst_var_same'</a></span> <span class="id" type="keyword">using</span> <span class="id" type="tactic">congruence</span> : <span class="id" type="var">stlc</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">subst_var_simpl</span> <span class="id" type="var">H</span> <span class="id" type="var">x</span> <span class="id" type="var">y</span> :=<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="var">goal</span> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;| |- <span class="id" type="var">context</span> [<span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.subst">subst</a></span> <span class="id" type="var">x</span> ?e (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">y</span>)] =&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="tactic">progress</span> (<span class="id" type="tactic">repeat</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="tactic">rewrite</span> (<span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_var_same'">subst_var_same'</a></span> <span class="id" type="var">x</span> <span class="id" type="var">e</span> <span class="id" type="var">y</span>); [<span class="id" type="var">idtac</span> | <span class="id" type="tactic">congruence</span>]))) ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="tactic">progress</span> (<span class="id" type="tactic">repeat</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="tactic">rewrite</span> (<span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_var_neq">subst_var_neq</a></span> <span class="id" type="var">x</span> <span class="id" type="var">e</span> <span class="id" type="var">y</span>); [<span class="id" type="var">idtac</span> | <span class="id" type="tactic">congruence</span>]))) ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="tactic">case</span> (<span class="id" type="projection"><a class="idref" href="Atoms.html#atom_eqdec">atom_eqdec</a></span> <span class="id" type="var">_</span> <span class="id" type="var">x</span> <span class="id" type="var">y</span>); <span class="id" type="tactic">intro</span> <span class="id" type="var">H</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<span class="id" type="tactic">repeat</span> (<span class="id" type="tactic">rewrite</span> (<span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_var_same'">subst_var_same'</a></span> <span class="id" type="var">x</span> <span class="id" type="var">e</span> <span class="id" type="var">y</span>)); [<span class="id" type="var">idtac</span> | <span class="id" type="tactic">congruence</span>] |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">repeat</span> (<span class="id" type="tactic">rewrite</span> (<span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_var_neq">subst_var_neq</a></span> <span class="id" type="var">x</span> <span class="id" type="var">e</span> <span class="id" type="var">y</span>)); [<span class="id" type="var">idtac</span> | <span class="id" type="tactic">congruence</span>]])<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">stlc_simpl</span> :=<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">repeat</span> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">progress</span> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">unfold</span> <span class="id" type="var">tmvarP</span> ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> <span class="id" type="lemma"><a class="idref" href="Psets.html#perm_atom">perm_atom</a></span> ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">autorewrite</span> <span class="id" type="keyword">with</span> <span class="id" type="var">stlc</span> <span class="id" type="var">nominal</span> ||<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">swapa_simpl</span>)).<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.fvar_swap">fvar_swap</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span> <span class="id" type="var">y</span> <span class="id" type="var">z</span> <span class="id" type="var">t</span>,<br/>
+&nbsp;&nbsp;<span class="id" type="var">z</span> &lt;&gt; <span class="id" type="var">x</span> -&gt; <span class="id" type="var">z</span> &lt;&gt; <span class="id" type="var">y</span> -&gt;<br/>
+&nbsp;&nbsp;~ <span class="id" type="projection"><a class="idref" href="ExtFset.html#In">In</a></span> <span class="id" type="var">z</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">t</span>) -&gt;<br/>
+&nbsp;&nbsp;~ <span class="id" type="projection"><a class="idref" href="ExtFset.html#In">In</a></span> <span class="id" type="var">z</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> [(<span class="id" type="var">x</span>, <span class="id" type="var">y</span>)] <span class="id" type="var">t</span>)).<br/>
+
+<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="keyword">Resolve</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.fvar_swap">fvar_swap</a></span> : <span class="id" type="var">stlc</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.subst_equivariant">subst_equivariant</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">z</span> <span class="id" type="var">v</span> <span class="id" type="var">x</span> <span class="id" type="var">y</span> <span class="id" type="var">t</span>,<br/>
+&nbsp;&nbsp;<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> [(<span class="id" type="var">x</span>, <span class="id" type="var">y</span>)] (<span class="id" type="var">t</span> ^[<span class="id" type="var">z</span> := <span class="id" type="var">v</span>]) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> [(<span class="id" type="var">x</span>, <span class="id" type="var">y</span>)] <span class="id" type="var">t</span>) ^[(<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#STLCImpl.tmvarP">tmvarP</a></span> [(<span class="id" type="var">x</span>, <span class="id" type="var">y</span>)] <span class="id" type="var">z</span>) := (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> [(<span class="id" type="var">x</span>, <span class="id" type="var">y</span>)] <span class="id" type="var">v</span>)].<br/>
+
+<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="var">Rewrite</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_equivariant">subst_equivariant</a></span> : <span class="id" type="var">stlc</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.fvar_subst">fvar_subst</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">x</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>) (<span class="id" type="var">M</span> <span class="id" type="var">N</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>),<br/>
+&nbsp;&nbsp;<span class="id" type="definition"><a class="idref" href="ExtFset.html#Subset">Subset</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> (<span class="id" type="var">M</span> ^[<span class="id" type="var">x</span> := <span class="id" type="var">N</span>])) (<span class="id" type="projection"><a class="idref" href="ExtFset.html#union">union</a></span> (<span class="id" type="definition"><a class="idref" href="ExtFset.html#remove">remove</a></span> <span class="id" type="var">x</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">M</span>)) (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">N</span>)).<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.subst_not_fv">subst_not_fv</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">x</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>) (<span class="id" type="var">N</span> <span class="id" type="var">M</span>: <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>),<br/>
+&nbsp;&nbsp;~ <span class="id" type="projection"><a class="idref" href="ExtFset.html#In">In</a></span> <span class="id" type="var">x</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">M</span>) -&gt;<br/>
+&nbsp;&nbsp;<span class="id" type="var">M</span> ^[<span class="id" type="var">x</span> := <span class="id" type="var">N</span>] = <span class="id" type="var">M</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="var">Rewrite</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.subst_not_fv">subst_not_fv</a></span> <span class="id" type="keyword">using</span> <span class="id" type="var">solve</span> [<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">stlc</span>] : <span class="id" type="var">stlc</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+This is a useful tactic (I think), but not needed in anywhere here. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">fresh_atom</span> <span class="id" type="var">name</span> <span class="id" type="tactic">set</span> <span class="id" type="var">hyp_name</span> :=<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">let</span> <span class="id" type="var">H</span> := <span class="id" type="tactic">fresh</span> <span class="id" type="keyword">in</span> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">assert</span> (<span class="id" type="var">H</span> := <span class="id" type="projection"><a class="idref" href="Atoms.html#atom_infinite">atom_infinite</a></span> <span class="id" type="var">_</span> <span class="id" type="tactic">set</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">elim</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">clear</span> <span class="id" type="var">H</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">name</span> <span class="id" type="var">hyp_name</span><br/>
+&nbsp;&nbsp;).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+This lemma isn't used later.  It's just here as an example. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.subst_commute">subst_commute</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">x</span> <span class="id" type="var">y</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>) (<span class="id" type="var">M</span> <span class="id" type="var">N</span> <span class="id" type="var">L</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>),<br/>
+&nbsp;&nbsp;<span class="id" type="var">x</span> &lt;&gt; <span class="id" type="var">y</span> -&gt;<br/>
+&nbsp;&nbsp;~ <span class="id" type="projection"><a class="idref" href="ExtFset.html#In">In</a></span> <span class="id" type="var">x</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">L</span>) -&gt;<br/>
+&nbsp;&nbsp;<span class="id" type="var">M</span> ^[<span class="id" type="var">x</span> := <span class="id" type="var">N</span>] ^[<span class="id" type="var">y</span> := <span class="id" type="var">L</span>] = <span class="id" type="var">M</span> ^[<span class="id" type="var">y</span> := <span class="id" type="var">L</span>] ^[<span class="id" type="var">x</span> := <span class="id" type="var">N</span> ^[<span class="id" type="var">y</span> := <span class="id" type="var">L</span>]].<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+This lemma isn't used later.  It's just here as an example. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.subst_fresh_var">subst_fresh_var</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">x</span> <span class="id" type="var">y</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>) (<span class="id" type="var">M</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>),<br/>
+&nbsp;&nbsp;~ <span class="id" type="projection"><a class="idref" href="ExtFset.html#In">In</a></span> <span class="id" type="var">y</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">M</span>) -&gt;<br/>
+&nbsp;&nbsp;<span class="id" type="var">M</span> ^[<span class="id" type="var">x</span> := <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">y</span>] = <span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> [(<span class="id" type="var">x</span>, <span class="id" type="var">y</span>)] <span class="id" type="var">M</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+This is the critical lemma for detminacy of the evaluation relation. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.subst_equal">subst_equal</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">x</span> <span class="id" type="var">y</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>) (<span class="id" type="var">M</span> <span class="id" type="var">N</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>),<br/>
+&nbsp;&nbsp;~ <span class="id" type="projection"><a class="idref" href="ExtFset.html#In">In</a></span> <span class="id" type="var">y</span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.fvar">fvar</a></span> <span class="id" type="var">M</span>) -&gt;<br/>
+&nbsp;&nbsp;<span class="id" type="var">M</span> ^[<span class="id" type="var">x</span> := <span class="id" type="var">N</span>] = (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> [(<span class="id" type="var">y</span>, <span class="id" type="var">x</span>)] <span class="id" type="var">M</span>) ^[<span class="id" type="var">y</span> := <span class="id" type="var">N</span>].<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab62"></a><h2 class="section">CBV Reduction</h2>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Inductive</span> <span class="id" type="inductive"><a name="UseSTLC.value">value</a></span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span> -&gt; <span class="id" type="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.unit_value">unit_value</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#value">value</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.dot">dot</a></span><br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.abs_value">abs_value</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">x</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>) (<span class="id" type="var">T</span> : <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#STLCImpl.ty">ty</a></span>) (<span class="id" type="var">t</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#value">value</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.lam">lam</a></span> <span class="id" type="var">x</span> <span class="id" type="var">T</span> <span class="id" type="var">t</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Inductive</span> <span class="id" type="inductive"><a name="UseSTLC.cbv">cbv</a></span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span> -&gt; <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span> -&gt; <span class="id" type="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.cbv_left">cbv_left</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">t</span> <span class="id" type="var">t'</span> <span class="id" type="var">u</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#cbv">cbv</a></span> <span class="id" type="var">t</span> <span class="id" type="var">t'</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#cbv">cbv</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> <span class="id" type="var">t</span> <span class="id" type="var">u</span>) (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> <span class="id" type="var">t'</span> <span class="id" type="var">u</span>)<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.cbv_right">cbv_right</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">t</span> <span class="id" type="var">u</span> <span class="id" type="var">u'</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.value">value</a></span> <span class="id" type="var">t</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#cbv">cbv</a></span> <span class="id" type="var">u</span> <span class="id" type="var">u'</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#cbv">cbv</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> <span class="id" type="var">t</span> <span class="id" type="var">u</span>) (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> <span class="id" type="var">t</span> <span class="id" type="var">u'</span>)<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.cbv_beta">cbv_beta</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">x</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>) (<span class="id" type="var">T</span> : <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#STLCImpl.ty">ty</a></span>) (<span class="id" type="var">t</span> <span class="id" type="var">u</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.value">value</a></span> <span class="id" type="var">u</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#cbv">cbv</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.lam">lam</a></span> <span class="id" type="var">x</span> <span class="id" type="var">T</span> <span class="id" type="var">t</span>) <span class="id" type="var">u</span>) (<span class="id" type="var">t</span> ^[<span class="id" type="var">x</span> := <span class="id" type="var">u</span>]).<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.values_are_normal_forms">values_are_normal_forms</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">t</span> <span class="id" type="var">t'</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>), <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.value">value</a></span> <span class="id" type="var">t</span> -&gt; ~ <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.cbv">cbv</a></span> <span class="id" type="var">t</span> <span class="id" type="var">t'</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.cbv_deterministic">cbv_deterministic</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> (<span class="id" type="var">t</span> <span class="id" type="var">t'</span> <span class="id" type="var">t''</span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span>),<br/>
+&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.cbv">cbv</a></span> <span class="id" type="var">t</span> <span class="id" type="var">t'</span> -&gt; <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.cbv">cbv</a></span> <span class="id" type="var">t</span> <span class="id" type="var">t''</span> -&gt; <span class="id" type="var">t'</span> = <span class="id" type="var">t''</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.value_equivariant">value_equivariant</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span> <span class="id" type="var">y</span> <span class="id" type="var">t</span>,<br/>
+&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.value">value</a></span> <span class="id" type="var">t</span> -&gt; <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.value">value</a></span> (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> [(<span class="id" type="var">x</span>, <span class="id" type="var">y</span>)] <span class="id" type="var">t</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.cbv_equivariant">cbv_equivariant</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span> <span class="id" type="var">y</span> <span class="id" type="var">t</span> <span class="id" type="var">t'</span>,<br/>
+&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.cbv">cbv</a></span> <span class="id" type="var">t</span> <span class="id" type="var">t'</span> -&gt; <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.cbv">cbv</a></span> (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> [(<span class="id" type="var">x</span>, <span class="id" type="var">y</span>)] <span class="id" type="var">t</span>) (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> [(<span class="id" type="var">x</span>, <span class="id" type="var">y</span>)] <span class="id" type="var">t'</span>).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab63"></a><h2 class="section">Size function</h2>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Inductive</span> <span class="id" type="inductive"><a name="UseSTLC.size">size</a></span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span> -&gt; <span class="id" type="inductive"><a class="idref" href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span> -&gt; <span class="id" type="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.size_unit">size_unit</a></span> : <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#size">size</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.dot">dot</a></span> 1<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.size_var">size_var</a></span> : <span class="id" type="keyword">forall</span> <span class="id" type="var">x</span>, <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#size">size</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">x</span>) 1<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.size_app">size_app</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">t</span> <span class="id" type="var">u</span> <span class="id" type="var">m</span> <span class="id" type="var">n</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#size">size</a></span> <span class="id" type="var">t</span> <span class="id" type="var">m</span> -&gt; <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#size">size</a></span> <span class="id" type="var">u</span> <span class="id" type="var">n</span> -&gt; <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#size">size</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> <span class="id" type="var">t</span> <span class="id" type="var">u</span>) (<span class="id" type="var">m</span> + <span class="id" type="var">n</span> + 1)<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.size_lam">size_lam</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span> <span class="id" type="var">T</span> <span class="id" type="var">t</span> <span class="id" type="var">m</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#size">size</a></span> <span class="id" type="var">t</span> <span class="id" type="var">m</span> -&gt; <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#size">size</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.lam">lam</a></span> <span class="id" type="var">x</span> <span class="id" type="var">T</span> <span class="id" type="var">t</span>) (<span class="id" type="var">m</span> + 1).<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.size_total">size_total</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">t</span>, {<span class="id" type="var">n</span> : <span class="id" type="inductive"><a class="idref" href="http://coq.inria.fr/library/Coq.Init.Datatypes.html#nat">nat</a></span> | <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.size">size</a></span> <span class="id" type="var">t</span> <span class="id" type="var">n</span>}.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab64"></a><h2 class="section">Compiling to SK-combinators</h2>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Inductive</span> <span class="id" type="inductive"><a name="UseSTLC.SKtm">SKtm</a></span> : <span class="id" type="keyword">Set</span> :=<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.SKvar">SKvar</a></span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span> -&gt; <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKtm">SKtm</a></span><br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.S">S</a></span> : <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKtm">SKtm</a></span><br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.K">K</a></span> : <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKtm">SKtm</a></span><br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.SKapp">SKapp</a></span> : <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKtm">SKtm</a></span> -&gt; <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKtm">SKtm</a></span> -&gt; <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKtm">SKtm</a></span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Fixpoint</span> <span class="id" type="definition"><a name="UseSTLC.SKperm">SKperm</a></span> (<span class="id" type="var">p</span> : <span class="id" type="axiom"><a class="idref" href="Permutations.html#PermutationsImplementation.permt">permt</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span>) (<span class="id" type="var">s</span> : <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.SKtm">SKtm</a></span>) {<span class="id" type="keyword">struct</span> <span class="id" type="var">s</span>} : <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.SKtm">SKtm</a></span> :=<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="var">s</span> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKvar">SKvar</a></span> <span class="id" type="var">z</span> =&gt; <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKvar">SKvar</a></span> (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#STLCImpl.tmvarP">tmvarP</a></span> <span class="id" type="var">p</span> <span class="id" type="var">z</span>)<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.S">S</a></span> =&gt; <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.S">S</a></span><br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.K">K</a></span> =&gt; <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.K">K</a></span><br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp">SKapp</a></span> <span class="id" type="var">q</span> <span class="id" type="var">r</span> =&gt; <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp">SKapp</a></span> (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#SKperm">SKperm</a></span> <span class="id" type="var">p</span> <span class="id" type="var">q</span>) (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#SKperm">SKperm</a></span> <span class="id" type="var">p</span> <span class="id" type="var">r</span>)<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <span class="id" type="definition"><a name="UseSTLC.SKP">SKP</a></span> : <span class="id" type="record"><a class="idref" href="Psets.html#PsetT">PsetT</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span> <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.SKtm">SKtm</a></span>.<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Fixpoint</span> <span class="id" type="definition"><a name="UseSTLC.SKfvar">SKfvar</a></span> (<span class="id" type="var">s</span> : <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.SKtm">SKtm</a></span>) : <span class="id" type="projection"><a class="idref" href="Atoms.html#aset">aset</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span> :=<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="var">s</span> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKvar">SKvar</a></span> <span class="id" type="var">x</span> =&gt; <span class="id" type="definition"><a class="idref" href="ExtFset.html#singleton">singleton</a></span> <span class="id" type="var">x</span><br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.S">S</a></span> =&gt; <span class="id" type="projection"><a class="idref" href="ExtFset.html#empty">empty</a></span><br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.K">K</a></span> =&gt; <span class="id" type="projection"><a class="idref" href="ExtFset.html#empty">empty</a></span><br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp">SKapp</a></span> <span class="id" type="var">q</span> <span class="id" type="var">r</span> =&gt; <span class="id" type="projection"><a class="idref" href="ExtFset.html#union">union</a></span> (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#SKfvar">SKfvar</a></span> <span class="id" type="var">q</span>) (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#SKfvar">SKfvar</a></span> <span class="id" type="var">r</span>)<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Inductive</span> <span class="id" type="inductive"><a name="UseSTLC.SKabs">SKabs</a></span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmvar">tmvar</a></span> -&gt; <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.SKtm">SKtm</a></span> -&gt; <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.SKtm">SKtm</a></span> -&gt; <span class="id" type="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.SKabs_I">SKabs_I</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKabs">SKabs</a></span> <span class="id" type="var">x</span> (<span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKvar">SKvar</a></span> <span class="id" type="var">x</span>) (<span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp">SKapp</a></span> (<span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp">SKapp</a></span> <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.S">S</a></span> <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.K">K</a></span>) <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.K">K</a></span>)<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.SKabs_K">SKabs_K</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span> <span class="id" type="var">s</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~ <span class="id" type="projection"><a class="idref" href="ExtFset.html#In">In</a></span> <span class="id" type="var">x</span> (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKfvar">SKfvar</a></span> <span class="id" type="var">s</span>) -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKabs">SKabs</a></span> <span class="id" type="var">x</span> <span class="id" type="var">s</span> (<span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp">SKapp</a></span> <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.K">K</a></span> <span class="id" type="var">s</span>)<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.SKabs_S">SKabs_S</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span> <span class="id" type="var">r</span> <span class="id" type="var">s</span> <span class="id" type="var">r'</span> <span class="id" type="var">s'</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKabs">SKabs</a></span> <span class="id" type="var">x</span> <span class="id" type="var">r</span> <span class="id" type="var">r'</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKabs">SKabs</a></span> <span class="id" type="var">x</span> <span class="id" type="var">s</span> <span class="id" type="var">s'</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKabs">SKabs</a></span> <span class="id" type="var">x</span> (<span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp">SKapp</a></span> <span class="id" type="var">r</span> <span class="id" type="var">s</span>) (<span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp">SKapp</a></span> (<span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp">SKapp</a></span> <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.S">S</a></span> <span class="id" type="var">r'</span>) <span class="id" type="var">s'</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Inductive</span> <span class="id" type="inductive"><a name="UseSTLC.SKcomp">SKcomp</a></span> : <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tm">tm</a></span> -&gt; <span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.SKtm">SKtm</a></span> -&gt; <span class="id" type="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.SKcomp_var">SKcomp_var</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKcomp">SKcomp</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.var">var</a></span> <span class="id" type="var">x</span>) (<span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKvar">SKvar</a></span> <span class="id" type="var">x</span>)<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.SKcomp_app">SKcomp_app</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">t</span> <span class="id" type="var">u</span> <span class="id" type="var">q</span> <span class="id" type="var">r</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKcomp">SKcomp</a></span> <span class="id" type="var">t</span> <span class="id" type="var">q</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKcomp">SKcomp</a></span> <span class="id" type="var">u</span> <span class="id" type="var">r</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKcomp">SKcomp</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.app">app</a></span> <span class="id" type="var">t</span> <span class="id" type="var">u</span>) (<span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp">SKapp</a></span> <span class="id" type="var">q</span> <span class="id" type="var">r</span>)<br/>
+&nbsp;&nbsp;| <span class="id" type="constructor"><a name="UseSTLC.SKcomp_lam">SKcomp_lam</a></span> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">x</span> <span class="id" type="var">T</span> <span class="id" type="var">t</span> <span class="id" type="var">s</span> <span class="id" type="var">s'</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKcomp">SKcomp</a></span> <span class="id" type="var">t</span> <span class="id" type="var">s</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.SKabs">SKabs</a></span> <span class="id" type="var">x</span> <span class="id" type="var">s</span> <span class="id" type="var">s'</span> -&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#SKcomp">SKcomp</a></span> (<span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.lam">lam</a></span> <span class="id" type="var">x</span> <span class="id" type="var">T</span> <span class="id" type="var">t</span>) <span class="id" type="var">s'</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.SKvar_equivariant">SKvar_equivariant</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">p</span> <span class="id" type="var">z</span>,<br/>
+&nbsp;&nbsp;<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKP">SKP</a></span> <span class="id" type="var">p</span> (<span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKvar">SKvar</a></span> <span class="id" type="var">z</span>) = <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKvar">SKvar</a></span> (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#STLCImpl.tmvarP">tmvarP</a></span> <span class="id" type="var">p</span> <span class="id" type="var">z</span>).<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="var">Rewrite</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.SKvar_equivariant">SKvar_equivariant</a></span> : <span class="id" type="var">stlc</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.S_equivariant">S_equivariant</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">p</span>,<br/>
+&nbsp;&nbsp;<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKP">SKP</a></span> <span class="id" type="var">p</span> <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.S">S</a></span> = <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.S">S</a></span>.<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="var">Rewrite</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.S_equivariant">S_equivariant</a></span> : <span class="id" type="var">stlc</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.K_equivariant">K_equivariant</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">p</span>,<br/>
+&nbsp;&nbsp;<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKP">SKP</a></span> <span class="id" type="var">p</span> <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.K">K</a></span> = <span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.K">K</a></span>.<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="var">Rewrite</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.K_equivariant">K_equivariant</a></span> : <span class="id" type="var">stlc</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.SKapp_equivariant">SKapp_equivariant</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">p</span> <span class="id" type="var">r</span> <span class="id" type="var">s</span>,<br/>
+&nbsp;&nbsp;<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKP">SKP</a></span> <span class="id" type="var">p</span> (<span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp">SKapp</a></span> <span class="id" type="var">r</span> <span class="id" type="var">s</span>) =<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="constructor"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp">SKapp</a></span> (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKP">SKP</a></span> <span class="id" type="var">p</span> <span class="id" type="var">r</span>) (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKP">SKP</a></span> <span class="id" type="var">p</span> <span class="id" type="var">s</span>).<br/>
+<span class="id" type="keyword">Hint</span> <span class="id" type="var">Rewrite</span> <span class="id" type="lemma"><a class="idref" href="UseSTLC.html#UseSTLC.SKapp_equivariant">SKapp_equivariant</a></span> : <span class="id" type="var">stlc</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.SKfvar_equivariant">SKfvar_equivariant</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">p</span> <span class="id" type="var">z</span> <span class="id" type="var">s</span>,<br/>
+&nbsp;&nbsp;<span class="id" type="projection"><a class="idref" href="ExtFset.html#In">In</a></span> <span class="id" type="var">z</span> (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKfvar">SKfvar</a></span> <span class="id" type="var">s</span>) -&gt;<br/>
+&nbsp;&nbsp;<span class="id" type="projection"><a class="idref" href="ExtFset.html#In">In</a></span> (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#STLCImpl.tmvarP">tmvarP</a></span> <span class="id" type="var">p</span> <span class="id" type="var">z</span>) (<span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKfvar">SKfvar</a></span> (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKP">SKP</a></span> <span class="id" type="var">p</span> <span class="id" type="var">s</span>)).<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.SKabs_equivariant">SKabs_equivariant</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">p</span> <span class="id" type="var">z</span> <span class="id" type="var">s</span> <span class="id" type="var">s'</span>,<br/>
+&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.SKabs">SKabs</a></span> <span class="id" type="var">z</span> <span class="id" type="var">s</span> <span class="id" type="var">s'</span> -&gt;<br/>
+&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.SKabs">SKabs</a></span> (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#STLCImpl.tmvarP">tmvarP</a></span> <span class="id" type="var">p</span> <span class="id" type="var">z</span>) (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKP">SKP</a></span> <span class="id" type="var">p</span> <span class="id" type="var">s</span>) (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKP">SKP</a></span> <span class="id" type="var">p</span> <span class="id" type="var">s'</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <span class="id" type="lemma"><a name="UseSTLC.SKcomp_equivariant">SKcomp_equivariant</a></span> :<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">forall</span> <span class="id" type="var">p</span> <span class="id" type="var">t</span> <span class="id" type="var">s</span>,<br/>
+&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.SKcomp">SKcomp</a></span> <span class="id" type="var">t</span> <span class="id" type="var">s</span> -&gt;<br/>
+&nbsp;&nbsp;<span class="id" type="inductive"><a class="idref" href="UseSTLC.html#UseSTLC.SKcomp">SKcomp</a></span> (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="axiom"><a class="idref" href="UseSTLC.html#STLCImpl.tmP">tmP</a></span> <span class="id" type="var">p</span> <span class="id" type="var">t</span>) (<span class="id" type="projection"><a class="idref" href="Psets.html#perm">perm</a></span> <span class="id" type="definition"><a class="idref" href="UseSTLC.html#UseSTLC.SKP">SKP</a></span> <span class="id" type="var">p</span> <span class="id" type="var">s</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">End</span> <span class="id" type="module"><a class="idref" href="UseSTLC.html#UseSTLC">UseSTLC</a></span>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
