@@ -2,6 +2,7 @@
 *.aux
 *.bbl
 *.blg
+*.out
 content/publications.html
 content/talks.html
 content/tutorials.html
@@ -9,3 +10,5 @@ content/abstracts.html
 temp/*
 tools/bib/abstracts.html
 tools/bib/publications.html
+cv/top.pdf
+cv/temp/*
