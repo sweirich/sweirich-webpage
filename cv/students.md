@@ -34,7 +34,7 @@ Students
 
 ## Visiting PhD student supervison
 
-  - Antoine Voizard, INRIA. Mar-Aug 2014.
+  - Antoine Voizard, École Normale Supérieure, Paris. Mar-Aug 2014.
   - Steven Keuchel, University of Ghent, Sep 2013-Mar 2014.
   - Arthur Charguéraud (co-supervised with Benjamin Pierce),  INRIA, 2007.
 
