@@ -1,0 +1,11 @@
+*.log
+*.aux
+*.bbl
+*.blg
+content/publications.html
+content/talks.html
+content/tutorials.html
+content/abstracts.html
+temp/*
+tools/bib/abstracts.html
+tools/bib/publications.html
