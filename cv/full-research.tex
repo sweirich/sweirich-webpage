@@ -1,0 +1,381 @@
+\documentclass[]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \usepackage{fontspec}
+  \ifxetex
+    \usepackage{xltxtra,xunicode}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% Redefine labelwidth for lists; otherwise, the enumerate package will cause
+% markers to extend beyond the left margin.
+\makeatletter\AtBeginDocument{%
+  \renewcommand{\@listi}
+    {\setlength{\labelwidth}{4em}}
+}\makeatother
+\usepackage{enumerate}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={},
+            pdftitle={},
+            colorlinks=true,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Research Statement}
+
+\subsection{Motivation}
+
+The goal of my research is to enhance the reliability, maintainability,
+and security of software systems through programming language
+technology. The design of programming languages strongly determines the
+properties of programs written in them. A good language will promote the
+design of trustworthy and robust software and discourage the creation of
+insecure and inflexible code.
+
+In pursuit of this goal, my research focuses on the design of
+\emph{statically-typed programming languages.} Static type systems are a
+popular, cost-effective form of lightweight program verification. They
+provide a tractable and modular way for programmers to express
+properties that can be mechanically checked by the compiler, thereby
+ruling out a wide variety of common memory manipulation and control-flow
+errors. For example, systems written with type-safe languages cannot be
+compromised by buffer overruns if all array accesses are statically
+proven safe. In general, the value of a static type system rests in its
+ability to express the invariants and consistency properties of software
+systems.
+
+However, the static type systems of modern programming languages are
+limited in their expressiveness. Some programming idioms must be ruled
+out simply because they cannot be shown to be sound by a particular type
+system. My research explores novel methods to bring more expressive
+types systems to users: enhancing the capabilities of existing type
+systems to reason about run-time structure and behavior, reconciling the
+features of expressive-but-theoretical type systems with existing
+languages, partially automating the process of type system design so
+that we may be more confident in the soundness of more complicated type
+systems, and incorporating programming logics into the design of
+practical type systems so that application-specific properties may be
+expressed.
+
+Below, I describe this research in more detail as well as my future
+directions.
+
+\subsection{Semantics and Design of Dependently-typed Languages}
+
+While extremely helpful for building robust software, the type systems
+used in practice verify only relatively weak safety properties; they
+fall far short of what is needed to do full verification of program
+correctness. This inexpressiveness is partly by design---full program
+verification is potentially expensive, not fully automatable, and
+probably unwarranted for non-safety-critical software. Nevertheless,
+there are many situations in which the ability to specify program
+properties richer than current type systems permit would be useful. In
+fact, there is a spectrum of possibilities between simple type safety
+and full program verification.
+
+Dependent type systems extend the type systems of current practice to
+allow incremental, lightweight specifications. They work by allowing
+types that are used as specifications to depend on values computed by
+program expressions. However, even though the theory behind dependent
+type systems has been refined over several decades, such type systems
+have been little used in practical programming languages.
+
+The \textbf{Trellys project}, a joint project between my group at Penn,
+and groups at the University of Iowa and Portland State University,
+investigated the design and implementation of a programming language
+with dependent types, called Trellys. Trellys is the only research group
+addressing issues in the design of a call-by-value, full spectrum
+dependently-typed language.
+
+\begin{enumerate}[1.]
+\item
+  An investigation of the semantics of equality in a call-by-value
+  language with nontermination and dependent-types (Casinghino, Sjöberg,
+  and Weirich 2014,,,).
+\item
+  Practical considerations for a dependently-typed language, including
+  type inference {[}@congruence{]} and computational irrelevance
+  (Sjöberg et al. 2012).
+\end{enumerate}
+
+I've also work to build the community of researchers that study the
+interaction between dependent types and functional programming. In
+particular, I organized two meetings: the DTP workshop co-located with
+ICFP 2013, and the Shonan Seminar 007 in 2011.
+
+This work has been recognized through invitations for keynote addresses
+(PLMW 2014, RTA 2011, MFPS 2011), lectures at the OPLSS summer school
+(2014 and 2013), and discussion sessions at the PLPV workshop (2011 and
+2010).
+
+\subsection{Extending the Haskell Type System}
+
+The Haskell programming language has been dramatically growing in
+popularity in the past five years. Part of this growth can be attributed
+to its ``incredibly expressive static type system.''
+
+Haskell has one of the world's most advanced type systems. Because of
+the advantage that this type system brings
+
+For the past ten years, I have been working with Simon Peyton Jones,
+Dimitrios Vytiniotis and many others on extensions to the type system of
+the Glasgow Haskell Compiler. In that space, I've contributed to several
+extensions to both the source and core languages, and Roles.
+
+\begin{enumerate}[1.]
+\item
+  Language extensions for dependently-typed programming in GHC
+\end{enumerate}
+
+Generalized Algebraic Datatypes (S. L. P. Jones et al. 2006), Datatype
+Promotion (Weirich, Hsu, and Eisenberg 2013,), Type families(Eisenberg
+et al. 2014).
+
+\begin{enumerate}[1.]
+\setcounter{enumi}{1}
+\item
+  Haskell libraries The singletons library (used by the units library
+  for physical simulation). The RepLib library (used by the Unbound
+  library for modeling variable binding).
+\item
+  Modularity and notions of type equality {[}@coercions,@roles{]}
+\item
+  First-class polymorphism {[}{]}
+\end{enumerate}
+
+This work has been recognized through invitations for keynote addresses
+(ICFP 2014, FLOPS 2012) and chairing of ICFP 2010 and Haskell Symposium
+2009.
+
+Member of IFIP WG 2.8
+
+** Mechanizing programming language metatheory
+
+Because program security guarantees are often based on static type
+checking, confidence in the soundness of static type systems is
+essential. Yet, as static type systems become more and more expressive,
+such meta-theoretic results become more complex. Typically proofs about
+the properties of programming languages are done by hand, despite the
+length and complexity of these results for modern languages. These
+proofs are not difficult---they use standard, well-understood
+techniques---but they are often overwhelming in the details.
+
+Therefore, I have been working to make the use of automated proof
+assistants more commonplace in the formalization of programming language
+metatheory. This project has two components: developing community
+infrastructure (education materials, workshops, libraries, electronic
+fora) to get researchers to use existing tools, and developing new
+technologies for programming language representation, specifically, the
+treatment of binding constructs, to make this process easier.
+
+I have been working on this project in collaboration with Benjamin
+Pierce and Steve Zdancewic at the University of Pennsylvania as well as
+Peter Sewell at Cambridge University and Randy Pollack at the University
+of Edinburgh and a number of Penn students. This project was supported
+by the NSF CISE Computing Research Infrastructure program and the DARPA
+Computer Science Study Group.
+
+\emph{*} POPLmark challenge and educational infrastructure
+
+In 2005, the POPLmark team issued the POPLmark challenge: a set of
+design problems to both assess and advance the current best practices in
+machine-assisted support for the formalization of programming languages.
+This challenge was met with enthusiasm and spurred vigorous debate.
+Benjamin Pierce and I co-edited a \href{jar}{journal special issue}
+devoted to descriptions of the POPLmark challenge. I was invited to give
+retrospective talks at Cambridge University (Dec 2009) and LFMTP 2012.
+
+Based on this initial success, I organized and chaired the 2006 Workshop
+on Mechanizing Metatheory, which was held in conjunction with ICFP, and
+attended by over fifty participants. This workshop had additional
+meetings in 2007, 2008, 2009, and 2010. Furthermore, we organized a
+tutorial on using Coq for programming language metatheory at POPL 2008
+and I repeated this tutorial at OPLSS 2008.
+
+\emph{*} Binding representations and tools
+
+LNgen,
+
+\begin{itemize}
+\item
+  Future plans
+\end{itemize}
+
+\subsection{TRELLYS}
+
+The TRELLYS project seeks to design a dependently-typed programming
+language that supports both programming and theorem proving in the same
+framework. With \href{http://homepage.cs.uiowa.edu/\%7Eastump/}{Aaron
+Stump} (Iowa State) and \href{http://web.cecs.pdx.edu/\%7Esheard/}{Tim
+Sheard} (Portland State), we have been discovering what it means for
+programs and proofs to interact. See our recent
+\href{papers/modal.pdf}{paper submission}, as well as papers in
+\href{http://www.seas.upenn.edu/\%7Esweirich/papers/msfp12log.pdf}{MSFP}
+\href{http://www.seas.upenn.edu/\%7Esweirich/papers/msfp12prog.pdf}{2012}
+and
+\href{http://www.seas.upenn.edu/\%7Esweirich/papers/plpv2012genreccbv.pdf}{PLPV
+2012}. Also, slides from \href{talks/TrellysPLPV.pdf}{PLPV 2010} and
+\href{talks/tlca-2011.pdf}{RDP 2011}, give an overview of our work.
+
+\subsection{Dependently-Typed Haskell}
+
+Working with
+\href{http://research.microsoft.com/en-us/people/simonpj/}{Simon Peyton
+Jones} and
+\href{http://research.microsoft.com/en-us/people/dimitris/}{Dimitrios
+Vytiniotis} at MSR Cambridge, Penn students Brent Yorgey, Richard
+Eisenberg and Justin Hsu and I have been working to extend the type
+system of Haskell with better support for dependently-typed programing.
+\\ - \href{papers/nokinds-extended.pdf}{Down with kinds: adding
+dependent heterogenous equality to FC} (in submission) extends GHC's
+core language with support for kind equalities.\\-
+\href{http://www.cis.upenn.edu/\%7Eeir/papers/2012/singletons/paper.pdf}{Dependently-typed
+programming with singletons} (Haskell Symposium 2012) discusses the
+\href{http://hackage.haskell.org/package/singletons}{singletons} library
+that automatically generates infrastructure for dependently-typed
+programming.\\- \href{papers/tldi12.pdf}{Giving Haskell a Promotion}
+(TLDI 2012, with \href{http://dreixel.net/}{Jos Pedro Maglhaes} and
+\href{http://gallium.inria.fr/\%7Ejcretin/}{Julien Cretin}) adds kind
+polymorphism and datatype promotion to GHC.
+
+\subsection{Type-directed programming}
+
+Defining functions via type information cuts down on boilerplate
+programming as many operations may be defined once, for all types of
+data. With my student \href{http://www.cis.upenn.edu/\%7Ebyorgey/}{Brent
+Yorgey} and collaborator \href{http://web.cecs.pdx.edu/\%7Esheard/}{Tim
+Sheard} (Portland State), I developed
+\href{http://hackage.haskell.org/package/unbound/}{Unbound}, a
+\href{http://www.haskell.org/ghc/}{Haskell} library for declaratively
+specifying binding structure and automatically generating free variable,
+alpha-equivalence and substitution functions. This library is built
+using \href{http://hackage.haskell.org/package/RepLib/}{RepLib}, an
+expressive library that I developed for generic programming in Haskell.
+My student \href{http://www.seas.upenn.edu/\%7Eccasin/}{Chris
+Casinghino}and I explored
+\href{http://www.seas.upenn.edu/\%7Esweirich/papers/aritygen.pdf}{arity
+and type generic programming in Agda},
+\href{http://www.seas.upenn.edu/\%7Esweirich/ssgip/}{lecture notes} from
+the\href{http://www.comlab.ox.ac.uk/projects/gip/school.html}{Spring
+School on Generic and Indexed Programming} provide a gentle
+introduction.\\
+
+\subsection{Machine assistance for programming languages research}
+
+Designing and proving properties about programming languages is hard,
+but the proofs themselves are straightforward once you know how to set
+them up. At the same time, it is all too easy to miss the one little
+case that ruins the whole ``proof''. Modern proof assistants, such as
+\href{http://www.cs.cmu.edu/\%7Etwelf/}{Twelf},
+\href{http://coq.inria.fr/}{Coq}, and
+\href{http://www.cl.cam.ac.uk/Research/HVG/Isabelle/}{Isabelle} are good
+at expressing this sort of reasoning, but it is hard to know where to
+start. I've been working with the
+\href{http://www.cis.upenn.edu/proj/plclub/mmm/}{POPLmark team} to issue
+\href{http://www.cis.upenn.edu/proj/plclub/mmm/}{challenge problems},
+organize a \href{http://www.seas.upenn.edu/\%7Esweirich/wmm/}{workshop},
+explore
+\href{http://www.seas.upenn.edu/\%7Esweirich/papers/nominal-coq/}{techniques
+for reasoning about binding}, and develop
+\href{http://www.seas.upenn.edu/\%7Esweirich/cis700/f06/}{educational
+materials} about mechanizing programming language metatheory. Brian
+Aydemir developed a
+\href{http://www.cis.upenn.edu/\%7Eplclub/metalib/}{library} for
+programming language metatheory (used in the Penn tutorials) and
+\href{http://www.cis.upenn.edu/\%7Ebaydemir/papers/lngen/}{LNgen}, a
+tool for automatically proving properties about binding.\\ Type
+inference for advanced type systems
+----------------------------------------
+
+Advanced type system features, such as
+\href{papers/putting.pdf}{first-class polymorphism},
+\href{http://www.seas.upenn.edu/\%7Esweirich/papers/icfp08.pdf}{impredicative
+polymorphism} and
+\href{http://www.seas.upenn.edu/\%7Esweirich/papers/gadt.pdf}{generalized
+algebraic datatypes}, do not interact well with the standard algorithms
+for type inference in modern typed functional languages, such as ML and
+Haskell.~ \href{http://research.microsoft.com/\%7Esimonpj/}{Simon Peyton
+Jones}, my students Dimitrios Vytiniotis, Geoffrey Washburn and I have
+incorporated ideas from Local Type Inference to extend the
+\href{http://www.haskell.org/ghc/}{Glasgow Haskell Compiler} with
+support for these features. \\ Combinatorial Species
+---------------------
+
+\section{References}
+
+Casinghino, Chris, Vilhelm Sjöberg, and Stephanie Weirich. 2014.
+``Combining Proofs and Programs in a Dependently Typed Language.'' In
+\emph{POPL 2014: 41st ACM SIGPLAN-SIGACT Symposium on Principles of
+Programming Languages}, 33--45. San Diego, CA, USA.
+
+Eisenberg, Richard A., Dimitrios Vytiniotis, Simon Peyton Jones, and
+Stephanie Weirich. 2014. ``Closed type families with overlapping
+equations.'' In \emph{POPL 2014: 41st ACM SIGPLAN-SIGACT Symposium on
+Principles of Programming Languages}, 671--683. San Diego, CA, USA.
+
+Jia, Limin, Jianzhou Zhao, Vilhem Sjöberg, and Stephanie Weirich. 2010.
+``Dependent types and Program Equivalence.'' In \emph{37th ACM
+SIGACT-SIGPLAN Symposium on Principles of Programming Languages (POPL)},
+275--286. Madrid, Spain.
+
+Jones, Simon L. Peyton, Dimitrios Vytiniotis, Stephanie Weirich, and
+Geoffrey Washburn. 2006. ``Simple unification-based type inference for
+GADTs.'' In \emph{International Conference on Functional Programming
+(ICFP)}, 50--61. Portland, OR, USA.
+
+Kimmel, Garrin, Aaron Stump, Harley D. Eades, Peng Fu, Tim Sheard,
+Stephanie Weirich, Chris Casinghino, Vilhelm Sjöberg, Nathin Collins,
+and Ki Yunh Anh. 2013. ``Equational reasoning about programs with
+general recursion and call-by-value semantics.'' \emph{Progress in
+Informatics} (mar): 19--48.
+\href{http://www.nii.ac.jp/pi/}{http://www.nii.ac.jp/pi/}.
+
+Sjöberg, Vilhelm, Chris Casinghino, Ki Yung Ahn, Nathan Collins, Harley
+D. Eades III, Peng Fu, Garrin Kimmell, Tim Sheard, Aaron Stump, and
+Stephanie Weirich. 2012. ``Irrelevance, Heterogenous Equality, and
+Call-by-value Dependent Type Systems.'' In \emph{Fourth workshop on
+Mathematically Structured Functional Programming (MSFP '12)}, 112--162.
+
+Stump, Aaron, Vilhelm Sjöberg, and Stephanie Weirich. 2010.
+``Termination Casts: A Flexible Approach to Termination with General
+Recursion.'' In \emph{Workshop on Partiality and Recursion in
+Interactive Theorem Provers}, 76--93. Edinburgh, Scotland.
+
+Weirich, Stephanie, Justin Hsu, and Richard A. Eisenberg. 2013. ``System
+FC with explicit kind equality.'' In \emph{Proceedings of The 18th ACM
+SIGPLAN International Conference on Functional Programming}, 275--286.
+Boston, MA.
+
+Yorgey, Brent A., Stephanie Weirich, Julien Cretin, Simon Peyton Jones,
+Dimitrios Vytiniotis, and José Pedro Magalha\textbackslash{} es. 2012.
+``Giving Haskell A Promotion.'' In \emph{Seventh ACM SIGPLAN Workshop on
+Types in Language Design and Implementation (TLDI '12)}, 53--66.
+
+\end{document}
