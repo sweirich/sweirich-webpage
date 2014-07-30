@@ -1,4 +1,4 @@
-all: pub talks tutorials cv
+all: pub talks tutorials 
 
 pub: ../bibtex/weirich.bib
 	(cd ../tools/bib/; ./makehtml)
@@ -13,5 +13,5 @@ cv: ../cv/top.pdf
 	(cd ../cv/; make)
 	cp ../cv/top.pdf weirich-cv.pdf
 
-export: pub talks tutorials cv
+export: pub talks tutorials 
 	rsync -av . sweirich@eniac.seas.upenn.edu:~/public_html

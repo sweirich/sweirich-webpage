@@ -16,7 +16,7 @@ bib: $(SOURCEBIB)
 	bib2bib -s '$$date' -r -c '$$type = "TECHREPORT"' $(SOURCEBIB) > temp/techreport.bib
 
 clean:
-	rm -rf temp/
+	rm -rf temp/ 
 	rm *.bbl *.aux *.log *.blg *.out
 
 # notes:
@@ -35,3 +35,9 @@ weirich-cv.pdf: bib
 	xelatex top
 	xelatex top
 	echo $(SCOURCEMD)
+
+weirich-research.pdf: research.tex $(SOURCEBIB)
+	xelatex research
+	bibtex research
+	xelatex research
+	mv research.pdf weirich-research.pdf
