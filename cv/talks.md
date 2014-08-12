@@ -5,6 +5,9 @@ Invited Talks and Technical Presentations
   Keynote address, International Conference on Functional 
   Programming (ICFP). September 2014 (Forthcoming)
 
+1. [*Programming Up-to-Congruence, again.*](talks/wg28-congruence-again.pdf)   
+	Estes Park, Colorado, August 12, 2014
+
 1. [*Combining Proofs and Programs.*](talks/paris14.pdf)   
   Certification of High-level and Low-level programs. 
   Paris, France, July 7, 2014 
