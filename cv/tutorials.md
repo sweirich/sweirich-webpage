@@ -6,11 +6,6 @@ Tutorials
   and Verification.
   Eugene OR, USA. June 2014
 
-* [*Why You Should Care About Dependent Types.*](http://plmw2014.inria.fr/talks/weirich-plmw14.pdf)    
-  Programming Languages Mentoring Workshop. 
-  San Diego, CA, January 21, 2014  
-
-
 * [*Designing Dependently-Typed Programming Languages.*](https://www.cs.uoregon.edu/research/summerschool/summer13/curriculum.html)   
   Oregon Programming Languages Summer School: Types, Logic, 
   and Verification. Eugene OR, USA. July 2013  

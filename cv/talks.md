@@ -1,16 +1,20 @@
 Invited Talks and Technical Presentations
 =========================================
 
-1. *Depending on Types.*    
+1. [*Depending on Types.*](talks/icfp14.pdf)    
   Keynote address, International Conference on Functional 
-  Programming (ICFP). September 2014 (Forthcoming)
+  Programming (ICFP). Gothenburg, Sweden, September 3, 2014 
 
-1. [*Programming Up-to-Congruence, again.*](talks/wg28-congruence-again.pdf)   
+1. [*Programming Up-to Congruence, again.*](talks/wg28-congruence-again.pdf)   
 	Estes Park, Colorado, August 12, 2014
 
 1. [*Combining Proofs and Programs.*](talks/paris14.pdf)   
   Certification of High-level and Low-level programs. 
   Paris, France, July 7, 2014 
+
+1. [*Why You Should Care About Dependent Types.*](http://plmw2014.inria.fr/talks/weirich-plmw14.pdf)    
+  Programming Languages Mentoring Workshop. 
+  San Diego, CA, January 21, 2014  
 
 1. [*Programming Up-to Congruence.*](talks/wg28-congruence.pdf)  
   WG 2.8, Aussios, France, October 14, 2013
