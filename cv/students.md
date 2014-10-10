@@ -3,9 +3,11 @@ Students
 
 ## Dissertation supervision
   - Richard Eisenberg, anticipated graduation date: 2015.
-  - Brent Yorgey, anticipated graduation date: Fall 2014.
   - Vilhelm Sjöberg, anticipated graduation date: Fall 2014.
-  - Chris Casinghino, anticipated graduation date: August 2014.
+  - Brent Yorgey, anticipated graduation date: Fall 2014.
+  - Chris Casinghino, December 2014.   
+   *Combining Proofs and Programs*    
+   Current position: Draper Laboratory.
   - Dimitrios Vytiniotis, August 2008.  
    [*Practical type inference for first-class polymorphism*](http://repository.upenn.edu/dissertations/AAI3328671/)  
    Current position: Microsoft Research, Cambridge UK.
@@ -15,7 +17,7 @@ Students
 
 ## Dissertation committee member
   - Peter Michael Osera, Penn, proposal April 2014.
-  - Daniel Wagner, Penn, June 2014 (expected).
+  - Daniel Wagner, Penn, June 2014.
   - Harley Eades III, University of Iowa, May 2014.
   - Julien Cretin, INRIA / University Paris 7, January 2014. 
   - Michael Greenberg, Penn (chair), December 2013.

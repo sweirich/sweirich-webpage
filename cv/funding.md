@@ -44,7 +44,7 @@ Funding
    Pfenning (PI), Harper, Crary. 
    NSF $1 million total, 2007-2011.
 
-11. *A Practical Dependently-Typed Functional Programming Language* 
+11. *A Practical Dependently-Typed Functional Programming Language*   
    Weirich (PI). NSF, $200,000. 2007-2009.
 
 12. *Computer Science Study Panel, Phase I*   
@@ -54,5 +54,5 @@ Funding
   Weirich (PI), Pierce, Zdancewic. NSF $200,000,
   2006-2008.  
 
-14. *CAREER: Type-Directed Programming in Object-Oriented Languages*
+14. *CAREER: Type-Directed Programming in Object-Oriented Languages*   
   Weirich (PI), NSF CCF-0347289: \$400,000, 2003-2008.

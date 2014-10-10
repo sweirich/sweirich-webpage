@@ -1,6 +1,14 @@
 Invited Talks and Technical Presentations
 =========================================
 
+1. *Depending on Types.*   
+	Computer Science Colloquium Series, Indiana University. 
+   Bloomington, Indiana, October 17, 2014
+
+1. [*Programming Languages Panel.*](http://www.cs.cornell.edu/events/50years/schedule)   
+	Cornell CS 50th Anniversary Symposium. 
+   Ithaca, New York, October 2, 2014
+
 1. [*Depending on Types.*](talks/icfp14.pdf)    
   Keynote address, International Conference on Functional 
   Programming (ICFP). Gothenburg, Sweden, September 3, 2014 

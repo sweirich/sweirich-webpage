@@ -26,6 +26,7 @@ Research Community Service
 
 ## Program Committee Membership (conference/symposium)
 
+- International Conference on Functional Programming (ICFP) 2015.
 - Certified Proofs and Programs (CPP) 2015.
 - Principles of Programming Languages (POPL) 2014.
 - Functional and Logic Programming (FLOPS) 2014.
