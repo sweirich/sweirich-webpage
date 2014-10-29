@@ -14,7 +14,7 @@ Invited Talks and Technical Presentations
   Programming (ICFP). Gothenburg, Sweden, September 3, 2014 
 
 1. [*Programming Up-to Congruence, again.*](talks/wg28-congruence-again.pdf)   
-	Estes Park, Colorado, August 12, 2014
+	WG 2.8, Estes Park, Colorado, August 12, 2014
 
 1. [*Combining Proofs and Programs.*](talks/paris14.pdf)   
   Certification of High-level and Low-level programs. 

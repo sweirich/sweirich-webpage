@@ -4,9 +4,11 @@ Students
 ## Dissertation supervision
   - Richard Eisenberg, anticipated graduation date: 2015.
   - Vilhelm Sjöberg, anticipated graduation date: Fall 2014.
-  - Brent Yorgey, anticipated graduation date: Fall 2014.
+  - Brent Yorgey, December 2014.   
+    *Combinatorial Species and Labelled Structures*    
+	 Current position: Williams College.
   - Chris Casinghino, December 2014.   
-   *Combining Proofs and Programs*    
+    *Combining Proofs and Programs*    
    Current position: Draper Laboratory.
   - Dimitrios Vytiniotis, August 2008.  
    [*Practical type inference for first-class polymorphism*](http://repository.upenn.edu/dissertations/AAI3328671/)  
@@ -49,8 +51,13 @@ Students
   Hilton (co-advised), Karl Mazurak, Jeff Vaughan, Fall 2004.  Liang Huang,
   Spring 2004.
   
-  - Undergraduate: Kaycee Anderson, Juan Jose Lopez, Caroline Ho, and Johanna
-  Martens, Senior Design Project, 2013-2014.  Mitchell Stern, Spring 2014. 
+  - Undergraduate Senior Design Project:
+   Lewis Ellis, Max Scheiber, Ashutosh Goel, and Jeff Grimes. Tiernan Garsys, 
+	Taylor Mandel, Lucas Peña, and Noam Zilberstein. 2014-2015.
+   Kaycee Anderson, Juan Jose Lopez, Caroline Ho, and Johanna
+  	Martens (Honorable Mention), 2013-2014.  
+
+  - Undergraduate Research: Mitchell Stern, Spring 2014. 
   Hamidhasan Ahmed, Spring 2014, Summer 2013. Sneha Popey, Summer 2008. 
   Stephanie Simon, Summer 2008. David Gorski, Fall 2006.  Parshant
   Mittal, Atish Davda, Fall 2005. Neal Parikh, Summer 2004.
