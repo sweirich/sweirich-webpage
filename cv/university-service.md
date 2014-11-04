@@ -1,12 +1,12 @@
 Department, School and University Service
 ========================================
-- Undergraduate Curriculum Chair, CIS, 2014-present.
+- Undergraduate Chair, CIS, 2014-present.
 - Faculty advisor to CommuniTech (Penn undergraduate service
     organization). 2012-present.
 - Faculty advisor to AΩE International Engineering and Technical
     Science Sorority. 2012-present.
 - University committee on the Facilities, 
-    2011-present. Chair 2013-2014, 2012-2013.
+    2011-2014. Chair 2013-2014, 2012-2013.
 - Graduate student admissions chair, 2013-2014, 2012-2013.
 - Diversity hiring committee chair, 2012-2013.
 - CIS seminar series coordinator, 2011-2012.

@@ -2,8 +2,9 @@ Students
 ========
 
 ## Dissertation supervision
-  - Richard Eisenberg, anticipated graduation date: 2015.
-  - Vilhelm Sjöberg, anticipated graduation date: Fall 2014.
+  - Richard Eisenberg, anticipated graduation date: December 2015.
+  - Vilhelm Sjöberg, defense scheduled for December 11, 2014.  
+    *A Dependently Typed Language with Nontermination*
   - Brent Yorgey, December 2014.   
     *Combinatorial Species and Labelled Structures*    
 	 Current position: Williams College.
