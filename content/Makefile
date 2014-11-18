@@ -2,6 +2,7 @@ all: pub talks tutorials
 
 pub: ../bibtex/weirich.bib
 	(cd ../tools/bib/; ./makehtml)
+	cp ../bibtex/weirich.bib .
 
 talks: ../cv/talks.md Makefile
 	pandoc ../cv/talks.md -o talks.html --css=style.css
