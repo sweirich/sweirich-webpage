@@ -1,6 +1,12 @@
 Tutorials
 =========
 
+* [*How to write a great research paper: Simon's seven easy steps*](talks/plmw15-writing-skills.pdf)    
+  Programming Languages Mentoring Workshop. Mumbai, India, 2015
+
+* [*How to give a good research talk*](talks/plmw15-giving-a-talk.pdf)    
+  Programming Languages Mentoring Workshop. Mumbai, India, 2015
+
 * [*Designing Dependently-Typed Programming Languages.*](https://www.cs.uoregon.edu/research/summerschool/summer14/curriculum.html)   
   Oregon Programming Languages Summer School: Types, Logic, 
   and Verification.

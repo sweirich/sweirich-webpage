@@ -1,6 +1,9 @@
 Invited Talks and Technical Presentations
 =========================================
 
+1. *The Fundamentals of Dependent Type Theory, Made Easy.*   
+	Technical Keynote, Compose Conference. New York, January 30, 2014
+
 1. *Depending on Types.*   
 	Computer Science Colloquium Series, Indiana University. 
    Bloomington, Indiana, October 17, 2014
@@ -13,7 +16,7 @@ Invited Talks and Technical Presentations
   Keynote address, International Conference on Functional 
   Programming (ICFP). Gothenburg, Sweden, September 3, 2014 
 
-1. [*Programming Up-to Congruence, again.*](talks/wg28-congruence-again.pdf)   
+1. [*Programming Up-to Congruence, Again.*](talks/wg28-congruence-again.pdf)   
 	WG 2.8, Estes Park, Colorado, August 12, 2014
 
 1. [*Combining Proofs and Programs.*](talks/paris14.pdf)   
@@ -27,15 +30,15 @@ Invited Talks and Technical Presentations
 1. [*Programming Up-to Congruence.*](talks/wg28-congruence.pdf)  
   WG 2.8, Aussios, France, October 14, 2013
 
-1. [*The pleasure and pain of advanced type systems.*](talks/facebook13.pdf)  
+1. [*The Pleasure and Pain of Advanced Type Systems.*](talks/facebook13.pdf)  
   Invited speaker, Facebook Faculty Summit. 
   Menlo Park, CA, August 6, 2013
 
 1. [*Paradoxical Typecase.*](talks/wg28-paradoxes.pdf)   
   WG 2.8, Anapolis, MD, November 7, 2012
 
-1. *A POPLmark retrospective: Using proof assistants in
-  programming language research.*   
+1. *A POPLmark Retrospective: Using Proof Assistants in
+  Programming Language Research.*   
   Invited speaker, [LFMTP 2012: 7th
   International Workshop on Logical Frameworks and Meta-languages:
   Theory and Practice](http://people.csail.mit.edu/adamc/lfmtp12/programme.html),
@@ -68,35 +71,35 @@ Invited Talks and Technical Presentations
 1. *Generic Binding and Telescopes.*  
   WG 2.8, Marble Falls, TX. March 11, 2011
 
-1. *ICFP 2010 Program Chair's report.*    
+1. *ICFP 2010 Program Chair's Report.*    
   Baltimore, MD. September 27, 2010
 
-1. *Dependent types and program equivalence.*  
+1. *Dependent Types and Program Equivalence.*  
   University of Strathclyde. Glasgow, Scotland. April 30, 2010
 
 1. *Generic Programming with Dependent Types.*  
   IFIP 2.11, St. Andrews, Scotland. March 1-3, 2010
 
-1. [*Dependent types and program equivalence.*](talks/nottingham-deptyp.pdf)   
+1. [*Dependent Types and Program Equivalence.*](talks/nottingham-deptyp.pdf)   
   University of Nottingham. Nottingham, England. 
   February 5, 2010
 
 1. [*Trellys Status Report.*](talks/TrellysPLPV.pdf)   
   PLPV Discussion. Madrid, Spain. January  19, 2010
 
-1. [*A POPLmark retrospective: Using proof assistants in programming
-  language research.*](talks/cambridge-09.pdf)      
+1. [*A POPLmark Retrospective: Using Proof Assistants in Programming
+  Language Research.*](talks/cambridge-09.pdf)      
   University of Cambridge Computer Laboratory
   Wednesday Seminars. Cambridge, England. December 2, 2009
 
-1. [*Dependent types and program equivalence.*](talks/lab-deptyp.pdf)    
+1. [*Dependent Types and Program Equivalence.*](talks/lab-deptyp.pdf)    
   Semantics Lunch, University of Cambridge Computer Laboratory. 
   Cambridge, England. November 2, 2009
 
 1. *Haskell Symposium 2009 Program Chair's report.*    
   Edinburgh, Scotland. September 3, 2009
 
-1. *Doing dependent types wrong without going wrong.*   
+1. *Doing Dependent Types Wrong Without Going Wrong.*   
   IFIP WG 2.8, Frauenchiemsee, Germany, June 2009
 
 1. [*Adventures in Dependently-Typed Metatheory.*](talks/211-deptyp.pdf)    
