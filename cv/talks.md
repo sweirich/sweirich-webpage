@@ -4,6 +4,10 @@ Invited Talks and Technical Presentations
 1. *The Fundamentals of Dependent Type Theory, Made Easy.*   
 	Technical Keynote, Compose Conference. New York, January 30, 2014
 
+1. [*Programming up-to Congruence*](talks/popl15-congruence.pdf)    
+   ACM Symposium on Principles of Programming Languages (POPL '15).
+	Mumbai, India, January 16, 2015 
+
 1. *Depending on Types.*   
 	Computer Science Colloquium Series, Indiana University. 
    Bloomington, Indiana, October 17, 2014
@@ -70,6 +74,10 @@ Invited Talks and Technical Presentations
 
 1. *Generic Binding and Telescopes.*  
   WG 2.8, Marble Falls, TX. March 11, 2011
+
+1. [*Generative Type Abstraction and Type-level Computation.*](talks/popl11-generative-type.pdf)    
+	ACM Symposium on Principles of Programming Languages (POPL '11). 
+   Austin, TX, January 2011
 
 1. *ICFP 2010 Program Chair's Report.*    
   Baltimore, MD. September 27, 2010
