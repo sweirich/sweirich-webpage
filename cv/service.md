@@ -86,4 +86,4 @@ Research Community Service
 - TYPES forum moderator: 2003-2009. 
 - PLDI External Review Committee: 2013, 2011, 2009
 - POPL External Review Committee: 2015, 2012.
-- Ad hoc reviews: JFP, HOSC, Acta Informatica, TOPLAS, SCP, ICFP, POPL, PLDI, ECOOP, LCTES, ICALP, FOOL, ML, Haskell, PEPM
+- Ad hoc reviews: JFP, HOSC, Acta Informatica, TOPLAS, SCP, ICFP, POPL, PLDI, ECOOP, LCTES, ICALP, FOOL, ML, Haskell, PEPM, NSF

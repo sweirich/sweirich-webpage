@@ -1,7 +1,7 @@
 Invited Talks and Technical Presentations
 =========================================
 
-1. *The Fundamentals of Dependent Type Theory, Made Easy.*   
+1. [*Pi-Forall: How to use and implement a dependently-typed language.*](https://github.com/sweirich/pi-forall/blob/2014/compose.md)   
 	Technical Keynote, Compose Conference. New York, January 30, 2014
 
 1. [*Programming up-to Congruence*](talks/popl15-congruence.pdf)    
