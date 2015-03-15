@@ -736,7 +736,6 @@ partial correctness of type-safe cast.
 }
 
 
-
 @InProceedings{vytiniotis:fph,
   author = 		  {Dimitrios Vytiniotis and Stephanie Weirich and Simon Peyton Jones},
   title = 		  {{FPH:} First-class polymorphism for {Haskell}},
@@ -747,7 +746,6 @@ partial correctness of type-safe cast.
   plclub =       "yes",
   pages = {295--306},
   pdf =          "http://www.seas.upenn.edu/~sweirich/papers/icfp08.pdf", 
-  projecturl =   "http://www.cis.upenn.edu/~dimitriv/fph",
   abstract =  "Languages supporting polymorphism typically have ad-hoc restrictions
 on where polymorphic types may occur.  Supporting ``first-class'' polymorphism,
 by lifting those restrictions, is obviously desirable, but it is hard
@@ -887,7 +885,6 @@ using universal quantification over a cofinite set of names.  } }
   plclub =       {yes},
   pdf =          "http://www.seas.upenn.edu/~sweirich/papers/rtheorems07.pdf",
   ps =          "http://www.seas.upenn.edu/~sweirich/papers/rtheorems07.ps",
-  projecturl =          "http://www.cis.upenn.edu/~dimitriv/parametricity/",
   abstract =     {
     Reynolds' abstraction theorem, often referred to
   as the parametricity theorem, can be used to derive properties about
@@ -957,8 +954,7 @@ type of each label is an instance of the type of the pointcut.
   address =		  {Seattle, WA, USA},
   month =		  aug,
   pdf =          "http://www.seas.upenn.edu/~sweirich/papers/nominal-coq/lfmtp06.pdf",
-  projecturl =   
-"http://www.seas.upenn.edu/~sweirich/papers/nominal-coq/",
+  projecturl =   "http://www.seas.upenn.edu/~sweirich/papers/nominal-coq/",
   plclub =       {yes},
   pages = { 60--69},
   abstract = {
@@ -1141,10 +1137,9 @@ the masses.
   YEAR = 2006,
   NUMBER = {MS-CIS-05-23},
   MONTH = {April},
-  PDF = {http://www.cis.upenn.edu/~dimitriv/boxy/boxy-techreport.pdf},
+  PDF = {http://www.cis.upenn.edu/~sweirich/boxy/boxy-techreport.pdf},
   CATEGORY = {fcp},
   CATTYPE = {report},
-  projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html}, 
   HISTORICAL = {This report accompanies the boxy types paper and provides proofs for the claims in that paper.}
 }
 
@@ -1173,9 +1168,8 @@ the masses.
   MONTH = sep,
   YEAR = 2006,
   plclub = {yes},
-  PDF = "http://www.seas.upenn.edu/~sweirich/papers/gadt.pdf",
+  PDF = "http://www.seas.upenn.edu/~sweirich/papers/gadt/icfp06-gadt.pdf",
   CATEGORY = {gadt},
-  projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html}, 
   address = {Portland, OR, USA},
   pages = {50--61}
 }
@@ -1192,8 +1186,7 @@ the masses.
   CATEGORY = {gadt},
   CATTYPE = {report},
   plclub = "yes", 
-  projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html}, 
-  PDF = {http://www.cis.upenn.edu/~dimitriv/wobbly/wobbly-techreport.pdf}
+  PDF = {http://www.cis.upenn.edu/~sweirich/gadt/wobbly-techreport.pdf}
 }
 
 
@@ -1425,8 +1418,8 @@ the program depend on the implementation of a given type.
   month =        jul,
   year =			  2004,
   number =       {MS-CIS-05-26},
-  pdf =          {http://www.cis.upenn.edu/~geoffw/research/papers/MS-CIS-05-26.pdf},
-  projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html}, 
+  
+  pdf =          {http://www.cis.upenn.edu/~sweirich/papers/gadt/MS-CIS-05-26.pdf},
  INSTITUTION =   {University of Pennsylvania, Computer and Information Science Department},
  ADDRESS = {Levine Hall, 
              3330 Walnut Street, Philadelphia, Pennsylvania, 19104-6389},
@@ -1458,8 +1451,7 @@ algorithms.
   month =		  oct,
   year =			  2004,
   projecturl = {http://www.cs.princeton.edu/sip/projects/aspectml/},
-  pdf =          "http://www.cis.upenn.edu/~geoffw/research/papers/poly-aspect.pdf",
-  ps =           "http://www.cis.upenn.edu/~geoffw/research/papers/poly-aspect.ps",
+  pdf =          "http://www.cis.upenn.edu/~sweirich/papers/poly/poly-aspect.pdf",
   note =         {An extended version of this paper is Princeton University Computer 
                   Science Technical Report TR-717-04}
 }
@@ -1681,7 +1673,7 @@ higher-order structures in polymorphic languages.
                  is University of 
                  Pennsylvania Technical Computer and Information Science
                  Report MS-CIS-04-26},
-  ps =           "http://www.cis.upenn.edu/~dimitriv/itaname/itaname.ps",
+  ps =           "http://www.cis.upenn.edu/~sweirich/itaname/itaname.pdf",
   abstract =     
 {Two different ways of defining ad-hoc polymorphic operations commonly
 occur in programming languages. With the first form polymorphic
@@ -1721,10 +1713,10 @@ polymorphism, using the same basic constructs.}
   number =		  {MS-CIS-04-26},
   month =		  oct,
   pdf =          {http://repository.upenn.edu/cis_reports/27/},
-  ps =           "http://www.cis.upenn.edu/~dimitriv/itaname/itaname-extended.ps",
-  abstract =     {
+abstract =     {
 Ad-hoc polymorphism is a compelling addition to typed programming languages. There are two different forms of ad-hoc polymorphism. With the nominal form, the execution of an operation is determined solely by the name of the type argument, whereas with the structural form, operations are defined by case analysis on the structure of types. The two forms differ in the way that they treat user-defined types. Operations defined by the nominal approach are considered "open"--the programmer can add cases for new types without modifying existing code. The operations must be extended however with specialized code for the new types, and it may be tedious and even difficult to add extensions that apply to a potentially large universe of user-defined types. Structurally defined operations apply to new types by treating them as equal to their underlying definitions, so no new cases for new types are necessary. However this form is considered "closed" to extension, as the behaviour of the operations cannot be differentiated for the new types. This form destroys the distinctions that user-defined types are designed to express. Both approaches have their benefits, so it is important to provide both capabilities in a single language that is expressive enough to decouple the "openness" issue from the way that user-defined types are treated. We present such a language that supports both forms of ad-hoc polymorphism.}
 }
+#  pdf =           "http://www.cis.upenn.edu/~sweirich/itaname/itaname-extended.pdf",
 
 
 @misc{washburn:mtr,  
@@ -1734,9 +1726,7 @@ Ad-hoc polymorphism is a compelling addition to typed programming languages. The
   institution =  {University of Pennsylvania},
   year = 		  2004,
   month =		  mar,
-  ps = "http://www.cis.upenn.edu/~geoffw/research/papers/itaname-report.ps", 
-  pdf =       
-  "http://www.cis.upenn.edu/~geoffw/research/papers/itaname.pdf", 
+  pdf = "http://www.cis.upenn.edu/~sweirich/papers/itaname/tech-report-mar04.pdf", 
 
   abstract = "Ad-hoc polymorphism allows the execution of programs to
   depend on type information. In modern systems, it is useful for
