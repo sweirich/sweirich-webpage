@@ -3,7 +3,6 @@ Funding
 Current
 -------
 
-
 1. *SPARCS: Synthesis of Platform-aware Attack-Resilient 
    Control Systems*  
    Lee (PI), Sokolsky, Pappas, Michael, Mangharam, Weirich,
@@ -27,8 +26,13 @@ Pending
 
 1. *Collaborative Research: Expeditions in Computing: The Science of Deep
 	Specification.* Weirich, Pierce, Zdancewic (Penn), Appel (Princeton), Shao
-	(Yale), Chlipala (MIT). Successful preproposal, invited to submit 
+	(Yale), Chlipala (MIT). Successful preproposal, submitted
 	full proposal to NSF.  \$10 million total, 10/2015-9/2020.
+	
+2. *Student travel support for ICFP 2015.* Weirich. NSF $20,000.
+
+3. *CIF: Small: Rich-Type Inference for Functional Programming REU*  Weirich. NSF, $7,000.
+
 
 Completed
 ---------

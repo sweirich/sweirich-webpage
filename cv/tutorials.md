@@ -17,7 +17,7 @@ Tutorials
   and Verification. Eugene OR, USA. July 2013  
 
 * *Computational Flags*  
-   Swarthmore CATALYST Conference for 7th/8th graders, March 2012
+   [Swarthmore CATALYST](http://www.sccs.swarthmore.edu/org/catalyst/) Conference for 7th/8th graders, April 2015, March 2012
 
 * [*Generic Programming with Dependent Types.*](http://www.seas.upenn.edu/~sweirich/ssgip/)   
   Spring School on Generic and Indexed Programming. 

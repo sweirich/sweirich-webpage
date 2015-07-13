@@ -16,6 +16,8 @@ Research Community Service
 
 ## Conference and Workshop Leadership
 
+- Dagstuhl seminar "Language Based Verification Tools for Functional Programs"
+  (16131), April 2016, co-organizer.
 - Dependently-Typed Programming Workshop (DTP) 2013, program chair and organizer.
 - Shonan Village Dependently-Typed Programming, 2011, co-organizer.
 - Types in Language Design and Implementation Workshop, 2011, general chair.
@@ -47,6 +49,8 @@ Research Community Service
 
 ## Program Committee Membership (workshop)
 
+- Implementation of Functional Languages (IFL) 2015.
+- Coq Workshop 2015.
 - Logical Frameworks and Meta Languages Theory and Practice (LFMTP) 2013.
 - Trends in Functional Programming in Education (TFPIE) 2013.
 - Grace Hopper Conference, Panels, Workshops, and Presentations 2012.
