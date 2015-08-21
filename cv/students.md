@@ -2,7 +2,7 @@ Students
 ========
 
 ## Dissertation supervision
-  - Richard Eisenberg, anticipated graduation date: May 2015.
+  - Richard Eisenberg, anticipated graduation date: May 2016.
   - Vilhelm Sjöberg, May 2015.  
     *A Dependently Typed Language with Nontermination*
 	 Current position: Postdoc, Yale University.
@@ -59,7 +59,8 @@ Students
 	(Third place). 2014-2015.  Kaycee Anderson, Juan Jose Lopez, Caroline Ho,
 	and Johanna Martens (Honorable Mention), 2013-2014.
 
-  - Undergraduate Research: Matthew Weaver Summer/Spring 2015. Mitchell Stern, Spring 2014. 
-  Hamidhasan Ahmed, Spring 2014, Summer 2013. Sneha Popey, Summer 2008. 
-  Stephanie Simon, Summer 2008. David Gorski, Fall 2006.  Parshant
-  Mittal, Atish Davda, Fall 2005. Neal Parikh, Summer 2004.
+  - Undergraduate Research: Leondra Morse, Summer 2015 (CRA-DREU). Matthew
+  Weaver Summer/Spring 2015. Mitchell Stern, Spring 2014.  Hamidhasan Ahmed,
+  Spring 2014, Summer 2013. Sneha Popley, Summer 2008 (CRA-DREU).  Stephanie
+  Simon, Summer 2008. David Gorski, Fall 2006.  Parshant Mittal, Atish Davda,
+  Fall 2005. Neal Parikh, Summer 2004.

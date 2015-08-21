@@ -28,6 +28,7 @@ Research Community Service
 
 ## Program Committee Membership (conference/symposium)
 
+- Symposium on Trends in Functional Programming (TFP '16).
 - International Conference on Functional Programming (ICFP) 2015.
 - Certified Proofs and Programs (CPP) 2015.
 - Principles of Programming Languages (POPL) 2014.

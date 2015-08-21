@@ -4,7 +4,7 @@ Outreach
 + Workshop organizer: (with Ron Garcia)
   ICFP Programming Languages Mentoring Workshop (ICFP-PLMW 2015)
   Vancouver, BC, September, 2015
-+ SRC@ICFP 2014 student research competition, selection committee.
++ SRC@ICFP student research competition, selection committee.  2015, 2014.
 + Workshop co-founder: (with Kathleen Fisher and Ron Garcia)
   Programming Language Mentoring Workshop (PLMW 2012)
   Philadelphia, PA, January 24, 2012.
