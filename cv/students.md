@@ -4,23 +4,23 @@ Students
 ## Dissertation supervision
   - Richard Eisenberg, anticipated graduation date: May 2016.
   - Vilhelm Sjöberg, May 2015.  
-    *A Dependently Typed Language with Nontermination*
-	 Current position: Postdoc, Yale University.
+    *A Dependently Typed Language with Nontermination*  
+    Current position: Postdoc, Yale University.
   - Brent Yorgey, December 2014.   
-    [*Combinatorial Species and Labelled Structures*](http://repository.upenn.edu/dissertations/AAI3668177/)
-	 Current position: Assistant Professor, [Hendrix College](https://www.hendrix.edu/).
+    [*Combinatorial Species and Labelled Structures*](http://repository.upenn.edu/dissertations/AAI3668177/)  
+    Current position: Assistant Professor, [Hendrix College](https://www.hendrix.edu/).
   - Chris Casinghino, December 2014.   
-    [*Combining Proofs and Programs*](http://repository.upenn.edu/dissertations/AAI3670881/)
+    [*Combining Proofs and Programs*](http://repository.upenn.edu/dissertations/AAI3670881/)  
    Current position: [Draper Laboratory](http://www.draper.com/).
-  - Dimitrios Vytiniotis, August 2008.  
-   [*Practical type inference for first-class polymorphism*](http://repository.upenn.edu/dissertations/AAI3328671/)  
-   Current position: [Microsoft Research](http://research.microsoft.com/en-us/people/dimitris/), Cambridge UK.
-  - Geoffrey Washburn, December 2007.    
-   [*Principia Narcissus: How to avoid being caught by your reflection*](http://repository.upenn.edu/dissertations/AAI3292086/)  
-   Current position: [Logicblox](http://www.logicblox.com/).
+  - Dimitrios Vytiniotis, August 2008.
+  [*Practical type inference for first-class polymorphism*](http://repository.upenn.edu/dissertations/AAI3328671/)
+  Current position: [Microsoft Research](http://research.microsoft.com/en-us/people/dimitris/), Cambridge UK.
+  - Geoffrey Washburn, December 2007. 
+  [*Principia Narcissus: How to avoid being caught by your reflection*](http://repository.upenn.edu/dissertations/AAI3292086/)  
+  Current position: [Logicblox](http://www.logicblox.com/).
 
 ## Dissertation committee member
-  - Peter Michael Osera, Penn, proposal April 2014.
+  - Peter Michael Osera, Penn, July 2015.
   - Daniel Wagner, Penn, June 2014.
   - Harley Eades III, University of Iowa, May 2014.
   - Julien Cretin, INRIA / University Paris 7, January 2014. 
@@ -55,9 +55,9 @@ Students
   
   - Undergraduate Senior Design Project:
    Lewis Ellis, Max Scheiber, Ashutosh Goel, and Jeff Grimes (Honorable
-	Mention). Tiernan Garsys, Taylor Mandel, Lucas Peña, and Noam Zilberstein
-	(Third place). 2014-2015.  Kaycee Anderson, Juan Jose Lopez, Caroline Ho,
-	and Johanna Martens (Honorable Mention), 2013-2014.
+   Mention). Tiernan Garsys, Taylor Mandel, Lucas Peña, and Noam Zilberstein
+   (Third place). 2014-2015.  Kaycee Anderson, Juan Jose Lopez, Caroline Ho,
+   and Johanna Martens (Honorable Mention), 2013-2014.
 
   - Undergraduate Research: Leondra Morse, Summer 2015 (CRA-DREU). Matthew
   Weaver Summer/Spring 2015. Mitchell Stern, Spring 2014.  Hamidhasan Ahmed,

@@ -1,5 +1,15 @@
 \documentclass[roman]{moderncv}
 
+
+
+%% Missing symbols from fontawesome
+%% http://tex.stackexchange.com/questions/256520/problem-with-last-version-of-font-awesome-in-moderncv
+\def\faLinkedinSign{{\FA\symbol{"F08C}}}
+\def\faCircleBlank{{\FA\symbol{"F10C}}}
+\DeclareRobustCommand{\FA}{%
+  \fontencoding{EU1}\fontfamily{FontAwesome(0)}\fontsize{5}{5}\selectfont}
+
+
 \moderncvstyle{banking}
 \moderncvcolor{blue}
 
@@ -7,7 +17,9 @@
 \renewcommand{\familydefault}{\rmdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
 \nopagenumbers{}                    
 
-
+%% http://tex.stackexchange.com/questions/257418/error-tightlist-converting-md-file-into-pdf-using-pandoc
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 %% Numbering for bibitems.
 %\makeatletter

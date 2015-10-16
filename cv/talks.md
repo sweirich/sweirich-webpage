@@ -1,8 +1,17 @@
 Invited Talks and Technical Presentations
 =========================================
+  
+1. *Depending on Types.*  
+   [Code Mesh 2015](http://www.codemesh.io/), London, November 3-4, 2015.
+
+1. [*From System F to Typed Assembly Language, by Morrisett, Walker, Crary, Glew.*](https://www.youtube.com/watch?v=Epbaka9uTQ4)  
+   Papers We Love, Philadelphia. Philadelphia, PA, October 6, 2015
+
+1. [*Towards Dependently Typed Haskell*](http://www.cs.ox.ac.uk/ralf.hinze/WG2.8/33/slides/wg28.hs)  
+   [WG 2.8, Kefalonia, Greece, May 24, 2015](http://www.cs.ox.ac.uk/ralf.hinze/WG2.8/33/minutes.html)
 
 1. [*Pi-Forall: How to use and implement a dependently-typed language.*](https://github.com/sweirich/pi-forall/blob/2014/compose.md)   
-	Technical Keynote, Compose Conference. New York, January 30, 2014
+	Technical Keynote, Compose Conference. New York, January 30, 2015
 
 1. [*Programming up-to Congruence*](talks/popl15-congruence.pdf)    
    ACM Symposium on Principles of Programming Languages (POPL '15).
