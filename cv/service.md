@@ -3,7 +3,7 @@ Research Community Service
 
 ## Journal Service
 
-- Editor of Journal of Functional Programming, 2011-present
+- Editor of Journal of Functional Programming, 2011-2015
 - Guest Editor (with Zhenjiang Hu, Shin-Cheng Mu), Progress in
   Informatics. Special Issue on Advanced Programming Techniques for
   Construction of Robust, General and Evolutionary Programs, March 2013.
@@ -28,6 +28,8 @@ Research Community Service
 
 ## Program Committee Membership (conference/symposium)
 
+- European Symposium on Programming (ESOP) 2017.
+- Principles and Practice of Declarative Programming (PPDP) 2016.
 - Symposium on Trends in Functional Programming (TFP '16).
 - International Conference on Functional Programming (ICFP) 2015.
 - Certified Proofs and Programs (CPP) 2015.
@@ -86,7 +88,7 @@ Research Community Service
 
 
 ## Other
-- NSF panel: June 2014, October 2012, December 2011, March 2008, December 2004.
+- NSF panel: February 2016, June 2014, October 2012, December 2011, March 2008, December 2004.
 - Haskell' language standard committee, 2005-2010.
 - TYPES forum moderator: 2003-2009. 
 - PLDI External Review Committee: 2013, 2011, 2009

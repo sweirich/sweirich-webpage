@@ -1,8 +1,14 @@
 Invited Talks and Technical Presentations
 =========================================
-  
-1. *Depending on Types.*  
-   [Code Mesh 2015](http://www.codemesh.io/), London, November 3-4, 2015.
+
+1. [*Visible Type Application.*](talks/vta-2015.pdf)  
+   Microsoft Research, Cambridge, UK, November 6, 2015.
+
+1. [*Visible Type Application.*](talks/vta-2015.pdf)  
+   University of Kent, November 5, 2015.
+
+1. [*Depending on Types.*](https://www.youtube.com/watch?v=n-b1PYbRUOY)  
+   [Code Mesh 2015](http://www.codemesh.io/), London, November 4, 2015.
 
 1. [*From System F to Typed Assembly Language, by Morrisett, Walker, Crary, Glew.*](https://www.youtube.com/watch?v=Epbaka9uTQ4)  
    Papers We Love, Philadelphia. Philadelphia, PA, October 6, 2015

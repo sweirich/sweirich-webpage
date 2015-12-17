@@ -1,6 +1,7 @@
 Department, School and University Service
 ========================================
 - Undergraduate Chair, CIS, 2014-present.
+- Penn Forum for Women Faculty, 2016-present.
 - Faculty advisor to CommuniTech (Penn undergraduate service
     organization). 2012-present.
 - Faculty advisor to AΩE International Engineering and Technical
