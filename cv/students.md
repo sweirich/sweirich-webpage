@@ -54,7 +54,7 @@ Students
   Casinghino, Spring 2008. Andrew Hilton (co-advised), Karl Mazurak, Jeff
   Vaughan, Fall 2004.  Liang Huang, Spring 2004.
 
-  - Masters: Dominik Bollman, Spring 2016. 
+  - Masters: Dominik Bollman, Spring 2016. Simon Wimmer, Summer 2015.
   
   - Undergraduate Senior Design Project:
    Lewis Ellis, Max Scheiber, Ashutosh Goel, and Jeff Grimes (Honorable
