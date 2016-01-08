@@ -1,6 +1,12 @@
 Invited Talks and Technical Presentations
 =========================================
 
+1. *TBA*  
+   [Typelevel Summit](http://typelevel.org/), Philadelphia, PA, March 2-3, 2016.
+
+1. *Dynamic Typing in GHC*  
+   [Compose :: Conference](http://www.composeconference.org/), Brooklyn, NY, February 4-5, 2016.
+
 1. [*Visible Type Application.*](talks/vta-2015.pdf)  
    Microsoft Research, Cambridge, UK, November 6, 2015.
 
