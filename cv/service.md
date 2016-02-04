@@ -52,6 +52,7 @@ Research Community Service
 
 ## Program Committee Membership (workshop)
 
+- Higher-Order Programming with Effects (HOPE) 2016.
 - Implementation of Functional Languages (IFL) 2015.
 - Coq Workshop 2015.
 - Logical Frameworks and Meta Languages Theory and Practice (LFMTP) 2013.
