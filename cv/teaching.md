@@ -3,7 +3,7 @@ Teaching Experience
 University of Pennsylvania
 --------------------------
 * CIS 120 - Programming Languages and Techniques I   
-  Spring 2015, Spring 2014, Spring 2013, Spring 2012, Spring 2011, Fall 2008, Spring 2008, Spring 2007
+  Spring 2016, Spring 2015, Spring 2014, Spring 2013, Spring 2012, Spring 2011, Fall 2008, Spring 2008, Spring 2007
 * CIS 500 - Software Foundations   
   Fall 2014, Fall 2005, Fall 2004
 * CIS 552 - Advanced Programming   

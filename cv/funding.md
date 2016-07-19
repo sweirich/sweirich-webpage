@@ -1,7 +1,12 @@
 Funding
 ========
+
 Current
 -------
+
+1. *Collaborative Research: Expeditions in Computing: The Science of Deep
+	Specification.* Weirich, Pierce, Zdancewic (Penn), Appel (Princeton), Shao
+	(Yale), Chlipala (MIT). \$10 million total, 1/2016-1/2021.
 
 1. *SPARCS: Synthesis of Platform-aware Attack-Resilient 
    Control Systems*  
@@ -13,29 +18,21 @@ Current
 
 3. *CCF-SHF Small: Beyond Algebraic Data Types: Combinatorial 
    Species and Mathematically-Structured Programming*  
-   Weirich (PI).  NSF 1218002, $325,840, 8/2012-8/2015.
+   Weirich (PI).  NSF 1218002, $325,840, 8/2012-8/2016.
 
 4.  *SHF: Small: Dependently-Typed Haskell*  
-   Weirich (PI). NSF 1116620, $496,785, 8/2011-8/2015.
-
-5.  *SHF: Small: Dependently-Typed Haskell REU* 
-   Weirich (PI). NSF 1116620, $6,000, 8/2011-8/2015.
-
-Pending
--------
-
-1. *Collaborative Research: Expeditions in Computing: The Science of Deep
-	Specification.* Weirich, Pierce, Zdancewic (Penn), Appel (Princeton), Shao
-	(Yale), Chlipala (MIT). Successful preproposal, submitted
-	full proposal to NSF.  \$10 million total, 10/2015-9/2020.
-	
-2. *Student travel support for ICFP 2015.* Weirich. NSF $20,000.
-
-3. *CIF: Small: Rich-Type Inference for Functional Programming REU*  Weirich. NSF, $7,000.
-
+   Weirich (PI). NSF 1116620, $496,785, 8/2011-8/2016.
 
 Completed
 ---------
+
+1. *Student travel support for ICFP 2015.* Weirich. NSF $20,000.
+
+2. *CIF: Small: Rich-Type Inference for Functional Programming REU*
+Weirich. NSF, $7,000.
+
+1.  *SHF: Small: Dependently-Typed Haskell REU* 
+   Weirich (PI). NSF 1116620, $6,000.
 
 1. *SHF: Large: Collaborative Research: 
   TRELLYS:Community-Based Design and Implementation 
@@ -44,11 +41,11 @@ Completed
   Sheard (Portland State University). NSF 0910786,
   $2.1 million total. 2009-2014.
 
-2. *Student Travel Support for Programming languages 
+1. *Student Travel Support for Programming languages 
    Mentoring Workshop (PLMW 2012)*  
    Weirich (PI). NSF $15,900, 11/2011.
    
-3. *Networks Opposing Botnets*  
+1. *Networks Opposing Botnets*  
    Smith (PI), Pierce, Zdancewic, Loo, Weirich,
    Felton, Rexford, Walker, Morrisett, Welsh.
    ONR, $400,000 (Penn), 2009-2012.

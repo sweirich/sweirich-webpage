@@ -3,13 +3,14 @@ Research Community Service
 
 ## Journal Service
 
-- Editor of Journal of Functional Programming, 2011-2015
+- Editor of Journal of Functional Programming, 2011-current
 - Guest Editor (with Zhenjiang Hu, Shin-Cheng Mu), Progress in
   Informatics. Special Issue on Advanced Programming Techniques for
   Construction of Robust, General and Evolutionary Programs, March 2013.
 - Guest Editor (with Benjamin Pierce), 
   Journal of Automated Reasoning. Special Issue on the POPLmark
   Challenge. October 2012.
+- Editoral Board of  Logical Methods in Computer Science, 2016-present.
 - Editorial Board,  Foundations and Trends in Programming
   Languages, 2012-present.
 - Nomination committee, SIGPLAN CACM Research Highlights, 2009-2011.
@@ -30,7 +31,7 @@ Research Community Service
 
 - European Symposium on Programming (ESOP) 2017.
 - Principles and Practice of Declarative Programming (PPDP) 2016.
-- Symposium on Trends in Functional Programming (TFP '16).
+- Symposium on Trends in Functional Programming (TFP) 2016.
 - International Conference on Functional Programming (ICFP) 2015.
 - Certified Proofs and Programs (CPP) 2015.
 - Principles of Programming Languages (POPL) 2014.
@@ -52,6 +53,7 @@ Research Community Service
 
 ## Program Committee Membership (workshop)
 
+- Haskell Implementor's Workshop (HiW) 2016.
 - Higher-Order Programming with Effects (HOPE) 2016.
 - Implementation of Functional Languages (IFL) 2015.
 - Coq Workshop 2015.

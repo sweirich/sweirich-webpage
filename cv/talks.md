@@ -1,10 +1,13 @@
 Invited Talks and Technical Presentations
 =========================================
 
-1. *TBA*  
+1. [*A Foundation for Dependently Typed Haskell*](talks/wg28-2016.pdf)  
+    WG 2.8, Lake Placid, NY, July 19, 2016.
+
+1. [*Depending on Types*](talks/typelevel16.pdf)  
    [Typelevel Summit](http://typelevel.org/), Philadelphia, PA, March 2-3, 2016.
 
-1. [*Dynamic Typing in GHC*](talks/compose16.pdf)  
+1. [*Dynamic Typing in GHC*](https://www.youtube.com/watch?v=asdABzBUoGM)  
    [Compose :: Conference](http://www.composeconference.org/), Brooklyn, NY, February 4-5, 2016.
 
 1. [*Visible Type Application.*](talks/vta-2015.pdf)  

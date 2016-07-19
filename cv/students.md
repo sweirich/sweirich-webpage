@@ -2,8 +2,12 @@ Students
 ========
 
 ## Dissertation supervision
+  - Antal Spector-Zabusky.
+  - Antoine Voizard.
+  - Kenny Foner. 
   - Richard Eisenberg, anticipated graduation date: Summer 2016.  
     *Dependently-Typed Haskell*  
+     Next position: Assistant professor, Bryn Mawr College (starting Fall 2016)
   - Vilhelm Sjöberg, May 2015.  
     [*A Dependently Typed Language with Nontermination*](http://repository.upenn.edu/dissertations/AAI3709556/)  
     Current position: Postdoc, [Yale University](http://www.cs.yale.edu/homes/vilhelm/).
@@ -40,15 +44,15 @@ Students
   - Vladimir Gapayev, Penn, January 2006.
 
 ## Visiting PhD student supervison
-
+  - Pedro Henrique Azevedo de Amorim, Mar-Aug 2016.
   - Antoine Voizard, École Normale Supérieure, Paris. Mar-Aug 2014.
   - Steven Keuchel, University of Ghent, Sep 2013-Mar 2014.
   - Arthur Charguéraud (co-supervised with Benjamin Pierce),  INRIA, 2007.
 
 ## Independent study
 
-  - Doctoral: Antoin Voizard, Kenny Foner, Fall 2015. Antal Spector-Zablusky,
-  Spring 2013. Jennifer Paykin, Fall 2012.  Richard Eisenberg, Justin Hsu,
+  - Doctoral: Antoin Voizard, Kenny Foner, Fall 2015. Antal Spector-Zabusky,
+  Spring 2016, Spring 2013. Jennifer Paykin, Fall 2012.  Richard Eisenberg, Justin Hsu,
   Spring 2012. Richard Eisenberg, Hongbo Zhang. Fall 2011.  Brent Yorgey,
   Peter-Michael Osera, Vilhelm Sjöberg. Fall 2008-Spring 2009. Chris
   Casinghino, Spring 2008. Andrew Hilton (co-advised), Karl Mazurak, Jeff
@@ -62,7 +66,7 @@ Students
    (Third place). 2014-2015.  Kaycee Anderson, Juan Jose Lopez, Caroline Ho,
    and Johanna Martens (Honorable Mention), 2013-2014.
 
-  - Undergraduate Research: Matthew Weaver Spring-Fall 2015. Leondra Morse,
+  - Undergraduate Research: Matthew Weaver 2015-2016. Leondra Morse,
   Summer 2015 (CRA-DREU). Mitchell Stern, Spring 2014.  Hamidhasan Ahmed,
   Spring 2014, Summer 2013. Sneha Popley, Summer 2008 (CRA-DREU).  Stephanie
   Simon, Summer 2008. David Gorski, Fall 2006.  Parshant Mittal, Atish Davda,
