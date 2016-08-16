@@ -1,5 +1,6 @@
 Honors
 ======
+  * Microsoft Outstanding Collaborator, 2016
   * Penn Engineering Fellow, University of Pennsylvania, 2014.
   * Institute for Defense Analyses Computer Science Study Panel, 2007.
   * National Science Foundation CAREER Award, 2003.
