@@ -1,16 +1,22 @@
 %% BIBTEX %%
 
-
-@Unpublished{breitner:safe-coercions-jfp,
-  author = 	  {Joachim Breitner and Richard A. Eisenberg and Simon {Peyton Jones} and Stephanie Weirich},
-  title = 	  {Safe Zero-Cost Coercions for {Haskell}},
-  year = 	  2015,
-  month =     jun,
-  note =      {Submitted for publication},
-  pdf =       "http://www.seas.upenn.edu/~sweirich/papers/coercible-JFP.pdf"
+@article{breitner2016,
+title = "Safe zero-cost coercions for Haskell",
+doi = "10.1017/S0956796816000150",
+publisher = "Cambridge University Press",
+address = "Cambridge, UK",
+author = "Joachim Breitner and Richard A. Eisenberg and Simon Peyton Jones and 
+Stephanie Weirich",
+volume = "26",
+year = "2016",
+month = "007",
+day = "28",
+plclub = "yes",
+  pdf =       "http://www.seas.upenn.edu/~sweirich/papers/coercible-JFP.pdf",
+abstract = "AbstractGenerative type abstractions – present in Haskell, OCaml, and other languages – are useful concepts to help prevent programmer errors. They serve to create new types that are distinct at compile time but share a run-time representation with some base type. We present a new mechanism that allows for zero-cost conversions between generative type abstractions and their representations, even when such types are deeply nested. We prove type safety in the presence of these conversions and have implemented our work in GHC.",
+url = "https://www.cambridge.org/core/article/safe-zero-cost-coercions-for-haskell/FFB002A34C6B40EF150B5F357AA865DC",
+journal = "Journal of Functional Programming"
 }
-
-
 
 @InProceedings{keuchel:infragen,
   author = 	  {Steven Keuchel and Stephanie Weirich and Thomas Tom Schrijvers},
@@ -18,6 +24,7 @@
   booktitle = {European Symposium on Programming (ESOP)},
   month = 	  apr,
   pages =     {419-445},
+  plclub =    yes,
   year = 	  2016}
 
 @InProceedings{type-app,
@@ -27,6 +34,7 @@
   pdf =       {http://www.seas.upenn.edu/~sweirich/papers/esop2016-typeapp.pdf},
   month = 	  apr,
   pages =     {229-254},
+  plclub =    yes,
   year = 	  2016}
 
 @misc{type-app-extened,
@@ -47,6 +55,7 @@
   publisher = {Springer},
   pages = {292-317},
   series = {LNCS},
+  plclub = yes,
   pdf = "http://www.seas.upenn.edu/~sweirich/papers/wadlerfest2016.pdf"}
 }
 
@@ -58,6 +67,7 @@
   address =      {Pasadena, CA},
   mon =          apr,
   pages = {248-262},
+  plclub =       yes,
   pdf =          "http://repository.upenn.edu/cis_papers/794/",
   year = 	     2015}
 
@@ -72,8 +82,7 @@
   address =   {Mumbai, India},
   plclub =    {yes},
   pages =     {369--382},
-  pdf =       "http://www.seas.upenn.edu/~sweirich/papers/popl15-congruence.pdf",
-  note =      "An extended version is also available in the Technical Reports section below."
+  pdf =       "http://www.seas.upenn.edu/~sweirich/papers/popl15-congruence.pdf"
 }
 
 @TechReport{sjoberg:congruence-extended,
