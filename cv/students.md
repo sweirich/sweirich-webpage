@@ -2,12 +2,12 @@ Students
 ========
 
 ## Dissertation supervision
-  - Antal Spector-Zabusky.
   - Antoine Voizard.
-  - Kenny Foner. 
-  - Richard Eisenberg, anticipated graduation date: Summer 2016.  
+  - Kenny Foner.
+  - Antal Spector-Zabusky.	
+  - Richard Eisenberg, December 2016.  
     *Dependently-Typed Haskell*  
-     Next position: Assistant professor, Bryn Mawr College (starting Fall 2016)
+     Current position: Assistant professor, [Bryn Mawr College](http://cs.brynmawr.edu/~rae/)
   - Vilhelm Sjöberg, May 2015.  
     [*A Dependently Typed Language with Nontermination*](http://repository.upenn.edu/dissertations/AAI3709556/)  
     Current position: Postdoc, [Yale University](http://www.cs.yale.edu/homes/vilhelm/).
@@ -25,6 +25,8 @@ Students
   Current position: [Logicblox](http://www.logicblox.com/).
 
 ## Dissertation committee member
+  - Jennifer Paykin, Penn.
+  - Arthur Azevedo de Amorim, Penn.
   - Peter Michael Osera, Penn, July 2015.
   - Daniel Wagner, Penn, June 2014.
   - Harley Eades III, University of Iowa, May 2014.

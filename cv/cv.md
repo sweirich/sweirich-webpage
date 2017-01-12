@@ -1,7 +1,7 @@
 Honors
 ======
   * SIGPLAN Robin Milner Young Researcher award, 2016
-  * Most Influential ICFP 2006 Paper award, 2016
+  * Most Influential ICFP 2006 Paper, awarded in 2016
   * Microsoft Outstanding Collaborator, 2016
   * Penn Engineering Fellow, University of Pennsylvania, 2014
   * Institute for Defense Analyses Computer Science Study Panel, 2007

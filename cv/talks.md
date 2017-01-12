@@ -1,6 +1,10 @@
 Invited Talks and Technical Presentations
 =========================================
 
+1. The Influence of Dependent Types
+   Keynote address, ACM Symposium on Principles of Programming Languages (POPL '17)
+   Paris, France, January 2017.
+
 1. [*A Foundation for Dependently Typed Haskell*](talks/wg28-2016.pdf)  
     WG 2.8, Lake Placid, NY, July 19, 2016.
 

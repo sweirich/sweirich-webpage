@@ -14,22 +14,23 @@ Current
    Alur, Tabuada. DARPA, $5.5 million total, 8/2012-8/2017.
 
 2. *CIF: Small: Rich-Type Inference for Functional Programming*  
-   Weirich (PI). NSF 1319880, $450,000, 9/2013-8/2016.
+   Weirich (PI). NSF 1319880, $450,000, 9/2013-8/2017.
 
 3. *CCF-SHF Small: Beyond Algebraic Data Types: Combinatorial 
    Species and Mathematically-Structured Programming*  
-   Weirich (PI).  NSF 1218002, $325,840, 8/2012-8/2016.
+   Weirich (PI).  NSF 1218002, $325,840, 8/2012-8/2017.
 
-4.  *SHF: Small: Dependently-Typed Haskell*  
-   Weirich (PI). NSF 1116620, $496,785, 8/2011-8/2016.
 
 Completed
 ---------
 
+1. *SHF: Small: Dependently-Typed Haskell*  
+   Weirich (PI). NSF 1116620, $496,785, 8/2011-8/2016.
+
 1. *Student travel support for ICFP 2015.* Weirich. NSF $20,000.
 
 2. *CIF: Small: Rich-Type Inference for Functional Programming REU*
-Weirich. NSF, $7,000.
+   Weirich. NSF, $7,000.
 
 1.  *SHF: Small: Dependently-Typed Haskell REU* 
    Weirich (PI). NSF 1116620, $6,000.
