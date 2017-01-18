@@ -1,7 +1,7 @@
 Invited Talks and Technical Presentations
 =========================================
 
-1. [*The Influence of Dependent Types*](talks/popl17)  
+1. [*The Influence of Dependent Types*](talks/popl17.pdf)  
    Keynote address, ACM Symposium on Principles of Programming Languages (POPL '17)
    Paris, France, January 2017.
 
