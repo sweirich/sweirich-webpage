@@ -1,40 +1,47 @@
 Students
 ========
 
-## Dissertation supervision
+## Dissertation supervision (current students)
+  - Yao Li.
   - Antoine Voizard.
   - Kenny Foner.
-  - Antal Spector-Zabusky.	
-  - Richard Eisenberg, December 2016.  
-    *Dependently-Typed Haskell*  
-     Current position: Assistant professor, [Bryn Mawr College](http://cs.brynmawr.edu/~rae/)
-  - Vilhelm Sjöberg, May 2015.  
-    [*A Dependently Typed Language with Nontermination*](http://repository.upenn.edu/dissertations/AAI3709556/)  
-    Current position: Postdoc, [Yale University](http://www.cs.yale.edu/homes/vilhelm/).
-  - Brent Yorgey, December 2014.   
-    [*Combinatorial Species and Labelled Structures*](http://repository.upenn.edu/dissertations/AAI3668177/)  
+  - Antal Spector-Zabusky.
+
+## Dissertation supervision (graduated students)
+  - Richard Eisenberg, December 2016.
+    [*Dependently-Typed Haskell*](http://repository.upenn.edu/dissertations/AAI10244979/).
+    Current position: Assistant professor, [Bryn Mawr College](http://cs.brynmawr.edu/~rae/).
+    *Co-winner of Morris and Dorothy Rubinoff award.*
+  - Vilhelm Sjöberg, May 2015.
+    [*A Dependently Typed Language with Nontermination*](http://repository.upenn.edu/dissertations/AAI3709556/).
+    Current position: Postdoc,
+    [Yale University](http://www.cs.yale.edu/homes/vilhelm/).
+	*Co-winner of SIGPLAN 2016 John C. Reynolds Doctoral Dissertation award.*
+  - Brent Yorgey, December 2014.
+    [*Combinatorial Species and Labelled Structures*](http://repository.upenn.edu/dissertations/AAI3668177/).
     Current position: Assistant Professor, [Hendrix College](https://www.hendrix.edu/).
-  - Chris Casinghino, December 2014.   
-    [*Combining Proofs and Programs*](http://repository.upenn.edu/dissertations/AAI3670881/)  
-   Current position: [Draper Laboratory](http://www.draper.com/).
+  - Chris Casinghino, December 2014.
+    [*Combining Proofs and Programs*](http://repository.upenn.edu/dissertations/AAI3670881/).
+    Current position: [Draper Laboratory](http://www.draper.com/).
   - Dimitrios Vytiniotis, August 2008.
-  [*Practical type inference for first-class polymorphism*](http://repository.upenn.edu/dissertations/AAI3328671/)
-  Current position: [Microsoft Research](http://research.microsoft.com/en-us/people/dimitris/), Cambridge UK.
-  - Geoffrey Washburn, December 2007. 
-  [*Principia Narcissus: How to avoid being caught by your reflection*](http://repository.upenn.edu/dissertations/AAI3292086/)  
-  Current position: [Logicblox](http://www.logicblox.com/).
+    [*Practical type inference for first-class polymorphism*](http://repository.upenn.edu/dissertations/AAI3328671/).
+    Current position: [Microsoft Research](http://research.microsoft.com/en-us/people/dimitris/), Cambridge UK.
+  - Geoffrey Washburn, December 2007.
+    [*Principia Narcissus: How to avoid being caught by your reflection*](http://repository.upenn.edu/dissertations/AAI3292086/).
+    Current position: [Logicblox](http://www.logicblox.com/).
 
 ## Dissertation committee member
+  - Leonidas Lampropolos, Penn.
   - Jennifer Paykin, Penn.
   - Arthur Azevedo de Amorim, Penn.
   - Peter Michael Osera, Penn, July 2015.
   - Daniel Wagner, Penn, June 2014.
   - Harley Eades III, University of Iowa, May 2014.
-  - Julien Cretin, INRIA / University Paris 7, January 2014. 
+  - Julien Cretin, INRIA / University Paris 7, January 2014.
   - Michael Greenberg, Penn (chair), December 2013.
   - Hongbo Zhang, Penn, Master's thesis, December 2013.
   - Karl Mazurak, Penn (chair), May 2013.
-  - Jianzhao Zhao, Penn, April 2013. 
+  - Jianzhao Zhao, Penn, April 2013.
   - Aaron Bohannon, Penn, February 2012.
   - Jean-Philippe Bernardy, Chalmers ("Faculty Opponent"), Gothenburg, Sweden, June 2011.
   - Jeffrey Vaughan, Penn, December 2009.
@@ -53,16 +60,19 @@ Students
 
 ## Independent study
 
-  - Doctoral: Antoin Voizard, Kenny Foner, Fall 2015. Antal Spector-Zabusky,
-  Spring 2016, Spring 2013. Jennifer Paykin, Fall 2012.  Richard Eisenberg, Justin Hsu,
+  - Doctoral: Hengchu Zhang, Yao Li, Spring 2017. Antoine
+  Voizard, Kenny Foner, Fall 2015. Antal Spector-Zabusky, Spring 2016,
+  Spring 2013. Jennifer Paykin, Fall 2012.  Richard Eisenberg, Justin Hsu,
   Spring 2012. Richard Eisenberg, Hongbo Zhang. Fall 2011.  Brent Yorgey,
   Peter-Michael Osera, Vilhelm Sjöberg. Fall 2008-Spring 2009. Chris
   Casinghino, Spring 2008. Andrew Hilton (co-advised), Karl Mazurak, Jeff
   Vaughan, Fall 2004.  Liang Huang, Spring 2004.
 
   - Masters: Dominik Bollman, Spring 2016. Simon Wimmer, Summer 2015.
-  
+
   - Undergraduate Senior Design Project:
+   Memoria Matters and Lauren Leung, 2016-2017 (Honarable Mention). Charles
+   Du 2017, Max McCarthy 2016.
    Lewis Ellis, Max Scheiber, Ashutosh Goel, and Jeff Grimes (Honorable
    Mention). Tiernan Garsys, Taylor Mandel, Lucas Peña, and Noam Zilberstein
    (Third place). 2014-2015.  Kaycee Anderson, Juan Jose Lopez, Caroline Ho,

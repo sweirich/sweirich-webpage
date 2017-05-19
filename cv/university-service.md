@@ -1,12 +1,12 @@
 Department, School and University Service
 ========================================
 - Undergraduate Chair, CIS, 2014-present.
-- Penn Forum for Women Faculty, 2016-present.
+- Penn Forum for Women Faculty, 2015-2016.
 - Faculty advisor to CommuniTech (Penn undergraduate service
     organization). 2012-present.
 - Faculty advisor to AΩE International Engineering and Technical
     Science Sorority. 2012-present.
-- University committee on the Facilities, 
+- University committee on the Facilities,
     2011-2014. Chair 2013-2014, 2012-2013.
 - Graduate student admissions chair, 2013-2014, 2012-2013.
 - Diversity hiring committee chair, 2012-2013.
@@ -20,6 +20,5 @@ Department, School and University Service
 - Back-up Care Committee, 2009.
 - Senior Design Project Judge, 2006.
 - Freshman Advisor, 2003.
-- Graduate Admissions Committee, 2003-2004. 
+- Graduate Admissions Committee, 2003-2004.
 - Curriculum Committee, 2002-2003.
-

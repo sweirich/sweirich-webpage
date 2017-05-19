@@ -1,4 +1,4 @@
-Research Community Service 
+Research Community Service
 ==========================
 
 ## Journal Service
@@ -7,7 +7,7 @@ Research Community Service
 - Guest Editor (with Zhenjiang Hu, Shin-Cheng Mu), Progress in
   Informatics. Special Issue on Advanced Programming Techniques for
   Construction of Robust, General and Evolutionary Programs, March 2013.
-- Guest Editor (with Benjamin Pierce), 
+- Guest Editor (with Benjamin Pierce),
   Journal of Automated Reasoning. Special Issue on the POPLmark
   Challenge. October 2012.
 - Editoral Board of  Logical Methods in Computer Science, 2016-present.
@@ -23,12 +23,14 @@ Research Community Service
 - Shonan Village Dependently-Typed Programming, 2011, co-organizer.
 - Types in Language Design and Implementation Workshop, 2011, general chair.
 - International Conference on Functional Programming (ICFP) 2010, program chair.
-- Haskell Symposium 2009, program chair. 
+- Haskell Symposium 2009, program chair.
 - Workshop on Mechanizing Metatheory, 2006-2009, co-organizer.
 - Workshop on Mechanizing Metatheory, 2006, program chair.
 
 ## Program Committee Membership (conference/symposium)
 
+- Principles of Programming Languages (POPL) 2018.
+- Certified Proofs and Programs (CPP) 2018.
 - European Symposium on Programming (ESOP) 2017.
 - Principles and Practice of Declarative Programming (PPDP) 2016.
 - Symposium on Trends in Functional Programming (TFP) 2016.
@@ -61,7 +63,7 @@ Research Community Service
 - Trends in Functional Programming in Education (TFPIE) 2013.
 - Grace Hopper Conference, Panels, Workshops, and Presentations 2012.
 - Programming Languages meets Program Verification Workshop  (PLPV) 2010.
-- IFIP TC2 Working Conference Domain Specific Languages 2009. 
+- IFIP TC2 Working Conference Domain Specific Languages 2009.
 - Proof Carrying Code Workshop 2008.
 - Haskell Workshop 2007.
 - Workshop on Types in Language Design and Implementation (TLDI) 2007.
@@ -75,11 +77,11 @@ Research Community Service
 
 ## Steering Committee Membership
 
-- Haskell Symposium, 2008-2012
 - ICFP, 2009-2012
-- TLDI, 2010-present
-- PLPV, 2012-present
-- WGP, 2012-present
+- Haskell Symposium, 2008-2012
+- TLDI, 2010-2011
+- PLPV, 2012-2014
+- WGP, 2012-2015
 - PLMW, 2012-present
 
 ## Technical Society Membership
@@ -93,7 +95,7 @@ Research Community Service
 ## Other
 - NSF panel: February 2016, June 2014, October 2012, December 2011, March 2008, December 2004.
 - Haskell' language standard committee, 2005-2010.
-- TYPES forum moderator: 2003-2009. 
+- TYPES forum moderator: 2003-2009.
 - PLDI External Review Committee: 2013, 2011, 2009
 - POPL External Review Committee: 2015, 2012.
 - Ad hoc reviews: JFP, HOSC, Acta Informatica, TOPLAS, SCP, ICFP, POPL, PLDI, ECOOP, LCTES, ICALP, FOOL, ML, Haskell, PEPM, NSF
