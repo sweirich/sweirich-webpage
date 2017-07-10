@@ -1,0 +1,951 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<title>Stlc.Lemmas</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library Stlc.Lemmas</h1>
+
+<div class="code">
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Logic.FunctionalExtensionality.html#"><span class="id" title="library">Coq.Logic.FunctionalExtensionality</span></a>.<br/>
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Program.Equality.html#"><span class="id" title="library">Coq.Program.Equality</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <span class="id" title="library">Metalib.Metatheory</span>.<br/>
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <span class="id" title="library">Metalib.LibLNgen</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <a class="idref" href="Stlc.Definitions.html#"><span class="id" title="library">Stlc.Definitions</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+NOTE: Auxiliary theorems are hidden in generated documentation.
+    In general, there is a <span class="inlinecode"><span class="id" title="var">_rec</span></span> version of every lemma involving
+    <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#StlcNotations.open"><span class="id" title="abbreviation">open</span></a></span> and <span class="inlinecode"><span class="id" title="var">close</span></span>. 
+</div>
+<div class="code">
+
+<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab64"></a><h1 class="section">Close</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Fixpoint</span> <a name="close_exp_wrt_exp_rec"><span class="id" title="definition">close_exp_wrt_exp_rec</span></a> (<span class="id" title="var">n1</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>) (<span class="id" title="var">x1</span> : <span class="id" title="abbreviation">var</span>) (<span class="id" title="var">e1</span> : <a class="idref" href="Stlc.Definitions.html#exp"><span class="id" title="inductive">exp</span></a>) {<span class="id" title="keyword">struct</span> <span class="id" title="var">e1</span>} : <a class="idref" href="Stlc.Definitions.html#exp"><span class="id" title="inductive">exp</span></a> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> <span class="id" title="var">e2</span> ⇒ <a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> (<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp_rec"><span class="id" title="definition">close_exp_wrt_exp_rec</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a>) <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="var">e2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <span class="id" title="var">x2</span> ⇒ <span class="id" title="keyword">if</span> (<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">==</span> <span class="id" title="var">x2</span>) <span class="id" title="keyword">then</span> (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a>) <span class="id" title="keyword">else</span> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <span class="id" title="var">x2</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> <span class="id" title="var">n2</span> ⇒ <span class="id" title="keyword">if</span> (<span class="id" title="definition">lt_ge_dec</span> <span class="id" title="var">n2</span> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a>) <span class="id" title="keyword">then</span> (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> <span class="id" title="var">n2</span>) <span class="id" title="keyword">else</span> (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> <span class="id" title="var">n2</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a> <span class="id" title="var">e2</span> <span class="id" title="var">e3</span> ⇒ <a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a> (<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp_rec"><span class="id" title="definition">close_exp_wrt_exp_rec</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="var">e2</span>) (<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp_rec"><span class="id" title="definition">close_exp_wrt_exp_rec</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="var">e3</span>)<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <span class="id" title="var">x1</span> <span class="id" title="var">e1</span> := <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp_rec"><span class="id" title="definition">close_exp_wrt_exp_rec</span></a> 0 <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab65"></a><h1 class="section">Size</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Fixpoint</span> <a name="size_typ"><span class="id" title="definition">size_typ</span></a> (<span class="id" title="var">T1</span> : <a class="idref" href="Stlc.Definitions.html#typ"><span class="id" title="inductive">typ</span></a>) {<span class="id" title="keyword">struct</span> <span class="id" title="var">T1</span>} : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stlc.Lemmas.html#T1"><span class="id" title="variable">T1</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Stlc.Definitions.html#typ_base"><span class="id" title="constructor">typ_base</span></a> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Stlc.Definitions.html#typ_arrow"><span class="id" title="constructor">typ_arrow</span></a> <span class="id" title="var">T2</span> <span class="id" title="var">T3</span> ⇒ 1 <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Lemmas.html#size_typ"><span class="id" title="definition">size_typ</span></a> <span class="id" title="var">T2</span><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Lemmas.html#size_typ"><span class="id" title="definition">size_typ</span></a> <span class="id" title="var">T3</span><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">)</span></a><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Fixpoint</span> <a name="size_exp"><span class="id" title="definition">size_exp</span></a> (<span class="id" title="var">e1</span> : <a class="idref" href="Stlc.Definitions.html#exp"><span class="id" title="inductive">exp</span></a>) {<span class="id" title="keyword">struct</span> <span class="id" title="var">e1</span>} : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> <span class="id" title="var">e2</span> ⇒ 1 <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Lemmas.html#size_exp"><span class="id" title="definition">size_exp</span></a> <span class="id" title="var">e2</span><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">)</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <span class="id" title="var">x1</span> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> <span class="id" title="var">n1</span> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a> <span class="id" title="var">e2</span> <span class="id" title="var">e3</span> ⇒ 1 <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Lemmas.html#size_exp"><span class="id" title="definition">size_exp</span></a> <span class="id" title="var">e2</span><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Lemmas.html#size_exp"><span class="id" title="definition">size_exp</span></a> <span class="id" title="var">e3</span><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">)</span></a><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab66"></a><h1 class="section">Degree</h1>
+
+<div class="paragraph"> </div>
+
+ These define only an upper bound, not a strict upper bound. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Inductive</span> <a name="degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Stlc.Definitions.html#exp"><span class="id" title="inductive">exp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <span class="id" title="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <a name="degree_wrt_exp_abs"><span class="id" title="constructor">degree_wrt_exp_abs</span></a> : <span class="id" title="keyword">∀</span> <span class="id" title="var">n1</span> <span class="id" title="var">e1</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a>) <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> (<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>)<br/>
+&nbsp;&nbsp;| <a name="degree_wrt_exp_var_f"><span class="id" title="constructor">degree_wrt_exp_var_f</span></a> : <span class="id" title="keyword">∀</span> <span class="id" title="var">n1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a>)<br/>
+&nbsp;&nbsp;| <a name="degree_wrt_exp_var_b"><span class="id" title="constructor">degree_wrt_exp_var_b</span></a> : <span class="id" title="keyword">∀</span> <span class="id" title="var">n1</span> <span class="id" title="var">n2</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#lt"><span class="id" title="definition">lt</span></a> <a class="idref" href="Stlc.Lemmas.html#n2"><span class="id" title="variable">n2</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> <a class="idref" href="Stlc.Lemmas.html#n2"><span class="id" title="variable">n2</span></a>)<br/>
+&nbsp;&nbsp;| <a name="degree_wrt_exp_app"><span class="id" title="constructor">degree_wrt_exp_app</span></a> : <span class="id" title="keyword">∀</span> <span class="id" title="var">n1</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> (<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>).<br/>
+
+<br/>
+<span class="id" title="keyword">Scheme</span> <a name="degree_exp_wrt_exp_ind'"><span class="id" title="definition">degree_exp_wrt_exp_ind'</span></a> := <span class="id" title="keyword">Induction</span> <span class="id" title="keyword">for</span> <a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <span class="id" title="keyword">Sort</span> <span class="id" title="keyword">Prop</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="degree_exp_wrt_exp_mutind"><span class="id" title="definition">degree_exp_wrt_exp_mutind</span></a> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">fun</span> <span class="id" title="var">H1</span> <span class="id" title="var">H2</span> <span class="id" title="var">H3</span> <span class="id" title="var">H4</span> <span class="id" title="var">H5</span> ⇒<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp_ind'"><span class="id" title="definition">degree_exp_wrt_exp_ind'</span></a> <a class="idref" href="Stlc.Lemmas.html#H1"><span class="id" title="variable">H1</span></a> <a class="idref" href="Stlc.Lemmas.html#H2"><span class="id" title="variable">H2</span></a> <a class="idref" href="Stlc.Lemmas.html#H3"><span class="id" title="variable">H3</span></a> <a class="idref" href="Stlc.Lemmas.html#H4"><span class="id" title="variable">H4</span></a> <a class="idref" href="Stlc.Lemmas.html#H5"><span class="id" title="variable">H5</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Constructors</span> <a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> : <span class="id" title="var">core</span> <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab67"></a><h1 class="section">Body</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="body_exp_wrt_exp"><span class="id" title="definition">body_exp_wrt_exp</span></a> <span class="id" title="var">e1</span> := <span class="id" title="keyword">∀</span> <span class="id" title="var">x1</span>, <a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a>)).<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Unfold</span> <a class="idref" href="Stlc.Lemmas.html#body_exp_wrt_exp"><span class="id" title="definition">body_exp_wrt_exp</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab68"></a><h1 class="section">Tactic support</h1>
+
+<div class="paragraph"> </div>
+
+ Additional hint declarations. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> @<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Arith.Plus.html#plus_le_compat"><span class="id" title="lemma">plus_le_compat</span></a> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Redefine some tactics. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_case_split</span> ::=<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">first</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[ <span class="id" title="tactic">progress</span> <span class="id" title="var">destruct_notin</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="tactic">progress</span> <span class="id" title="var">destruct_sum</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="tactic">progress</span> <span class="id" title="var">safe_f_equal</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;].<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab69"></a><h1 class="section">Theorems about <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#size"><span class="id" title="definition">size</span></a></span></h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_auto</span> ::= <span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">arith</span> <span class="id" title="var">lngen</span>; <span class="id" title="tactic">tauto</span>.<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_autorewrite</span> ::= <span class="id" title="tactic">fail</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="size_typ_min"><span class="id" title="lemma">size_typ_min</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">T1</span>, 1 <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#9b077c369e19739ef880736ba34623ff"><span class="id" title="notation">≤</span></a> <a class="idref" href="Stlc.Lemmas.html#size_typ"><span class="id" title="definition">size_typ</span></a> <a class="idref" href="Stlc.Lemmas.html#T1"><span class="id" title="variable">T1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#size_typ_min_mutual"><span class="id" title="lemma">size_typ_min_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">size_typ_min</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="size_exp_min"><span class="id" title="lemma">size_exp_min</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span>, 1 <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#9b077c369e19739ef880736ba34623ff"><span class="id" title="notation">≤</span></a> <a class="idref" href="Stlc.Lemmas.html#size_exp"><span class="id" title="definition">size_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#size_exp_min_mutual"><span class="id" title="lemma">size_exp_min_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">size_exp_min</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="size_exp_close_exp_wrt_exp"><span class="id" title="lemma">size_exp_close_exp_wrt_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#size_exp"><span class="id" title="definition">size_exp</span></a> (<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#size_exp"><span class="id" title="definition">size_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">size_exp_close_exp_wrt_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Lemmas.html#size_exp_close_exp_wrt_exp"><span class="id" title="lemma">size_exp_close_exp_wrt_exp</span></a> <span class="id" title="keyword">using</span> <span class="id" title="tactic">solve</span> [<span class="id" title="tactic">auto</span>] : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="size_exp_open_exp_wrt_exp"><span class="id" title="lemma">size_exp_open_exp_wrt_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#size_exp"><span class="id" title="definition">size_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Peano.html#9b077c369e19739ef880736ba34623ff"><span class="id" title="notation">≤</span></a> <a class="idref" href="Stlc.Lemmas.html#size_exp"><span class="id" title="definition">size_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">size_exp_open_exp_wrt_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="size_exp_open_exp_wrt_exp_var"><span class="id" title="lemma">size_exp_open_exp_wrt_exp_var</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#size_exp"><span class="id" title="definition">size_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a>)) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#size_exp"><span class="id" title="definition">size_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">size_exp_open_exp_wrt_exp_var</span> : <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Lemmas.html#size_exp_open_exp_wrt_exp_var"><span class="id" title="lemma">size_exp_open_exp_wrt_exp_var</span></a> <span class="id" title="keyword">using</span> <span class="id" title="tactic">solve</span> [<span class="id" title="tactic">auto</span>] : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab70"></a><h1 class="section">Theorems about <span class="inlinecode"><span class="id" title="var">degree</span></span></h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_auto</span> ::= <span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span>; <span class="id" title="tactic">tauto</span>.<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_autorewrite</span> ::= <span class="id" title="tactic">fail</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="degree_exp_wrt_exp_S"><span class="id" title="lemma">degree_exp_wrt_exp_S</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">n1</span> <span class="id" title="var">e1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a>) <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp_S_mutual"><span class="id" title="lemma">degree_exp_wrt_exp_S_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">degree_exp_wrt_exp_S</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="degree_exp_wrt_exp_O"><span class="id" title="lemma">degree_exp_wrt_exp_O</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">n1</span> <span class="id" title="var">e1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#O"><span class="id" title="constructor">O</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">induction</span> <span class="id" title="var">n1</span>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">degree_exp_wrt_exp_O</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="degree_exp_wrt_exp_close_exp_wrt_exp"><span class="id" title="lemma">degree_exp_wrt_exp_close_exp_wrt_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> 0 <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> 1 (<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">degree_exp_wrt_exp_close_exp_wrt_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="degree_exp_wrt_exp_close_exp_wrt_exp_inv"><span class="id" title="lemma">degree_exp_wrt_exp_close_exp_wrt_exp_inv</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> 1 (<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> 0 <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>; <span class="id" title="tactic">eauto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Immediate</span> <span class="id" title="var">degree_exp_wrt_exp_close_exp_wrt_exp_inv</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="degree_exp_wrt_exp_open_exp_wrt_exp"><span class="id" title="lemma">degree_exp_wrt_exp_open_exp_wrt_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> 1 <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> 0 <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> 0 (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">degree_exp_wrt_exp_open_exp_wrt_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="degree_exp_wrt_exp_open_exp_wrt_exp_inv"><span class="id" title="lemma">degree_exp_wrt_exp_open_exp_wrt_exp_inv</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> 0 (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> 1 <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="tactic">eauto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Immediate</span> <span class="id" title="var">degree_exp_wrt_exp_open_exp_wrt_exp_inv</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab71"></a><h1 class="section">Theorems about <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#StlcNotations.open"><span class="id" title="abbreviation">open</span></a></span> and <span class="inlinecode"><span class="id" title="var">close</span></span></h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_auto</span> ::= <span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span> <span class="id" title="var">brute_force</span>; <span class="id" title="tactic">tauto</span>.<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_autorewrite</span> ::= <span class="id" title="tactic">fail</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="close_exp_wrt_exp_inj"><span class="id" title="lemma">close_exp_wrt_exp_inj</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>; <span class="id" title="tactic">eauto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Immediate</span> <span class="id" title="var">close_exp_wrt_exp_inj</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="close_exp_wrt_exp_open_exp_wrt_exp"><span class="id" title="lemma">close_exp_wrt_exp_open_exp_wrt_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a>)) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>; <span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">close_exp_wrt_exp_open_exp_wrt_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp_open_exp_wrt_exp"><span class="id" title="lemma">close_exp_wrt_exp_open_exp_wrt_exp</span></a> <span class="id" title="keyword">using</span> <span class="id" title="tactic">solve</span> [<span class="id" title="tactic">auto</span>] : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="open_exp_wrt_exp_close_exp_wrt_exp"><span class="id" title="lemma">open_exp_wrt_exp_close_exp_wrt_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> (<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>) (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>; <span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">open_exp_wrt_exp_close_exp_wrt_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Lemmas.html#open_exp_wrt_exp_close_exp_wrt_exp"><span class="id" title="lemma">open_exp_wrt_exp_close_exp_wrt_exp</span></a> <span class="id" title="keyword">using</span> <span class="id" title="tactic">solve</span> [<span class="id" title="tactic">auto</span>] : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="open_exp_wrt_exp_inj"><span class="id" title="lemma">open_exp_wrt_exp_inj</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e2</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="tactic">eauto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Immediate</span> <span class="id" title="var">open_exp_wrt_exp_inj</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab72"></a><h1 class="section">Theorems about <span class="inlinecode"><span class="id" title="var">lc</span></span></h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_auto</span> ::= <span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span> <span class="id" title="var">brute_force</span>; <span class="id" title="tactic">tauto</span>.<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_autorewrite</span> ::= <span class="id" title="tactic">autorewrite</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="degree_exp_wrt_exp_of_lc_exp"><span class="id" title="lemma">degree_exp_wrt_exp_of_lc_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> 0 <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp_of_lc_exp_mutual"><span class="id" title="lemma">degree_exp_wrt_exp_of_lc_exp_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">degree_exp_wrt_exp_of_lc_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="lc_exp_of_degree"><span class="id" title="lemma">lc_exp_of_degree</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> 0 <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">intros</span> <span class="id" title="var">e1</span>; <span class="id" title="tactic">intros</span>;<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> (<a class="idref" href="Stlc.Lemmas.html#lc_exp_of_degree_size_mutual"><span class="id" title="lemma">lc_exp_of_degree_size_mutual</span></a> (<a class="idref" href="Stlc.Lemmas.html#size_exp"><span class="id" title="definition">size_exp</span></a> <span class="id" title="var">e1</span>));<br/>
+<span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">lc_exp_of_degree</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">typ_lc_exists_tac</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">repeat</span> (<span class="id" title="keyword">match</span> <span class="id" title="keyword">goal</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">H</span> : <span class="id" title="var">_</span> |- <span class="id" title="var">_</span> ⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">fail</span> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>).<br/>
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">exp_lc_exists_tac</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">repeat</span> (<span class="id" title="keyword">match</span> <span class="id" title="keyword">goal</span> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" title="var">H</span> : <span class="id" title="var">_</span> |- <span class="id" title="var">_</span> ⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">J1</span> := <span class="id" title="tactic">fresh</span> <span class="id" title="keyword">in</span> <span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <span class="id" title="var">H</span> <span class="id" title="keyword">as</span> <span class="id" title="var">J1</span>; <span class="id" title="tactic">apply</span> <a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp_of_lc_exp"><span class="id" title="lemma">degree_exp_wrt_exp_of_lc_exp</span></a> <span class="id" title="keyword">in</span> <span class="id" title="var">J1</span>; <span class="id" title="tactic">clear</span> <span class="id" title="var">H</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>).<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="lc_abs_exists"><span class="id" title="lemma">lc_abs_exists</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">x1</span> <span class="id" title="var">e1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a>)) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">intros</span>; <span class="id" title="var">exp_lc_exists_tac</span>; <span class="id" title="tactic">eauto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Extern</span> 1 (<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> <span class="id" title="var">_</span>)) ⇒<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">let</span> <span class="id" title="var">x1</span> := <span class="id" title="tactic">fresh</span> <span class="id" title="keyword">in</span><br/>
+&nbsp;&nbsp;<span class="id" title="var">pick_fresh</span> <span class="id" title="var">x1</span>;<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">apply</span> (<a class="idref" href="Stlc.Lemmas.html#lc_abs_exists"><span class="id" title="lemma">lc_abs_exists</span></a> <span class="id" title="var">x1</span>).<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="lc_body_exp_wrt_exp"><span class="id" title="lemma">lc_body_exp_wrt_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#body_exp_wrt_exp"><span class="id" title="definition">body_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#body_exp_wrt_exp"><span class="id" title="definition">body_exp_wrt_exp</span></a>;<br/>
+<span class="id" title="var">default_simp</span>;<br/>
+<span class="id" title="keyword">let</span> <span class="id" title="var">x1</span> := <span class="id" title="tactic">fresh</span> "x" <span class="id" title="keyword">in</span><br/>
+<span class="id" title="var">pick_fresh</span> <span class="id" title="var">x1</span>;<br/>
+<span class="id" title="var">specialize_all</span> <span class="id" title="var">x1</span>;<br/>
+<span class="id" title="var">exp_lc_exists_tac</span>;<br/>
+<span class="id" title="tactic">eauto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">lc_body_exp_wrt_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="lc_body_abs_1"><span class="id" title="lemma">lc_body_abs_1</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#body_exp_wrt_exp"><span class="id" title="definition">body_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">lc_body_abs_1</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab73"></a><h1 class="section">More theorems about <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#StlcNotations.open"><span class="id" title="abbreviation">open</span></a></span> and <span class="inlinecode"><span class="id" title="var">close</span></span></h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_auto</span> ::= <span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span>; <span class="id" title="tactic">tauto</span>.<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_autorewrite</span> ::= <span class="id" title="tactic">fail</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="close_exp_wrt_exp_lc_exp"><span class="id" title="lemma">close_exp_wrt_exp_lc_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">close_exp_wrt_exp_lc_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp_lc_exp"><span class="id" title="lemma">close_exp_wrt_exp_lc_exp</span></a> <span class="id" title="keyword">using</span> <span class="id" title="tactic">solve</span> [<span class="id" title="tactic">auto</span>] : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="open_exp_wrt_exp_lc_exp"><span class="id" title="lemma">open_exp_wrt_exp_lc_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e2</span> <span class="id" title="var">e1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">open_exp_wrt_exp_lc_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Lemmas.html#open_exp_wrt_exp_lc_exp"><span class="id" title="lemma">open_exp_wrt_exp_lc_exp</span></a> <span class="id" title="keyword">using</span> <span class="id" title="tactic">solve</span> [<span class="id" title="tactic">auto</span>] : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab74"></a><h1 class="section">Theorems about <span class="inlinecode"><span class="id" title="var">fv</span></span></h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_auto</span> ::= <span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> <span class="id" title="tactic">set</span> <span class="id" title="var">lngen</span>; <span class="id" title="tactic">tauto</span>.<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_autorewrite</span> ::= <span class="id" title="tactic">autorewrite</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="fv_exp_close_exp_wrt_exp"><span class="id" title="lemma">fv_exp_close_exp_wrt_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>) <span class="id" title="notation">[=]</span> <span class="id" title="abbreviation">remove</span> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">fv_exp_close_exp_wrt_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Lemmas.html#fv_exp_close_exp_wrt_exp"><span class="id" title="lemma">fv_exp_close_exp_wrt_exp</span></a> <span class="id" title="keyword">using</span> <span class="id" title="tactic">solve</span> [<span class="id" title="tactic">auto</span>] : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="fv_exp_open_exp_wrt_exp_lower"><span class="id" title="lemma">fv_exp_open_exp_wrt_exp_lower</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <span class="id" title="notation">[&lt;=]</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">fv_exp_open_exp_wrt_exp_lower</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="fv_exp_open_exp_wrt_exp_upper"><span class="id" title="lemma">fv_exp_open_exp_wrt_exp_upper</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>) <span class="id" title="notation">[&lt;=]</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">union</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">fv_exp_open_exp_wrt_exp_upper</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="fv_exp_subst_exp_fresh"><span class="id" title="lemma">fv_exp_subst_exp_fresh</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>) <span class="id" title="notation">[=]</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#fv_exp_subst_exp_fresh_mutual"><span class="id" title="lemma">fv_exp_subst_exp_fresh_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">fv_exp_subst_exp_fresh</span> : <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Lemmas.html#fv_exp_subst_exp_fresh"><span class="id" title="lemma">fv_exp_subst_exp_fresh</span></a> <span class="id" title="keyword">using</span> <span class="id" title="tactic">solve</span> [<span class="id" title="tactic">auto</span>] : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="fv_exp_subst_exp_lower"><span class="id" title="lemma">fv_exp_subst_exp_lower</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<span class="id" title="abbreviation">remove</span> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>) <span class="id" title="notation">[&lt;=]</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#fv_exp_subst_exp_lower_mutual"><span class="id" title="lemma">fv_exp_subst_exp_lower_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">fv_exp_subst_exp_lower</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="fv_exp_subst_exp_notin"><span class="id" title="lemma">fv_exp_subst_exp_notin</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span> <span class="id" title="var">x1</span> <span class="id" title="var">x2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#fv_exp_subst_exp_notin_mutual"><span class="id" title="lemma">fv_exp_subst_exp_notin_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">fv_exp_subst_exp_notin</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="fv_exp_subst_exp_upper"><span class="id" title="lemma">fv_exp_subst_exp_upper</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>) <span class="id" title="notation">[&lt;=]</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">union</span><span class="id" title="notation">`</span> <span class="id" title="abbreviation">remove</span> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#fv_exp_subst_exp_upper_mutual"><span class="id" title="lemma">fv_exp_subst_exp_upper_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">fv_exp_subst_exp_upper</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab75"></a><h1 class="section">Theorems about <span class="inlinecode"><span class="id" title="tactic">subst</span></span></h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_auto</span> ::= <span class="id" title="tactic">auto</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span> <span class="id" title="var">brute_force</span>; <span class="id" title="tactic">tauto</span>.<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_autorewrite</span> ::= <span class="id" title="tactic">autorewrite</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_close_exp_wrt_exp_rec"><span class="id" title="lemma">subst_exp_close_exp_wrt_exp_rec</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e2</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span> <span class="id" title="var">x2</span> <span class="id" title="var">n1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#32263a1c8b01baecdff9deb038955bc9"><span class="id" title="notation">≠</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp_rec"><span class="id" title="definition">close_exp_wrt_exp_rec</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp_rec"><span class="id" title="definition">close_exp_wrt_exp_rec</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_close_exp_wrt_exp_rec_mutual"><span class="id" title="lemma">subst_exp_close_exp_wrt_exp_rec_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_close_exp_wrt_exp_rec</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_close_exp_wrt_exp"><span class="id" title="lemma">subst_exp_close_exp_wrt_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e2</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span> <span class="id" title="var">x2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a>  <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#32263a1c8b01baecdff9deb038955bc9"><span class="id" title="notation">≠</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_close_exp_wrt_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_degree_exp_wrt_exp"><span class="id" title="lemma">subst_exp_degree_exp_wrt_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span> <span class="id" title="var">x1</span> <span class="id" title="var">n1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#degree_exp_wrt_exp"><span class="id" title="inductive">degree_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#n1"><span class="id" title="variable">n1</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_degree_exp_wrt_exp_mutual"><span class="id" title="lemma">subst_exp_degree_exp_wrt_exp_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_degree_exp_wrt_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_fresh_eq"><span class="id" title="lemma">subst_exp_fresh_eq</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e2</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_eq_mutual"><span class="id" title="lemma">subst_exp_fresh_eq_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_fresh_eq</span> : <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_eq"><span class="id" title="lemma">subst_exp_fresh_eq</span></a> <span class="id" title="keyword">using</span> <span class="id" title="tactic">solve</span> [<span class="id" title="tactic">auto</span>] : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_fresh_same"><span class="id" title="lemma">subst_exp_fresh_same</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e2</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_same_mutual"><span class="id" title="lemma">subst_exp_fresh_same_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_fresh_same</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_fresh"><span class="id" title="lemma">subst_exp_fresh</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e2</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span> <span class="id" title="var">x2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_mutual"><span class="id" title="lemma">subst_exp_fresh_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_fresh</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_lc_exp"><span class="id" title="lemma">subst_exp_lc_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_lc_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_open_exp_wrt_exp"><span class="id" title="lemma">subst_exp_open_exp_wrt_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e3</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e3"><span class="id" title="variable">e3</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e3"><span class="id" title="variable">e3</span></a>) (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_open_exp_wrt_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_open_exp_wrt_exp_var"><span class="id" title="lemma">subst_exp_open_exp_wrt_exp_var</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e2</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span> <span class="id" title="var">x2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#32263a1c8b01baecdff9deb038955bc9"><span class="id" title="notation">≠</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>) (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a>)).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">intros</span>; <span class="id" title="tactic">rewrite</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_open_exp_wrt_exp"><span class="id" title="lemma">subst_exp_open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_open_exp_wrt_exp_var</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_spec"><span class="id" title="lemma">subst_exp_spec</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> (<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>) <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>; <span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_spec</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_subst_exp"><span class="id" title="lemma">subst_exp_subst_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span> <span class="id" title="var">e3</span> <span class="id" title="var">x2</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#32263a1c8b01baecdff9deb038955bc9"><span class="id" title="notation">≠</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e3"><span class="id" title="variable">e3</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e3"><span class="id" title="variable">e3</span></a>) <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">pose</span> <span class="id" title="var">proof</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_subst_exp_mutual"><span class="id" title="lemma">subst_exp_subst_exp_mutual</span></a> <span class="id" title="keyword">as</span> <span class="id" title="var">H</span>; <span class="id" title="tactic">intuition</span> <span class="id" title="tactic">eauto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_subst_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_close_exp_wrt_exp_open_exp_wrt_exp"><span class="id" title="lemma">subst_exp_close_exp_wrt_exp_open_exp_wrt_exp</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e2</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span> <span class="id" title="var">x2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#32263a1c8b01baecdff9deb038955bc9"><span class="id" title="notation">≠</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a>))).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>; <span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_close_exp_wrt_exp_open_exp_wrt_exp</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_abs"><span class="id" title="lemma">subst_exp_abs</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">x2</span> <span class="id" title="var">e2</span> <span class="id" title="var">e1</span> <span class="id" title="var">x1</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">union</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">union</span><span class="id" title="notation">`</span> <span class="id" title="abbreviation">singleton</span> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> (<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a> (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x2"><span class="id" title="variable">x2</span></a>)))).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_abs</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="subst_exp_intro"><span class="id" title="lemma">subst_exp_intro</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">x1</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e2"><span class="id" title="variable">e2</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lemmas.html#e1"><span class="id" title="variable">e1</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lemmas.html#x1"><span class="id" title="variable">x1</span></a>)).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>; <span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">subst_exp_intro</span> : <span class="id" title="var">lngen</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab76"></a><h1 class="section">"Restore" tactics</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_auto</span> ::= <span class="id" title="tactic">auto</span>; <span class="id" title="tactic">tauto</span>.<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_autorewrite</span> ::= <span class="id" title="tactic">fail</span>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
