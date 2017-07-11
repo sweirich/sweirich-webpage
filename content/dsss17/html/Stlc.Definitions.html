@@ -52,17 +52,17 @@
 
  We use a locally nameless representation for the simply-typed lambda
     calculus, where bound variables are represented as natural numbers (de
-    Bruijn indices) and free variables are represented as <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>s.
+    Bruijn indices) and free variables are represented as <span class="inlinecode"><span class="id" title="axiom">atom</span></span>s.
 
 <div class="paragraph"> </div>
 
-    The type <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>, defined in the Metatheory library, represents names.
+    The type <span class="inlinecode"><span class="id" title="axiom">atom</span></span>, defined in the Metatheory library, represents names.
     Equality on names is decidable, and it is possible to generate an atom
     fresh for any given finite set of atoms (<span class="inlinecode"><span class="id" title="lemma">atom_fresh</span></span>).
 
 <div class="paragraph"> </div>
 
-    Note: the type <span class="inlinecode"><span class="id" title="abbreviation">var</span></span> is notation for <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>.
+    Note: the type <span class="inlinecode"><span class="id" title="abbreviation">var</span></span> is notation for <span class="inlinecode"><span class="id" title="axiom">atom</span></span>.
 
 </div>
 <div class="code">
@@ -154,7 +154,7 @@
 </div>
 
 <div class="doc">
-The type <span class="inlinecode"><span class="id" title="abbreviation">vars</span></span> represents a finite set of elements of type <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>.
+The type <span class="inlinecode"><span class="id" title="abbreviation">vars</span></span> represents a finite set of elements of type <span class="inlinecode"><span class="id" title="axiom">atom</span></span>.
     The notations for the finite set definitions (empty set `{}`, singleton
     `<a href="x">x</a>` and union `\u`) is also defined in the Metatheory library.  
 <div class="paragraph"> </div>
@@ -280,19 +280,19 @@ The type <span class="inlinecode"><span class="id" title="abbreviation">vars</sp
 <div class="paragraph"> </div>
 
  We represent typing contexts as association lists (lists of pairs of
-    keys and values) whose keys are <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>s.
+    keys and values) whose keys are <span class="inlinecode"><span class="id" title="axiom">atom</span></span>s.
 
 </div>
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a name="ctx"><span class="id" title="definition">ctx</span></a> : <span class="id" title="keyword">Set</span> := <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<span class="id" title="abbreviation">atom</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Stlc.Definitions.html#typ"><span class="id" title="inductive">typ</span></a>).<br/>
+<span class="id" title="keyword">Definition</span> <a name="ctx"><span class="id" title="definition">ctx</span></a> : <span class="id" title="keyword">Set</span> := <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<span class="id" title="axiom">atom</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Stlc.Definitions.html#typ"><span class="id" title="inductive">typ</span></a>).<br/>
 
 <br/>
 </div>
 
 <div class="doc">
-For STLC, contexts bind <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>s to <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#typ"><span class="id" title="inductive">typ</span></a></span>s.
+For STLC, contexts bind <span class="inlinecode"><span class="id" title="axiom">atom</span></span>s to <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#typ"><span class="id" title="inductive">typ</span></a></span>s.
 
 <div class="paragraph"> </div>
 
@@ -305,7 +305,7 @@ For STLC, contexts bind <span class="inlinecode"><span class="id" title="abbrevi
 
     The Metatheory library extends this reasoning by instantiating the
     AssocList library to provide support for association lists whose keys are
-    <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>s.  Everything in this library is polymorphic over the type of
+    <span class="inlinecode"><span class="id" title="axiom">atom</span></span>s.  Everything in this library is polymorphic over the type of
     objects bound in the environment.  Look in AssocList.v for additional
     details about the functions and predicates that we mention below.
  
