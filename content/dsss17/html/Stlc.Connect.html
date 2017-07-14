@@ -32,9 +32,31 @@
 <div class="paragraph"> </div>
 
     We'll do this by proving that any time the abstract machine takes a step,
-    we can decode the machine configuration before and after to LN
+    we can decode the machine configuration before and after the step to LN
     expressions, and those expressions are either identical or related by the
-    LN step relation.   
+    LN step relation.
+
+<div class="paragraph"> </div>
+
+<pre>
+                    machine_step
+             (h,t,s)  ------&gt;  (h',t',s')            nominal terms
+                |                  |
+                | decode           | decode
+                v                  v
+                e       - - -&gt;     e'           locally nameless terms
+                      step e e'
+                         or
+                        e = e'
+</pre>
+
+<div class="paragraph"> </div>
+
+    This result is the <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#simulate_step"><span class="id" title="lemma">simulate_step</span></a></span> lemma near the end of this file.
+
+<div class="paragraph"> </div>
+
+ 
 </div>
 <div class="code">
 
@@ -55,13 +77,13 @@
 </div>
 
 <div class="doc">
-<a name="lab2"></a><h1 class="section">Translating nominal to LN terms</h1>
+<a name="lab2"></a><h2 class="section">Translating nominal terms to LN terms</h2>
 
 <div class="paragraph"> </div>
 
- We translate named terms to LN terms through the use of the
-    <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a></span> function. This function replaces all occurrences
-    of the given atom by the appropriate bound variable.
+ We decode named terms to LN terms through the use of the
+    <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a></span> function. This function replaces all occurrences of
+    a given atom by a new bound variable.
 
 <div class="paragraph"> </div>
 
@@ -97,11 +119,21 @@ We also define a translation from machine configurations to LN
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
+
+<br/>
 <span class="id" title="keyword">Fixpoint</span> <a name="apply_stack"><span class="id" title="definition">apply_stack</span></a> <span class="id" title="var">h</span> (<span class="id" title="var">s</span> : <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="Stlc.Nominal.html#frame"><span class="id" title="inductive">frame</span></a>) (<span class="id" title="var">e</span> :<a class="idref" href="Stlc.Definitions.html#exp"><span class="id" title="inductive">exp</span></a>) : <a class="idref" href="Stlc.Definitions.html#exp"><span class="id" title="inductive">exp</span></a> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a> ⇒ <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a><br/>
 &nbsp;&nbsp;| <a class="idref" href="Stlc.Nominal.html#n_app2"><span class="id" title="constructor">n_app2</span></a> <span class="id" title="var">e'</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <span class="id" title="var">s'</span> ⇒ <a class="idref" href="Stlc.Connect.html#apply_stack"><span class="id" title="definition">apply_stack</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <span class="id" title="var">s'</span> (<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a> <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a> (<a class="idref" href="Stlc.Connect.html#apply_heap"><span class="id" title="definition">apply_heap</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> (<a class="idref" href="Stlc.Connect.html#nom_to_exp"><span class="id" title="definition">nom_to_exp</span></a> <span class="id" title="var">e'</span>)))<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+The full decode function puts all of these parts together. 
+</div>
+<div class="code">
 
 <br/>
 <span class="id" title="keyword">Definition</span> <a name="decode"><span class="id" title="definition">decode</span></a> (<span class="id" title="var">c</span>:<a class="idref" href="Stlc.Nominal.html#configuration"><span class="id" title="definition">configuration</span></a>) : <a class="idref" href="Stlc.Definitions.html#exp"><span class="id" title="inductive">exp</span></a>  :=<br/>
@@ -113,7 +145,23 @@ We also define a translation from machine configurations to LN
 </div>
 
 <div class="doc">
-<a name="lab3"></a><h1 class="section">Demo: connecting free variable functions.</h1>
+Here's an example translation from the machine step demo. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Definition</span> <a name="conf1"><span class="id" title="definition">conf1</span></a> := <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><span class="id" title="notation">[</span><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Nominal.html#Y"><span class="id" title="abbreviation">Y</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="Stlc.Nominal.html#n_var"><span class="id" title="constructor">n_var</span></a> <a class="idref" href="Stlc.Nominal.html#Z"><span class="id" title="abbreviation">Z</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a><span class="id" title="notation">]</span><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a> <a class="idref" href="Stlc.Nominal.html#n_abs"><span class="id" title="constructor">n_abs</span></a> <a class="idref" href="Stlc.Nominal.html#X"><span class="id" title="abbreviation">X</span></a> (<a class="idref" href="Stlc.Nominal.html#n_var"><span class="id" title="constructor">n_var</span></a> <a class="idref" href="Stlc.Nominal.html#X"><span class="id" title="abbreviation">X</span></a>)<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a> <span class="id" title="notation">[</span><a class="idref" href="Stlc.Nominal.html#n_app2"><span class="id" title="constructor">n_app2</span></a> (<a class="idref" href="Stlc.Nominal.html#n_var"><span class="id" title="constructor">n_var</span></a> <a class="idref" href="Stlc.Nominal.html#Y"><span class="id" title="abbreviation">Y</span></a>)<span class="id" title="notation">]</span><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a>.<br/>
+
+<br/>
+<span class="id" title="keyword">Example</span> <a name="decode1"><span class="id" title="definition">decode1</span></a> : <a class="idref" href="Stlc.Connect.html#decode"><span class="id" title="definition">decode</span></a> <a class="idref" href="Stlc.Connect.html#conf1"><span class="id" title="definition">conf1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a> (<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> 0)) (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Nominal.html#Z"><span class="id" title="abbreviation">Z</span></a>)<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">)</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>. &nbsp;&nbsp;<span class="id" title="var">default_simp</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" title="var">default_simp</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+</div>
+
+<div class="doc">
+<a name="lab3"></a><h2 class="section">Connecting free variable functions.</h2>
 
 <div class="paragraph"> </div>
 
@@ -140,7 +188,8 @@ We also define a translation from machine configurations to LN
 </div>
 
 <div class="doc">
-We can also extend the hint database with new rewritings. 
+As we prove new lemmas, we can also extend the hint database with new
+    rewritings. 
 </div>
 <div class="code">
 <span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Connect.html#fv_nom_fv_exp_eq"><span class="id" title="lemma">fv_nom_fv_exp_eq</span></a> : <span class="id" title="var">lngen</span>.<br/>
@@ -170,8 +219,8 @@ The Metatheory library contains two powerful tactics for simplifying
 
 <div class="paragraph"> </div>
 
-    Below, we modify he behavior of these tactics by updating the following
-    two definitions, so that the lngen hint databases will be available.  
+    Below, we modify the behavior of these tactics by updating the following
+    two definitions, so that the <span class="inlinecode"><span class="id" title="var">lngen</span></span> hint databases will be available.  
 </div>
 <div class="code">
 
@@ -180,12 +229,28 @@ The Metatheory library contains two powerful tactics for simplifying
 <span class="id" title="keyword">Ltac</span> <span class="id" title="var">default_autorewrite</span> ::= <span class="id" title="tactic">autorewrite</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+We also add a few more rewriting lemmas to the hint database to
+    automate our proofs. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_open_exp_wrt_exp"><span class="id" title="lemma">subst_exp_open_exp_wrt_exp</span></a> : <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Nominal.html#swap_size_eq"><span class="id" title="lemma">swap_size_eq</span></a> : <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">le_S_n</span> : <span class="id" title="var">lngen</span>.<br/>
 
 <br/>
 </div>
 
 <div class="doc">
-Next, we show that our decoding of nominal terms and
+<a name="lab4"></a><h2 class="section">Decoded terms are locally closed</h2>
+
+<div class="paragraph"> </div>
+
+ Next, we show that our decoding of nominal terms and
     configurations produces locally closed LN terms.
 
 <div class="paragraph"> </div>
@@ -214,7 +279,8 @@ Next, we show that our decoding of nominal terms and
 </div>
 
 <div class="doc">
-Exercise: apply_stack_lc
+<a name="lab5"></a><h3 class="section">Exercise: <span class="inlinecode"><span class="id" title="var">apply_stack_lc</span></span></h3>
+
 
 <div class="paragraph"> </div>
 
@@ -236,7 +302,8 @@ Exercise: apply_stack_lc
 </div>
 
 <div class="doc">
-Properties of apply_heap 
+<a name="lab6"></a><h2 class="section">Properties of apply_heap</h2>
+
 <div class="paragraph"> </div>
 
  Since the heap is just an iterated substitution, it inherits
@@ -244,9 +311,8 @@ Properties of apply_heap
 
 <div class="paragraph"> </div>
 
-    <span class="inlinecode"><span class="id" title="var">alist</span></span> <span class="inlinecode"><span class="id" title="tactic">induction</span></span> is a tactic from the metatheory library for
-    induction over association lists (such as the heap).
-
+    Below, <span class="inlinecode"><span class="id" title="var">alist</span></span> <span class="inlinecode"><span class="id" title="tactic">induction</span></span> is a tactic from the metatheory library for
+    induction over association lists (such as the heap).  
 </div>
 <div class="code">
 
@@ -274,7 +340,8 @@ Properties of apply_heap
 </div>
 
 <div class="doc">
-Exercise: apply_heap_open
+<a name="lab7"></a><h3 class="section">Exercise: <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#apply_heap_open"><span class="id" title="lemma">apply_heap_open</span></a></span></h3>
+
 
 <div class="paragraph"> </div>
 
@@ -291,14 +358,10 @@ Exercise: apply_heap_open
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#apply_heap"><span class="id" title="definition">apply_heap</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> (<a class="idref" href="Stlc.Definitions.html#StlcNotations.open"><span class="id" title="abbreviation">open</span></a> <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a> <a class="idref" href="Stlc.Connect.html#e0"><span class="id" title="variable">e0</span></a>)  <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#StlcNotations.open"><span class="id" title="abbreviation">open</span></a> (<a class="idref" href="Stlc.Connect.html#apply_heap"><span class="id" title="definition">apply_heap</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a>) (<a class="idref" href="Stlc.Connect.html#apply_heap"><span class="id" title="definition">apply_heap</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Stlc.Connect.html#e0"><span class="id" title="variable">e0</span></a>).<br/>
 <span class="id" title="keyword">Proof</span>.<br/>
-&nbsp;&nbsp;<span class="id" title="var">alist</span> <span class="id" title="tactic">induction</span> <span class="id" title="var">h</span>; <span class="id" title="tactic">intros</span>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">simpl</span> <span class="id" title="keyword">in</span> *;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">try</span> <span class="id" title="tactic">rewrite</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_open_exp_wrt_exp"><span class="id" title="lemma">subst_exp_open_exp_wrt_exp</span></a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="var">default_simp</span>.<br/>
-<span class="id" title="keyword">Qed</span>.<br/>
+ <span class="id" title="var">Admitted</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Connect.html#apply_heap_open"><span class="id" title="lemma">apply_heap_open</span></a> : <span class="id" title="var">lngen</span>.<br/>
+<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Connect.html#apply_heap_open"><span class="id" title="axiom">apply_heap_open</span></a> : <span class="id" title="var">lngen</span>.<br/>
 
 <br/>
 </div>
@@ -319,17 +382,13 @@ This last lemma "unsimpl"s the <span class="inlinecode"><a class="idref" href="S
 </div>
 
 <div class="doc">
-<a name="lab4"></a><h1 class="section">Stacks as evaluation contexts</h1>
+<a name="lab8"></a><h2 class="section">Stacks as evaluation contexts</h2>
 
 <div class="paragraph"> </div>
 
  Here is a quick lemma that uses the properties defined above.
-    It shows that the stack does behave like an evaluation context,
+    It shows that the stack behaves like an *evaluation context*,
     lifting a small-step reduction to a larger term.
-
-<div class="paragraph"> </div>
-
-    Q: Which properties above does this proof implicitly rely on?
  
 </div>
 <div class="code">
@@ -346,109 +405,7 @@ This last lemma "unsimpl"s the <span class="inlinecode"><a class="idref" href="S
 </div>
 
 <div class="doc">
-<a name="lab5"></a><h1 class="section">Scoped heaps</h1>
-
-<div class="paragraph"> </div>
-
- Next, we define when a heap is *well-scoped*.  Well-scoped heaps
-    behave "telescopically".  Each binding (x,e) added to the heap is for
-    a unique name x and the free variables of e are bound in the
-    remainder of the heap.
-
-<div class="paragraph"> </div>
-
-    The scoping relation is parameterized by <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#D"><span class="id" title="variable">D</span></a></span>, an "ambient
-    scope". This will let us reason about the execution of the abstract
-    machine for non-closed lambda terms. 
-</div>
-<div class="code">
-
-<br/>
-<span class="id" title="keyword">Inductive</span> <a name="scoped_heap"><span class="id" title="inductive">scoped_heap</span></a> (<span class="id" title="var">D</span> : <span class="id" title="abbreviation">atoms</span>) : <a class="idref" href="Stlc.Nominal.html#heap"><span class="id" title="definition">heap</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <span class="id" title="keyword">Prop</span> :=<br/>
-&nbsp;&nbsp;| <a name="scoped_nil"><span class="id" title="constructor">scoped_nil</span></a>  : <a class="idref" href="Stlc.Connect.html#scoped_heap"><span class="id" title="inductive">scoped_heap</span></a> <span class="id" title="var">D</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a><br/>
-&nbsp;&nbsp;| <a name="scoped_cons"><span class="id" title="constructor">scoped_cons</span></a> : <span class="id" title="keyword">∀</span> <span class="id" title="var">x</span> <span class="id" title="var">e</span> <span class="id" title="var">h</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <span class="id" title="definition">dom</span> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <span class="id" title="notation">\</span><span class="id" title="notation">u</span> <span class="id" title="var">D</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Connect.html#nom_to_exp"><span class="id" title="definition">nom_to_exp</span></a> <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a>) <span class="id" title="notation">[&lt;=]</span> <span class="id" title="definition">dom</span> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <span class="id" title="notation">\</span><span class="id" title="notation">u</span> <span class="id" title="var">D</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#scoped_heap"><span class="id" title="inductive">scoped_heap</span></a> <span class="id" title="var">D</span> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#scoped_heap"><span class="id" title="inductive">scoped_heap</span></a> <span class="id" title="var">D</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a><a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a>).<br/>
-
-<br/>
-</div>
-
-<div class="doc">
-Exercise <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#apply_heap_get"><span class="id" title="lemma">apply_heap_get</span></a></span>  (recommended)
-
-<div class="paragraph"> </div>
-
-    We can use get to look up expressions in the heap. However, to know that
-    we have the right result we need to know that the heap is well-scoped, i.e.
-    that later bindings do not affect earlier ones.
-
-<div class="paragraph"> </div>
-
-    State a lemma about the scoping of expressions that appear in the heap
-    and use it to finish the apply_heap_get below.
- 
-</div>
-<div class="code">
-
-<br/>
-
-<br/>
-<span class="id" title="keyword">Lemma</span> <a name="apply_heap_get"><span class="id" title="lemma">apply_heap_get</span></a> :  <span class="id" title="keyword">∀</span> <span class="id" title="var">h</span> <span class="id" title="var">D</span> <span class="id" title="var">x</span> <span class="id" title="var">e</span>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#scoped_heap"><span class="id" title="inductive">scoped_heap</span></a> <a class="idref" href="Stlc.Connect.html#D"><span class="id" title="variable">D</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="definition">get</span> <a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#apply_heap"><span class="id" title="definition">apply_heap</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Connect.html#apply_heap"><span class="id" title="definition">apply_heap</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> (<a class="idref" href="Stlc.Connect.html#nom_to_exp"><span class="id" title="definition">nom_to_exp</span></a> <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a>).<br/>
-<span class="id" title="keyword">Proof</span>.<br/>
-&nbsp;&nbsp;<span class="id" title="tactic">induction</span> 1; <span class="id" title="tactic">intros</span>; <span class="id" title="var">default_simp</span>.<br/>
-&nbsp;&nbsp;- <span class="id" title="var">Case</span> "x is at the current heap location".<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_eq"><span class="id" title="lemma">subst_exp_fresh_eq</span></a>; <span class="id" title="tactic">auto</span>. <span class="id" title="var">fsetdec</span>.<br/>
-&nbsp;&nbsp;- <span class="id" title="var">Case</span> "x is later in the heap".<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_eq"><span class="id" title="lemma">subst_exp_fresh_eq</span></a>; <span class="id" title="tactic">auto</span>.<br/>
- <span class="id" title="var">Admitted</span>.<br/>
-
-<br/>
-</div>
-
-<div class="doc">
-<a name="lab6"></a><h1 class="section">Scoped stacks</h1>
-
-<div class="paragraph"> </div>
-
- We also care about the free variables that can appear in stacks. (We
-    will use this definition to define when configurations are
-    well-scoped below.)  
-</div>
-<div class="code">
-
-<br/>
-<span class="id" title="keyword">Fixpoint</span> <a name="fv_stack"><span class="id" title="definition">fv_stack</span></a> <span class="id" title="var">s</span> :=<br/>
-&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a> <span class="id" title="keyword">with</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a> ⇒ <span class="id" title="notation">{}</span><br/>
-&nbsp;&nbsp;| <a class="idref" href="Stlc.Nominal.html#n_app2"><span class="id" title="constructor">n_app2</span></a> <span class="id" title="var">e</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <span class="id" title="var">s</span> ⇒ <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Connect.html#nom_to_exp"><span class="id" title="definition">nom_to_exp</span></a> <span class="id" title="var">e</span>) <span class="id" title="notation">\</span><span class="id" title="notation">u</span> <a class="idref" href="Stlc.Connect.html#fv_stack"><span class="id" title="definition">fv_stack</span></a> <a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a><br/>
-&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
-
-<br/>
-</div>
-
-<div class="doc">
-Stacks that are well-scoped can discard irrelevant bindings
-    from the heap. 
-</div>
-<div class="code">
-
-<br/>
-<span class="id" title="keyword">Lemma</span> <a name="apply_stack_fresh_eq"><span class="id" title="lemma">apply_stack_fresh_eq</span></a> : <span class="id" title="keyword">∀</span> <span class="id" title="var">s</span> <span class="id" title="var">x</span> <span class="id" title="var">e1</span> <span class="id" title="var">h</span> ,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Connect.html#fv_stack"><span class="id" title="definition">fv_stack</span></a> <a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#apply_stack"><span class="id" title="definition">apply_stack</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a> <a class="idref" href="Stlc.Connect.html#e1"><span class="id" title="variable">e1</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a>) <a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Connect.html#apply_stack"><span class="id" title="definition">apply_stack</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a>.<br/>
-<span class="id" title="keyword">Proof</span>.<br/>
-&nbsp;&nbsp;<span class="id" title="tactic">induction</span> <span class="id" title="var">s</span>; <span class="id" title="tactic">intros</span>; <span class="id" title="tactic">try</span> <span class="id" title="tactic">destruct</span> <span class="id" title="var">a</span>; <span class="id" title="var">default_simp</span>.<br/>
-&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">IHs</span>; <span class="id" title="tactic">auto</span>.<br/>
-<span class="id" title="keyword">Qed</span>.<br/>
-</div>
-
-<div class="doc">
-<a name="lab7"></a><h1 class="section">Connecting "freshening"</h1>
+<a name="lab9"></a><h1 class="section">Connecting "freshening"</h1>
 
 <div class="paragraph"> </div>
 
@@ -478,7 +435,11 @@ Lemma swap_spec : forall  n w y,
  
 <div class="paragraph"> </div>
 
- This proof depends on the following auxiliary lemma about the
+<a name="lab10"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#close_exp_wrt_exp_freshen"><span class="id" title="lemma">close_exp_wrt_exp_freshen</span></a></span></h3>
+
+<div class="paragraph"> </div>
+
+ The <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#swap_spec"><span class="id" title="lemma">swap_spec</span></a></span> proof depends on the following auxiliary lemma about the
     close operation --- that we can equivalently rename the atom that
     we are closing with. 
 </div>
@@ -488,25 +449,37 @@ Lemma swap_spec : forall  n w y,
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a> (<a class="idref" href="Stlc.Definitions.html#a604463a10cbf78096b99b157265e3e9"><span class="id" title="notation">[</span></a><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="Stlc.Definitions.html#a604463a10cbf78096b99b157265e3e9"><span class="id" title="notation">~&gt;</span></a> <a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a><a class="idref" href="Stlc.Definitions.html#a604463a10cbf78096b99b157265e3e9"><span class="id" title="notation">]</span></a> <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a>).<br/>
 <span class="id" title="keyword">Proof</span>.<br/>
-&nbsp;&nbsp;<span class="id" title="tactic">intros</span> <span class="id" title="var">x</span> <span class="id" title="var">y</span> <span class="id" title="var">e</span>.<br/>
-&nbsp;&nbsp;<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Lemmas.html#close_exp_wrt_exp"><span class="id" title="definition">close_exp_wrt_exp</span></a>.<br/>
-&nbsp;&nbsp;<span class="id" title="tactic">generalize</span> 0 <span class="id" title="keyword">as</span> <span class="id" title="var">k</span>.<br/>
-&nbsp;&nbsp;<span class="id" title="tactic">generalize</span> <span class="id" title="var">e</span>. <span class="id" title="tactic">clear</span> <span class="id" title="var">e</span>.<br/>
-&nbsp;&nbsp;<span class="id" title="tactic">induction</span> <span class="id" title="var">e</span>; <span class="id" title="var">default_simp</span>.<br/>
-<span class="id" title="keyword">Qed</span>.<br/>
-
-<br/>
-<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Nominal.html#swap_size_eq"><span class="id" title="lemma">swap_size_eq</span></a> : <span class="id" title="var">lngen</span>.<br/>
-<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">le_S_n</span> : <span class="id" title="var">lngen</span>.<br/>
+ <span class="id" title="var">Admitted</span>.<br/>
 
 <br/>
 </div>
 
 <div class="doc">
-One difficulty of <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#swap_spec"><span class="id" title="lemma">swap_spec</span></a></span> is that we cannot do induction on
-    the structure of nominal terms. Instead, we must use a size
-    based instead. That way, we will be able to call the IH on subterms
-    that have had their variables swapped. 
+One difficulty of <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#swap_spec"><span class="id" title="lemma">swap_spec</span></a></span> is that we need to use the induction
+    not on direct subterms, but on those that have had a swapping applied
+    to them. Swapping preserves the size of a nominal term, so we can
+    prove this result by induction on <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#m"><span class="id" title="variable">m</span></a></span>, a bound on the size of the
+    term.
+
+<div class="paragraph"> </div>
+
+    The difficulty in this proof comes from the <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#n_abs"><span class="id" title="constructor">n_abs</span></a></span> case. In this
+    case, the term is is of the form <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#n_abs"><span class="id" title="constructor">n_abs</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#t"><span class="id" title="variable">t</span></a></span> for some binding
+    variable <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a></span>. We don't know much about <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a></span>; it could be <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#w"><span class="id" title="variable">w</span></a></span>, or <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a></span>
+    or some other variable. The first and last case are straightforward,
+    but the middle case causes difficulty: even though <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a></span> is not free in
+    <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#n_abs"><span class="id" title="constructor">n_abs</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#t"><span class="id" title="variable">t</span></a></span>, it <i>is</i> free in <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#t"><span class="id" title="variable">t</span></a></span>. Therefore, our induction hypothesis
+    doesn't apply.
+
+<div class="paragraph"> </div>
+
+    To solve this problem, we need to generate a completely fresh
+    variable <span class="inlinecode"><a class="idref" href="Stlc.Lec2.html#z"><span class="id" title="variable">z</span></a></span> for the binder, use the lemma above to replace <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a></span> and
+    <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#w"><span class="id" title="variable">w</span></a></span> with it, and then use the induction hypothesis.
+
+<div class="paragraph"> </div>
+
+ 
 </div>
 <div class="code">
 <span class="id" title="keyword">Lemma</span> <a name="swap_spec_aux"><span class="id" title="lemma">swap_spec_aux</span></a> : <span class="id" title="keyword">∀</span> <span class="id" title="var">m</span> <span class="id" title="var">t</span> <span class="id" title="var">w</span> <span class="id" title="var">y</span>,<br/>
@@ -522,9 +495,9 @@ One difficulty of <span class="inlinecode"><a class="idref" href="Stlc.Connect.h
 &nbsp;&nbsp;+ <span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Nominal.html#swap_var"><span class="id" title="definition">swap_var</span></a>; <span class="id" title="var">default_simp</span>.<br/>
 &nbsp;&nbsp;+ <span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Nominal.html#swap_var"><span class="id" title="definition">swap_var</span></a>; <span class="id" title="var">default_simp</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">autorewrite</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span> <span class="id" title="keyword">in</span> ×.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_eq"><span class="id" title="lemma">subst_exp_fresh_eq</span></a>; <span class="id" title="var">default_simp</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<a class="idref" href="Stlc.Connect.html#close_exp_wrt_exp_freshen"><span class="id" title="lemma">close_exp_wrt_exp_freshen</span></a> <span class="id" title="var">w</span> <span class="id" title="var">y</span>); <span class="id" title="tactic">try</span> <span class="id" title="var">fsetdec</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">autorewrite</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span> <span class="id" title="keyword">in</span> ×.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<a class="idref" href="Stlc.Connect.html#close_exp_wrt_exp_freshen"><span class="id" title="axiom">close_exp_wrt_exp_freshen</span></a> <span class="id" title="var">w</span> <span class="id" title="var">y</span>); <span class="id" title="tactic">try</span> <span class="id" title="var">fsetdec</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">IHm</span>; <span class="id" title="var">default_simp</span>. }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">autorewrite</span> <span class="id" title="keyword">with</span> <span class="id" title="var">lngen</span> <span class="id" title="keyword">in</span> ×.<br/>
@@ -533,15 +506,18 @@ One difficulty of <span class="inlinecode"><a class="idref" href="Stlc.Connect.h
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Connect.html#nom_to_exp"><span class="id" title="definition">nom_to_exp</span></a> (<a class="idref" href="Stlc.Nominal.html#swap"><span class="id" title="definition">swap</span></a> <span class="id" title="var">w</span> <span class="id" title="var">y</span> <span class="id" title="var">t</span>)) <span class="id" title="notation">\</span><span class="id" title="notation">u</span> <span class="id" title="notation">{{</span><span class="id" title="var">w</span><span class="id" title="notation">}}</span> <span class="id" title="notation">\</span><span class="id" title="notation">u</span> <span class="id" title="notation">{{</span><span class="id" title="var">y</span><span class="id" title="notation">}}</span>).<br/>
 
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<a class="idref" href="Stlc.Connect.html#close_exp_wrt_exp_freshen"><span class="id" title="lemma">close_exp_wrt_exp_freshen</span></a> <span class="id" title="var">y</span> <span class="id" title="var">z</span>); <span class="id" title="tactic">auto</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<a class="idref" href="Stlc.Connect.html#close_exp_wrt_exp_freshen"><span class="id" title="lemma">close_exp_wrt_exp_freshen</span></a> <span class="id" title="var">w</span> <span class="id" title="var">z</span>); <span class="id" title="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<a class="idref" href="Stlc.Connect.html#close_exp_wrt_exp_freshen"><span class="id" title="axiom">close_exp_wrt_exp_freshen</span></a> <span class="id" title="var">y</span> <span class="id" title="var">z</span>); <span class="id" title="tactic">auto</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> (<a class="idref" href="Stlc.Connect.html#close_exp_wrt_exp_freshen"><span class="id" title="axiom">close_exp_wrt_exp_freshen</span></a> <span class="id" title="var">w</span> <span class="id" title="var">z</span>); <span class="id" title="tactic">auto</span>.<br/>
 
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_close_exp_wrt_exp"><span class="id" title="lemma">subst_exp_close_exp_wrt_exp</span></a>; <span class="id" title="tactic">auto</span>.<br/>
 
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">IHm</span>; <span class="id" title="var">default_steps</span>.<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">IHm</span>; <span class="id" title="var">default_steps</span>. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">IHm</span>; <span class="id" title="var">default_steps</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">IHm</span> <span class="id" title="keyword">with</span> (<span class="id" title="var">y</span>:=<span class="id" title="var">z</span>); <span class="id" title="var">default_steps</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">IHm</span> <span class="id" title="keyword">with</span> (<span class="id" title="var">y</span>:=<span class="id" title="var">z</span>); <span class="id" title="var">default_steps</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">IHm</span> <span class="id" title="keyword">with</span> (<span class="id" title="var">y</span>:=<span class="id" title="var">y</span>); <span class="id" title="var">default_steps</span>.<br/>
+
+<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <a class="idref" href="Stlc.Nominal.html#shuffle_swap"><span class="id" title="lemma">shuffle_swap</span></a>; <span class="id" title="tactic">auto</span>.<br/>
 
 <br/>
@@ -574,16 +550,28 @@ One difficulty of <span class="inlinecode"><a class="idref" href="Stlc.Connect.h
 </div>
 
 <div class="doc">
-<a name="lab8"></a><h1 class="section">Connection for alpha-equivalence</h1>
+<a name="lab11"></a><h2 class="section">Connection for alpha-equivalence</h2>
 
 <div class="paragraph"> </div>
 
- Challenge Exercise: aeq iff =
+<a name="lab12"></a><h3 class="section">Challenge Exercise: <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#aeq_nom_to_exp"><span class="id" title="lemma">aeq_nom_to_exp</span></a></span></h3>
+
 
 <div class="paragraph"> </div>
 
     Show that alpha-equivalence for the nominal representation is definitional
     equality for LN terms.
+
+<div class="paragraph"> </div>
+
+    This result is not necessary for the simulation lemmas below, but it
+    is another example of the a proof that takes advantage of the
+    <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#swap_spec"><span class="id" title="lemma">swap_spec</span></a></span> and <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#close_exp_wrt_exp_freshen"><span class="id" title="lemma">close_exp_wrt_exp_freshen</span></a></span> lemmas  above.
+
+<div class="paragraph"> </div>
+
+    The second proof is much more challenging than the first and requires
+    lemmas from <span class="inlinecode"><span class="id" title="var">Lemmas.v</span></span>.
 
 <div class="paragraph"> </div>
 
@@ -597,9 +585,6 @@ One difficulty of <span class="inlinecode"><a class="idref" href="Stlc.Connect.h
  <span class="id" title="var">Admitted</span>.<br/>
 
 <br/>
-<span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_open_exp_wrt_exp"><span class="id" title="lemma">subst_exp_open_exp_wrt_exp</span></a> : <span class="id" title="var">lngen</span>.<br/>
-
-<br/>
 <span class="id" title="keyword">Lemma</span> <a name="nom_to_exp_eq_aeq"><span class="id" title="lemma">nom_to_exp_eq_aeq</span></a> : <span class="id" title="keyword">∀</span> <span class="id" title="var">n1</span> <span class="id" title="var">n2</span>, <a class="idref" href="Stlc.Connect.html#nom_to_exp"><span class="id" title="definition">nom_to_exp</span></a> <a class="idref" href="Stlc.Connect.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Connect.html#nom_to_exp"><span class="id" title="definition">nom_to_exp</span></a> <a class="idref" href="Stlc.Connect.html#n2"><span class="id" title="variable">n2</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Stlc.Nominal.html#aeq"><span class="id" title="inductive">aeq</span></a> <a class="idref" href="Stlc.Connect.html#n1"><span class="id" title="variable">n1</span></a> <a class="idref" href="Stlc.Connect.html#n2"><span class="id" title="variable">n2</span></a>.<br/>
 <span class="id" title="keyword">Proof</span>.<br/>
  <span class="id" title="var">Admitted</span>.<br/>
@@ -608,18 +593,166 @@ One difficulty of <span class="inlinecode"><a class="idref" href="Stlc.Connect.h
 </div>
 
 <div class="doc">
-<a name="lab9"></a><h1 class="section">SIMULATION</h1>
+<a name="lab13"></a><h1 class="section">Scoped configurations</h1>
+
+<div class="paragraph"> </div>
+
+ Not all abstract machine steps simulate small-steps of the
+    substitution-based STLC.
+
+<div class="paragraph"> </div>
+
+    For example, if the domain of the heap is not unique (i.e. it has
+    multiple definitions for the same variable) then its evaluation may
+    not produce expected results.
+
+<div class="paragraph"> </div>
+
+    Similarly, if the <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#avoid"><span class="id" title="variable">avoid</span></a></span> set that we pass to each machine step does
+    not include initial the free variables of the term, then we could
+    capture them in strange ways.
+
+<div class="paragraph"> </div>
+
+    Therefore, we will restrict our correctness lemmas so that they only
+    apply to <i>well-scoped</i> configurations; as defined below. 
+<div class="paragraph"> </div>
+
+<a name="lab14"></a><h2 class="section">Scoped heaps</h2>
+
+<div class="paragraph"> </div>
+
+ Well-scoped heaps behave "telescopically".  Each binding (x,e) added
+    to the heap is for a unique name x and the free variables of e are
+    bound in the remainder of the heap.
+
+<div class="paragraph"> </div>
+
+    The scoping relation is parameterized by <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#D"><span class="id" title="variable">D</span></a></span>, an "ambient
+    scope". This will let us reason about the execution of the abstract
+    machine for terms with free variables. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Inductive</span> <a name="scoped_heap"><span class="id" title="inductive">scoped_heap</span></a> (<span class="id" title="var">D</span> : <span class="id" title="abbreviation">atoms</span>) : <a class="idref" href="Stlc.Nominal.html#heap"><span class="id" title="definition">heap</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <span class="id" title="keyword">Prop</span> :=<br/>
+&nbsp;&nbsp;| <a name="scoped_nil"><span class="id" title="constructor">scoped_nil</span></a>  : <a class="idref" href="Stlc.Connect.html#scoped_heap"><span class="id" title="inductive">scoped_heap</span></a> <span class="id" title="var">D</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a><br/>
+&nbsp;&nbsp;| <a name="scoped_cons"><span class="id" title="constructor">scoped_cons</span></a> : <span class="id" title="keyword">∀</span> <span class="id" title="var">x</span> <span class="id" title="var">e</span> <span class="id" title="var">h</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <span class="id" title="definition">dom</span> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <span class="id" title="notation">\</span><span class="id" title="notation">u</span> <span class="id" title="var">D</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Connect.html#nom_to_exp"><span class="id" title="definition">nom_to_exp</span></a> <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a>) <span class="id" title="notation">[&lt;=]</span> <span class="id" title="definition">dom</span> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <span class="id" title="notation">\</span><span class="id" title="notation">u</span> <span class="id" title="var">D</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#scoped_heap"><span class="id" title="inductive">scoped_heap</span></a> <span class="id" title="var">D</span> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#scoped_heap"><span class="id" title="inductive">scoped_heap</span></a> <span class="id" title="var">D</span> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a><a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a>).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab15"></a><h3 class="section">Recommended (Challenge) Exercise <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#apply_heap_get"><span class="id" title="lemma">apply_heap_get</span></a></span></h3>
+
+
+<div class="paragraph"> </div>
+
+    We can use <span class="inlinecode"><span class="id" title="definition">get</span></span> to look up expressions in the heap. However, to know that
+    we have the right result we need to know that the heap is well-scoped,
+    i.e.  that later bindings do not affect earlier ones.
+
+<div class="paragraph"> </div>
+
+    State a lemma about the scoping of expressions that appear in the heap and
+    use it to finish the <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#apply_heap_get"><span class="id" title="lemma">apply_heap_get</span></a></span> lemma below.  
+</div>
+<div class="code">
+
+<br/>
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="apply_heap_get"><span class="id" title="lemma">apply_heap_get</span></a> :  <span class="id" title="keyword">∀</span> <span class="id" title="var">h</span> <span class="id" title="var">D</span> <span class="id" title="var">x</span> <span class="id" title="var">e</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#scoped_heap"><span class="id" title="inductive">scoped_heap</span></a> <a class="idref" href="Stlc.Connect.html#D"><span class="id" title="variable">D</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="definition">get</span> <a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#Some"><span class="id" title="constructor">Some</span></a> <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#apply_heap"><span class="id" title="definition">apply_heap</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Connect.html#apply_heap"><span class="id" title="definition">apply_heap</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> (<a class="idref" href="Stlc.Connect.html#nom_to_exp"><span class="id" title="definition">nom_to_exp</span></a> <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">induction</span> 1; <span class="id" title="tactic">intros</span>; <span class="id" title="var">default_simp</span>.<br/>
+&nbsp;&nbsp;- <span class="id" title="var">Case</span> "x is at the current heap location".<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_eq"><span class="id" title="lemma">subst_exp_fresh_eq</span></a>; <span class="id" title="tactic">auto</span>. <span class="id" title="var">fsetdec</span>.<br/>
+&nbsp;&nbsp;- <span class="id" title="var">Case</span> "x is later in the heap".<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_eq"><span class="id" title="lemma">subst_exp_fresh_eq</span></a>; <span class="id" title="tactic">auto</span>.<br/>
+ <span class="id" title="var">Admitted</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab16"></a><h2 class="section">Scoped stacks</h2>
+
+<div class="paragraph"> </div>
+
+ We also care about the free variables that can appear in stacks. (We
+    will use this in the definition of well-scoped configurations below.)
 
 </div>
 <div class="code">
 
 <br/>
+<span class="id" title="keyword">Fixpoint</span> <a name="fv_stack"><span class="id" title="definition">fv_stack</span></a> <span class="id" title="var">s</span> :=<br/>
+&nbsp;&nbsp;<span class="id" title="keyword">match</span> <a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a> <span class="id" title="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a> ⇒ <span class="id" title="notation">{}</span><br/>
+&nbsp;&nbsp;| <a class="idref" href="Stlc.Nominal.html#n_app2"><span class="id" title="constructor">n_app2</span></a> <span class="id" title="var">e</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <span class="id" title="var">s</span> ⇒ <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Connect.html#nom_to_exp"><span class="id" title="definition">nom_to_exp</span></a> <span class="id" title="var">e</span>) <span class="id" title="notation">\</span><span class="id" title="notation">u</span> <a class="idref" href="Stlc.Connect.html#fv_stack"><span class="id" title="definition">fv_stack</span></a> <a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a><br/>
+&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Stacks that are well-scoped can discard irrelevant bindings
+    from the heap. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="apply_stack_fresh_eq"><span class="id" title="lemma">apply_stack_fresh_eq</span></a> : <span class="id" title="keyword">∀</span> <span class="id" title="var">s</span> <span class="id" title="var">x</span> <span class="id" title="var">e1</span> <span class="id" title="var">h</span> ,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">notin</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Connect.html#fv_stack"><span class="id" title="definition">fv_stack</span></a> <a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#apply_stack"><span class="id" title="definition">apply_stack</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a> <a class="idref" href="Stlc.Connect.html#e1"><span class="id" title="variable">e1</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a>) <a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="Stlc.Connect.html#apply_stack"><span class="id" title="definition">apply_stack</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">induction</span> <span class="id" title="var">s</span>; <span class="id" title="tactic">intros</span>; <span class="id" title="tactic">try</span> <span class="id" title="tactic">destruct</span> <span class="id" title="var">a</span>; <span class="id" title="var">default_simp</span>.<br/>
+&nbsp;&nbsp;<span class="id" title="tactic">rewrite</span> <span class="id" title="var">IHs</span>; <span class="id" title="tactic">auto</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab17"></a><h1 class="section">Simulation</h1>
+
+<div class="paragraph"> </div>
+
+ A scoped configuration is one where all free variables in terms
+    are either bound in the heap or come from <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#D"><span class="id" title="variable">D</span></a></span> 
+</div>
+<div class="code">
 <span class="id" title="keyword">Inductive</span> <a name="scoped_conf"><span class="id" title="inductive">scoped_conf</span></a> : <span class="id" title="abbreviation">atoms</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Stlc.Nominal.html#configuration"><span class="id" title="definition">configuration</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <span class="id" title="keyword">Prop</span> :=<br/>
 &nbsp;&nbsp;<a name="scoped_conf_witness"><span class="id" title="constructor">scoped_conf_witness</span></a> : <span class="id" title="keyword">∀</span> <span class="id" title="var">D</span> <span class="id" title="var">h</span> <span class="id" title="var">e</span> <span class="id" title="var">s</span>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#scoped_heap"><span class="id" title="inductive">scoped_heap</span></a> <a class="idref" href="Stlc.Connect.html#D"><span class="id" title="variable">D</span></a> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Connect.html#nom_to_exp"><span class="id" title="definition">nom_to_exp</span></a> <a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a>) <span class="id" title="notation">[&lt;=]</span> <span class="id" title="definition">dom</span> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <span class="id" title="notation">\</span><span class="id" title="notation">u</span> <a class="idref" href="Stlc.Connect.html#D"><span class="id" title="variable">D</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#fv_stack"><span class="id" title="definition">fv_stack</span></a> <a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a> <span class="id" title="notation">[&lt;=]</span> <span class="id" title="definition">dom</span> <a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a> <span class="id" title="notation">\</span><span class="id" title="notation">u</span> <a class="idref" href="Stlc.Connect.html#D"><span class="id" title="variable">D</span></a>  <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Connect.html#scoped_conf"><span class="id" title="inductive">scoped_conf</span></a> <a class="idref" href="Stlc.Connect.html#D"><span class="id" title="variable">D</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Connect.html#h"><span class="id" title="variable">h</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="Stlc.Connect.html#e"><span class="id" title="variable">e</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="Stlc.Connect.html#s"><span class="id" title="variable">s</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab18"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#simulate_step"><span class="id" title="lemma">simulate_step</span></a></span></h3>
+
+
+<div class="paragraph"> </div>
+
+    After stepping through the simulation result below, finish the
+    missing case.
+
+<div class="paragraph"> </div>
+
+
+</div>
+<div class="code">
 
 <br/>
 <span class="id" title="keyword">Lemma</span> <a name="simulate_step"><span class="id" title="lemma">simulate_step</span></a> : <span class="id" title="keyword">∀</span> <span class="id" title="var">D</span> <span class="id" title="var">h</span> <span class="id" title="var">e</span> <span class="id" title="var">s</span> <span class="id" title="var">h'</span> <span class="id" title="var">e'</span> <span class="id" title="var">s'</span> ,<br/>
@@ -690,7 +823,8 @@ One difficulty of <span class="inlinecode"><a class="idref" href="Stlc.Connect.h
 </div>
 
 <div class="doc">
-Exercise <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#simulate_done"><span class="id" title="lemma">simulate_done</span></a></span>
+<a name="lab19"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#simulate_done"><span class="id" title="lemma">simulate_done</span></a></span></h3>
+
 
 <div class="paragraph"> </div>
 
@@ -710,7 +844,8 @@ Exercise <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#simul
 </div>
 
 <div class="doc">
-Challenge exercise <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#simulate_error"><span class="id" title="lemma">simulate_error</span></a></span>
+<a name="lab20"></a><h3 class="section">Challenge exercise <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#simulate_error"><span class="id" title="lemma">simulate_error</span></a></span></h3>
+
 
 <div class="paragraph"> </div>
 
@@ -744,11 +879,12 @@ Challenge exercise <span class="inlinecode"><a class="idref" href="Stlc.Connect.
 </div>
 
 <div class="doc">
-Challenge exercise <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#machine_is_scoped"><span class="id" title="lemma">machine_is_scoped</span></a></span>
+<a name="lab21"></a><h3 class="section">Challenge exercise <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#machine_is_scoped"><span class="id" title="lemma">machine_is_scoped</span></a></span></h3>
+
 
 <div class="paragraph"> </div>
 
-    Show that the abstract machine is scoped, then any resulting
+    Show that if the abstract machine is scoped, then any resulting
     configurations are also scoped. 
 </div>
 <div class="code">

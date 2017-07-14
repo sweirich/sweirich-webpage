@@ -22,7 +22,7 @@
 </div>
 
 <div class="doc">
-<a name="lab20"></a><h1 class="section">Language specification and variable binding</h1>
+<a name="lab32"></a><h1 class="section">Language specification and variable binding</h1>
 
 <div class="paragraph"> </div>
 
@@ -51,7 +51,7 @@
 
 <div class="paragraph"> </div>
 
-              \x.x  and  \y.y
+              <span class="inlinecode">\<span class="id" title="var">x.x</span></span>  and  <span class="inlinecode">\<span class="id" title="var">y.y</span></span>
 
 <div class="paragraph"> </div>
 
@@ -64,18 +64,19 @@
 
 <div class="paragraph"> </div>
 
-            <span class="inlinecode"></span> <span class="inlinecode"><a class="idref" href="Stlc.Lec2.html#z"><span class="id" title="variable">z</span></a></span> <span class="inlinecode">~&gt;</span> <span class="inlinecode">\<span class="id" title="var">x.y</span></span> <span class="inlinecode"></span>(\y.z)     should be     \y1.\x.y
+          <span class="inlinecode"></span>  <span class="inlinecode">[</span> <span class="inlinecode"><a class="idref" href="Stlc.Lec2.html#z"><span class="id" title="variable">z</span></a></span> <span class="inlinecode">~&gt;</span> <span class="inlinecode">\<span class="id" title="var">x.y</span></span> <span class="inlinecode">](\<span class="id" title="var">y.z</span>)</span> <span class="inlinecode"></span>    should be   <span class="inlinecode"></span>  <span class="inlinecode">\<span class="id" title="var">y1</span>.\<span class="id" title="var">x.y</span></span> <span class="inlinecode"></span>
 
 </li>
 </ul>
 
 <div class="paragraph"> </div>
 
-<a name="lab21"></a><h2 class="section">Approaches to variable binding</h2>
+<a name="lab33"></a><h2 class="section">Approaches to variable binding</h2>
+
 
 <div class="paragraph"> </div>
 
- Unfortunately, variable binding is an <i>old</i> problem. The issue isn't that
+    Unfortunately, variable binding is an <i>old</i> problem. The issue isn't that
     we don't know how to solve this problem, in fact there are <i>many</i>, <i>many</i>
     different ways to solve this problem and they all have their trade offs.
     I won't include an entire taxonomy of solutions here, but before we go
@@ -134,12 +135,13 @@
 
 <div class="paragraph"> </div>
 
-Other approaches to variable binding include: de Bruijn indices, de Bruijn
+Other approaches to variable binding include de Bruijn indices, de Bruijn
 levels, weak HOAS, PHOAS, locally named, canonically named... etc. Of these,
 de Bruijn representations are by far the most commonly used representation in
-Coq.
-
+Coq. 
 <div class="paragraph"> </div>
+
+<a name="lab34"></a><h2 class="section">Overview</h2>
 
 
 <div class="paragraph"> </div>
@@ -194,9 +196,10 @@ capture-avoiding substitution as part of our semantics.
 <div class="paragraph"> </div>
 
 Finally, we will prove that the abstract machine implements the same semantics
-as the locally nameless based substitution semantics.
-
+as the locally nameless based substitution semantics. 
 <div class="paragraph"> </div>
+
+<a name="lab35"></a><h2 class="section">Tool support</h2>
 
 
 <div class="paragraph"> </div>
@@ -221,7 +224,7 @@ version of that output. (For comparison, the raw output is in <span class="inlin
 
 <div class="paragraph"> </div>
 
-<a name="lab22"></a><h1 class="section">The simply-typed lambda calculus in Coq.</h1>
+<a name="lab36"></a><h1 class="section">The simply-typed lambda calculus in Coq.</h1>
 
 <div class="paragraph"> </div>
 
@@ -269,15 +272,15 @@ For the examples below, we introduce some sample variable names to
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a name="X"><span class="id" title="definition">X</span></a> : <span class="id" title="axiom">atom</span> := <span class="id" title="axiom">fresh</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a>.<br/>
-<span class="id" title="keyword">Definition</span> <a name="Y"><span class="id" title="definition">Y</span></a> : <span class="id" title="axiom">atom</span> := <span class="id" title="axiom">fresh</span> (<a class="idref" href="Stlc.Lec1.html#X"><span class="id" title="definition">X</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a>).<br/>
-<span class="id" title="keyword">Definition</span> <a name="Z"><span class="id" title="definition">Z</span></a> : <span class="id" title="axiom">atom</span> := <span class="id" title="axiom">fresh</span> (<a class="idref" href="Stlc.Lec1.html#X"><span class="id" title="definition">X</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <a class="idref" href="Stlc.Lec1.html#Y"><span class="id" title="definition">Y</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a>).<br/>
+<span class="id" title="keyword">Definition</span> <a name="X"><span class="id" title="definition">X</span></a> : <span class="id" title="abbreviation">atom</span> := <span class="id" title="abbreviation">fresh</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a>.<br/>
+<span class="id" title="keyword">Definition</span> <a name="Y"><span class="id" title="definition">Y</span></a> : <span class="id" title="abbreviation">atom</span> := <span class="id" title="abbreviation">fresh</span> (<a class="idref" href="Stlc.Lec1.html#X"><span class="id" title="definition">X</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a>).<br/>
+<span class="id" title="keyword">Definition</span> <a name="Z"><span class="id" title="definition">Z</span></a> : <span class="id" title="abbreviation">atom</span> := <span class="id" title="abbreviation">fresh</span> (<a class="idref" href="Stlc.Lec1.html#X"><span class="id" title="definition">X</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <a class="idref" href="Stlc.Lec1.html#Y"><span class="id" title="definition">Y</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#0a8150c3c4df34d205c5ed9a427e2ed5"><span class="id" title="notation">::</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#nil"><span class="id" title="constructor">nil</span></a>).<br/>
 
 <br/>
 </div>
 
 <div class="doc">
-<a name="lab23"></a><h2 class="section">Encoding STLC terms</h2>
+<a name="lab37"></a><h2 class="section">Encoding STLC terms</h2>
 
 <div class="paragraph"> </div>
 
@@ -285,7 +288,7 @@ For the examples below, we introduce some sample variable names to
 
 <div class="paragraph"> </div>
 
-  For example, we can encode the expression <span class="inlinecode">(\<a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>.</span> <span class="inlinecode"><a class="idref" href="Stlc.Lec1.html#Y"><span class="id" title="definition">Y</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>)</span> as below. We use the
+  For example, we can encode the expression <span class="inlinecode">(\<a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>.</span> <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#Y"><span class="id" title="abbreviation">Y</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>)</span> as below. We use the
   index <span class="inlinecode">0</span> because it refers to the closest <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a></span> to the bound variable
   occurrence. 
 </div>
@@ -293,27 +296,23 @@ For the examples below, we introduce some sample variable names to
 
 <br/>
 <span class="id" title="keyword">Definition</span> <a name="demo_rep1"><span class="id" title="definition">demo_rep1</span></a> := <a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> (<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lec1.html#Y"><span class="id" title="definition">Y</span></a>) (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> 0)).<br/>
+
+<br/>
 </div>
 
 <div class="doc">
-                     ^                        |                                         |                        |                   <hr/>
-                   
-<div class="paragraph"> </div>
-
-  Here is another example: the encoding of <span class="inlinecode">(\<a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>.</span> <span class="inlinecode">\<a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a>.</span> <span class="inlinecode">(<a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>))</span>.      
+ Here is another example: the encoding of <span class="inlinecode">(\<a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>.</span> <span class="inlinecode">\<a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a>.</span> <span class="inlinecode">(<a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>))</span>.      
 </div>
 <div class="code">
 
 <br/>
 <span class="id" title="keyword">Definition</span> <a name="demo_rep2"><span class="id" title="definition">demo_rep2</span></a> := <a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> (<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> (<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a> (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> 0) (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> 1))).<br/>
+
+<br/>
 </div>
 
 <div class="doc">
-                     ^    ^              |         |                                    |    |              |         |                                    |    ----------------         |                                    |                             |              <hr/>
-              
-<div class="paragraph"> </div>
-
- Finally, here is an example where the same bound variable has two
+Finally, here is an example where the same bound variable has two
     different indices, and the same index refers to two different
     bound variables.
                          <span class="inlinecode">\<a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a>.</span> <span class="inlinecode">((\<a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>.</span> <span class="inlinecode">(<a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a>))</span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a>)</span>                        
@@ -323,14 +322,12 @@ For the examples below, we introduce some sample variable names to
 <br/>
 <span class="id" title="keyword">Definition</span> <a name="demo_rep3"><span class="id" title="definition">demo_rep3</span></a> :=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> (<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a> (<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> (<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a> (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> 0) (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> 1))) (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> 0)).<br/>
+
+<br/>
 </div>
 
 <div class="doc">
-        ^         ^              |         |           |                   |         |              |         |           |                   |         ----------------         |           |                   |                                  |           |          <hr/>
-          
-<div class="paragraph"> </div>
-
-<a name="lab24"></a><h3 class="section">Exercise: term representation</h3>
+<a name="lab38"></a><h3 class="section">Exercise: term representation</h3>
 
 
 <div class="paragraph"> </div>
@@ -395,7 +392,7 @@ There are two important advantages of the locally nameless
 
 <div class="paragraph"> </div>
 
-<a name="lab25"></a><h2 class="section">Substitution</h2>
+<a name="lab39"></a><h2 class="section">Substitution</h2>
 
 <div class="paragraph"> </div>
 
@@ -436,14 +433,8 @@ The decidable var equality function returns a sum. If the two
       form.
 
 </li>
-<li> The tactic <span class="inlinecode"><span class="id" title="tactic">destruct</span></span> <span class="inlinecode">(<a class="idref" href="Stlc.Lec1.html#Y"><span class="id" title="definition">Y</span></a>==<a class="idref" href="Stlc.Lec1.html#Y"><span class="id" title="definition">Y</span></a>)</span> considers the two possible
+<li> The tactic <span class="inlinecode"><span class="id" title="tactic">destruct</span></span> <span class="inlinecode">(<a class="idref" href="Stlc.Nominal.html#Y"><span class="id" title="abbreviation">Y</span></a>==<a class="idref" href="Stlc.Nominal.html#Y"><span class="id" title="abbreviation">Y</span></a>)</span> considers the two possible
       results of the equality test.
-
-</li>
-<li> The tactic <span class="inlinecode"><span class="id" title="var">Case</span></span> marks cases in the proof script.
-      It takes any string as its argument, and puts that string in
-      the hypothesis list until the case is finished.
-      (This tactic is completely optional.)
 
 </li>
 </ul>
@@ -452,22 +443,20 @@ The decidable var equality function returns a sum. If the two
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Lemma</span> <a name="demo_subst1"><span class="id" title="lemma">demo_subst1</span></a>:<br/>
+<span class="id" title="keyword">Example</span> <a name="demo_subst1"><span class="id" title="definition">demo_subst1</span></a>:<br/>
 &nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#a604463a10cbf78096b99b157265e3e9"><span class="id" title="notation">[</span></a><a class="idref" href="Stlc.Lec1.html#Y"><span class="id" title="definition">Y</span></a> <a class="idref" href="Stlc.Definitions.html#a604463a10cbf78096b99b157265e3e9"><span class="id" title="notation">~&gt;</span></a> <a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lec1.html#Z"><span class="id" title="definition">Z</span></a><a class="idref" href="Stlc.Definitions.html#a604463a10cbf78096b99b157265e3e9"><span class="id" title="notation">]</span></a> <a class="idref" href="Stlc.Definitions.html#a604463a10cbf78096b99b157265e3e9"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> (<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a> (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> 0) (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lec1.html#Y"><span class="id" title="definition">Y</span></a>))<a class="idref" href="Stlc.Definitions.html#a604463a10cbf78096b99b157265e3e9"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> (<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a> (<a class="idref" href="Stlc.Definitions.html#var_b"><span class="id" title="constructor">var_b</span></a> 0) (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Lec1.html#Z"><span class="id" title="definition">Z</span></a>))<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">)</span></a>.<br/>
 <span class="id" title="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">simpl</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">destruct</span> (<a class="idref" href="Stlc.Lec1.html#Y"><span class="id" title="definition">Y</span></a><span class="id" title="notation">==</span><a class="idref" href="Stlc.Lec1.html#Y"><span class="id" title="definition">Y</span></a>).<br/>
-&nbsp;&nbsp;- <span class="id" title="var">Case</span> "left".<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">auto</span>.<br/>
-&nbsp;&nbsp;- <span class="id" title="var">Case</span> "right".<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">destruct</span> <span class="id" title="var">n</span>. <span class="id" title="tactic">auto</span>.<br/>
+&nbsp;&nbsp;- <span class="id" title="tactic">auto</span>.<br/>
+&nbsp;&nbsp;- <span class="id" title="tactic">destruct</span> <span class="id" title="var">n</span>. <span class="id" title="tactic">auto</span>.<br/>
 <span class="id" title="keyword">Qed</span>.<br/>
 
 <br/>
 </div>
 
 <div class="doc">
-<a name="lab26"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#subst_eq_var"><span class="id" title="lemma">subst_eq_var</span></a></span></h3>
+<a name="lab40"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#subst_eq_var"><span class="id" title="lemma">subst_eq_var</span></a></span></h3>
 
 
 <div class="paragraph"> </div>
@@ -488,7 +477,7 @@ The decidable var equality function returns a sum. If the two
 </div>
 
 <div class="doc">
-<a name="lab27"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#subst_neq_var"><span class="id" title="lemma">subst_neq_var</span></a></span></h3>
+<a name="lab41"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#subst_neq_var"><span class="id" title="lemma">subst_neq_var</span></a></span></h3>
 
 </div>
 <div class="code">
@@ -503,7 +492,7 @@ The decidable var equality function returns a sum. If the two
 </div>
 
 <div class="doc">
-<a name="lab28"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lec1.html#subst_same"><span class="id" title="lemma">subst_same</span></a></span></h3>
+<a name="lab42"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lec1.html#subst_same"><span class="id" title="lemma">subst_same</span></a></span></h3>
 
 </div>
 <div class="code">
@@ -517,7 +506,7 @@ The decidable var equality function returns a sum. If the two
 </div>
 
 <div class="doc">
-<a name="lab29"></a><h2 class="section">Free variables</h2>
+<a name="lab43"></a><h2 class="section">Free variables</h2>
 
 <div class="paragraph"> </div>
 
@@ -538,7 +527,7 @@ The decidable var equality function returns a sum. If the two
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Lemma</span> <a name="fsetdec_demo"><span class="id" title="lemma">fsetdec_demo</span></a> : <span class="id" title="keyword">∀</span> (<span class="id" title="var">x</span> : <span class="id" title="axiom">atom</span>) (<span class="id" title="var">S</span> : <span class="id" title="abbreviation">atoms</span>),<br/>
+<span class="id" title="keyword">Lemma</span> <a name="fsetdec_demo"><span class="id" title="lemma">fsetdec_demo</span></a> : <span class="id" title="keyword">∀</span> (<span class="id" title="var">x</span> : <span class="id" title="abbreviation">atom</span>) (<span class="id" title="var">S</span> : <span class="id" title="abbreviation">atoms</span>),<br/>
 &nbsp;&nbsp;<a class="idref" href="Stlc.Lec1.html#x"><span class="id" title="variable">x</span></a> <span class="id" title="notation">`</span><span class="id" title="keyword">in</span><span class="id" title="notation">`</span> <span class="id" title="notation">(</span><span class="id" title="abbreviation">singleton</span> <a class="idref" href="Stlc.Lec1.html#x"><span class="id" title="variable">x</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">union</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Lec1.html#S"><span class="id" title="variable">S</span></a><span class="id" title="notation">)</span>.<br/>
 <span class="id" title="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="var">fsetdec</span>.<br/>
@@ -548,7 +537,7 @@ The decidable var equality function returns a sum. If the two
 </div>
 
 <div class="doc">
-<a name="lab30"></a><h3 class="section">Recommended Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_eq"><span class="id" title="lemma">subst_exp_fresh_eq</span></a></span></h3>
+<a name="lab44"></a><h3 class="section">Recommended Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_eq"><span class="id" title="lemma">subst_exp_fresh_eq</span></a></span></h3>
 
 
 <div class="paragraph"> </div>
@@ -598,7 +587,7 @@ The decidable var equality function returns a sum. If the two
 </div>
 
 <div class="doc">
-<a name="lab31"></a><h2 class="section">Additional Exercises</h2>
+<a name="lab45"></a><h2 class="section">Additional Exercises</h2>
 
 <div class="paragraph"> </div>
 
@@ -657,7 +646,7 @@ The decidable var equality function returns a sum. If the two
 Now prove the following properties of substitution and fv 
 <div class="paragraph"> </div>
 
-<a name="lab32"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_same"><span class="id" title="lemma">subst_exp_fresh_same</span></a></span></h3>
+<a name="lab46"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#subst_exp_fresh_same"><span class="id" title="lemma">subst_exp_fresh_same</span></a></span></h3>
 
 </div>
 <div class="code">
@@ -674,7 +663,7 @@ Now prove the following properties of substitution and fv
 </div>
 
 <div class="doc">
-<a name="lab33"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#fv_exp_subst_exp_fresh"><span class="id" title="lemma">fv_exp_subst_exp_fresh</span></a></span></h3>
+<a name="lab47"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#fv_exp_subst_exp_fresh"><span class="id" title="lemma">fv_exp_subst_exp_fresh</span></a></span></h3>
 
 </div>
 <div class="code">
@@ -691,7 +680,7 @@ Now prove the following properties of substitution and fv
 </div>
 
 <div class="doc">
-<a name="lab34"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#fv_exp_subst_exp_upper"><span class="id" title="lemma">fv_exp_subst_exp_upper</span></a></span></h3>
+<a name="lab48"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#fv_exp_subst_exp_upper"><span class="id" title="lemma">fv_exp_subst_exp_upper</span></a></span></h3>
 
 </div>
 <div class="code">
@@ -707,26 +696,30 @@ Now prove the following properties of substitution and fv
 </div>
 
 <div class="doc">
-<a name="lab35"></a><h1 class="section">LN specific operations and relations</h1>
+<a name="lab49"></a><h1 class="section">LN specific operations and relations</h1>
 
 <div class="paragraph"> </div>
 
-<a name="lab36"></a><h2 class="section">Opening</h2>
+ Because we are working with a locally nameless representation, we have
+    a few more operations to consider when working with these terms. 
+<div class="paragraph"> </div>
+
+<a name="lab50"></a><h2 class="section">Opening</h2>
 
 <div class="paragraph"> </div>
 
- Opening replaces an index with a term, and is defined in the Definitions
+ Opening replaces an index with a term and is defined in the Definitions
     module.
 
 <div class="paragraph"> </div>
 
  This next demo shows the operation of <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#StlcNotations.open"><span class="id" title="abbreviation">open</span></a></span>.  For example, the
-    locally nameless representation of the term (\y. (\x. (y x)) y) is
-    <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a></span> <span class="inlinecode">(<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a></span> <span class="inlinecode">(<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a></span> <span class="inlinecode">(<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a></span> <span class="inlinecode">1</span> <span class="inlinecode">0))</span> <span class="inlinecode">0)</span>.  To look at the body without the
+    locally nameless representation of the term <span class="inlinecode">(\<a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a>.</span> <span class="inlinecode">(\<a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>.</span> <span class="inlinecode">(<a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>))</span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#y"><span class="id" title="variable">y</span></a>)</span> is
+    <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a></span> <span class="inlinecode">(<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a></span> <span class="inlinecode">(<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a></span> <span class="inlinecode">(<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a></span> <span class="inlinecode">1</span> <span class="inlinecode">0))</span> <span class="inlinecode">0)</span>.  To look at the body <i>without</i> the
     outer abstraction, we need to replace the indices that refer to
     that abstraction with a name.  Therefore, we show that we can open
-    the body of the abs above with Y to produce <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a></span> <span class="inlinecode">(<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a></span> <span class="inlinecode">(<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Lec1.html#Y"><span class="id" title="definition">Y</span></a></span> <span class="inlinecode">0))</span>
-    <span class="inlinecode"><a class="idref" href="Stlc.Lec1.html#Y"><span class="id" title="definition">Y</span></a>)</span>.
+    the body of the abs above with <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#Y"><span class="id" title="abbreviation">Y</span></a></span> to produce
+    <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a></span> <span class="inlinecode">(<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a></span> <span class="inlinecode">(<a class="idref" href="Stlc.Definitions.html#app"><span class="id" title="constructor">app</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#Y"><span class="id" title="abbreviation">Y</span></a></span> <span class="inlinecode">0))</span> <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#Y"><span class="id" title="abbreviation">Y</span></a>)</span>.
 
 </div>
 <div class="code">
@@ -743,16 +736,17 @@ Now prove the following properties of substitution and fv
 </div>
 
 <div class="doc">
-<a name="lab37"></a><h2 class="section">Local closure</h2>
+<a name="lab51"></a><h2 class="section">Local closure</h2>
 
 <div class="paragraph"> </div>
 
- The local closure judgement classifies terms that have *no* dangling
+ The local closure judgement classifies terms that have <i>no</i> dangling
    indices.
 
 <div class="paragraph"> </div>
 
-   Step through this derivation to see why the term is locally closed.
+   Step through this derivation to see why the term <span class="inlinecode">((\<a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>.</span> <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#Y"><span class="id" title="abbreviation">Y</span></a></span> <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#x"><span class="id" title="variable">x</span></a>)</span> <span class="inlinecode"><a class="idref" href="Stlc.Nominal.html#Y"><span class="id" title="abbreviation">Y</span></a>)</span>
+   is locally closed.
 
 </div>
 <div class="code">
@@ -772,7 +766,7 @@ Now prove the following properties of substitution and fv
 </div>
 
 <div class="doc">
-<a name="lab38"></a><h2 class="section">Properties about basic operations</h2>
+<a name="lab52"></a><h2 class="section">Properties about basic operations</h2>
 
 <div class="paragraph"> </div>
 
@@ -792,6 +786,13 @@ Now prove the following properties of substitution and fv
 
 <div class="paragraph"> </div>
 
+    NOTE: the name of this lemma was automatically generated by LNgen. If
+    we have multiple syntactic classes and multiple sorts of variables,
+    we need to distinguish the different forms of substitution from
+    eachother.
+
+<div class="paragraph"> </div>
+
  
 </div>
 <div class="code">
@@ -808,7 +809,7 @@ Now prove the following properties of substitution and fv
 </div>
 
 <div class="doc">
-<a name="lab39"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lec1.html#subst_var"><span class="id" title="lemma">subst_var</span></a></span></h3>
+<a name="lab53"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lec1.html#subst_var"><span class="id" title="lemma">subst_var</span></a></span></h3>
 
 <div class="paragraph"> </div>
 
@@ -839,7 +840,7 @@ Now prove the following properties of substitution and fv
 </div>
 
 <div class="doc">
-<a name="lab40"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#subst_exp_intro"><span class="id" title="lemma">subst_exp_intro</span></a></span></h3>
+<a name="lab54"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#subst_exp_intro"><span class="id" title="lemma">subst_exp_intro</span></a></span></h3>
 
 <div class="paragraph"> </div>
 
@@ -863,7 +864,6 @@ Now prove the following properties of substitution and fv
 <span class="id" title="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">intros</span> <span class="id" title="var">x</span> <span class="id" title="var">u</span> <span class="id" title="var">e</span> <span class="id" title="var">FV_EXP</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">unfold</span> <span class="id" title="var">open</span>.<br/>
-&nbsp;&nbsp;<span class="id" title="tactic">unfold</span> <a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a>.<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">generalize</span> 0.<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">induction</span> <span class="id" title="var">e</span>; <span class="id" title="tactic">intro</span> <span class="id" title="var">n0</span>; <span class="id" title="tactic">simpl</span>.<br/>
  <span class="id" title="var">Admitted</span>.<br/>
@@ -872,7 +872,35 @@ Now prove the following properties of substitution and fv
 </div>
 
 <div class="doc">
-<a name="lab41"></a><h2 class="section">Forall quantification in <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a></span>.</h2>
+<a name="lab55"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lemmas.html#fv_exp_open_exp_wrt_exp_upper"><span class="id" title="lemma">fv_exp_open_exp_wrt_exp_upper</span></a></span></h3>
+
+<div class="paragraph"> </div>
+
+ Now prove the following lemmas about the free variables of an opened
+    term.
+
+<div class="paragraph"> </div>
+
+    The structure of this proof follows that of the proof above. You should
+    prove this by induction on the term <span class="inlinecode"><a class="idref" href="Stlc.Connect.html#e1"><span class="id" title="variable">e1</span></a></span>, after appropriately
+    generalizing the induction hypothesis. Remember to use <span class="inlinecode"><span class="id" title="var">fsetdec</span></span> for
+    reasoning about properties of atom sets. Also note that you can
+    <span class="inlinecode"><span class="id" title="tactic">rewrite</span></span> with atom set inequalities in the hypotheses list. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Lemma</span> <a name="fv_exp_open_exp_wrt_exp_upper"><span class="id" title="lemma">fv_exp_open_exp_wrt_exp_upper</span></a> :<br/>
+<span class="id" title="keyword">∀</span> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span>,<br/>
+&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <a class="idref" href="Stlc.Lec1.html#e1"><span class="id" title="variable">e1</span></a> <a class="idref" href="Stlc.Lec1.html#e2"><span class="id" title="variable">e2</span></a>) <span class="id" title="notation">[&lt;=]</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lec1.html#e2"><span class="id" title="variable">e2</span></a> <span class="id" title="notation">`</span><span class="id" title="notation">union</span><span class="id" title="notation">`</span> <a class="idref" href="Stlc.Definitions.html#fv_exp"><span class="id" title="definition">fv_exp</span></a> <a class="idref" href="Stlc.Lec1.html#e1"><span class="id" title="variable">e1</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>.<br/>
+ <span class="id" title="var">Admitted</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab56"></a><h2 class="section">Forall quantification in <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#lc_exp"><span class="id" title="inductive">lc_exp</span></a></span>.</h2>
 
 <div class="paragraph"> </div>
 
@@ -977,7 +1005,7 @@ Here we are stuck. We don't know that <span class="inlinecode"><a class="idref" 
 <div class="paragraph"> </div>
 
     An easier to use lemma requires us to only show that the body
-    of the abstraction is locally closed for a *single* variable.
+    of the abstraction is locally closed for a <i>single</i> variable.
 
 <div class="paragraph"> </div>
 
@@ -1023,7 +1051,7 @@ For example, with this addition, we can complete the proof above.
 </div>
 
 <div class="doc">
-<a name="lab42"></a><h2 class="section">Local closure and relations</h2>
+<a name="lab57"></a><h2 class="section">Local closure and relations</h2>
 
 <div class="paragraph"> </div>
 
@@ -1046,7 +1074,7 @@ For example, with this addition, we can complete the proof above.
 </div>
 
 <div class="doc">
-<a name="lab43"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lec1.html#typing_to_lc_exp"><span class="id" title="lemma">typing_to_lc_exp</span></a></span></h3>
+<a name="lab58"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lec1.html#typing_to_lc_exp"><span class="id" title="lemma">typing_to_lc_exp</span></a></span></h3>
 
 
 <div class="paragraph"> </div>
@@ -1066,7 +1094,7 @@ For example, with this addition, we can complete the proof above.
 </div>
 
 <div class="doc">
-<a name="lab44"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lec1.html#step_lc_exp2"><span class="id" title="lemma">step_lc_exp2</span></a></span></h3>
+<a name="lab59"></a><h3 class="section">Exercise <span class="inlinecode"><a class="idref" href="Stlc.Lec1.html#step_lc_exp2"><span class="id" title="lemma">step_lc_exp2</span></a></span></h3>
 
 
 <div class="paragraph"> </div>

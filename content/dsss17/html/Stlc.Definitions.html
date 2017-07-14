@@ -22,7 +22,7 @@
 </div>
 
 <div class="doc">
-<a name="lab10"></a><h1 class="section">Definition of STLC</h1>
+<a name="lab22"></a><h1 class="section">Definition of STLC</h1>
 
 <div class="paragraph"> </div>
 
@@ -46,23 +46,23 @@
 </div>
 
 <div class="doc">
-<a name="lab11"></a><h1 class="section">Syntax of STLC</h1>
+<a name="lab23"></a><h1 class="section">Syntax of STLC</h1>
 
 <div class="paragraph"> </div>
 
  We use a locally nameless representation for the simply-typed lambda
     calculus, where bound variables are represented as natural numbers (de
-    Bruijn indices) and free variables are represented as <span class="inlinecode"><span class="id" title="axiom">atom</span></span>s.
+    Bruijn indices) and free variables are represented as <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>s.
 
 <div class="paragraph"> </div>
 
-    The type <span class="inlinecode"><span class="id" title="axiom">atom</span></span>, defined in the Metatheory library, represents names.
+    The type <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>, defined in the Metatheory library, represents names.
     Equality on names is decidable, and it is possible to generate an atom
     fresh for any given finite set of atoms (<span class="inlinecode"><span class="id" title="lemma">atom_fresh</span></span>).
 
 <div class="paragraph"> </div>
 
-    Note: the type <span class="inlinecode"><span class="id" title="abbreviation">var</span></span> is notation for <span class="inlinecode"><span class="id" title="axiom">atom</span></span>.
+    Note: the type <span class="inlinecode"><span class="id" title="abbreviation">var</span></span> is notation for <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>.
 
 </div>
 <div class="code">
@@ -83,7 +83,7 @@
 </div>
 
 <div class="doc">
-<a name="lab12"></a><h1 class="section">Substitution</h1>
+<a name="lab24"></a><h1 class="section">Substitution</h1>
 
 <div class="paragraph"> </div>
 
@@ -128,7 +128,7 @@
 </div>
 
 <div class="doc">
-<a name="lab13"></a><h1 class="section">Free variables</h1>
+<a name="lab25"></a><h1 class="section">Free variables</h1>
 
 <div class="paragraph"> </div>
 
@@ -154,12 +154,12 @@
 </div>
 
 <div class="doc">
-The type <span class="inlinecode"><span class="id" title="abbreviation">vars</span></span> represents a finite set of elements of type <span class="inlinecode"><span class="id" title="axiom">atom</span></span>.
+The type <span class="inlinecode"><span class="id" title="abbreviation">vars</span></span> represents a finite set of elements of type <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>.
     The notations for the finite set definitions (empty set `{}`, singleton
     `<a href="x">x</a>` and union `\u`) is also defined in the Metatheory library.  
 <div class="paragraph"> </div>
 
-<a name="lab14"></a><h1 class="section">Opening</h1>
+<a name="lab26"></a><h1 class="section">Opening</h1>
 
 <div class="paragraph"> </div>
 
@@ -213,7 +213,7 @@ The type <span class="inlinecode"><span class="id" title="abbreviation">vars</sp
 </div>
 
 <div class="doc">
-<a name="lab15"></a><h1 class="section">Notations</h1>
+<a name="lab27"></a><h1 class="section">Notations</h1>
 
 <div class="paragraph"> </div>
 
@@ -229,7 +229,7 @@ The type <span class="inlinecode"><span class="id" title="abbreviation">vars</sp
 
 <br/>
 <span class="id" title="keyword">Module</span> <a name="StlcNotations"><span class="id" title="module">StlcNotations</span></a>.<br/>
-<span class="id" title="keyword">Notation</span> <a name="a604463a10cbf78096b99b157265e3e9"><span class="id" title="notation">&quot;</span></a>[ z ~&gt; u ] e" := (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <span class="id" title="var">u</span> <span class="id" title="var">z</span> <span class="id" title="var">e</span>) (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 68) : <span class="id" title="var">exp_scope</span>.<br/>
+<span class="id" title="keyword">Notation</span> <a name="a604463a10cbf78096b99b157265e3e9"><span class="id" title="notation">&quot;</span></a>[ z ~&gt; u ] e" := (<a class="idref" href="Stlc.Definitions.html#subst_exp"><span class="id" title="definition">subst_exp</span></a> <span class="id" title="var">u</span> <span class="id" title="var">z</span> <span class="id" title="var">e</span>) (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 0) : <span class="id" title="var">exp_scope</span>.<br/>
 <span class="id" title="keyword">Notation</span> <a name="StlcNotations.open"><span class="id" title="abbreviation">open</span></a> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span>     := (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <span class="id" title="var">e1</span> <span class="id" title="var">e2</span>).<br/>
 <span class="id" title="keyword">Notation</span> <a name="5efff96aa6473948b40109ca70a323f0"><span class="id" title="notation">&quot;</span></a>e ^ x"        := (<a class="idref" href="Stlc.Definitions.html#open_exp_wrt_exp"><span class="id" title="definition">open_exp_wrt_exp</span></a> <span class="id" title="var">e</span> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <span class="id" title="var">x</span>)) : <span class="id" title="var">exp_scope</span>.<br/>
 <span class="id" title="keyword">End</span> <a class="idref" href="Stlc.Definitions.html#StlcNotations"><span class="id" title="module">StlcNotations</span></a>.<br/>
@@ -240,7 +240,7 @@ The type <span class="inlinecode"><span class="id" title="abbreviation">vars</sp
 </div>
 
 <div class="doc">
-<a name="lab16"></a><h1 class="section">Local closure</h1>
+<a name="lab28"></a><h1 class="section">Local closure</h1>
 
 <div class="paragraph"> </div>
 
@@ -275,24 +275,24 @@ The type <span class="inlinecode"><span class="id" title="abbreviation">vars</sp
 </div>
 
 <div class="doc">
-<a name="lab17"></a><h1 class="section">Typing contexts</h1>
+<a name="lab29"></a><h1 class="section">Typing contexts</h1>
 
 <div class="paragraph"> </div>
 
  We represent typing contexts as association lists (lists of pairs of
-    keys and values) whose keys are <span class="inlinecode"><span class="id" title="axiom">atom</span></span>s.
+    keys and values) whose keys are <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>s.
 
 </div>
 <div class="code">
 
 <br/>
-<span class="id" title="keyword">Definition</span> <a name="ctx"><span class="id" title="definition">ctx</span></a> : <span class="id" title="keyword">Set</span> := <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<span class="id" title="axiom">atom</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Stlc.Definitions.html#typ"><span class="id" title="inductive">typ</span></a>).<br/>
+<span class="id" title="keyword">Definition</span> <a name="ctx"><span class="id" title="definition">ctx</span></a> : <span class="id" title="keyword">Set</span> := <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> (<span class="id" title="abbreviation">atom</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#d19c7eafd0e2d195d10df94b392087b5"><span class="id" title="notation">×</span></a> <a class="idref" href="Stlc.Definitions.html#typ"><span class="id" title="inductive">typ</span></a>).<br/>
 
 <br/>
 </div>
 
 <div class="doc">
-For STLC, contexts bind <span class="inlinecode"><span class="id" title="axiom">atom</span></span>s to <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#typ"><span class="id" title="inductive">typ</span></a></span>s.
+For STLC, contexts bind <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>s to <span class="inlinecode"><a class="idref" href="Stlc.Definitions.html#typ"><span class="id" title="inductive">typ</span></a></span>s.
 
 <div class="paragraph"> </div>
 
@@ -305,13 +305,13 @@ For STLC, contexts bind <span class="inlinecode"><span class="id" title="axiom">
 
     The Metatheory library extends this reasoning by instantiating the
     AssocList library to provide support for association lists whose keys are
-    <span class="inlinecode"><span class="id" title="axiom">atom</span></span>s.  Everything in this library is polymorphic over the type of
+    <span class="inlinecode"><span class="id" title="abbreviation">atom</span></span>s.  Everything in this library is polymorphic over the type of
     objects bound in the environment.  Look in AssocList.v for additional
     details about the functions and predicates that we mention below.
  
 <div class="paragraph"> </div>
 
-<a name="lab18"></a><h1 class="section">Typing relation</h1>
+<a name="lab30"></a><h1 class="section">Typing relation</h1>
 
 <div class="paragraph"> </div>
 
@@ -337,7 +337,7 @@ For STLC, contexts bind <span class="inlinecode"><span class="id" title="axiom">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="definition">binds</span> <a class="idref" href="Stlc.Definitions.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="Stlc.Definitions.html#T"><span class="id" title="variable">T</span></a> <a class="idref" href="Stlc.Definitions.html#G"><span class="id" title="variable">G</span></a>  <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#typing"><span class="id" title="inductive">typing</span></a> <a class="idref" href="Stlc.Definitions.html#G"><span class="id" title="variable">G</span></a> (<a class="idref" href="Stlc.Definitions.html#var_f"><span class="id" title="constructor">var_f</span></a> <a class="idref" href="Stlc.Definitions.html#x"><span class="id" title="variable">x</span></a>) <a class="idref" href="Stlc.Definitions.html#T"><span class="id" title="variable">T</span></a><br/>
 &nbsp;| <a name="typing_abs"><span class="id" title="constructor">typing_abs</span></a> : <span class="id" title="keyword">∀</span> (<span class="id" title="var">L</span>:<span class="id" title="abbreviation">vars</span>) (<span class="id" title="var">G</span>:<a class="idref" href="Stlc.Definitions.html#ctx"><span class="id" title="definition">ctx</span></a>) (<span class="id" title="var">T1</span>:<a class="idref" href="Stlc.Definitions.html#typ"><span class="id" title="inductive">typ</span></a>) (<span class="id" title="var">e</span>:<a class="idref" href="Stlc.Definitions.html#exp"><span class="id" title="inductive">exp</span></a>) (<span class="id" title="var">T2</span>:<a class="idref" href="Stlc.Definitions.html#typ"><span class="id" title="inductive">typ</span></a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><span class="id" title="keyword">∀</span> <span class="id" title="var">x</span> , <a class="idref" href="Stlc.Definitions.html#x"><span class="id" title="variable">x</span></a> <span class="id" title="notation">\</span><span class="id" title="notation">notin</span> <a class="idref" href="Stlc.Definitions.html#L"><span class="id" title="variable">L</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Stlc.Definitions.html#typing"><span class="id" title="inductive">typing</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#5d35a99a6abff1d64bf70538feb70e36"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Definitions.html#x"><span class="id" title="variable">x</span></a> <span class="id" title="notation">¬</span> <a class="idref" href="Stlc.Definitions.html#T1"><span class="id" title="variable">T1</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#5d35a99a6abff1d64bf70538feb70e36"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#5d35a99a6abff1d64bf70538feb70e36"><span class="id" title="notation">++</span></a> <a class="idref" href="Stlc.Definitions.html#G"><span class="id" title="variable">G</span></a>) (<a class="idref" href="Stlc.Definitions.html#e"><span class="id" title="variable">e</span></a> <a class="idref" href="Stlc.Definitions.html#5efff96aa6473948b40109ca70a323f0"><span class="id" title="notation">^</span></a> <a class="idref" href="Stlc.Definitions.html#x"><span class="id" title="variable">x</span></a>) <a class="idref" href="Stlc.Definitions.html#T2"><span class="id" title="variable">T2</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a>  <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">(</span></a><span class="id" title="keyword">∀</span> <span class="id" title="var">x</span> , <a class="idref" href="Stlc.Definitions.html#x"><span class="id" title="variable">x</span></a> <span class="id" title="notation">\</span><span class="id" title="notation">notin</span> <a class="idref" href="Stlc.Definitions.html#L"><span class="id" title="variable">L</span></a> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a> <a class="idref" href="Stlc.Definitions.html#typing"><span class="id" title="inductive">typing</span></a> (<span class="id" title="notation">[</span><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><a class="idref" href="Stlc.Definitions.html#x"><span class="id" title="variable">x</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="Stlc.Definitions.html#T1"><span class="id" title="variable">T1</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a><span class="id" title="notation">]</span> <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Datatypes.html#5d35a99a6abff1d64bf70538feb70e36"><span class="id" title="notation">++</span></a> <a class="idref" href="Stlc.Definitions.html#G"><span class="id" title="variable">G</span></a>) (<a class="idref" href="Stlc.Definitions.html#e"><span class="id" title="variable">e</span></a> <a class="idref" href="Stlc.Definitions.html#5efff96aa6473948b40109ca70a323f0"><span class="id" title="notation">^</span></a> <a class="idref" href="Stlc.Definitions.html#x"><span class="id" title="variable">x</span></a>) <a class="idref" href="Stlc.Definitions.html#T2"><span class="id" title="variable">T2</span></a><a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">)</span></a>  <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#typing"><span class="id" title="inductive">typing</span></a> <a class="idref" href="Stlc.Definitions.html#G"><span class="id" title="variable">G</span></a> (<a class="idref" href="Stlc.Definitions.html#abs"><span class="id" title="constructor">abs</span></a> <a class="idref" href="Stlc.Definitions.html#e"><span class="id" title="variable">e</span></a>) (<a class="idref" href="Stlc.Definitions.html#typ_arrow"><span class="id" title="constructor">typ_arrow</span></a> <a class="idref" href="Stlc.Definitions.html#T1"><span class="id" title="variable">T1</span></a> <a class="idref" href="Stlc.Definitions.html#T2"><span class="id" title="variable">T2</span></a>)<br/>
 &nbsp;| <a name="typing_app"><span class="id" title="constructor">typing_app</span></a> : <span class="id" title="keyword">∀</span> (<span class="id" title="var">G</span>:<a class="idref" href="Stlc.Definitions.html#ctx"><span class="id" title="definition">ctx</span></a>) (<span class="id" title="var">e1</span> <span class="id" title="var">e2</span>:<a class="idref" href="Stlc.Definitions.html#exp"><span class="id" title="inductive">exp</span></a>) (<span class="id" title="var">T2</span> <span class="id" title="var">T1</span>:<a class="idref" href="Stlc.Definitions.html#typ"><span class="id" title="inductive">typ</span></a>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Stlc.Definitions.html#typing"><span class="id" title="inductive">typing</span></a> <a class="idref" href="Stlc.Definitions.html#G"><span class="id" title="variable">G</span></a> <a class="idref" href="Stlc.Definitions.html#e1"><span class="id" title="variable">e1</span></a> (<a class="idref" href="Stlc.Definitions.html#typ_arrow"><span class="id" title="constructor">typ_arrow</span></a> <a class="idref" href="Stlc.Definitions.html#T1"><span class="id" title="variable">T1</span></a> <a class="idref" href="Stlc.Definitions.html#T2"><span class="id" title="variable">T2</span></a>) <a class="idref" href="http://coq.inria.fr/distrib/8.6/stdlib/Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">→</span></a><br/>
@@ -348,7 +348,7 @@ For STLC, contexts bind <span class="inlinecode"><span class="id" title="axiom">
 </div>
 
 <div class="doc">
-<a name="lab19"></a><h1 class="section">Values and Small-step Evaluation</h1>
+<a name="lab31"></a><h1 class="section">Values and Small-step Evaluation</h1>
 
 <div class="paragraph"> </div>
 
