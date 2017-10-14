@@ -1,6 +1,12 @@
 Invited Talks and Technical Presentations
 =========================================
 
+1. [*Dependent Types in Haskell*](https://www.youtube.com/watch?v=wNa3MMbhwS4&t=25s).
+   StrangeLoop 2017, St. Louis, MO, September 2017.
+
+1. [*Eta-equivalence in Core Dependent Haskell*](talks/wg28-edinburgh.pdf).
+   WG 2.8, Edinburgh, UK. June 2017.
+
 1. [*The Influence of Dependent Types*](https://www.youtube.com/watch?v=GgD0KUxMaQs).
    Keynote address, ACM Symposium on Principles of Programming Languages (POPL '17)
    Paris, France, January 2017.

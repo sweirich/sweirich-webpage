@@ -33,7 +33,7 @@ Students
 ## Dissertation committee member
   - Leonidas Lampropolos, Penn.
   - Jennifer Paykin, Penn.
-  - Arthur Azevedo de Amorim, Penn.
+  - Arthur Azevedo de Amorim, Penn, September 2017.
   - Peter Michael Osera, Penn, July 2015.
   - Daniel Wagner, Penn, June 2014.
   - Harley Eades III, University of Iowa, May 2014.
@@ -70,15 +70,15 @@ Students
 
   - Masters: Dominik Bollman, Spring 2016. Simon Wimmer, Summer 2015.
 
-  - Undergraduate Senior Design Project:
-   Memoria Matters and Lauren Leung, 2016-2017 (Honarable Mention). Charles
-   Du 2017, Max McCarthy 2016.
-   Lewis Ellis, Max Scheiber, Ashutosh Goel, and Jeff Grimes (Honorable
+  - Undergraduate Senior Design Project: Memoria Matters and Lauren Leung,
+   2016-2017 (Honoable Mention). Charles Du 2017, Max McCarthy 2016.  Lewis
+   Ellis, Max Scheiber, Ashutosh Goel, and Jeff Grimes (Honorable
    Mention). Tiernan Garsys, Taylor Mandel, Lucas Peña, and Noam Zilberstein
    (Third place). 2014-2015.  Kaycee Anderson, Juan Jose Lopez, Caroline Ho,
    and Johanna Martens (Honorable Mention), 2013-2014.
 
-  - Undergraduate Research: Matthew Weaver 2015-2016. Leondra Morse,
+  - Undergraduate Research: Emmanuel Suarez, 2017. Anastasiya
+  Kravchuk-Kirilyuk, 2017. Matthew Weaver 2015-2016. Leondra Morse,
   Summer 2015 (CRA-DREU). Mitchell Stern, Spring 2014.  Hamidhasan Ahmed,
   Spring 2014, Summer 2013. Sneha Popley, Summer 2008 (CRA-DREU).  Stephanie
   Simon, Summer 2008. David Gorski, Fall 2006.  Parshant Mittal, Atish Davda,

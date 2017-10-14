@@ -29,6 +29,7 @@ Research Community Service
 
 ## Program Committee Membership (conference/symposium)
 
+- History of Programming Languages (HOPL IV).
 - Principles of Programming Languages (POPL) 2018.
 - Certified Proofs and Programs (CPP) 2018.
 - European Symposium on Programming (ESOP) 2017.
@@ -55,6 +56,7 @@ Research Community Service
 
 ## Program Committee Membership (workshop)
 
+- Coq Workshop 2018.
 - Haskell Implementor's Workshop (HiW) 2016.
 - Higher-Order Programming with Effects (HOPE) 2016.
 - Implementation of Functional Languages (IFL) 2015.
