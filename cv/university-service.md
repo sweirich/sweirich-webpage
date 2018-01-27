@@ -1,6 +1,8 @@
 Department, School and University Service
 ========================================
-- Undergraduate Chair, CIS, 2014-present.
+- SEAS Undergraduate Curriculum Committee, 2017-present.
+- Undergraduate Chair, CIS, Sep 2014-Dec 2017.
+- SEAS Diversity Committee, 2015-2016.
 - Penn Forum for Women Faculty, 2015-2016.
 - Faculty advisor to CommuniTech (Penn undergraduate service
     organization). 2012-present.

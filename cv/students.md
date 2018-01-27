@@ -1,11 +1,16 @@
 Students
 ========
 
+## Postdoc supervision
+  - Joachim Breitner, Aug 2016-present.
+
 ## Dissertation supervision (current students)
   - Yao Li.
+  - Pritam Chaudhury.
   - Antoine Voizard.
   - Kenny Foner.
   - Antal Spector-Zabusky.
+
 
 ## Dissertation supervision (graduated students)
   - Richard Eisenberg, December 2016.
@@ -31,6 +36,7 @@ Students
     Current position: [Logicblox](http://www.logicblox.com/).
 
 ## Dissertation committee member
+  - William Bowman, Northeastern University.
   - Leonidas Lampropolos, Penn.
   - Jennifer Paykin, Penn.
   - Arthur Azevedo de Amorim, Penn, September 2017.
@@ -77,7 +83,7 @@ Students
    (Third place). 2014-2015.  Kaycee Anderson, Juan Jose Lopez, Caroline Ho,
    and Johanna Martens (Honorable Mention), 2013-2014.
 
-  - Undergraduate Research: Emmanuel Suarez, 2017. Anastasiya
+  - Undergraduate Research: Emmanuel Suarez, 2017-2018. Anastasiya
   Kravchuk-Kirilyuk, 2017. Matthew Weaver 2015-2016. Leondra Morse,
   Summer 2015 (CRA-DREU). Mitchell Stern, Spring 2014.  Hamidhasan Ahmed,
   Spring 2014, Summer 2013. Sneha Popley, Summer 2008 (CRA-DREU).  Stephanie

@@ -16,7 +16,7 @@ Outreach
     - 2000, [Third Annual ICFP Programming Contest](http://www.cs.cornell.edu/icfp/)
 
 + Panelist/Speaker:
-    - Panel Moderator at FemmeHacks, Feb 2017, Feb 2016
+    - Panel Moderator/Member at FemmeHacks, Feb 2018, Feb 2017, Feb 2016
     - The "Computers", April 2015
     - WICS high school day for girls, April 2017, April 2015, April 2014, April 2013, April 2012
     - Teaching Haskell in Academia and Industry (panel). Haskell Symposium, September 2013

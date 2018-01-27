@@ -1,6 +1,15 @@
 Invited Talks and Technical Presentations
 =========================================
 
+1. *Dependent Types in Haskell.*
+	Invited speaker, Comcast Labs Connect: Functional Programming. March 9, 2018.
+
+1. *Dependent Types in Haskell.*
+   University of Washington, PLSE Seminar Series, Seattle, WA, December 2017.
+
+1. *Dependent Types in Haskell.*
+   McMaster University Departmental Seminar, Hamilton Ontario, November 2017.
+
 1. [*Dependent Types in Haskell*](https://www.youtube.com/watch?v=wNa3MMbhwS4&t=25s).
    StrangeLoop 2017, St. Louis, MO, September 2017.
 

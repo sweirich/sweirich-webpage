@@ -54,9 +54,8 @@
 %\homepage{\url{http://www.cis.upenn.edu/~sweirich}}    % Your website
 \extrainfo{\today}
 
-\newcites{conf,journal,chapter,thesis,techreport}
-  {Refereed Conference and Workshop Publications,%
-   Articles in Journals,%
+\newcites{conf,chapter,thesis,techreport}
+  {Refereed Publications,%
    Chapters in Books,%
    Thesis,%
    Technical Reports}
@@ -93,19 +92,15 @@ Programming languages, Type systems, Functional programming, Generic programming
 
 \input{temp/funding}
 
-\input{temp/talks}
-\input{temp/tutorials}
-
-
 %\section{Publications}
 
 \bibliographystyleconf{unsrtnat}
 \bibliographyconf{temp/conf}
 \nociteconf{*}
 
-\bibliographystylejournal{unsrtnat}
-\bibliographyjournal{temp/journal}
-\nocitejournal{*}
+% \bibliographystylejournal{unsrtnat}
+% \bibliographyjournal{temp/journal}
+% \nocitejournal{*}
 
 \bibliographystylechapter{unsrtnat}
 \bibliographychapter{temp/chapter}
@@ -119,7 +114,8 @@ Programming languages, Type systems, Functional programming, Generic programming
 \bibliographytechreport{temp/techreport}
 \nocitetechreport{*}
 
-
+\input{temp/talks}
+\input{temp/tutorials}
 
 
 
