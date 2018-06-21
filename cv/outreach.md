@@ -27,4 +27,6 @@ Outreach
     - CRA-W/CDC Programming Languages Summer School, UT Austin, May 2007.
     - Women in Science and Engineering Conference, Princeton, February 2006.
 
-+ Type Theory Podcast, "Episode 4: Stephanie Weirich on Zombie and Dependent Haskell"
++ Podcast interviews:
+    - [CoRecursive w/ Adam Bell](https://corecursive.com/015-dependant-types-in-haskell-with-stephanie-weirich/), June 2018.
+    - [Type Theory Podcast](http://typetheorypodcast.com/2015/04/episode-4-stephanie-weirich-on-zombie-and-dependent-haskell/), "Episode 4: Stephanie Weirich on Zombie and Dependent Haskell", April 2015.

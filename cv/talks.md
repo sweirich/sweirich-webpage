@@ -1,6 +1,25 @@
 Invited Talks and Technical Presentations
 =========================================
 
+1. *TBA*
+   Cornell CS Colloquium, Ithaca, NY. Fall 2018.
+
+1. *TBA*
+   Haskell eXchange keynote, London, October 2018.
+
+1. *TBA* 
+   Programming Languages Mentoring Workshop. St. Louis, MO. September 2018.
+
+1. [*Work-in-progress: Towards a formal semantics for GHC Core*](talks/dsw19.pdf).
+   DeepSpec 2018 Workshop, Philadelphia, PA. June 2018.
+
+1. [*Work-in-progress: Verifying the Glasgow Haskell Compiler Core language.*](talks/wg28-asilomar.pdf).
+   IFIP WG 2.8, Asilomar, CA. June 2018.
+
+1. [*Work-in-progress: Verifying the Glasgow Haskell Compiler Core language*](talks/dagstuhl18.pdf).
+   Dagstuhl Seminar 18201, "Secure Compilation"
+   Wadern, Germany, May, 2018.
+
 1. *Dependent Types in Haskell.*
 	Invited speaker, Comcast Labs Connect: Functional Programming. March 9, 2018.
 

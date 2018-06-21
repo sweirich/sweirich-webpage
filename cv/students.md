@@ -36,9 +36,10 @@ Students
     Current position: [Logicblox](http://www.logicblox.com/).
 
 ## Dissertation committee member
-  - William Bowman, Northeastern University.
-  - Leonidas Lampropolos, Penn.
-  - Jennifer Paykin, Penn.
+  - Steven Keuchel, University of Ghent, June 2018.
+  - Jennifer Paykin, Penn, May 2018.
+  - Leonidas Lampropolos, Penn, May 2018.
+  - William Bowman, Northeastern University, March 2018.
   - Arthur Azevedo de Amorim, Penn, September 2017.
   - Peter Michael Osera, Penn, July 2015.
   - Daniel Wagner, Penn, June 2014.

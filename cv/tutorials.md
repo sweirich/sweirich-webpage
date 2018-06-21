@@ -1,6 +1,9 @@
 Tutorials
 =========
 
+* *Formal logic and software verification using interactive theorem provers*
+  ACM Philadelphia Region Celebration of Women in Computing, April 21, 2018
+
 * *Machine-checked programming language Metatheory.*
   The Science of Deep Specifications Summer School, July 2017
 
