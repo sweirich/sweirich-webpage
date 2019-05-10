@@ -1,6 +1,9 @@
 Tutorials
 =========
 
+* [*Dependent Types*](http://github.com/sweirich/dth/).
+   Programming Languages Mentoring Workshop. St. Louis, MO. September 2018.
+
 * *Formal logic and software verification using interactive theorem provers*
   ACM Philadelphia Region Celebration of Women in Computing, April 21, 2018
 

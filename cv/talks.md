@@ -1,27 +1,32 @@
 Invited Talks and Technical Presentations
 =========================================
 
-1. *TBA*
-   Cornell CS Colloquium, Ithaca, NY. Fall 2018.
+1. *A Dependently-Typed Core Calculus for GHC*.   
+   TYPES 2019 Conference Invited Lecture. Oslo, Norway. June 2019.
 
-1. *TBA*
+1. [*Dependent Types in Haskell*](https://www.cs.cornell.edu/content/dependent-types-haskell).
+   Cornell CS Colloquium, Ithaca, NY. November 2018.
+
+1. [*Dependent Types in Haskell*](https://skillsmatter.com/skillscasts/12195-keynote-dependent-types-in-haskell).
    Haskell eXchange keynote, London, October 2018.
 
-1. *TBA* 
-   Programming Languages Mentoring Workshop. St. Louis, MO. September 2018.
+1. *Work-in-progress: Verifying the Glasgow Haskell Compiler Core language using the Coq proof assistant*.
+   Intel Labs, Hillsboro, OR. August 2018.
 
 1. [*Work-in-progress: Towards a formal semantics for GHC Core*](talks/dsw19.pdf).
    DeepSpec 2018 Workshop, Philadelphia, PA. June 2018.
 
-1. [*Work-in-progress: Verifying the Glasgow Haskell Compiler Core language.*](talks/wg28-asilomar.pdf).
+1. [*Work-in-progress: Verifying the Glasgow Haskell Compiler Core language*](talks/wg28-asilomar.pdf).
    IFIP WG 2.8, Asilomar, CA. June 2018.
 
 1. [*Work-in-progress: Verifying the Glasgow Haskell Compiler Core language*](talks/dagstuhl18.pdf).
    Dagstuhl Seminar 18201, "Secure Compilation"
    Wadern, Germany, May, 2018.
 
-1. *Dependent Types in Haskell.*
-	Invited speaker, Comcast Labs Connect: Functional Programming. March 9, 2018.
+1. *Dependent Types in Haskell.* Invited speaker, Comcast Labs Connect: Functional Programming. March 9, 2018.
+
+1. [*Locally Nameless at Scale*](papers/coqpl18.pdf)
+	Joint presentation with Anastasiya Kravchuck-Kirilyuk. CoqPL workshop, Los Angeles, CA. January 2018.
 
 1. *Dependent Types in Haskell.*
    University of Washington, PLSE Seminar Series, Seattle, WA, December 2017.
@@ -48,16 +53,16 @@ Invited Talks and Technical Presentations
 1. [*Dynamic Typing in GHC*](https://www.youtube.com/watch?v=asdABzBUoGM).
    [Compose :: Conference](http://www.composeconference.org/), Brooklyn, NY, February 4-5, 2016.
 
-1. [*Visible Type Application.*](talks/vta-2015.pdf).
+1. [*Visible Type Application*](talks/vta-2015.pdf).
    Microsoft Research, Cambridge, UK, November 6, 2015.
 
-1. [*Visible Type Application.*](talks/vta-2015.pdf).
+1. [*Visible Type Application*](talks/vta-2015.pdf).
    University of Kent, November 5, 2015.
 
-1. [*Depending on Types.*](https://www.youtube.com/watch?v=n-b1PYbRUOY).
+1. [*Depending on Types*](https://www.youtube.com/watch?v=n-b1PYbRUOY).
    [Code Mesh 2015](http://www.codemesh.io/), London, November 4, 2015.
 
-1. [*From System F to Typed Assembly Language, by Morrisett, Walker, Crary, Glew.*](https://www.youtube.com/watch?v=Epbaka9uTQ4).
+1. [*From System F to Typed Assembly Language, by Morrisett, Walker, Crary, Glew*](https://www.youtube.com/watch?v=Epbaka9uTQ4).
    Papers We Love, Philadelphia. Philadelphia, PA, October 6, 2015
 
 1. [*Towards Dependently Typed Haskell*](http://www.cs.ox.ac.uk/ralf.hinze/WG2.8/33/slides/wg28.hs).
@@ -74,7 +79,7 @@ Invited Talks and Technical Presentations
 	Computer Science Colloquium Series, Indiana University.
    Bloomington, Indiana, October 17, 2014
 
-1. [*Programming Languages Panel.*](http://www.cs.cornell.edu/events/50years/schedule)
+1. [*Programming Languages Panel*](http://www.cs.cornell.edu/events/50years/schedule).
 	Cornell CS 50th Anniversary Symposium.
    Ithaca, New York, October 2, 2014
 

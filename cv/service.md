@@ -38,7 +38,7 @@ Research Community Service
 
 ## Program Committee Membership (conference/symposium)
 
-- History of Programming Languages (HOPL IV).
+- History of Programming Languages (HOPL IV) 2020.
 - Principles of Programming Languages (POPL) 2018.
 - Certified Proofs and Programs (CPP) 2018.
 - European Symposium on Programming (ESOP) 2017.
@@ -91,7 +91,7 @@ Research Community Service
 - POPL, 2017-present
 - ICFP, 2009-2012, 2017-present
 - PLMW, 2012-present
-- Haskell Symposium, 2008-2012
+- Haskell Symposium, 2008-2012, 2018-present
 - TLDI, 2010-2011
 - PLPV, 2012-2014
 - WGP, 2012-2015
@@ -106,7 +106,7 @@ Research Community Service
 
 
 ## Other
-- NSF panel: February 2016, June 2014, October 2012, December 2011, March 2008, December 2004.
+- NSF panel: March 2018, February 2016, June 2014, October 2012, December 2011, March 2008, December 2004.
 - Haskell' language standard committee, 2005-2010.
 - TYPES forum moderator: 2003-2009.
 - PLDI External Review Committee: 2013, 2011, 2009

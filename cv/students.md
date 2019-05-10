@@ -1,16 +1,15 @@
 Students
 ========
 
-## Postdoc supervision
-  - Joachim Breitner, Aug 2016-present.
 
 ## Dissertation supervision (current students)
   - Yao Li.
   - Pritam Chaudhury.
   - Antoine Voizard.
-  - Kenny Foner.
   - Antal Spector-Zabusky.
 
+## Postdoc supervision
+  - Joachim Breitner, Aug 2016-2018.
 
 ## Dissertation supervision (graduated students)
   - Richard Eisenberg, December 2016.
@@ -30,16 +29,16 @@ Students
     Current position: [Draper Laboratory](http://www.draper.com/).
   - Dimitrios Vytiniotis, August 2008.
     [*Practical type inference for first-class polymorphism*](http://repository.upenn.edu/dissertations/AAI3328671/).
-    Current position: [Microsoft Research](http://research.microsoft.com/en-us/people/dimitris/), Cambridge UK.
+    Current position: Google DeepMind, London, UK.
   - Geoffrey Washburn, December 2007.
     [*Principia Narcissus: How to avoid being caught by your reflection*](http://repository.upenn.edu/dissertations/AAI3292086/).
     Current position: [Logicblox](http://www.logicblox.com/).
 
 ## Dissertation committee member
+  - William Bowman, Northeastern University, November 2018.
   - Steven Keuchel, University of Ghent, June 2018.
   - Jennifer Paykin, Penn, May 2018.
   - Leonidas Lampropolos, Penn, May 2018.
-  - William Bowman, Northeastern University, March 2018.
   - Arthur Azevedo de Amorim, Penn, September 2017.
   - Peter Michael Osera, Penn, July 2015.
   - Daniel Wagner, Penn, June 2014.
@@ -84,9 +83,10 @@ Students
    (Third place). 2014-2015.  Kaycee Anderson, Juan Jose Lopez, Caroline Ho,
    and Johanna Martens (Honorable Mention), 2013-2014.
 
-  - Undergraduate Research: Emmanuel Suarez, 2017-2018. Anastasiya
-  Kravchuk-Kirilyuk, 2017. Matthew Weaver 2015-2016. Leondra Morse,
-  Summer 2015 (CRA-DREU). Mitchell Stern, Spring 2014.  Hamidhasan Ahmed,
-  Spring 2014, Summer 2013. Sneha Popley, Summer 2008 (CRA-DREU).  Stephanie
-  Simon, Summer 2008. David Gorski, Fall 2006.  Parshant Mittal, Atish Davda,
-  Fall 2005. Neal Parikh, Summer 2004.
+  - Undergraduate Research: Joshua Cohen, 2018. Emmanuel Suarez,
+  2017-2018. Anastasiya Kravchuk-Kirilyuk, 2017. Matthew Weaver
+  2015-2016. Leondra Morse, Summer 2015 (CRA-DREU). Mitchell Stern,
+  Spring 2014.  Hamidhasan Ahmed, Spring 2014, Summer 2013. Sneha Popley,
+  Summer 2008 (CRA-DREU).  Stephanie Simon, Summer 2008. David Gorski,
+  Fall 2006.  Parshant Mittal, Atish Davda, Fall 2005. Neal Parikh, Summer
+  2004.

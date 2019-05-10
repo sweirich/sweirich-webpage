@@ -17,12 +17,12 @@ Current
 	Specification: REU Supplement.* Weirich, Pierce, Zdancewic (Penn).
 	$24,000, 1/2017-1/2021.
 
-2. *CIF: Small: Rich-Type Inference for Functional Programming.* Weirich
-   (PI). NSF 1319880, $450,000, 9/2013-8/2018.
-
 
 Completed
 ---------
+
+2. *CIF: Small: Rich-Type Inference for Functional Programming.* Weirich
+   (PI). NSF 1319880, $450,000, 9/2013-8/2018.
 
 1. *SPARCS: Synthesis of Platform-aware Attack-Resilient
    Control Systems*

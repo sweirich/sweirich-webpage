@@ -1,6 +1,6 @@
 Department, School and University Service
 ========================================
-- SEAS Undergraduate Curriculum Committee, 2017-present.
+- SEAS Undergraduate Curriculum Committee, 2017-2018.
 - Undergraduate Chair, CIS, Sep 2014-Dec 2017.
 - SEAS Diversity Committee, 2015-2016.
 - Penn Forum for Women Faculty, 2015-2016.
