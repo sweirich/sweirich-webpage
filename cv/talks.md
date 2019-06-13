@@ -1,8 +1,11 @@
 Invited Talks and Technical Presentations
 =========================================
 
-1. *A Dependently-Typed Core Calculus for GHC*.   
+1. [*A Dependently-Typed Core Calculus for GHC*.](talks/talks19.pdf)
    TYPES 2019 Conference Invited Lecture. Oslo, Norway. June 2019.
+   
+1. [*Strongly-typed System F in GHC*](talks/wg28-bordeaux.pdf)
+   IFIP WG 2.8, Bordeaux, Fr. May 2019.
 
 1. [*Dependent Types in Haskell*](https://www.cs.cornell.edu/content/dependent-types-haskell).
    Cornell CS Colloquium, Ithaca, NY. November 2018.
@@ -13,7 +16,7 @@ Invited Talks and Technical Presentations
 1. *Work-in-progress: Verifying the Glasgow Haskell Compiler Core language using the Coq proof assistant*.
    Intel Labs, Hillsboro, OR. August 2018.
 
-1. [*Work-in-progress: Towards a formal semantics for GHC Core*](talks/dsw19.pdf).
+1. [*Work-in-progress: Towards a formal semantics for GHC Core*](talks/dsw18.pdf).
    DeepSpec 2018 Workshop, Philadelphia, PA. June 2018.
 
 1. [*Work-in-progress: Verifying the Glasgow Haskell Compiler Core language*](talks/wg28-asilomar.pdf).
