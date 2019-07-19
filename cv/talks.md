@@ -1,10 +1,10 @@
 Invited Talks and Technical Presentations
 =========================================
 
-1. [*A Dependently-Typed Core Calculus for GHC*.](talks/talks19.pdf)
+1. [*A Dependently-Typed Core Calculus for GHC*](talks/types19.pdf).
    TYPES 2019 Conference Invited Lecture. Oslo, Norway. June 2019.
    
-1. [*Strongly-typed System F in GHC*](talks/wg28-bordeaux.pdf)
+1. [*Strongly-typed System F in GHC*](talks/wg28-bordeaux.pdf).
    IFIP WG 2.8, Bordeaux, Fr. May 2019.
 
 1. [*Dependent Types in Haskell*](https://www.cs.cornell.edu/content/dependent-types-haskell).
@@ -28,7 +28,7 @@ Invited Talks and Technical Presentations
 
 1. *Dependent Types in Haskell.* Invited speaker, Comcast Labs Connect: Functional Programming. March 9, 2018.
 
-1. [*Locally Nameless at Scale*](papers/coqpl18.pdf)
+1. [*Locally Nameless at Scale*](papers/coqpl18.pdf).
 	Joint presentation with Anastasiya Kravchuck-Kirilyuk. CoqPL workshop, Los Angeles, CA. January 2018.
 
 1. *Dependent Types in Haskell.*

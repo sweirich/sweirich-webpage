@@ -10,7 +10,6 @@ LOCAL=../../content/
 #  - journal.bib 
 #  - chapters.bib
 #  - thesis.bib
-#  - conf.bib
 #  - unpub.bib
 #  - techreport.bib
 
@@ -34,8 +33,8 @@ FLAGS="-s boldtitle -nodoc -d -r -both -nobibsource -nf ps PS -nf pdf PDF -nf pr
 
 ###### Create source files
 bib2bib -c '$type = "ARTICLE"'  $SOURCEBIB > journal.bib
+bib2bib -c '$type = "INPROCEEDINGS"' $SOURCEBIB >> journal.bib
 bib2bib -c '$type = "INCOLLECTION"'  $SOURCEBIB > chapters.bib
-bib2bib -c '$type = "INPROCEEDINGS"' $SOURCEBIB > conf.bib
 bib2bib -c '$type = "UNPUBLISHED"' $SOURCEBIB > unpub.bib
 bib2bib -c '$type = "PHDTHESIS"' $SOURCEBIB > thesis.bib
 bib2bib -c '$type = "TECHREPORT"' $SOURCEBIB > techreport.bib
@@ -67,31 +66,14 @@ echo "</td></tr>" >> publications.html
 echo "</td></tr>" >> abstracts.html
 
 
-###### Conference Publications
+
+
+###### Journal, Conference and Workshop Publications
 # Put them in an table cell 
 echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> publications.html
-echo "<font size=4>Conferences and Workshops</font>" >> publications.html
+echo "<font size=4>Journal, Conference and Workshop Publications</font>" >> publications.html
 echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> abstracts.html
-echo "<font size=4>Conferences and Workshops</font>" >> abstracts.html
-
-# Generate the html from the bibfile
-bibtex2html $FLAGS conf.bib 
-
-# Clean up the resulting html
-sed -f ./cleanhtml conf.html >> publications.html
-sed -f ./cleanhtml conf_abstracts.html >> abstracts.html
-
-# close the cell
-echo "</td></tr>" >> publications.html
-echo "</td></tr>" >> abstracts.html
-
-
-###### Journal Publications
-# Put them in an table cell 
-echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> publications.html
-echo "<font size=4>Journal Articles</font>" >> publications.html
-echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> abstracts.html
-echo "<font size=4>Journal Articles</font>" >> abstracts.html
+echo "<font size=4>Journal, Conference and Workshop Publications</font>" >> abstracts.html
 
 # Generate the html from the bibfile
 bibtex2html $FLAGS journal.bib 
@@ -104,12 +86,13 @@ sed -f cleanhtml journal_abstracts.html >> abstracts.html
 echo "</td></tr>" >> publications.html
 echo "</td></tr>" >> abstracts.html
 
+
 ###### Chapter Publications
 # Put them in an table cell 
 echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> publications.html
 echo "<font size=4>Book Chapters</font>" >> publications.html
 echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> abstracts.html
-echo "<font size=4>Journal Articles</font>" >> abstracts.html
+echo "<font size=4>Book Chapters</font>" >> abstracts.html
 
 # Generate the html from the bibfile
 bibtex2html $FLAGS chapters.bib 
@@ -185,8 +168,6 @@ rm chapters.bib
 rm chapters.html
 rm thesis.bib
 rm thesis.html
-rm conf.bib
-rm conf.html
 rm unpub.bib
 rm unpub.html
 rm techreport.bib
