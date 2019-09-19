@@ -1,6 +1,12 @@
 Invited Talks and Technical Presentations
 =========================================
 
+1. *A Dependently-Typed Core Calculus for GHC*.  
+   PurPL Fest invited speaker. Purdue University. West Lafayette, IN. September 23, 2019.
+
+1. *Dependent Types in Haskell*.  
+   BOBkonf invited speaker (research track). Berlin, Germany. August 21, 2019.
+
 1. [*A Dependently-Typed Core Calculus for GHC*](talks/types19.pdf).
    TYPES 2019 Conference Invited Lecture. Oslo, Norway. June 2019.
    

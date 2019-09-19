@@ -1,5 +1,6 @@
 Department, School and University Service
 ========================================
+- Faculty Council on Access and Academic Support, 2019-present.
 - SEAS Undergraduate Curriculum Committee, 2017-2018.
 - Undergraduate Chair, CIS, Sep 2014-Dec 2017.
 - SEAS Diversity Committee, 2015-2016.
@@ -14,9 +15,7 @@ Department, School and University Service
 - Diversity hiring committee chair, 2012-2013.
 - CIS seminar series coordinator, 2011-2012.
 - Faculty Council, 2010-2012.
-- Academic Performance Committee, 2004-present.
-- Penn CIS Undergraduate Women's club (WiCS), 2002-present.
-- Penn CIS Graduate Women's club (CISters), 2002-present.
+- Academic Performance Committee, 2004-2017.
 - CIS seminar organizer, 2011-2012.
 - CIS 120 reform, 2009-2010.
 - Back-up Care Committee, 2009.
