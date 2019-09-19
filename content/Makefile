@@ -5,10 +5,10 @@ pub: ../bibtex/weirich.bib
 	cp ../bibtex/weirich.bib .
 
 talks: ../cv/talks.md Makefile
-	pandoc ../cv/talks.md -o talks.html --css=style.css
+	pandoc ../cv/talks.md -o talks.html --css=style.css -s --metadata pagetitle="Talks"
 
 tutorials: ../cv/tutorials.md Makefile
-	pandoc ../cv/tutorials.md -o tutorials.html --css=style.css
+	pandoc ../cv/tutorials.md -o tutorials.html --css=style.css -s --metadata pagetitle="Tutorials"
 
 cv: ../cv/top.pdf
 	(cd ../cv/; make)
