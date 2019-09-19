@@ -16,9 +16,16 @@ Outreach
     - 2000, [Third Annual ICFP Programming Contest](http://www.cs.cornell.edu/icfp/)
 
 + Panelist/Speaker:
+    - CS Curriculum Panel, [35th anniversary of the Computer Science Department
+      at Rice](http://cs35.rice.edu/), Houston, TX, October 11-13, 2019.
     - Panel Moderator/Member at FemmeHacks, Feb 2018, Feb 2017, Feb 2016
     - The "Computers", April 2015
-    - WICS high school day for girls, April 2017, April 2015, April 2014, April 2013, April 2012
+    - WICS high school day for girls, April 2017, April 2015, April 2014,
+      April 2013, April 2012
+    - Programming Languages Panel, [Computer Science 50th Anniversary
+      Symposium](http://www.cs.cornell.edu/events/50years/schedule), 
+	  Cornell University, Ithaca, NY, October 2, 2014.
+	  
     - Teaching Haskell in Academia and Industry (panel). Haskell Symposium, September 2013
     - Graduate Student Professional Seminars March 2013, March 2012
     - SWE Graduate Section Inspiration Lunch Talk, April 20, 2012
