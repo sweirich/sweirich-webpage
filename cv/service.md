@@ -11,8 +11,9 @@ Research Community Service
 
 ## Journal Leadership
 
-- Editoral Board of  Logical Methods in Computer Science, 2016-present
-- Editor of Journal of Functional Programming, 2011-2017
+- Editorial Board of ACM TOPLAS, 2019-present.
+- Editorial Board of  Logical Methods in Computer Science, 2016-present.
+- Editor of Journal of Functional Programming, 2011-2017.
 - Guest Editor (with Zhenjiang Hu, Shin-Cheng Mu), Progress in
   Informatics. Special Issue on Advanced Programming Techniques for
   Construction of Robust, General and Evolutionary Programs, March 2013.
