@@ -1,5 +1,7 @@
 Department, School and University Service
 ========================================
+- Provost's Faculty Advisory Commitee on Online Learning, 2020.
+- Penn Engineering COVID-19 oversight committee, 2020.
 - Faculty Council on Access and Academic Support, 2019-present.
 - SEAS Undergraduate Curriculum Committee, 2017-2018.
 - Undergraduate Chair, CIS, Sep 2014-Dec 2017.
