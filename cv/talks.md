@@ -1,6 +1,12 @@
 Invited Talks and Technical Presentations
 =========================================
 
+1. *Strongly-Typed System F in GHC*. YOW! Lambda Jam Online 2020. July 2020.
+
+1. [*Strongly-Typed System F in GHC*](https://www.youtube.com/watch?v=j2xYSxMkXeQ). Chalmers Functional Programming Seminar Series. June 2020.
+
+1. *Adventures in Quantitative Type Theory.* IFIP WG 2.8 Meeting, Zion National Park. March 2020.
+
 1. *A Dependently-Typed Core Calculus for GHC*.
    [PurPL Fest](https://purpl.cs.purdue.edu/kickoff.html) invited speaker. Purdue University. West Lafayette, IN. September 23, 2019.
    

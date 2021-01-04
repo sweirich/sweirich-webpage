@@ -1,5 +1,39 @@
 %% BIBTEX %%
 
+
+
+@TechReport{weirich:graded-haskell-extended,
+  author =       {Pritam Choudhury and Harley D. Eades III and Richard A. Eisenberg and Stephanie Weirich},
+  title =        {A Graded Dependent Type System with a Usage-Aware Semantics (Extended Version)},
+  year =         2020,
+  url =          {https://arxiv.org/abs/2011.04070}}
+
+@Article{weirich:graded-haskell,
+  author =       {Pritam Choudhury and Harley D. Eades III and Richard A. Eisenberg and Stephanie Weirich},
+  title =        {A Graded Dependent Type System with a Usage-Aware Semantics},
+  journal =      {Proc. ACM Program. Lang.},
+  year =         2021,
+  volume =       5,
+  number =       {POPL},
+  issue_date =   {January 2021},
+  publisher =    {ACM},
+  url =          {https://github.com/sweirich/graded-haskell/blob/main/README.md}
+}
+
+@InProceedings{weirich:eta-equiv,
+  author =       {Anastasiya Kravchuk-Kirilyuk and Antoine Voizard and Stephanie Weirich },
+  title =        {Eta-equivalence in Core Dependent Haskell},
+  booktitle = { Post-proceedings of the 25th International Conference on Types for Proofs and Programs (TYPES 2019) },
+  year =      2020,
+  editor =    {Marc Bezem and Assia Mahboubi},
+  volume =    175,
+  series =    {Leibniz International Proceedings in Informatics},
+  pages =     {7:1--7:32},
+  month =     sep,
+  publisher =   {Schloss Dagstuhl – Leibniz-Zentrum für Informatik},
+  url = https://doi.org/10.4230/LIPIcs.TYPES.2019.7,
+  address = {Dagstuhl, Germany}}
+
 @unpublished{verifying-ghc,
    title  = {Embracing a mechanized formalization gap: A Pragmatic Approach to Software System Verification (Extended Version)},
    author = {Antal Spector-Zabusky and Joachim Breitner and Yao Li and Stephanie Weirich},
@@ -8,8 +42,6 @@
    howpublished = "Submitted for publication",
    url    = "papers/verifying-ghc-extended.pdf"
 }
-
-
 
 @Article{weirich:dep-roles,
   author = 		  {Stephanie Weirich and Pritam Choudhury and Antoine Voizard and Richard Eisenberg},
@@ -32,11 +64,17 @@
   url = "https://arxiv.org/abs/1905.13706"
 }
 
-@unpublished{Breitner:2019:jfp,
+@Article{Breitner:2019:jfp,
  author = {Breitner, Joachim and Spector-Zabusky, Antal and Li, Yao and Rizkallah, Christine and Wiegley, John and Cohen, Joshua and Weirich, Stephanie},
  title = {Ready, Set, Verify! {Applying} Hs-to-coq to Real-world {Haskell} Code},
- note = {Submitted for publication},
+ journal = "Journal of Functional Programming",
+ publisher = "Cambridge University Press",
+ note = {To appear},
  pages = {1--40},
+ volume = "",
+ year = "2020",
+ month = "",
+ day = "",
  url = "papers/containers-jfp.pdf"
 } 
 
@@ -136,7 +174,7 @@ year = "2016",
 month = "007",
 day = "28",
 plclub = "yes",
-  pdf =       "http://www.seas.upenn.edu/~sweirich/papers/coercible-JFP.pdf",
+pdf =       "http://www.seas.upenn.edu/~sweirich/papers/coercible-JFP.pdf",
 abstract = "AbstractGenerative type abstractions – present in Haskell, OCaml, and other languages – are useful concepts to help prevent programmer errors. They serve to create new types that are distinct at compile time but share a run-time representation with some base type. We present a new mechanism that allows for zero-cost conversions between generative type abstractions and their representations, even when such types are deeply nested. We prove type safety in the presence of these conversions and have implemented our work in GHC.",
 url = "https://www.cambridge.org/core/article/safe-zero-cost-coercions-for-haskell/FFB002A34C6B40EF150B5F357AA865DC",
 journal = "Journal of Functional Programming"

@@ -4,10 +4,10 @@ Tutorials
 * [*Dependent Types*](http://github.com/sweirich/dth/).
    Programming Languages Mentoring Workshop. St. Louis, MO. September 2018.
 
-* *Formal logic and software verification using interactive theorem provers*
+* *Formal Logic and Software Verification using Interactive Theorem Provers*.
   ACM Philadelphia Region Celebration of Women in Computing, April 21, 2018
 
-* *Machine-checked programming language Metatheory.*
+* [*Language Specification and Variable Binding.*](https://deepspec.org/event/dsss17/lecture_weirich.html)
   The Science of Deep Specifications Summer School, July 2017
 
 * [*How to write a great research paper: Simon's seven easy steps.*](talks/plmw15-writing-skills.pdf)
