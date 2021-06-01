@@ -4,6 +4,9 @@ Funding
 Current
 -------
 
+1. *SHF: Small: Mechanized reasoning for functional programs.* Weirich,
+   NSF 2006535. $450,000, 10/2020-09/2023.
+
 1. *SHF: Medium: Collaborative Research: The Theory and Practice of Dependent
    Types in Haskell.*  Weirich, Eisenberg (Bryn Mawr),  NSF 1703835, $814,453
    (Penn), 7/2017-6/2021.
@@ -11,11 +14,11 @@ Current
 1. *Collaborative Research: Expeditions in Computing: The Science of Deep
 	Specification.*  Weirich (PI), Pierce, Zdancewic (Penn), Appel
 	(Princeton), Shao (Yale), Chlipala (MIT). NSF 1521539, $10 million total,
-	1/2016-1/2021.
+	1/2016-10/2021.
 
 1. *Collaborative Research: Expeditions in Computing: The Science of Deep
 	Specification: REU Supplement.* Weirich, Pierce, Zdancewic (Penn).
-	$24,000, 1/2017-1/2021.
+	$24,000, 1/2017-10/2021.
 
 
 Completed

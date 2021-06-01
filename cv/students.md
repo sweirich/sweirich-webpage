@@ -6,12 +6,14 @@ Students
   - Yao Li.
   - Pritam Chaudhury.
   - Antoine Voizard.
-  - Antal Spector-Zabusky.
 
 ## Postdoc supervision
   - Joachim Breitner, Aug 2016-2018.
 
 ## Dissertation supervision (graduated students)
+  - Antal Spector-Zabusky, May 2021.
+    *Don't mind the formalization gap: The Design and Usage of hs-to-coq.*
+    Current position: Jane Street.
   - Richard Eisenberg, December 2016.
     [*Dependently-Typed Haskell*](http://repository.upenn.edu/dissertations/AAI10244979/).
     Current position: Assistant professor, [Bryn Mawr College](http://cs.brynmawr.edu/~rae/).
@@ -35,6 +37,9 @@ Students
     Current position: [Logicblox](http://www.logicblox.com/).
 
 ## Dissertation committee member
+  - Li-Yao Xia, Penn.
+  - Teng Zheng, Penn.
+  - Robert Rand, Penn. November 2018.
   - William Bowman, Northeastern University, November 2018.
   - Steven Keuchel, University of Ghent, June 2018.
   - Jennifer Paykin, Penn, May 2018.
@@ -66,7 +71,7 @@ Students
 
 ## Independent study
 
-  - Doctoral: Hengchu Zhang, Yao Li, Spring 2017. Antoine
+  - Doctoral: Irene Yoon, Spring 2020.  Hengchu Zhang, Yao Li, Spring 2017. Antoine
   Voizard, Kenny Foner, Fall 2015. Antal Spector-Zabusky, Spring 2016,
   Spring 2013. Jennifer Paykin, Fall 2012.  Richard Eisenberg, Justin Hsu,
   Spring 2012. Richard Eisenberg, Hongbo Zhang. Fall 2011.  Brent Yorgey,
@@ -74,7 +79,7 @@ Students
   Casinghino, Spring 2008. Andrew Hilton (co-advised), Karl Mazurak, Jeff
   Vaughan, Fall 2004.  Liang Huang, Spring 2004.
 
-  - Masters: Dominik Bollman, Spring 2016. Simon Wimmer, Summer 2015.
+  - Masters: Eric Giovanni, Spring 2020. Dominik Bollman, Spring 2016. Simon Wimmer, Summer 2015.
 
   - Undergraduate Senior Design Project: Memoria Matters and Lauren Leung,
    2016-2017 (Honoable Mention). Charles Du 2017, Max McCarthy 2016.  Lewis
@@ -83,10 +88,9 @@ Students
    (Third place). 2014-2015.  Kaycee Anderson, Juan Jose Lopez, Caroline Ho,
    and Johanna Martens (Honorable Mention), 2013-2014.
 
-  - Undergraduate Research: Joshua Cohen, 2018. Emmanuel Suarez,
+  - Undergraduate Research: Daniel Lee, 2021. Joshua Cohen, 2018. Emmanuel Suarez,
   2017-2018. Anastasiya Kravchuk-Kirilyuk, 2017. Matthew Weaver
   2015-2016. Leondra Morse, Summer 2015 (CRA-DREU). Mitchell Stern,
   Spring 2014.  Hamidhasan Ahmed, Spring 2014, Summer 2013. Sneha Popley,
   Summer 2008 (CRA-DREU).  Stephanie Simon, Summer 2008. David Gorski,
-  Fall 2006.  Parshant Mittal, Atish Davda, Fall 2005. Neal Parikh, Summer
-  2004.
+  Fall 2006.  Parshant Mittal, Atish Davda, Fall 2005. Neal Parikh, Summer 2004.

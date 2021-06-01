@@ -1,5 +1,5 @@
 ## if you add to these, you must update top.tex to refer to them as well
-MD=cv funding students talks tutorials service university-service outreach teaching
+MD=cv funding students talks tutorials service university-service outreach teaching blog
 PUBS=chapter conf thesis techreport
 
 SOURCEBIB=../bibtex/weirich.bib

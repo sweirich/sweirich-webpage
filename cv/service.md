@@ -39,6 +39,7 @@ Research Community Service
 
 ## Program Committee Membership (conference/symposium)
 
+- Formal Structures for Computation and Deduction (FSCD) 2021.
 - History of Programming Languages (HOPL IV) 2020.
 - Symposium on Trends in Functional Programming (TFP) 2020.
 - Principles of Programming Languages (POPL) 2018.
@@ -67,6 +68,8 @@ Research Community Service
 
 ## Program Committee Membership (workshop)
 
+- TYPES 2021.
+- TyDe 2021.
 - CoqPL Workshop 2020.
 - Coq Workshop 2018.
 - Haskell Implementor's Workshop (HiW) 2016.
@@ -91,8 +94,8 @@ Research Community Service
 
 ## Steering Committee Membership
 
-- POPL, 2017-present
 - ICFP, 2009-2012, 2017-present
+- POPL, 2017-2021.
 - PLMW, 2012-present
 - Haskell Symposium, 2008-2012, 2018-present
 - TLDI, 2010-2011

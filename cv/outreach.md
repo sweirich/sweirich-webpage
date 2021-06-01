@@ -11,11 +11,14 @@ Outreach
 
 + SRC@ICFP student research competition, selection committee.  2015, 2014.
 
++ [Haskell Foundation](https://haskell.foundation/), Interim Board member, late 2020 to early 2021.
+
 + Programming Contest co-organizer:
     - 2004, [Seventh Annual ICFP programming contest](http://www.cis.upenn.edu/proj/plclub/contest/)
     - 2000, [Third Annual ICFP Programming Contest](http://www.cs.cornell.edu/icfp/)
 
 + Panelist/Speaker:
+    -  [“Dependent types—salvation or plague?”](https://www.lambdadays.org/lambdadays2021?utm_source=ESL&utm_medium=email&utm_campaign=CBV+America+2021#free-meetup), panel discussion at LambdaDays, Feb 4th, 2021
     - CS Curriculum Panel, [35th anniversary of the Computer Science Department
       at Rice](http://cs35.rice.edu/), Houston, TX, October 11-13, 2019.
     - Panel Moderator/Member at FemmeHacks, Feb 2018, Feb 2017, Feb 2016

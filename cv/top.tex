@@ -1,20 +1,21 @@
-\documentclass[roman]{moderncv}
+\documentclass[letterpaper,final]{moderncv}
 
 
+
+% Need FontAwesome < 5
+%% https://github.com/FortAwesome/Font-Awesome/blob/v4.7.0/fonts/FontAwesome.otf
 
 %% Missing symbols from fontawesome
 %% http://tex.stackexchange.com/questions/256520/problem-with-last-version-of-font-awesome-in-moderncv
-\def\faLinkedinSign{{\FA\symbol{"F08C}}}
-\def\faCircleBlank{{\FA\symbol{"F10C}}}
-\DeclareRobustCommand{\FA}{%
-  \fontencoding{EU1}\fontfamily{FontAwesome(0)}\fontsize{5}{5}\selectfont}
-
+%\def\faLinkedinSign{{\FA\symbol{"F08C}}}
+%\def\faCircleBlank{{\FA\symbol{"F10C}}}
+%\DeclareRobustCommand{\FA}{%
+%  \fontencoding{EU1}\fontfamily{FontAwesome(0)}\fontsize{5}{5}\selectfont}
 
 \moderncvstyle{banking}
 \moderncvcolor{blue}
+%\renewcommand{\familydefault}{\rmdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
 
-
-\renewcommand{\familydefault}{\rmdefault}         % to set the default font; use '\sfdefault' for the default sans serif font, '\rmdefault' for the default roman one, or any tex font name
 \nopagenumbers{}
 
 %% http://tex.stackexchange.com/questions/257418/error-tightlist-converting-md-file-into-pdf-using-pandoc
@@ -29,6 +30,7 @@
 
 %\usepackage{fullpage}
 
+
 \usepackage{url}
 \usepackage{bibentry}
 %\usepackage{hyperref} %% loaded by moderncv
@@ -42,7 +44,6 @@
 
 \usepackage{multibib}
 
-\usepackage[scale=0.75]{geometry}
 
 \firstname{Stephanie}
 \familyname{Weirich}
@@ -64,25 +65,21 @@
 
 \makecvtitle
 
-\section{Education}
-\cventry{2002}{Ph.D.}{Cornell University}{Ithaca, NY}{Computer Science}{}
-\cventry{2000}{M.S.}{Cornell University}{Ithaca, NY}{Computer Science}{}
-\cventry{1996}{B.A.}{Rice University}{Houston, TX}{Computer Science, magnum cum laude}{}
-
 \section{Positions}
-\cventry{September 2019-present}{ENIAC President's Distinguished
-  Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}
-\cventry{June 2018-August 2019}{Visiting Scientist}{Galois, Inc}{Portland, Oregon}{}{}
-\cventry{July 2015-August 2019}{Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}
-\cventry{July 2008-June 2015}{Associate Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}
-\cventry{August 2009-July 2010}{Visitor}{University of Cambridge}{Cambridge, UK}{}{}
-\cventry{September-November 2009}{Visiting Researcher}{Microsoft Research}{Cambridge, UK}{}{}
-\cventry{July 2002-July 2008}{Assistant Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}
-\cventry{August 1996-July 2002}{Instructor, Research Assistant and Teaching Assistant}{Cornell University}{Ithaca, New York}{}{}
-\cventry{June-July 1999}{Intern}{Lucent Technologies}{Murray Hill, New Jersey}{}{}
+\cventry{September 2019-present}{ENIAC President's Distinguished Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}
+\cventry{June 2018-August 2019}{Visiting Scientist}{Galois, Inc}{Portland, Oregon}{}{}{}
+\cventry{July 2015-August 2019}{Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}{}
+\cventry{July 2008-June 2015}{Associate Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}{}
+\cventry{August 2009-July 2010}{Visitor}{University of Cambridge}{Cambridge, UK}{}{}{}
+\cventry{September-November 2009}{Visiting Researcher}{Microsoft Research}{Cambridge, UK}{}{}{}
+\cventry{July 2002-July 2008}{Assistant Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}{}
+\cventry{August 1996-July 2002}{Instructor, Research Assistant and Teaching Assistant}{Cornell University}{Ithaca, New York}{}{}{}
+\cventry{June-July 1999}{Intern}{Lucent Technologies}{Murray Hill, New Jersey}{}{}{}
 
-%\section{Research Interests}
-% Programming languages, Type systems, Functional programming, Generic programming, Dependent types, Program verification, Proof assistants
+\section{Education}
+\cventry{2002}{Ph.D.}{Cornell University}{Ithaca, NY}{Computer Science}{}{}
+\cventry{2000}{M.S.}{Cornell University}{Ithaca, NY}{Computer Science}{}{}
+\cventry{1996}{B.A.}{Rice University}{Houston, TX}{Computer Science, magnum cum laude}{}{}
 
 \input{temp/cv}
 
@@ -119,7 +116,7 @@
 
 \input{temp/talks}
 \input{temp/tutorials}
-
+% \input{temp/blog}
 
 
 

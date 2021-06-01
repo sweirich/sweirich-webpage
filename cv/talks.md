@@ -1,6 +1,10 @@
 Invited Talks and Technical Presentations
 =========================================
 
+1. TBA. Invited talk at IFL. The 33rd Symposium on Implementation and Application of Functional Languages. September 2021.
+
+1. *Programming Language Design: From Grace Hopper to Today*. [ENIAC Day: 75th anniversary of ENIAC mini-symposium](https://events.seas.upenn.edu/event/eniacday/). February 15, 2021.
+
 1. *Strongly-Typed System F in GHC*. YOW! Lambda Jam Online 2020. July 2020.
 
 1. [*Strongly-Typed System F in GHC*](https://www.youtube.com/watch?v=j2xYSxMkXeQ). Chalmers Functional Programming Seminar Series. June 2020.
