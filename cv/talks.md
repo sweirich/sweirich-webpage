@@ -1,9 +1,15 @@
 Invited Talks and Technical Presentations
 =========================================
 
-1. TBA. Invited talk at IFL. The 33rd Symposium on Implementation and Application of Functional Languages. September 2021.
+1. [*What are Dependent Types and What are they Good for?*](talks/milner-2022.pdf) [Milner lecture](https://web.inf.ed.ac.uk/lfcs/events/milner-lectures), Laboratory for Computer Science, Edinburgh. June 15, 2022.
 
-1. *Programming Language Design: From Grace Hopper to Today*. [ENIAC Day: 75th anniversary of ENIAC mini-symposium](https://events.seas.upenn.edu/event/eniacday/). February 15, 2021.
+1. [*A Dependent Dependency Calculus*].(https://www.youtube.com/watch?v=REy4RbDr46g) Ediburgh LFCS Seminar, June 14, 2022.  [slides](talks/edinburgh-2022.pdf)
+
+1. *How to implement the Lambda Calculus, Quickly*. [Haskell Love](https://haskell.love/), virtual developer conference. September 10, 2021.
+
+1. [*How to implement the Lambda Calculus, Quickly*](https://youtu.be/6JH8bFRohn8). Invited talk at IFL. The 33rd Symposium on Implementation and Application of Functional Languages. September 3, 2021.
+
+1. [*Programming Language Design: From Grace Hopper to Today*](https://www.youtube.com/watch?v=gLTDyrAY4Hk). [ENIAC Day: 75th anniversary of ENIAC mini-symposium](https://events.seas.upenn.edu/event/eniacday/). February 15, 2021.
 
 1. *Strongly-Typed System F in GHC*. YOW! Lambda Jam Online 2020. July 2020.
 

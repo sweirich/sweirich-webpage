@@ -10,3 +10,6 @@ h2 {
 	font-variant: small-caps;
 	color: #004080;
 }
+img {
+    border-radius: 25%
+}

@@ -13,6 +13,7 @@ Research Community Service
 
 - Associate Editor of ACM TOPLAS, 2019-present.
 - Editorial Board of Logical Methods in Computer Science, 2016-present.
+- Editorial Board of TheoreTICs, 2021-present.
 - Editor of Journal of Functional Programming, 2011-2017.
 - Guest Editor (with Zhenjiang Hu, Shin-Cheng Mu), Progress in
   Informatics. Special Issue on Advanced Programming Techniques for
@@ -39,7 +40,8 @@ Research Community Service
 
 ## Program Committee Membership (conference/symposium)
 
-- Formal Structures for Computation and Deduction (FSCD) 2021.
+- International Conference on Functional Programming (ICFP) 2022.
+- Formal Structures for Computation and Deduction (FSCD) 2022.
 - History of Programming Languages (HOPL IV) 2020.
 - Symposium on Trends in Functional Programming (TFP) 2020.
 - Principles of Programming Languages (POPL) 2018.
@@ -94,10 +96,10 @@ Research Community Service
 
 ## Steering Committee Membership
 
-- ICFP, 2009-2012, 2017-present
-- POPL, 2017-2021.
-- PLMW, 2012-present
-- Haskell Symposium, 2008-2012, 2018-present
+- ICFP, 2009-2012, 2017-2022. SC Chair, 2021-2022
+- POPL, 2017-2021
+- PLMW, 2012
+- Haskell Symposium, 2008-2012, 2018-2021
 - TLDI, 2010-2011
 - PLPV, 2012-2014
 - WGP, 2012-2015
@@ -112,6 +114,7 @@ Research Community Service
 
 
 ## Other
+- SIGPLAN Reynold's dissertation award committee, 2021.
 - NSF panel: March 2019, March 2018, February 2016, June 2014, October 2012,
   December 2011, March 2008, December 2004.
 - Haskell' language standard committee, 2005-2010.

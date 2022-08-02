@@ -38,6 +38,7 @@ bib2bib -c '$type = "INCOLLECTION"'  $SOURCEBIB > chapters.bib
 bib2bib -c '$type = "UNPUBLISHED"' $SOURCEBIB > unpub.bib
 bib2bib -c '$type = "PHDTHESIS"' $SOURCEBIB > thesis.bib
 bib2bib -c '$type = "TECHREPORT"' $SOURCEBIB > techreport.bib
+bib2bib -c '$type = "MISC"' $SOURCEBIB > misc.bib
 
 ###### Header information
 touch publications.html
@@ -65,15 +66,12 @@ sed -f ./cleanhtml unpub_abstracts.html >> abstracts.html
 echo "</td></tr>" >> publications.html
 echo "</td></tr>" >> abstracts.html
 
-
-
-
 ###### Journal, Conference and Workshop Publications
 # Put them in an table cell 
 echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> publications.html
-echo "<font size=4>Journal, Conference and Workshop Publications</font>" >> publications.html
+echo "<font size=4>Refereed Journal, Conference and Workshop Publications</font>" >> publications.html
 echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> abstracts.html
-echo "<font size=4>Journal, Conference and Workshop Publications</font>" >> abstracts.html
+echo "<font size=4>Refereed Journal, Conference and Workshop Publications</font>" >> abstracts.html
 
 # Generate the html from the bibfile
 bibtex2html $FLAGS journal.bib 
@@ -105,6 +103,25 @@ sed -f cleanhtml chapters_abstracts.html >> abstracts.html
 echo "</td></tr>" >> publications.html
 echo "</td></tr>" >> abstracts.html
 
+###### MISC
+
+# Put them in an table cell 
+echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> publications.html
+echo "<font size=4>Misc</font>" >> publications.html
+echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> abstracts.html
+echo "<font size=4>Misc</font>" >> abstracts.html
+
+# Generate the html from the bibfile
+bibtex2html $FLAGS misc.bib 
+
+# Clean up the resulting html
+sed -f cleanhtml misc.html >> publications.html
+sed -f cleanhtml misc_abstracts.html >> abstracts.html
+
+# close the cell
+echo "</td></tr>" >> publications.html
+echo "</td></tr>" >> abstracts.html
+
 
 ###### Thesis
 # Put them in an table cell 
@@ -128,9 +145,9 @@ echo "</td></tr>" >> abstracts.html
 ###### Technical Reports
 # Put them in an table cell 
 echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> publications.html
-echo "<font size=4>Technical Reports</font>" >> publications.html
+echo "<font size=4>Artifacts, Extended Versions, and Technical Reports</font>" >> publications.html
 echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> abstracts.html
-echo "<font size=4>Technical Reports</font>" >> abstracts.html
+echo "<font size=4>Artifacts, Extended Versions, and Technical Reports</font>" >> abstracts.html
 
 # Generate the html from the bibfile
 bibtex2html $FLAGS techreport.bib 

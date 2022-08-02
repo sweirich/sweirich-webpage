@@ -1,6 +1,12 @@
 Tutorials
 =========
 
+* [*Implementing Dependent Types in pi-forall*](https://www.cs.uoregon.edu/research/summerschool/summer22)
+  Oregon Programming Languages Summer School: Types, Logic,
+  and Verification.
+  Eugene OR, USA. June 2022
+
+
 * [*Dependent Types*](http://github.com/sweirich/dth/).
    Programming Languages Mentoring Workshop. St. Louis, MO. September 2018.
 
@@ -31,7 +37,6 @@ Tutorials
 * [*Generic Programming with Dependent Types.*](http://www.seas.upenn.edu/~sweirich/ssgip/)
   Spring School on Generic and Indexed Programming.
   Oxford, England. March 2010
-
 
 * [*Coq for Programming Language Metatheory.*](http://www.cs.uoregon.edu/research/summerschool/summer08/)
   Oregon Programming Languages Summer School on Logic and

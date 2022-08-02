@@ -9,7 +9,7 @@ Current
 
 1. *SHF: Medium: Collaborative Research: The Theory and Practice of Dependent
    Types in Haskell.*  Weirich, Eisenberg (Bryn Mawr),  NSF 1703835, $814,453
-   (Penn), 7/2017-6/2021.
+   (Penn), 7/2017-6/2022.
 
 1. *Collaborative Research: Expeditions in Computing: The Science of Deep
 	Specification.*  Weirich (PI), Pierce, Zdancewic (Penn), Appel

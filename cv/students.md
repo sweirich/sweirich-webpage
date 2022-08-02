@@ -3,9 +3,9 @@ Students
 
 
 ## Dissertation supervision (current students)
-  - Yao Li.
-  - Pritam Chaudhury.
-  - Antoine Voizard.
+  - Yao Li, expected graduation summer 2022
+  - Pritam Chaudhury, expected graduation autumn 2022
+  - Yiyun, Liu.
 
 ## Postdoc supervision
   - Joachim Breitner, Aug 2016-2018.
@@ -37,8 +37,12 @@ Students
     Current position: [Logicblox](http://www.logicblox.com/).
 
 ## Dissertation committee member
-  - Li-Yao Xia, Penn.
-  - Teng Zheng, Penn.
+  - Harrison Goldstein, Penn.
+  - Irene Yoon, Penn.
+  - Nicholas Rioux, Penn.
+  - Paul He, Penn.
+  - Li-Yao Xia, Penn. June 2022.
+  - Teng Zheng, Penn. October 2021.
   - Robert Rand, Penn. November 2018.
   - William Bowman, Northeastern University, November 2018.
   - Steven Keuchel, University of Ghent, June 2018.
@@ -49,9 +53,9 @@ Students
   - Daniel Wagner, Penn, June 2014.
   - Harley Eades III, University of Iowa, May 2014.
   - Julien Cretin, INRIA / University Paris 7, January 2014.
-  - Michael Greenberg, Penn (chair), December 2013.
+  - Michael Greenberg, Penn, December 2013.
   - Hongbo Zhang, Penn, Master's thesis, December 2013.
-  - Karl Mazurak, Penn (chair), May 2013.
+  - Klara Mazurak, Penn, May 2013.
   - Jianzhao Zhao, Penn, April 2013.
   - Aaron Bohannon, Penn, February 2012.
   - Jean-Philippe Bernardy, Chalmers ("Faculty Opponent"), Gothenburg, Sweden, June 2011.
@@ -71,11 +75,12 @@ Students
 
 ## Independent study
 
-  - Doctoral: Irene Yoon, Spring 2020.  Hengchu Zhang, Yao Li, Spring 2017. Antoine
-  Voizard, Kenny Foner, Fall 2015. Antal Spector-Zabusky, Spring 2016,
-  Spring 2013. Jennifer Paykin, Fall 2012.  Richard Eisenberg, Justin Hsu,
-  Spring 2012. Richard Eisenberg, Hongbo Zhang. Fall 2011.  Brent Yorgey,
-  Peter-Michael Osera, Vilhelm Sjöberg. Fall 2008-Spring 2009. Chris
+  - Doctoral: Yiyun Liu (Fall 2021, Spring 2022). Jessica Shi,
+  Fall 2021. Irene Yoon, Spring 2020.  Hengchu Zhang, Yao Li,
+  Spring 2017. Antoine Voizard, Kenny Foner, Fall 2015. Antal Spector-Zabusky,
+  Spring 2016, Spring 2013. Jennifer Paykin, Fall 2012.  Richard Eisenberg,
+  Justin Hsu, Spring 2012. Richard Eisenberg, Hongbo Zhang. Fall 2011.  Brent
+  Yorgey, Peter-Michael Osera, Vilhelm Sjöberg. Fall 2008-Spring 2009. Chris
   Casinghino, Spring 2008. Andrew Hilton (co-advised), Karl Mazurak, Jeff
   Vaughan, Fall 2004.  Liang Huang, Spring 2004.
 

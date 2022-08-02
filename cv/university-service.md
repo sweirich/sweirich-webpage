@@ -1,5 +1,6 @@
 Department, School and University Service
 ========================================
+- CIS Faculty Hiring committee, 2021-2022, 2019-2020 (chair), 2012-2013.
 - Provost's Faculty Advisory Commitee on Online Learning, 2020.
 - Penn Engineering COVID-19 oversight committee, 2020.
 - Faculty Council on Access and Academic Support, 2019-present.
@@ -14,7 +15,6 @@ Department, School and University Service
 - University committee on the Facilities,
     2011-2014. Chair 2013-2014, 2012-2013.
 - Graduate student admissions chair, 2013-2014, 2012-2013.
-- Diversity hiring committee chair, 2012-2013.
 - CIS seminar series coordinator, 2011-2012.
 - Faculty Council, 2010-2012.
 - Academic Performance Committee, 2004-2017.
