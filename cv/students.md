@@ -3,7 +3,6 @@ Students
 
 
 ## Dissertation supervision (current students)
-  - Yao Li, expected graduation summer 2022
   - Pritam Chaudhury, expected graduation autumn 2022
   - Yiyun, Liu.
 
@@ -11,12 +10,15 @@ Students
   - Joachim Breitner, Aug 2016-2018.
 
 ## Dissertation supervision (graduated students)
+  - Yao Li, August 2022
+    *Mechanized Reasoning About "How" Using Functional Programs and Embeddings*
+    Current employment: Portland State University
   - Antal Spector-Zabusky, May 2021.
     *Don't mind the formalization gap: The Design and Usage of hs-to-coq.*
     Current position: Jane Street.
   - Richard Eisenberg, December 2016.
     [*Dependently-Typed Haskell*](http://repository.upenn.edu/dissertations/AAI10244979/).
-    Current position: Assistant professor, [Bryn Mawr College](http://cs.brynmawr.edu/~rae/).
+    Current position: Jane Street.
     *Co-winner of Morris and Dorothy Rubinoff award.*
   - Vilhelm Sjöberg, May 2015.
     [*A Dependently Typed Language with Nontermination*](http://repository.upenn.edu/dissertations/AAI3709556/).
@@ -28,7 +30,7 @@ Students
     Current position: Assistant Professor, [Hendrix College](https://www.hendrix.edu/).
   - Chris Casinghino, December 2014.
     [*Combining Proofs and Programs*](http://repository.upenn.edu/dissertations/AAI3670881/).
-    Current position: [Draper Laboratory](http://www.draper.com/).
+    Current position: Jane Street.
   - Dimitrios Vytiniotis, August 2008.
     [*Practical type inference for first-class polymorphism*](http://repository.upenn.edu/dissertations/AAI3328671/).
     Current position: Google DeepMind, London, UK.
