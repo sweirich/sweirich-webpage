@@ -1,9 +1,17 @@
 Invited Talks and Technical Presentations
 =========================================
 
+1. *TBA*. ICALP/LICS Invited Speaker. Talinn, Estonia. 8-12 July, 2024.
+
+1. *CBPV+effects, CBPV+coeffects*.  WG 2.11 Meeting, Drexel University, Philadelphia, PA. March 2024.
+
+1. *CBPV+effects, CBPV+coeffects*.  WG 2.8 Meeting, Pembroke College, Cambridge UK. April 2023.
+
+1. [*Stratified Type Theory*](https://docs.google.com/presentation/d/1ttkDSHICdXzES95UjmKhLu6ZOuNprqLuEIsKxIgtN3k/edit?usp=sharing), WG 2.8 Meeting, Pembroke College, Cambridge UK. April 2023.
+
 1. [*What are Dependent Types and What are they Good for?*](talks/milner-2022.pdf) [Milner lecture](https://web.inf.ed.ac.uk/lfcs/events/milner-lectures), Laboratory for Computer Science, Edinburgh. June 15, 2022.
 
-1. [*A Dependent Dependency Calculus*].(https://www.youtube.com/watch?v=REy4RbDr46g) Ediburgh LFCS Seminar, June 14, 2022.  [slides](talks/edinburgh-2022.pdf)
+1. [*A Dependent Dependency Calculus*](https://www.youtube.com/watch?v=REy4RbDr46g). [Ediburgh LFCS Seminar](talks/edinburgh-2022.pdf), June 14, 2022.  
 
 1. *How to implement the Lambda Calculus, Quickly*. [Haskell Love](https://haskell.love/), virtual developer conference. September 10, 2021.
 

@@ -4,8 +4,24 @@ Funding
 Current
 -------
 
+1. Epic Games. Unrestricted gift $74,400.00. 3/2024.
+
+1. *SHF: Small: SMALL:Dependency Tracking and Dependent Types.* Weirich,
+   NSF 2327738. $540,000. 12/2023-11/2026.
+
+1. VERSE: Verification Engineering for Real-World Software Engineers.
+  Pierce (PI), Head, Weirich. DARPA. 2024-2027.
+
+1. Research Experience for Undergraduates in Programming Languages (REPL).
+   Zdancewic (PI), Weirich, Pierce. NSF $322,095.  2023-2027.
+
 1. *SHF: Small: Mechanized reasoning for functional programs.* Weirich,
-   NSF 2006535. $450,000, 10/2020-09/2023.
+   NSF 2006535. $450,000, 10/2020-09/2024.
+
+
+Completed
+---------
+
 
 1. *SHF: Medium: Collaborative Research: The Theory and Practice of Dependent
    Types in Haskell.*  Weirich, Eisenberg (Bryn Mawr),  NSF 1703835, $814,453
@@ -19,10 +35,6 @@ Current
 1. *Collaborative Research: Expeditions in Computing: The Science of Deep
 	Specification: REU Supplement.* Weirich, Pierce, Zdancewic (Penn).
 	$24,000, 1/2017-10/2021.
-
-
-Completed
----------
 
 2. *CIF: Small: Rich-Type Inference for Functional Programming.* Weirich
    (PI). NSF 1319880, $450,000, 9/2013-8/2018.
@@ -64,7 +76,7 @@ Completed
    ONR, $400,000 (Penn), 2009-2012.
 
 4. *Computer Science Study Panel, Phase II*
-   Weirich (PI), Zdancewic. DARPA, \$500,000, 2008-2010.
+   Weirich (PI), Zdancewic. DARPA, $500,000, 2008-2010.
 
 5. *Collaborative Research: CT-T: Manifest Security*
    University of Pennsylvania. Pierce (PI), Weirich,
@@ -83,4 +95,4 @@ Completed
   2006-2008.
 
 9. *CAREER: Type-Directed Programming in Object-Oriented Languages*
-  Weirich (PI), NSF CCF-0347289: \$400,000, 2003-2008.
+  Weirich (PI), NSF CCF-0347289: $400,000, 2003-2008.

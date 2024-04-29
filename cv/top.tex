@@ -47,19 +47,16 @@
 
 \firstname{Stephanie}
 \familyname{Weirich}
-%\title{Associate Professor}              % Your title (optional)
 \address{School of Engineering and Science, University of Pennsylvania}{Levine 510, 3330 Walnut St, Philadelphia, PA 19104} % Your current address
-%\mobile {number}    % Your mobile phone number
 \phone {215-573-2821}    % Your phone number
-\email {sweirich@cis.upenn.edu}          % Your email address
-%\homepage{\url{http://www.cis.upenn.edu/~sweirich}}    % Your website
+\email {sweirich@seas.upenn.edu}          % Your email address
 \extrainfo{\today}
 
-\newcites{conf,chapter,thesis,techreport}
+\newcites{conf,misc,thesis,techreport}
   {Refereed Publications,%
-   Chapters in Books,%
+   Unrefereed Reports,
    Thesis,%
-   Technical Reports}
+   Artifacts and Technical Reports}
 
 \begin{document}
 
@@ -67,6 +64,7 @@
 
 \section{Positions}
 \cventry{September 2019-present}{ENIAC President's Distinguished Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}
+\cventry{March 2022-September 2023}{Principal Language Engineer}{Epic Games}{Philadelphia, Pennsylvania}{}{}
 \cventry{June 2018-August 2019}{Visiting Scientist}{Galois, Inc}{Portland, Oregon}{}{}{}
 \cventry{July 2015-August 2019}{Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}{}
 \cventry{July 2008-June 2015}{Associate Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}{}
@@ -83,16 +81,14 @@
 
 \input{temp/cv}
 
-\input{temp/teaching}
 \input{temp/students}
-
-\input{temp/service}
-\input{temp/university-service}
-\input{temp/outreach}
 
 \input{temp/funding}
 
-%\section{Publications}
+\input{temp/service}
+\input{temp/teaching}
+\input{temp/university-service}
+\input{temp/outreach}
 
 \bibliographystyleconf{unsrtnat}
 \bibliographyconf{temp/conf}
@@ -102,9 +98,9 @@
 % \bibliographyjournal{temp/journal}
 % \nocitejournal{*}
 
-\bibliographystylechapter{unsrtnat}
-\bibliographychapter{temp/chapter}
-\nocitechapter{*}
+% \bibliographystylechapter{unsrtnat}
+% \bibliographychapter{temp/chapter}
+% \nocitechapter{*}
 
 \bibliographystylethesis{unsrtnat}
 \bibliographythesis{temp/thesis}
@@ -113,6 +109,10 @@
 \bibliographystyletechreport{unsrtnat}
 \bibliographytechreport{temp/techreport}
 \nocitetechreport{*}
+
+\bibliographystylemisc{unsrtnat}
+\bibliographymisc{temp/misc}
+\nocitemisc{*}
 
 \input{temp/talks}
 \input{temp/tutorials}

@@ -1,14 +1,16 @@
 Tutorials
 =========
 
-* [*Implementing Dependent Types in pi-forall*](https://www.cs.uoregon.edu/research/summerschool/summer22)
-  Oregon Programming Languages Summer School: Types, Logic,
-  and Verification.
+* [*Implementing Dependent Types in pi-forall*](https://www.cs.uoregon.edu/research/summerschool/summer23).
+  Oregon Programming Languages Summer School: Types, Logic, and Verification.
+  Eugene OR, USA. June 2023
+
+* [*Implementing Dependent Types in pi-forall*](https://www.cs.uoregon.edu/research/summerschool/summer22).
+  Oregon Programming Languages Summer School: Types, Logic, and Verification.
   Eugene OR, USA. June 2022
 
-
 * [*Dependent Types*](http://github.com/sweirich/dth/).
-   Programming Languages Mentoring Workshop. St. Louis, MO. September 2018.
+   Programming Languages Mentoring Workshop. St. Louis, MO. September 2018
 
 * *Formal Logic and Software Verification using Interactive Theorem Provers*.
   ACM Philadelphia Region Celebration of Women in Computing, April 21, 2018

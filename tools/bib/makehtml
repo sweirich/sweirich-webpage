@@ -12,6 +12,7 @@ LOCAL=../../content/
 #  - thesis.bib
 #  - unpub.bib
 #  - techreport.bib
+#  - misc.bib
 
 # The output is created in publications.html and abstracts.html
 

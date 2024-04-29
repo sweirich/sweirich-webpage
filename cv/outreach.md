@@ -1,7 +1,11 @@
 Outreach
 =======
 
++ [Oregon Programming Languages Summer School](https://www.cs.uoregon.edu/research/summerschool/summer22/), co-organizer, 2023
+
 + [SIGPLAN CARES member](https://www.sigplan.org/Cares/), January 2020-present
+
++ [Computing Connections Fellowship](https://computingconnections.org/), selection committe, 2022-present
 
 + Workshop organizer: (with Ron Garcia)
   ICFP Programming Languages Mentoring Workshop (ICFP-PLMW 2015)
@@ -31,9 +35,11 @@ Outreach
     - Women in Science and Engineering Conference, Princeton, February 2006
 
 + Panelist/Speaker (Penn events):
+    - Grace Hopper Milestone Celebration, Tuesday, May 7, 2024.
+    - Reflections by 50 Years of Women CIS Faculty, March 28, 2023.
     - Women in STEM at Penn, Research Symposium, [*"A logical approach to programming language design and verification."*](talks/women-in-stem-2022.pdf) June 3, 2022.
     - SWE Ted Talks Event for high school students: Feb 2022, Dec 2020
-    - AWE Faculty Panel: Feb 2022, Oct 2021
+    - AWE Faculty Panel: Aug 2022, Feb 2022, Oct 2021
     - Panel Moderator/Member at FemmeHacks: Feb 2018, Feb 2017, Feb 2016
     - The "Computers": Apr 2015
     - WICS high school day for girls: Apr 2017, Apr 2015, Apr 2014,

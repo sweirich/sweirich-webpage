@@ -3,15 +3,18 @@ Students
 
 
 ## Dissertation supervision (current students)
-  - Pritam Chaudhury, expected graduation autumn 2022
-  - Yiyun, Liu.
+  - Yiyun Liu, Aug 2021-
+  - Jonathan Chan, Aug 2022-
+  - Cassia Torczon, Aug 2022-
 
 ## Postdoc supervision
   - Joachim Breitner, Aug 2016-2018.
 
 ## Dissertation supervision (graduated students)
-  - Yao Li, August 2022
-    *Mechanized Reasoning About "How" Using Functional Programs and Embeddings*
+  - Pritam Choudhury, August 2023.
+    Dependency and Linearity Analyses in Pure Type Systems.
+  - Yao Li, August 2022.
+    [*Mechanized Reasoning About "How" Using Functional Programs and Embeddings*](https://repository.upenn.edu/edissertations/5111/).
     Current employment: Portland State University
   - Antal Spector-Zabusky, May 2021.
     *Don't mind the formalization gap: The Design and Usage of hs-to-coq.*
@@ -22,12 +25,11 @@ Students
     *Co-winner of Morris and Dorothy Rubinoff award.*
   - Vilhelm Sjöberg, May 2015.
     [*A Dependently Typed Language with Nontermination*](http://repository.upenn.edu/dissertations/AAI3709556/).
-    Current position: Postdoc,
-    [Yale University](http://www.cs.yale.edu/homes/vilhelm/).
+    Current position: CertiK.
 	*Co-winner of SIGPLAN 2016 John C. Reynolds Doctoral Dissertation award.*
   - Brent Yorgey, December 2014.
     [*Combinatorial Species and Labelled Structures*](http://repository.upenn.edu/dissertations/AAI3668177/).
-    Current position: Assistant Professor, [Hendrix College](https://www.hendrix.edu/).
+    Current position: Associate Professor, [Hendrix College](https://www.hendrix.edu/).
   - Chris Casinghino, December 2014.
     [*Combining Proofs and Programs*](http://repository.upenn.edu/dissertations/AAI3670881/).
     Current position: Jane Street.
@@ -39,13 +41,16 @@ Students
     Current position: [Logicblox](http://www.logicblox.com/).
 
 ## Dissertation committee member
-  - Harrison Goldstein, Penn.
-  - Irene Yoon, Penn.
   - Nicholas Rioux, Penn.
-  - Paul He, Penn.
-  - Li-Yao Xia, Penn. June 2022.
-  - Teng Zheng, Penn. October 2021.
-  - Robert Rand, Penn. November 2018.
+  - Lawrence Dunn, Penn.
+  - Paul He, Penn. July 2024.
+  - Harrison Goldstein, Penn. May 2024.
+  - Riccardo Bianchini, Univ. di Genova, April 2024.
+  - Lucas Silver, Penn, July 2023.
+  - Irene Yoon, Penn, November 2023.
+  - Li-Yao Xia, Penn, June 2022.
+  - Teng Zheng, Penn, October 2021.
+  - Robert Rand, Penn, November 2018.
   - William Bowman, Northeastern University, November 2018.
   - Steven Keuchel, University of Ghent, June 2018.
   - Jennifer Paykin, Penn, May 2018.
@@ -77,7 +82,7 @@ Students
 
 ## Independent study
 
-  - Doctoral: Yiyun Liu (Fall 2021, Spring 2022). Jessica Shi,
+  - Doctoral: Jessica Shi,
   Fall 2021. Irene Yoon, Spring 2020.  Hengchu Zhang, Yao Li,
   Spring 2017. Antoine Voizard, Kenny Foner, Fall 2015. Antal Spector-Zabusky,
   Spring 2016, Spring 2013. Jennifer Paykin, Fall 2012.  Richard Eisenberg,
@@ -86,7 +91,8 @@ Students
   Casinghino, Spring 2008. Andrew Hilton (co-advised), Karl Mazurak, Jeff
   Vaughan, Fall 2004.  Liang Huang, Spring 2004.
 
-  - Masters: Eric Giovanni, Spring 2020. Dominik Bollman, Spring 2016. Simon Wimmer, Summer 2015.
+  - Masters: Emmanuel Suarez, Fall 2022-present. Eric Giovanni,
+    Spring 2020. Dominik Bollman, Spring 2016. Simon Wimmer, Summer 2015.
 
   - Undergraduate Senior Design Project: Memoria Matters and Lauren Leung,
    2016-2017 (Honoable Mention). Charles Du 2017, Max McCarthy 2016.  Lewis
@@ -95,7 +101,8 @@ Students
    (Third place). 2014-2015.  Kaycee Anderson, Juan Jose Lopez, Caroline Ho,
    and Johanna Martens (Honorable Mention), 2013-2014.
 
-  - Undergraduate Research: Daniel Lee, 2021. Joshua Cohen, 2018. Emmanuel Suarez,
+  - Undergraduate Research: Shubh Agrawal, Maite Kramarz, Annabel Baniak, Summer 2023 (REPL).
+  Daniel Lee, 2021. Joshua Cohen, 2018. Emmanuel Suarez,
   2017-2018. Anastasiya Kravchuk-Kirilyuk, 2017. Matthew Weaver
   2015-2016. Leondra Morse, Summer 2015 (CRA-DREU). Mitchell Stern,
   Spring 2014.  Hamidhasan Ahmed, Spring 2014, Summer 2013. Sneha Popley,

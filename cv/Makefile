@@ -1,6 +1,6 @@
 ## if you add to these, you must update top.tex to refer to them as well
 MD=cv funding students talks tutorials service university-service outreach teaching blog
-PUBS=chapter conf thesis techreport
+PUBS=conf thesis techreport misc
 
 SOURCEBIB=../bibtex/weirich.bib
 SOURCEMD=$(patsubst %,%.md,$(MD))
@@ -11,7 +11,7 @@ bib: $(SOURCEBIB)
 	mkdir -p temp
 	bib2bib -s '$$date' -r -c '$$type = "INPROCEEDINGS"|$$type = "ARTICLE"' --remove URL $(SOURCEBIB) > temp/conf.bib
 #	bib2bib -s '$$date' -r -c '$$type = "ARTICLE"'  $(SOURCEBIB) > temp/journal.bib
-	bib2bib -s '$$date' -r -c '$$type = "INCOLLECTION"'  $(SOURCEBIB) > temp/chapter.bib
+	bib2bib -s '$$date' -r -c '$$type = "MISC"'  $(SOURCEBIB) > temp/misc.bib
 	bib2bib -s '$$date' -r -c '$$type = "PHDTHESIS"' $(SOURCEBIB) > temp/thesis.bib
 	bib2bib -s '$$date' -r -c '$$type = "TECHREPORT"' $(SOURCEBIB) > temp/techreport.bib
 

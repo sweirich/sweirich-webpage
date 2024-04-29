@@ -3,6 +3,7 @@ Research Community Service
 
 ## Conference and Symposium Leadership
 
+- European Symposium on Programming (ESOP) 2024, program chair.
 - International Conference on Functional Programming (ICFP) 2020, general
   chair.
 - Principles of Programming Languages (POPL) 2019, program chair.
@@ -11,9 +12,9 @@ Research Community Service
 
 ## Journal Leadership
 
-- Associate Editor of ACM TOPLAS, 2019-present.
-- Editorial Board of Logical Methods in Computer Science, 2016-present.
 - Editorial Board of TheoreTICs, 2021-present.
+- Associate Editor of ACM TOPLAS, 2019-2023.
+- Editorial Board of Logical Methods in Computer Science, 2016-present.
 - Editor of Journal of Functional Programming, 2011-2017.
 - Guest Editor (with Zhenjiang Hu, Shin-Cheng Mu), Progress in
   Informatics. Special Issue on Advanced Programming Techniques for
@@ -40,6 +41,7 @@ Research Community Service
 
 ## Program Committee Membership (conference/symposium)
 
+- Certified Proofs adn Programs (CPP) 2025.
 - International Conference on Functional Programming (ICFP) 2022.
 - Formal Structures for Computation and Deduction (FSCD) 2022.
 - History of Programming Languages (HOPL IV) 2020.
@@ -96,6 +98,7 @@ Research Community Service
 
 ## Steering Committee Membership
 
+- ESOP, 2023-2025.
 - ICFP, 2009-2012, 2017-2022. SC Chair, 2021-2022
 - POPL, 2017-2021
 - PLMW, 2012
@@ -106,16 +109,16 @@ Research Community Service
 
 
 ## Technical Society Membership
-  * Association for Computing Machinery, 1998-present
-  * ACM SIGPLAN, 1998-present
-  * ACM SIGLOG, 2014-present
-  * IFIP Working Group 2.8 (Functional Programming), 2003-present
-  * IFIP Working Group 2.11 (Program Generation), 2007-2012
+- Association for Computing Machinery, 1998-present
+- ACM SIGPLAN, 1998-present
+- ACM SIGLOG, 2014-present
+- IFIP Working Group 2.8 (Functional Programming), 2003-present
+- IFIP Working Group 2.11 (Program Generation), 2007-2012
 
 
 ## Other
-- SIGPLAN Reynold's dissertation award committee, 2021.
-- NSF panel: March 2019, March 2018, February 2016, June 2014, October 2012,
+- SIGPLAN Reynold's dissertation award committee, 2021-2022, 2022-2023.
+- NSF panel: October 2022, March 2019, March 2018, February 2016, June 2014, October 2012,
   December 2011, March 2008, December 2004.
 - Haskell' language standard committee, 2005-2010.
 - TYPES forum moderator: 2003-2009.

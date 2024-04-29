@@ -1,5 +1,6 @@
 Honors
 ======
+  * Milner Lecture, University of Edinburgh, 2022
   * SIGPLAN Robin Milner Young Researcher award, 2016
   * Most Influential ICFP 2006 Paper, awarded in 2016
   * Microsoft Outstanding Collaborator, 2016
