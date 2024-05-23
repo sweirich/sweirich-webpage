@@ -1,4 +1,18 @@
 
+@phdthesis{
+author={Choudhury,Pritam},
+year={2023},
+title={Dependency and Linearity Analyses in Pure Type Systems},
+pages={439},
+abstract={Dependency analysis is necessary to ensure proper flow of information in programming languages. Linearity analysis is necessary to ensure proper usage of resources in programming languages. These analyses are used for many purposes: for example, analyzing binding-time for partial evaluation of programs, ensuring data security in programs, ensuring deadlock freedom in concurrent programs, etc. What connects these analyses is that both of them need to model at least two different worlds with constrained mutual interaction. To elaborate, a typical dependency analysis may model low-security and high-security worlds with the constraint that information never leaks from the high-security world to the low-security world; a typical linearity analysis may model nonlinear and linear worlds with the constraint that derivations in the nonlinear world cannot make use of assumptions from the linear world. To statically enforce such constraints, dependency and linear type systems are employed. Several dependency and linear type systems have been proposed in literature, especially with respect to simple and polymorphic types. However, with respect to dependent types, the two analyses have not been explored much.This dissertation explores how dependent types interact with dependency and linearity analyses. More precisely, in this dissertation, we extend dependency and linearity analyses to Pure Type Systems, which include several well-known dependent type systems. We build upon existing work on graded type systems to develop three specific graded calculi for Pure Type Systems: DDC for dependency analysis, GraD for linearity analysis and LDC for combined dependency and linearity analysis. Our thesis is that these calculi provide a systematic way for analyzing dependency, linearity or a combination of the two in any Pure Type System. We study the metatheoretic properties of these calculi, show soundness of their analyses, discuss their applications and position them in the milieu of other dependency and linear calculi. Overall, our work provides insight into several nuances, hitherto unknown, of dependency and linearity analyses and their interactions with dependent types.},
+keywords={Dependent types; Graded type systems; Dependency analysis; Programming languages; Pure Type Systems; Data security; Computer science; Computer engineering; Information technology; 0489:Information Technology; 0984:Computer science; 0464:Computer Engineering},
+isbn={9798380385343},
+language={English},
+url={https://repository.upenn.edu/handle/20.500.14332/59273},
+school={University of Pennsylvania}
+}
+
+
 @article{choudhury:monadic-comonadic,
   author =       {Choudhury, Pritam},
   title =        {Monadic and Comonadic Aspects of Dependency Analysis},

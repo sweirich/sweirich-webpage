@@ -2,32 +2,53 @@
 
 %% BIBTEX %%
 
+%% Drafts %%
+
+
+@Unpublished{liu:pearl,
+  author =       {Yiyun Liu and Stephanie Weirich},
+  title =        {Functional Pearl: A Short and Mechanized Logical Relation for Dependent Type Theories},
+  note =         {Draft},
+  url =          {https://github.com/yiyunliu/mltt-consistency/tree/paper},
+  month =        Feb,
+  year =         2024}
+
+@Unpublished{suarez:logrel,
+  author =       {Emmanuel {Su\'{a}rez Acevedo} and Stephanie Weirich},
+  title =        {Making Logical Relations More Relatable (Proof Pearl)},
+  note =         {Draft},
+  month =     Sep,
+  year =      2023, 
+  eprint={2309.15724},
+  archivePrefix={arXiv},
+  primaryClass={cs.PL}
+}
+
+@Unpublished{chan:stratt,
+  author =       {Jonathan Chan and Stephanie Weirich},
+  title =        {Stratified Type Theory},
+  note =         {Draft},
+  month =        Feb,
+  year =         2024,
+  eprint=        {2309.15724},
+  archivePrefix= {arXiv},
+  primaryClass=  {cs.PL}
+}
+
+@Unpublished{torczon2023effects,
+      title={Effects and Coeffects in Call-By-Push-Value (Extended Version)}, 
+      author={Cassia Torczon and Emmanuel {Su\'{a}rez Acevedo} and Shubh Agrawal and Joey Velez-Ginorio and Stephanie Weirich},
+      note={Submitted for publication},
+      month=Apr,
+      year={2024},
+      eprint={2311.11795},
+      archivePrefix={arXiv},
+      primaryClass={cs.PL}
+}
+
 
 %% Unrefereed goodness %%
 
-@misc{weirich:pi-forall,
-  doi = {10.48550/ARXIV.2207.02129},  
-  url = {https://arxiv.org/abs/2207.02129},
-  author = {Weirich, Stephanie},
-  title = {Implementing Dependent Types in pi-forall},  
-  note = {Lecture notes for the Oregon Programming Languages Summer School},
-  publisher = {arXiv},
-  year = {2022},
-  copyright = {Creative Commons Attribution 4.0 International},
-  plclub = {yes}
-
-}
-
-@misc{weirich2021icfp,
-      title={ICFP 2020 Post-Conference Report}, 
-      author={Stephanie Weirich and Benjamin Pierce},
-      year={2021},
-      eprint={2104.01239},
-      archivePrefix={arXiv},
-      primaryClass={cs.DL},
-      plclub={yes},
-      url={https://arxiv.org/abs/2104.01239}
-}
 
 @misc{spectorzabusky2019embracing,
       title={Embracing a mechanized formalization gap}, 
@@ -44,36 +65,9 @@
   author = 	  {Stephanie Weirich, Antoine Voizard, Anastasiya Kravchuk-Kirilyuk},
   title = 	  {Locally Nameless at Scale},
   howpublished = {The Fourth International Workshop on Coq for Programming Languages},
-  month = 	  jan,
+  month = 	  Jan,
   year = 	  2018,
   pdf = "papers/coqpl2018.pdf",
-  plclub = "yes"
-}
-
-@Misc{weirich:oplss2,
-  author = 	  {Stephanie Weirich},
-  title = 	  {Designing Dependently-Typed Programming Languages},
-  howpublished = {Lectures given at the {Summer School on Logic and Theorem Proving
-in Programming Languages}, Eugene OR, USA. July 2013},
-  month =     jul,
-  year = 	  2013
-}
-
-@misc{plmw12,
-  author = 	  {Kathleen Fisher and Ronald Garcia and Stephanie Weirich},
-  title = 	  {Nourishing the future of the field: the programming language mentoring workshop 2012},
-  booktitle =    {ACM SIGPLAN Notices - Supplemental issue},
-  journal =      {SIGPLAN Not.},
-  month = 	  {April},
-  year = 	  2012,
-  volume = 47,
-  number = {4a},
-  issue_date = {April 2012},
-  issue_description = {Supplemental issue},
-  publisher = {ACM},
-  address = {New York, NY, USA},
-  doi =   {10.1145/2442776.2448985},
-  pages = {14--15},
   plclub = {yes}
 }
 
@@ -102,9 +96,203 @@ in Programming Languages}, Eugene OR, USA. July 2013},
   projecturl =   "http://www.cis.upenn.edu/~sweirich/papers/abstracting-syntax/"
 }
 
+%%%%%% reports
+
+@misc{weirich2021icfp,
+      title={ICFP 2020 Post-Conference Report}, 
+      author={Stephanie Weirich and Benjamin Pierce},
+      year={2021},
+      eprint={2104.01239},
+      archivePrefix={arXiv},
+      primaryClass={cs.DL},
+      plclub={yes},
+      url={https://arxiv.org/abs/2104.01239}
+}
+
+
+@misc{plmw12,
+  author = 	  {Kathleen Fisher and Ronald Garcia and Stephanie Weirich},
+  title = 	  {Nourishing the future of the field: the programming language mentoring workshop 2012},
+  booktitle =    {ACM SIGPLAN Notices - Supplemental issue},
+  journal =      {SIGPLAN Not.},
+  month = 	  {April},
+  year = 	  2012,
+  volume = 47,
+  number = {4a},
+  issue_date = {April 2012},
+  issue_description = {Supplemental issue},
+  publisher = {ACM},
+  address = {New York, NY, USA},
+  doi =   {10.1145/2442776.2448985},
+  pages = {14--15},
+  plclub = {yes}
+}
+
+@misc{Weirich:ICFP10ChairsReport,
+  author = {Stephanie Weirich},
+  title = {ICFP 2010 PC Chair's Report},
+  month = Sep,
+  year = {2010},
+  plclub = {Yes}
+}
+
+
+@misc{Weirich:Haskell09ChairsReport,
+  author = {Stephanie Weirich},
+  title = {Haskell 2009 PC Chair's Report},
+  month = aug,
+  year = {2009},
+  plclub = {Yes}
+}
+
+
+%%% tutorial notes
+
+@misc{weirich:pi-forall,
+  doi = {10.48550/ARXIV.2207.02129},  
+  url = {https://arxiv.org/abs/2207.02129},
+  author = {Weirich, Stephanie},
+  title = {Implementing Dependent Types in pi-forall},  
+  note = {Lecture notes for the Oregon Programming Languages Summer School},
+  publisher = {arXiv},
+  year = {2023},
+  copyright = {Creative Commons Attribution 4.0 International},
+  plclub = {yes}
+
+}
+
+@Misc{weirich:oplss2,
+  author = 	  {Stephanie Weirich},
+  title = 	  {Designing Dependently-Typed Programming Languages},
+  howpublished = {Lectures given at the {Summer School on Logic and Theorem Proving
+in Programming Languages}, Eugene OR, USA. July 2013},
+  month =     jul,
+  year = 	  2013
+}
+
+@Misc{weirich:oplss,
+  author = 	  {Stephanie Weirich and Brian Aydemir},
+  title = 	  {Coq for Programming Language Metatheory},
+  howpublished = {Lectures given at the {Summer School on Logic and Theorem Proving
+in Programming Languages}, Eugene OR, USA. July 22-25, 2008},
+  year = 	  2008,
+  note = {Tutorial materials available at \url{http://www.cis.upenn.edu/~plclub/oregon08/}}
+}
+
+@Misc{weirich:popl-tutorial,
+  author = 	  {Brian Aydemir and Aaron Bohannon and Benjamin Pierce and Jeffrey Vaughan and Dimitrios Vytiniotis and Stephanie Weirich and Steve Zdancewic},
+  title = 	  {Using Proof Assistants for Programming Language Research or, How to write your Next
+POPL paper in Coq},
+  howpublished = {Tutorial session co-located with POPL 2008, San Francisco, CA},
+  month = 	  Jan,
+  year = 	  2008,
+  note = 	  {Tutorial materials available at \url{http://www.cis.upenn.edu/~plclub/popl08-tutorial/}}}
+
+%%% white papers
+
+@misc{InCertProposal07,
+  title = {Manifest Security},
+  author = {Karl Crary and  Robert Harper and Frank Pfenning and
+                  Benjamin C. Pierce and Stephanie Weirich and
+                  Stephan Zdancewic},
+  year = 2007,
+  month = JAN,
+  keys = {security},
+  plclub = {No},
+  note = {White paper},
+  pdf = {http://www.cis.upenn.edu/~bcpierce/papers/manifestsecurity-whitepaper.pdf}
+}
+
+misc{InCertProposal06,
+  TITLE = {Manifest Security for Distributed Information},
+  AUTHOR = {Karl Crary and  Robert Harper and Frank Pfenning and
+                  Benjamin C. Pierce and Stephanie Weirich and
+                  Stephan Zdancewic},
+  YEAR = 2006,
+  MONTH = MAR,
+  KEYS = {security},
+  NOTE = {White paper},
+  PDF = {http://www.cis.upenn.edu/~bcpierce/papers/incertproposal06.pdf}
+}
+
+
+%%% invited talks
+
+
+@Misc{weirich:popl17,
+  author = 	  {Stephanie Weirich},
+  title = 	  {The Influence of Dependent Types},
+  month = 	  Jan,
+  year = 	  2017,
+  note = 	  {Invited keynote given at POPL 2017},
+  plclub = 	  {yes}
+}
+
+
+@Misc{weirich:icfp14,
+  author = 	  {Stephanie Weirich},
+  title = 	  {Depending on Types},
+  year = 	  2014,
+  note = 	  {Invited keynote given at ICFP 2014},
+  plclub = {yes}
+}
+
+@Misc{weirich:flops12,
+  author = "Stephanie Weirich",
+  title  = "Dependently typed programming in GHC",
+  note = "Invited keynote given at FLOPS 2012",
+  slides = "http://www.seas.upenn.edu/~sweirich/talks/flops2012.pdf",
+  month = "May",
+  year = 2012,
+  plclub = {yes}
+}
+
+@Misc{weirich:tlca11,
+  author = "Stephanie Weirich",
+  title = "Combining Proofs and Programs",
+  note = "Joint invited speaker for Rewriting Techniques and Applications (RTA 2011) and Typed Lambda Calculi and Applications (TLCA 2011)",
+  slides = "http://www.seas.upenn.edu/~sweirich/talks/tlca-2011.pdf",
+  month = jun,
+  year = 2011,
+  plclub = {yes}
+}
 
 
 %% Artifacts %%
+
+@TechReport{liu:dcoi-artifact,
+  author       = {Liu, Yiyun and
+                  Chan, Jonathan and
+                  Shi, Jessica and
+                  Weirich, Stephanie},
+  title        = {{Artifact associated with Internalizing 
+                   Indistinguishability with Dependent Types}},
+  month        = oct,
+  year         = 2023,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.8423073},
+  url          = {https://doi.org/10.5281/zenodo.8423073},
+  note =         {Awarded ``Available'' and ``Evaluated \& Reusable'' badges
+                  by POPL 2024 Artifact Evaluation Committee},
+
+}
+
+@TechReport{10.1145/3580401,
+  author =       {Liu, Yiyun and Weirich, Stephanie},
+  title =        {Artifact Associated with Dependently-Typed Programming with
+                  Logical Equality Reﬂection},
+  year =         {2023},
+  publisher =    {Association for Computing Machinery},
+  url =          {https://doi.org/10.1145/3580401},
+  abstract =     { This artifact contains the complete mechanized Coq proofs
+                  of the lemmas and theorems about System DE. The VM image is
+                  preinstalled with the dependencies required to build and
+                  verify the Coq development.  },
+  keywords =     {Coq, Dependent types, Mechanized metatheory},
+  note =         {Awarded ``Available'' and ``Evaluated \& Reusable'' badges
+                  by ICFP 2023 Artifact Evaluation Committee},
+  doi =          {xhttps://doi.org/10.1145/3580401}
+}
 
 @TechReport{li22:tlon-artifact,
   author =    {Yao Li and Stephanie Weirich},
@@ -112,16 +300,16 @@ in Programming Languages}, Eugene OR, USA. July 2013},
   month =     jun,
   year =      2022,
   plclub =    {yes},
-  note =      {Awarded "Available" and "Evaluated \& Reusable" badges by ICFP 2021 Artifact Evaluation Committee}, 
+  note =      {Awarded ``Available'' and ``Evaluated \& Reusable'' badges by ICFP 2023 Artifact Evaluation Committee}, 
   doi = {10.5281/zenodo.6678339}
 }
 
 @TechReport{choudhury22:ddc-artifact,
   author = {Pritam Choudhury and Harley Eades III and Stephanie Weirich}, 
   title  = {Artifact Associated with A Dependent Dependency Calculus},
-  month  = jan,
+  month  = Jan,
   year   = 2022, 
-  note   = {Awarded "Reusable" and "Available" badges by ESOP 2022 Artifact Evaluation Committee},
+  note   = {Awarded ``Reusable'' and ``Available'' badges by ESOP 2022 Artifact Evaluation Committee},
   plclub = {yes},
   doi    = {10.5281/zenodo.5903727}
 }
@@ -131,19 +319,19 @@ in Programming Languages}, Eugene OR, USA. July 2013},
   title =     {Reasoning about the garden of forking paths (artifact)},
   month =     may,
   year =      2021,
-  note =      {Awarded "Functional" and "Available" badges by ICFP 2021 Artifact Evaluation Committee}, 
+  note =      {Awarded ``Functional'' and ``Available'' badges by ICFP 2021 Artifact Evaluation Committee}, 
   plclub =    {yes},
   doi = {10.5281/zenodo.4771438}
 }
 
 @TechReport{weirich21:GrAD-artifact,
   author = {Pritam Choudhury and Harley Eades III and Richard A. Eisenberg and Stephanie Weirich},
-  title = {Artifact for "A Graded Dependent Type System with a Usage-Aware Semantics"}, 
+  title = {Artifact for ``A Graded Dependent Type System with a Usage-Aware Semantics''}, 
   doi = {10.1145/3410265},
   year = 2020, 
   month = dec, 
   plclub = yes, 
-  note = {Awarded "Reusable", "Functional" and "Available" badges by POPL 2021 Artifact Evaluation Committee}
+  note = {Awarded ``Reusable'', ``Functional'' and ``Available'' badges by POPL 2021 Artifact Evaluation Committee}
 }
 
 @TechReport{weirich19:role-artifact,
@@ -153,7 +341,7 @@ in Programming Languages}, Eugene OR, USA. July 2013},
   year = 2019, 
   month = jul, 
   plclub = yes,
-  note = {Awarded "Functional" and "Available" badges by ICFP 2019 Artifact Evaluation Committee}
+  note = {Awarded ``Functional'' and ``Available'' badges by ICFP 2019 Artifact Evaluation Committee}
 }
 
 @TechReport{breitner18:hs-to-coq-artifact,
@@ -161,7 +349,7 @@ in Programming Languages}, Eugene OR, USA. July 2013},
   title =  {The {hs-to-coq} tool with examples},
   year =   2018,
   month =  jul,
-  note =   {Awarded "Artifacts Available" and "Artifacts Evaluated - Functional" badges by ICFP 2018 Artifact Evaluation Committee},
+  note =   {Awarded ``Artifacts Available'' and ``Artifacts Evaluated - Functional'' badges by ICFP 2018 Artifact Evaluation Committee},
   doi =    {10.1145/3235036/},
   plclub = {yes}}
   
@@ -172,14 +360,85 @@ in Programming Languages}, Eugene OR, USA. July 2013},
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Conference and journal papers 
 
+@article{xia:cost2,
+  author = {Li-Yao Xia and Laura Israel and Maite Kramarz and Nathan Coltharp and Koen Claessen and Stephanie Weirich and Yao Li},
+  title = {Story of Your Lazy Function’s Life: A Bidirectional Demand Semantics for Mechanized Cost Analysis of Lazy Programs},
+  year = {2024},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  number = {ICFP},
+  journal = {Proc. ACM Program. Lang.},
+  month = sep, 
+  note = {Conditionally accepted}
+}
+
+  
+
+@article{liu:dcoi,
+author = {Liu, Yiyun and Chan, Jonathan and Shi, Jessica and Weirich, Stephanie},
+title = {Internalizing Indistinguishability with Dependent Types},
+year = {2024},
+issue_date = {January 2024},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {8},
+number = {POPL},
+url = {https://doi.org/10.1145/3632886},
+doi = {10.1145/3632886},
+abstract = {In type systems with dependency tracking, programmers can assign an ordered set of levels to computations and prevent information flow from high-level computations to the low-level ones. The key notion in such systems is indistinguishability: a definition of program equivalence that takes into account the parts of the program that an observer may depend on. In this paper, we investigate the use of dependency tracking in the context of dependently-typed languages. We present the Dependent Calculus of Indistinguishability (DCOI), a system that adopts indistinguishability as the definition of equality used by the type checker. DCOI also internalizes that relation as an observer-indexed propositional equality type, so that programmers may reason about indistinguishability within the language. Our design generalizes and extends prior systems that combine dependency tracking with dependent types and is the first to support conversion and propositional equality at arbitrary observer levels. We have proven type soundness and noninterference theorems for DCOI and have developed a prototype implementation of its type checker.},
+journal = {Proc. ACM Program. Lang.},
+month = jan,
+articleno = {44},
+numpages = {28},
+keywords = {Coq, Dependent Types, Formalization, Modes}
+}
+
+@article{liu:icfp23,
+  author =       {Liu, Yiyun and Weirich, Stephanie},
+  title =        {Dependently-Typed Programming with Logical Equality
+                  Reflection},
+  year =         {2023},
+  issue_date =   {August 2023},
+  publisher =    {Association for Computing Machinery},
+  address =      {New York, NY, USA},
+  volume =       {7},
+  number =       {ICFP},
+  url =          {https://doi.org/10.1145/3607852},
+  doi =          {10.1145/3607852},
+  abstract =     {In dependently-typed functional programming languages that
+                  allow general recursion, programs used as proofs must be
+                  evaluated to retain type soundness. As a result, programmers
+                  must make a trade-off between performance and safety. To
+                  address this problem, we propose System DE, an
+                  explicitly-typed, moded core calculus that supports
+                  termination tracking and equality reflection. Programmers
+                  can write inductive proofs about potentially diverging
+                  programs in a logical sublanguage and reflect those proofs
+                  to the type checker, while knowing that such proofs will be
+                  erased by the compiler before execution. A key feature of
+                  System DE is its use of modes for both termination and
+                  relevance tracking, which not only simplifies the design but
+                  also leaves it open for future extension. System DE is
+                  suitable for use in the Glasgow Haskell Compiler, but could
+                  serve as the basis for any general purpose dependently-typed
+                  language.},
+  journal =      {Proc. ACM Program. Lang.},
+  month =        aug,
+  articleno =    {210},
+  numpages =     {37},
+  keywords =     {Modes, Equality Reflection, Haskell, Dependent Types}
+}
+
+
+
 @Article{li2022:tlon,
   author =       {Yao Li and Stephanie Weirich},
-  title =        {Program Adverbs and Tl\"{o}n Embeddings},
+  title =        {Program Adverbs and {T}l\"{o}n Embeddings},
   journal =      {Proc. ACM Program. Lang.},
   year =         2022,
   volume =       6,
   number =       {ICFP},
-  month =        sep,
+  month =        Sep,
   publisher =    ACM, 
   doi =          {10.1145/3547632},
   url =          "papers/icfp22.pdf",
@@ -236,7 +495,7 @@ in Programming Languages}, Eugene OR, USA. July 2013},
 
 @Article{li2021:reasoning,
       title={Reasoning about the garden of forking paths}, 
-      author={Yao Li and Li-yao Xia and Stephanie Weirich},
+      author={Yao Li and {Li-yao} Xia and Stephanie Weirich},
       year={2021},
       month=aug,
       journal = {Proc. ACM Program. Lang.},
@@ -251,10 +510,11 @@ in Programming Languages}, Eugene OR, USA. July 2013},
 
 @TechReport{li2021:reasoning-arXiv,
       title={Reasoning about the garden of forking paths}, 
-      author={Yao Li and Li-yao Xia and Stephanie Weirich},
+      author={Yao Li and {Li-yao} Xia and Stephanie Weirich},
       year={2021},
       month=mar,
       eprint={2103.07543},
+      url={https://arxiv.org/abs/2103.07543},
       archivePrefix={arXiv},
       primaryClass={cs.PL}
 }
@@ -290,9 +550,9 @@ in Programming Languages}, Eugene OR, USA. July 2013},
   volume =    175,
   series =    {Leibniz International Proceedings in Informatics},
   pages =     {7:1--7:32},
-  month =     sep,
+  month =     {sep},
   publisher =   {Schloss Dagstuhl - Leibniz-Zentrum f\"ur Informatik},
-  url = https://doi.org/10.4230/LIPIcs.TYPES.2019.7,
+  url = {https://doi.org/10.4230/LIPIcs.TYPES.2019.7},
   doi = {10.4230/LIPIcs.TYPES.2019.7},
   address = {Dagstuhl, Germany}, 
   plclub =   {yes}
@@ -314,12 +574,6 @@ in Programming Languages}, Eugene OR, USA. July 2013},
   plclub = "yes"
 }
 
-@TechReport{weirich:dep-roles-extended,
-  author = 		  {Stephanie Weirich and Pritam Choudhury and Antoine Voizard and Richard Eisenberg},
-  title = 		  {A Role for Dependent Types in {Haskell} (Extended Version)},
-  year = 		  2019,
-  url = "https://arxiv.org/abs/1905.13706"
-}
 
 @Article{Breitner:2019:jfp,
  author = {Breitner, Joachim and Spector-Zabusky, Antal and Li, Yao and Rizkallah, Christine and Wiegley, John and Cohen, Joshua and Weirich, Stephanie},
@@ -330,7 +584,7 @@ in Programming Languages}, Eugene OR, USA. July 2013},
  pages = {1--40},
  volume = "31",
  year = "2021",
- month = feb,
+ month = Feb,
  day = 26,
  url = "papers/containers-jfp.pdf",
  doi = "10.1017/S0956796820000283", 
@@ -451,15 +705,8 @@ journal = "Journal of Functional Programming"
   doi = {10.1007/978-3-662-49498-1_10},
   year = 	  2016}
 
-@TechReport{type-app-extened,
-  author =    {Richard A. Eisenberg and Stephanie Weirich and Hamidhasan G. Ahmed},
-  title =     {Visible Type Application (Extended version)},
-  pdf =       {http://www.seas.upenn.edu/~sweirich/papers/esop2016-typeapp-extended.pdf},
-  month =     jan,
-  year =      2016}
 
-
-@InCollection{pj:reflection-types,
+@InProceedings{pj:reflection-types,
   author = {Simon {Peyton Jones} and Stephanie Weirich and Richard A. Eisenberg and
              Dimitrios Vytiniotis},
   title = {A Reflection on Types},
@@ -490,7 +737,7 @@ journal = "Journal of Functional Programming"
   author = 	  {Vilhelm Sj\"oberg and Stephanie Weirich},
   title = 	  {Programming up to Congruence},
   booktitle = {POPL 2015: 42nd ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages},
-  month = 	  jan,
+  month = 	  Jan,
   year = 	  2015,
   address =   {Mumbai, India},
   plclub =    {yes},
@@ -500,39 +747,28 @@ journal = "Journal of Functional Programming"
   pdf =       "http://www.seas.upenn.edu/~sweirich/papers/popl15-congruence.pdf"
 }
 
-@TechReport{sjoberg:congruence-extended,
-  author = 		  {Vilhelm Sj\"oberg and Stephanie Weirich},
-  title = 		  {Programming up to Congruence (Extended Version)},
-  year = 		  2014,
-  institution =  {University of Pennsylvania},
-  number =       {MS-CIS-14-10},
-  month = 	     oct,
-  pdf =          "http://repository.upenn.edu/cis_reports/992/"
-}
 
-@InProceedings{breitner:safe-coercions,
-  author = 	  {Joachim Breitner and Richard A. Eisenberg and Simon {Peyton Jones} and Stephanie Weirich},
-  title = 	  {Safe Zero-Cost Coercions for {Haskell}},
-  booktitle = {The 19th ACM SIGPLAN International Conference on Functional Programming},
-  year = 	  2014,
-  pages =     {189--202},
-  series = 	  {ICFP '14},
-  month = 	  sep,
-  plclub = {yes},
-  doi = {10.1145/2628136.2628141},
-  pdf =          "http://www.seas.upenn.edu/~sweirich/papers/coercible.pdf"
+@inproceedings{breitner:safe-coercions,
+author = {Breitner, Joachim and Eisenberg, Richard A. and Peyton Jones, Simon and Weirich, Stephanie},
+title = {Safe Zero-Cost Coercions for Haskell},
+year = {2014},
+isbn = {9781450328739},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2628136.2628141},
+doi = {10.1145/2628136.2628141},
+abstract = {Generative type abstractions -- present in Haskell, OCaml, and other languages -- are useful concepts to help prevent programmer errors. They serve to create new types that are distinct at compile time but share a run-time representation with some base type. We present a new mechanism that allows for zero-cost conversions between generative type abstractions and their representations, even when such types are deeply nested. We prove type safety in the presence of these conversions and have implemented our work in GHC.},
+booktitle = {Proceedings of the 19th ACM SIGPLAN International Conference on Functional Programming},
+pages = {189–202},
+numpages = {14},
+keywords = {type class, coercion, newtype deriving, haskell},
+location = {Gothenburg, Sweden},
+series = {ICFP '14},
+plclub = {yes}
 }
 
 
-@TechReport{breitner:safe-coercions-extended,
-  author = 		  {Joachim Breitner and Richard A. Eisenberg and Simon {Peyton Jones} and Stephanie Weirich},
-  title = 		  {Safe Zero-cost Coercions for {Haskell} (Extended Version)},
-  institution =  {Univ. of Pennsylvania},
-  year = 		  2014,
-  month =        apr,
-  number = 	     {MS-CIS-14-07},
-  pdf =          "http://www.seas.upenn.edu/~sweirich/papers/coercible-extended.pdf"
-}
+
 
 
 @InProceedings{eisenberg:closed-tf,
@@ -540,7 +776,7 @@ journal = "Journal of Functional Programming"
   title = 	  {Closed type families with overlapping equations},
   booktitle = {POPL 2014: 41st ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages},
   year = 	  2014,
-  month =     jan,
+  month =     Jan,
   pages =     {671--683},
   address =   {San Diego, CA, USA},
   plclub =    {yes},
@@ -549,61 +785,46 @@ journal = "Journal of Functional Programming"
 }
 
 
-
-@InProceedings{casinghino:combining-proofs-programs,
-  author = 	  {Chris Casinghino and Vilhelm Sj\"oberg and Stephanie Weirich},
-  title = 	  {Combining Proofs and Programs in a Dependently Typed Language},
-  booktitle = {POPL 2014: 41st ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages},
-  year = 	  2014,
-  address =   {San Diego, CA, USA},
-  pages =     {33--45},
-  plclub =    {yes},
-  pdf =       "http://www.seas.upenn.edu/~sweirich/papers/popl14-trellys.pdf",
-  extended =  "http://www.seas.upenn.edu/~sweirich/papers/popl14-trellys-long.pdf"
+@inproceedings{casinghino:combining-proofs-programs,
+author = {Casinghino, Chris and Sj\"{o}berg, Vilhelm and Weirich, Stephanie},
+title = {Combining Proofs and Programs in a Dependently Typed Language},
+year = {2014},
+isbn = {9781450325448},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2535838.2535883},
+doi = {10.1145/2535838.2535883},
+abstract = {Most dependently-typed programming languages either require that all expressions terminate (e.g. Coq, Agda, and Epigram), or allow infinite loops but are inconsistent when viewed as logics (e.g. Haskell, ATS, Ωmega. Here, we combine these two approaches into a single dependently-typed core language. The language is composed of two fragments that share a common syntax and overlapping semantics: a logic that guarantees total correctness, and a call-by-value programming language that guarantees type safety but not termination. The two fragments may interact: logical expressions may be used as programs; the logic may soundly reason about potentially nonterminating programs; programs can require logical proofs as arguments; and "mobile" program values, including proofs computed at runtime, may be used as evidence by the logic. This language allows programmers to work with total and partial functions uniformly, providing a smooth path from functional programming to dependently-typed programming.},
+booktitle = {Proceedings of the 41st ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages},
+pages = {33–45},
+numpages = {13},
+keywords = {termination, dependent types, general recursion},
+location = {San Diego, California, USA},
+series = {POPL '14},
+plclub = {yes}
 }
 
-@TechReport{casinghino:combining-proofs-extended,
-  author = 	  {Chris Casinghino and Vilhelm Sj\"oberg and Stephanie Weirich},
-  title = 	  {Combining Proofs and Programs in a Dependently Typed Language (With Technical Appendix)},
-  year =      2013,
-  institution = "University of Pennsylvania",
-  pdf =       "http://repository.upenn.edu/cis_reports/985/",
-  month =     nov,
-  number =    {MS-CIS-13-08}
-}
 
-@TechReport{eisenberg:closed-tf-extended,
-  author = 	  {Richard A. Eisenberg and Dimitrios Vytiniotis and Simon {Peyton Jones} and Stephanie Weirich},
-  title = 	  {Closed type families with overlapping equations (Extended version)},
-  year = 	  2013,
-  month =     nov,
-  plclub =    {yes},
-  pdf =       "http://repository.upenn.edu/cis_reports/990/",
-  institution = {University of Pennsylvania},
-  number =    {MS-CIS-13-10}
-}
 
-@InProceedings{weirich:dwk,
-  author = 	  {Stephanie Weirich and Justin Hsu and Richard A. Eisenberg},
-  title = 	  {System {FC} with explicit kind equality},
-  booktitle = {Proceedings of The 18th ACM SIGPLAN International Conference on Functional Programming},
-  year = 	  2013,
-  series = 	  {ICFP '13},
-  address =   {Boston, MA},
-  pages =     {275--286},
-  plclub =    {yes},
-  month =     sep,
-  pdf =       "http://www.seas.upenn.edu/~sweirich/papers/fckinds.pdf"
+@inproceedings{weirich:dwk,
+author = {Weirich, Stephanie and Hsu, Justin and Eisenberg, Richard A.},
+title = {System FC with Explicit Kind Equality},
+year = {2013},
+isbn = {9781450323260},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2500365.2500599},
+doi = {10.1145/2500365.2500599},
+abstract = {System FC, the core language of the Glasgow Haskell Compiler, is an explicitly-typed variant of System F with first-class type equality proofs called coercions. This extensible proof system forms the foundation for type system extensions such as type families (type-level functions) and Generalized Algebraic Datatypes (GADTs). Such features, in conjunction with kind polymorphism and datatype promotion, support expressive compile-time reasoning.However, the core language lacks explicit kind equality proofs. As a result, type-level computation does not have access to kind-level functions or promoted GADTs, the type-level analogues to expression-level features that have been so useful. In this paper, we eliminate such discrepancies by introducing kind equalities to System FC. Our approach is based on dependent type systems with heterogeneous equality and the "Type-in-Type" axiom, yet it preserves the metatheoretic properties of FC. In particular, type checking is simple, decidable and syntax directed. We prove the preservation and progress theorems for the extended language.},
+booktitle = {Proceedings of the 18th ACM SIGPLAN International Conference on Functional Programming},
+pages = {275–286},
+numpages = {12},
+keywords = {equality, dependent types, haskell},
+location = {Boston, Massachusetts, USA},
+series = {ICFP '13},
+plclub = yes,
+pdf =       "http://www.seas.upenn.edu/~sweirich/papers/fckinds.pdf"
 }
-
-@TechReport{weirich:dwk-extended,
-  author = 	  {Stephanie Weirich and Justin Hsu and Richard A. Eisenberg},
-  title = 	  {System {FC} with explicit kind equality (Extended Version)},
-  year = 	  2013,
-  month =     sep,
-  pdf =       "http://www.seas.upenn.edu/~sweirich/papers/fckinds-extended.pdf"
-}
-
 
 
 @InCollection{weirich:handbook,
@@ -710,49 +931,11 @@ semantics},
 
 
 
-@Misc{weirich:popl17,
-  author = 	  {Stephanie Weirich},
-  title = 	  {The Influence of Dependent Types},
-  month = 	  jan,
-  year = 	  2017,
-  note = 	  {Invited keynote given at POPL 2017},
-  annote = 	  {yes}
-}
-
-
-@Misc{weirich:icfp14,
-  author = 	  {Stephanie Weirich},
-  title = 	  {Depending on Types},
-  year = 	  2014,
-  note = 	  {Invited keynote given at ICFP 2014},
-  plclub = {yes}
-}
-
-@Misc{weirich:flops12,
-  author = "Stephanie Weirich",
-  title  = "Dependently typed programming in GHC",
-  note = "Invited keynote given at FLOPS 2012",
-  slides = "http://www.seas.upenn.edu/~sweirich/talks/flops2012.pdf",
-  month = "May",
-  year = 2012,
-  plclub = {yes}
-}
-
-@Misc{weirich:tlca11,
-  author = "Stephanie Weirich",
-  title = "Combining Proofs and Programs",
-  note = "Joint invited speaker for Rewriting Techniques and Applications (RTA 2011) and Typed Lambda Calculi and Applications (TLCA 2011)",
-  slides = "http://www.seas.upenn.edu/~sweirich/talks/tlca-2011.pdf",
-  month = jun,
-  year = 2011,
-  plclub = {yes}
-}
-
 @inproceedings{eisenberg:singletons,
   author = 		  {Richard A. Eisenberg and Stephanie Weirich},
   title = 		  {Dependently typed programming with singletons},
   booktitle = {Haskell Symposium},
-  month = 	  sep,
+  month = 	  Sep,
   year = 	  2012,
   pages =   {117--130},
   address = {Copenhagen, Denmark},
@@ -760,23 +943,6 @@ semantics},
   pdf = "http://www.seas.upenn.edu/~sweirich/papers/haskell12.pdf"
 }
 
-@Misc{weirich:oplss,
-  author = 	  {Stephanie Weirich and Brian Aydemir},
-  title = 	  {Coq for Programming Language Metatheory},
-  howpublished = {Lectures given at the {Summer School on Logic and Theorem Proving
-in Programming Languages}, Eugene OR, USA. July 22-25, 2008},
-  year = 	  2008,
-  note = {Tutorial materials available at \url{http://www.cis.upenn.edu/~plclub/oregon08/}}
-}
-
-@Misc{weirich:popl-tutorial,
-  author = 	  {Brian Aydemir and Aaron Bohannon and Benjamin Pierce and Jeffrey Vaughan and Dimitrios Vytiniotis and Stephanie Weirich and Steve Zdancewic},
-  title = 	  {Using Proof Assistants for Programming Language Research or, How to write your Next
-POPL paper in Coq},
-  howpublished = {Tutorial session co-located with POPL 2008, San Francisco, CA},
-  month = 	  jan,
-  year = 	  2008,
-  note = 	  {Tutorial materials available at \url{http://www.cis.upenn.edu/~plclub/popl08-tutorial/}}}
 
 @inproceedings{ccasin:msfp12,
   author = {Chris Casinghino and Vilhelm Sj\"{o}berg and Stephanie Weirich},
@@ -866,7 +1032,7 @@ POPL paper in Coq},
   booktitle = {POPL 11: 38th {ACM SIGACT-SIGPLAN} Symposium on Principles of Programming Languages, January 26--28, 2011. Austin, TX, USA.},
   year = 	  2011,
   pages =     {227--240},
-  month =     jan,
+  month =     Jan,
   plclub =    {yes},
   pdf = "http://www.seas.upenn.edu/~sweirich/papers/popl163af-weirich.pdf",
   abstract =  "Modular languages support generative type abstraction,
@@ -883,26 +1049,6 @@ issues should arise whenever generativity and non-parametric features
 are combined."
 }
 
-@TechReport{weirich:newtypes-long,
-  author = 	 {Stephanie Weirich and Dimitrios Vytiniotis and Simon {Peyton Jones}
-  and Steve Zdancewic},
-  title = 	 {Generative Type Abstraction and Type-level Computation (Extended Version) },
-  month = 	 nov,
-  year = 	 2010,
-  pdf = "http://www.cis.upenn.edu/~sweirich/papers/newtypes.pdf",
-  abstract = "Modular languages support generative type abstraction,
-ensuring that an abstract type is distinct from its
-representation, except inside the implementation where the
-two are synonymous.  We show that this well-established
-feature is in tension with the non-parametric features
-of newer type systems, such as indexed type families and GADTs.
-In this paper we solve the problem by using kinds to
-distinguish between parametric and non-parametric contexts.
-The result is directly applicable to Haskell, which is rapidly
-developing support for type-level computation, but the same
-issues should arise whenever generativity and non-parametric features
-are combined."
-}
 
 @proceedings{Haskell09,
   title = {Haskell Symposium},
@@ -914,32 +1060,15 @@ are combined."
   plclub = {Yes}
 }
 
-@misc{Weirich:Haskell09ChairsReport,
-  author = {Stephanie Weirich},
-  title = {Haskell 2009 PC Chair's Report},
-  month = aug,
-  year = {2009},
-  plclub = {Yes}
-}
-
 @proceedings{ICFP10,
   title = {International Conference on Functional Programming},
   editor = {Stephanie Weirich},
   publisher = {ACM Press},
   year = {2010},
-  month = sep,
+  month = Sep,
   location = {Baltimore, MD, September 2010},
   plclub = {Yes}
 }
-
-@misc{Weirich:ICFP10ChairsReport,
-  author = {Stephanie Weirich},
-  title = {ICFP 2010 PC Chair's Report},
-  month = sep,
-  year = {2010},
-  plclub = {Yes}
-}
-
 
 
 @InProceedings{teqt,
@@ -971,23 +1100,13 @@ term."
 }
 
 
-
-@TechReport{teqt-tr,
-  author = 		  {Aaron Stump and Vilhelm Sj\"oberg and Stephanie Weirich},
-  title = 		  {Termination Casts: A Flexible Approach to Termination with General Recursion (Technical Appendix)},
-  institution =  {University of Pennsylvania Department of Computer and Information Science},
-  year = 		  2010,
-  pdf =          {http://repository.upenn.edu/cis_reports/930/},
-  number = 	  {MS-CIS-10-21}}
-
-
 @InProceedings{contracts,
   author = 	 {Michael Greenberg and Benjamin Pierce and Stephanie Weirich},
   title = 	 {Contracts Made Manifest},
   booktitle = 	 {37th ACM SIGACT-SIGPLAN Symposium on Principles of Programming Languages (POPL)},
   year =	 2010,
   address =	 {Madrid, Spain},
-  month =	 jan,
+  month =	 Jan,
   pages =        { 353--364 },
   pdf =          "http://www.seas.upenn.edu/~sweirich/papers/popl10-greenberg.pdf",
   project =      "http://www.seas.upenn.edu/~mgree/papers/lambdah_parred.tgz",
@@ -1029,7 +1148,7 @@ direction but, in the other, sometimes yield terms that blame more.  "
   booktitle = 	 {37th ACM SIGACT-SIGPLAN Symposium on Principles of Programming Languages (POPL)},
   year =	 2010,
   address =	 {Madrid, Spain},
-  month =	 jan,
+  month =	 Jan,
   plclub =       {yes},
   pages =        {275--286},
   pdf =          "http://www.seas.upenn.edu/~sweirich/papers/popl10-lambda-eek.pdf",
@@ -1124,7 +1243,7 @@ and apply our proof technique to show that well-typed programs are secure.
 }
 }
 
-@InCollection{weirich:aritygen-journal,
+@InProceedings{weirich:aritygen-journal,
   author = 	  {Stephanie Weirich and Chris Casinghino},
   editor = 	  {Jeremy Gibbons},
   booktitle =        {Generic and Indexed Programming},
@@ -1142,7 +1261,7 @@ and apply our proof technique to show that well-typed programs are secure.
   title = 	 {Arity-generic type-generic programming},
   booktitle =    {{ACM SIGPLAN} Workshop on Programming Languages Meets Program Verification (PLPV)},
   pages =        {15--26},
-  month =	 jan,
+  month =	 Jan,
   plclub =       {yes},
   year =	 2010,
   pdf  =         "http://www.seas.upenn.edu/~sweirich/papers/aritygen.pdf"
@@ -1155,7 +1274,7 @@ and apply our proof technique to show that well-typed programs are secure.
   booktitle = {ICFP 2008: The 13th ACM SIGPLAN International Conference on Functional Programming },
   year =      2008,
   address =   {Victoria, BC, Canada},
-  month =     sep,
+  month =     Sep,
   plclub =    {yes},
   pages =     {295--306},
   pdf =       {http://www.seas.upenn.edu/~sweirich/papers/icfp08.pdf},
@@ -1187,7 +1306,7 @@ misc{washburn08:seckinds,
   author = 		  {Brian Aydemir and Arthur Chargu\'{e}raud and Benjamin C. Pierce and Randy Pollack and Stephanie Weirich},
   title = 		  {Engineering Formal Metatheory},
   booktitle =    {{ACM} {SIGPLAN}-{SIGACT} Symposium on Principles of Programming Languages (POPL)},
-  month =		  jan,
+  month =		  Jan,
   year =			  2008,
   pages =        {3--15},
   pdf =          {http://repository.upenn.edu/cis_papers/369},
@@ -1235,7 +1354,7 @@ and robustness, making them good templates for future extension.
 draft{char:binders,
   author =		  {Arthur Chargu\'eraud and Benjamin Pierce and Stephanie Weirich},
   title =		  {Proof Engineering: Practical Techniques for Mechanized Metatheory},
-  month =		  sep,
+  month =		  Sep,
   year =			  2006,
 }
 
@@ -1385,36 +1504,12 @@ type of each label is an instance of the type of the pointcut.
   }
 }
 
-@misc{InCertProposal07,
-  title = {Manifest Security},
-  author = {Karl Crary and  Robert Harper and Frank Pfenning and
-                  Benjamin C. Pierce and Stephanie Weirich and
-                  Stephan Zdancewic},
-  year = 2007,
-  month = JAN,
-  keys = {security},
-  plclub = {No},
-  note = {White paper},
-  pdf = {http://www.cis.upenn.edu/~bcpierce/papers/manifestsecurity-whitepaper.pdf}
-}
-
-misc{InCertProposal06,
-  TITLE = {Manifest Security for Distributed Information},
-  AUTHOR = {Karl Crary and  Robert Harper and Frank Pfenning and
-                  Benjamin C. Pierce and Stephanie Weirich and
-                  Stephan Zdancewic},
-  YEAR = 2006,
-  MONTH = MAR,
-  KEYS = {security},
-  NOTE = {White paper},
-  PDF = {http://www.cis.upenn.edu/~bcpierce/papers/incertproposal06.pdf}
-}
 
 @inproceedings{weirich:replib,
   author = 		  {Stephanie Weirich},
   title = 		  {{RepLib}: {A} library for derivable type classes},
   booktitle =    {Haskell Workshop},
-  month =		  sep,
+  month =		  Sep,
   address =      {Portland, OR, USA},
   year =			  2006,
   plclub =       {yes},
@@ -1442,7 +1537,7 @@ misc{InCertProposal06,
   author = 		  {Geoffrey Washburn and Stephanie Weirich},
   title = 		  {Good Advice for Type-directed Programming:
       {A}spect-oriented Programming and Extensible Generic Functions},
-  month =		  sep,
+  month =		  Sep,
   plclub =       {yes},
   year = 	  2006,
   pdf  =      "http://www.seas.upenn.edu/~sweirich/papers/aspect-tdp.pdf",
@@ -1529,7 +1624,7 @@ the masses.
                yet supports both higher-rank types and
                impredicativity. },
   AUTHOR = {Dimitrios Vytiniotis and Stephanie Weirich and Simon L. {Peyton Jones}},
-  MONTH = sep,
+  MONTH = Sep,
   YEAR = 2006,
   PDF = {http://repository.upenn.edu/cis_papers/275/},
   projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
@@ -1540,19 +1635,6 @@ the masses.
 }
 
 
-@TECHREPORT{vytiniotis:boxy-techreport,
-  TOPIC = {language design},
-  AUTHOR = {Dimitrios Vytiniotis and Stephanie Weirich and Simon L. {Peyton~Jones}},
-  TITLE = {Boxy type inference for higher-rank types and impredicativity, {Technical Appendix}},
-  INSTITUTION = {University of Pennsylvania},
-  YEAR = 2006,
-  NUMBER = {MS-CIS-05-23},
-  MONTH = {April},
-  PDF = {http://www.cis.upenn.edu/~sweirich/boxy/boxy-techreport.pdf},
-  CATEGORY = {fcp},
-  CATTYPE = {report},
-  HISTORICAL = {This report accompanies the boxy types paper and provides proofs for the claims in that paper.}
-}
 
 @InProceedings{pj-vytiniotis:wobbly,
   AUTHOR = {Simon L. {Peyton Jones} and Dimitrios Vytiniotis and Stephanie Weirich and Geoffrey Washburn},
@@ -1576,7 +1658,7 @@ the masses.
                a declarative way the uncertainty caused by the
                incremental nature of typical type-inference
                algorithms. },
-  MONTH = sep,
+  MONTH = Sep,
   YEAR = 2006,
   plclub = {yes},
   PDF = "http://www.seas.upenn.edu/~sweirich/papers/gadt/icfp06-gadt.pdf",
@@ -1586,28 +1668,13 @@ the masses.
 }
 
 
-@TECHREPORT{vytiniotis:gadt-techreport,
-  TOPIC = {language design},
-  AUTHOR = {Dimitrios Vytiniotis and Stephanie Weirich and Simon L. {Peyton~Jones}},
-  TITLE = {Simple unification-based type inference for {GADTs}, {Technical Appendix}},
-  INSTITUTION = {University of Pennsylvania},
-  YEAR = 2006,
-  NUMBER = {MS-CIS-05-22},
-  MONTH = {April},
-  CATEGORY = {gadt},
-  CATTYPE = {report},
-  plclub = "yes",
-  PDF = {http://www.cis.upenn.edu/~sweirich/gadt/wobbly-techreport.pdf}
-}
-
-
 
 @InProceedings{dantas:polyaml,
   author = 		  {Daniel S. Dantas and David Walker and Geoffrey Washburn and Stephanie Weirich},
   title = 		  {{PolyAML}: A polymorphic aspect-oriented functional programmming language},
   booktitle =    "{ACM SIGPLAN} International Conference on Functional Programming (ICFP) ",
   pages =        {306-319},
-  month =		  sep,
+  month =		  Sep,
   year =			  2005,
   address =      {Tallinn, Estonia},
   PS =           "http://www.seas.upenn.edu/~sweirich/papers/poly/poly-aspect.ps",
@@ -1644,21 +1711,6 @@ type of the pointcut.
 
 
 
-
-@TechReport{dantas:tech-report,
-  author = 		  {Daniel S. Dantas and David Walker and Geoffrey Washburn and Stephanie Weirich},
-  title = 		  {{PolyAML:} A Polymorphic Aspect-Oriented Functional Programming Language (Extended Version)},
-  institution =  {University of Pennsylvania, Department of Computer and Information Science},
-  year = 		  2005,
-  pdf =          {http://repository.upenn.edu/cis_reports/51/},
-  number =		  {MS-CIS-05-07},
-  abstract =     {
-This paper defines PolyAML, a typed functional, aspect-oriented programming language. The main contribution of PolyAML is the seamless integration of polymorphism, run-time type analysis and aspect-oriented programming language features. In particular, PolyAML allows programmers to define type-safe polymorphic advice using pointcuts constructed from a collection of polymorphic join points. PolyAML also comes equipped with a type inference algorithm that conservatively extends Hindley-Milner type inference. To support first-class polymorphic point-cut designators, a crucial feature for developing aspect-oriented profiling or logging libraries, the algorithm blends the conventional Hindley-Milner type inference algorithm with a simple form of local type inference.
-
-We give our language operational meaning via a type-directed translation into an expressive type-safe intermediate language. Many complexities of the source language are eliminated in this translation, leading to a modular specification of its semantics. One of the novelties of the intermediate language is the definition of polymorphic labels for marking control-flow points. These labels are organized in a tree structure such that a parent in the tree serves as a representative for all of its children. Type safety requires that the type of each child is less polymorphic than its parent type. Similarly, when a set of labels is assembled as a pointcut, the type of each label is an instance of the type of the pointcut.}
-
-}
-
 @article{peyton-jones:practical,
   author = 		  {Simon L. {Peyton Jones} and Dimitrios Vytiniotis and Stephanie Weirich and Mark Shields},
   title = 		  {Practical type inference for arbitrary-rank types},
@@ -1668,7 +1720,7 @@ We give our language operational meaning via a type-directed translation into an
   pages =        {1--82},
   volume =       17,
   number =       1,
-  month =        jan,
+  month =        Jan,
   projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
   pdf = {http://repository.upenn.edu/cis_papers/315/},
   abstract =     {
@@ -1707,17 +1759,6 @@ The paper is long, but is strongly tutorial in style.
   }
 }
 
-
-@TechReport{peyton-jones:practical-tr,
-  author = 		  {Simon L. {Peyton Jones} and Dimitrios Vytiniotis and Stephanie Weirich and Mark Shields},
-  title = 		  {Practical type inference for arbitrary-rank types (Technical appendix)},
-  month =        jul,
-  year =			  2005,
-  institution =  {University of Pennsylvania},
-  number =		  {MIS-CIS-05-14},
-  projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
-  pdf = "http://repository.upenn.edu/cis_reports/58/"
-}
 
 @InProceedings{mmm,
   author = 		  {Brian E. Aydemir and Aaron Bohannon and Matthew Fairbairn and J. Nathan Foster and Benjamin C. Pierce and Peter Sewell and Dimitrios Vytiniotis and Geoffrey Washburn and Stephanie Weirich and Steve Zdancewic},
@@ -1784,124 +1825,6 @@ the implementor of an abstract data type can easily see what parts of
 the program depend on the implementation of a given type.
 } }
 
-@TechReport{washburn:seckinds-tr,
-  author = 		  {Geoffrey Washburn and Stephanie Weirich},
-  title = 		  {Generalizing Parametricity Using Information Flow (Extended version)},
-  number =       {MS-CIS-05-04},
-  institution =  {Computer and Information Science, University of Pennsylvania},
-  year =			  2005,
-  month =        jul,
-  pdf =          {http://repository.upenn.edu/cis_reports/50/},
-
-  abstract = {Run-time type analysis allows programmers to easily and
-concisely define many operations based upon type structure, such as
-serialization, iterators, and structural equality.  However, when
-types can be inspected at run time, nothing is secret.  A module
-writer cannot use type abstraction to hide implementation details from
-clients: those clients can use type analysis to determine the
-structure of these supposedly ``abstract'' data types.  Furthermore,
-access control mechanisms do not help in isolating the implementation
-of abstract datatypes from their clients.  Buggy or malicious
-authorized modules may simply leak type information to unauthorized
-clients, so module implementors cannot reliably tell which parts of a
-program rely on their type definitions and which parts do not.
-
-Currently, module implementors rely on parametric polymorphism to
-provide guarantees about the use of their abstract datatypes.
-Standard type parametricity does not hold for a language with run-time
-type analysis, but in this paper we show how to generalize the
-statement of parametricity so that it does hold in the presence of
-type analysis and still encompasses the integrity and confidentiality
-policies that are normally derived from parametricity.  The key is to
-augment the type system with annotations about information flow.
-Because the type system tracks the flow of dynamic type information,
-the implementor of an abstract data type can easily see what parts of
-the program depend on the implementation of a given type.
-} }
-
-%%  note =         {15 pages},
-
-@TechReport{peyton-jones:wobbly,
-  author = 		  {Simon L. {Peyton Jones} and Geoffrey Washburn and
-                 Stephanie Weirich},
-  title = 		  {Wobbly types: Practical Type Inference for Generalised
-                  Algebraic Dataypes},
-  month =        jul,
-  year =			  2004,
-  number =       {MS-CIS-05-26},
-
-  pdf =          {http://www.cis.upenn.edu/~sweirich/papers/gadt/MS-CIS-05-26.pdf},
- INSTITUTION =   {University of Pennsylvania, Computer and Information Science Department},
- ADDRESS = {Levine Hall,
-             3330 Walnut Street, Philadelphia, Pennsylvania, 19104-6389},
-abstract = {
-Generalised algebraic data types (GADTs), sometimes known as ``guarded
-recursive data types'' or ``first-class phantom types'', are a simple
-but powerful generalisation of the data types of Haskell and ML.
-Recent works have given compelling examples of the utility of GADTs,
-although type inference is known to be difficult.
-
-It is time to pluck the fruit.  Can GADTs be added to Haskell, without
-losing type inference, or requiring unacceptably heavy type annotations?
-Can this be done without completely rewriting the already-complex Haskell
-type-inference engine, and without complex interactions with (say)
-type classes?  We answer these questions in the affirmative, giving
-a type system that explains just what type annotations are required,
-and a prototype implementation that implements it.  Our main technical
-innovation is \emph{wobbly types}, which express in a declarative way
-the uncertainty caused by the incremental nature of typical type-inference
-algorithms.
-}
-}
-
-%% 25 pages
-misc{dantas:poly-aspects,
-  author =  {Dan S. Dantas and David Walker and Geoffrey Washburn and Stephanie Weirich},
-  title =  {Analyzing Polymorphic Advice},
-  month = oct,
-  year = 2004,
-  projecturl = {http://www.cs.princeton.edu/sip/projects/aspectml/},
-  pdf =  "http://www.cis.upenn.edu/~sweirich/papers/poly/poly-aspect.pdf",
-  note = {An extended version of this paper is Princeton University Computer Science Technical Report TR-717-04}
-}
-
-%%   note = 		  {24 pages},
-
-@TechReport{dantas:poly-aspects-tr,
-  author = 		  {Dan S. Dantas and David Walker and Geoffrey Washburn and
-                  Stephanie Weirich},
-  title = 		  {Analyzing Polymorphic Advice},
-  month =		  dec,
-  institution =  {Princeton University Computer Science},
-  number =       {TR-717-04},
-  year =			  2004,
-  pdf =          "http://ncstrl.cs.princeton.edu/expand.php?id=TR-717-04",
-  projecturl = {http://www.cs.princeton.edu/sip/projects/aspectml/},
-
-  abstract = { We take one of the first steps towards developing a
-   practical, statically-typed, functional, aspect-oriented
-   programming language by showing how to integrate polymorphism and
-   type analysis with aspect-oriented programming features.  In
-   particular, we demonstrate how to define type-safe polymorphic
-   advice using pointcuts that unify a collection of polymorphic join
-   points.  We also introduce a new mechanism for specifying
-   context-sensitive advice that involves pattern matching against the
-   current stack of activation records, and meshes well with
-   functional programming idioms.  We give our language meaning via a
-   type-directed translation into an expressive, but fairly simple,
-   type-safe intermediate language.  Many complexities of the source
-   language are eliminated in this translation, leading to a modular
-   specification of its semantics.  One of the novelties of the
-   intermediate language is the definition of polymorphic labels for
-   marking control-flow points.  These labels are organized in a tree
-   structure such that a parent in the tree serves as a representative
-   for the collection of all its children.  Type safety requires that
-   the type of each child is a generic instance of the type of the
-   polymorphic parent.  Similarly, when a set of labels is assembled
-   as a pointcut, the type of each label is an instance of the type of
-   the pointcut.
-  }
-}
 
 %% 64 pages
 @article{washburn:bgb-journal,
@@ -1911,7 +1834,7 @@ misc{dantas:poly-aspects,
                   Abstract Syntax with Parametric Polymorphism},
   journal =      "Journal of Functional Programming",
   pages =        {87--140},
-  month =        jan,
+  month =        Jan,
   volume =        18,
   number =       1,
   pdf =          "http://www.seas.upenn.edu/~sweirich/papers/bgb-jfp.pdf",
@@ -2057,18 +1980,6 @@ higher-order structures in polymorphic languages.
   }
 }
 
-@TechReport{huang:tdp-tr,
-  plclub =       "yes",
-  author = 		  {Liang Huang and Stephanie Weirich},
-  title = 		  {A Design for Type-Directed Programming in {Java} (Extended Version)},
-  institution =  {University of Pennsylvania, Computer and Information Science},
-  year = 		  2004,
-  number =		  {MS-CIS-04-11},
-  month =		  oct,
-  pages =        {1--49},
-  ps =           "http://www.seas.upenn.edu/~sweirich/papers/tdj/ms-cis-04-11.ps",
-  pdf =          "http://www.seas.upenn.edu/~sweirich/papers/tdj/ms-cis-04-11.pdf"
-}
 
 
 @InProceedings{vytiniotis:itaname,
@@ -2078,7 +1989,7 @@ higher-order structures in polymorphic languages.
   year =			  2005,
   pages =        {13--24},
   address =		  {Long Beach, CA, USA},
-  month =		  jan,
+  month =		  Jan,
   annote =       {An extended version of this paper
                  is University of
                  Pennsylvania Technical Computer and Information Science
@@ -2114,87 +2025,6 @@ polymorphism, using the same basic constructs.}
 
 }
 
-@TechReport{vytiniotis:itaname-tr,
-  author = 		  {Dimtrios Vytiniotis and Geoffrey Washburn and Stephanie Weirich},
-  title = 		  {An Open and Shut Typecase (Extended Version)},
-  institution =  {University of Pennsylvania, Computer and Information Science},
-  year = 		  2004,
-  pages =        {1--50},
-  number =		  {MS-CIS-04-26},
-  month =		  oct,
-  pdf =          {http://repository.upenn.edu/cis_reports/27/},
-abstract =     {
-Ad-hoc polymorphism is a compelling addition to typed programming languages. There are two different forms of ad-hoc polymorphism. With the nominal form, the execution of an operation is determined solely by the name of the type argument, whereas with the structural form, operations are defined by case analysis on the structure of types. The two forms differ in the way that they treat user-defined types. Operations defined by the nominal approach are considered "open"--the programmer can add cases for new types without modifying existing code. The operations must be extended however with specialized code for the new types, and it may be tedious and even difficult to add extensions that apply to a potentially large universe of user-defined types. Structurally defined operations apply to new types by treating them as equal to their underlying definitions, so no new cases for new types are necessary. However this form is considered "closed" to extension, as the behaviour of the operations cannot be differentiated for the new types. This form destroys the distinctions that user-defined types are designed to express. Both approaches have their benefits, so it is important to provide both capabilities in a single language that is expressive enough to decouple the "openness" issue from the way that user-defined types are treated. We present such a language that supports both forms of ad-hoc polymorphism.}
-}
-#  pdf =           "http://www.cis.upenn.edu/~sweirich/itaname/itaname-extended.pdf",
-
-
-@TechReport{washburn:mtr,
-  author = 		  {Geoffrey Washburn and Stephanie Weirich},
-  title = 		  {Unifying nominal and structural ad-hoc
-                  polymorphism (Extended version) },
-  institution =  {University of Pennsylvania},
-  year = 		  2004,
-  month =		  mar,
-  pdf = "http://www.cis.upenn.edu/~sweirich/papers/itaname/tech-report-mar04.pdf",
-
-  abstract = "Ad-hoc polymorphism allows the execution of programs to
-  depend on type information. In modern systems, it is useful for
-  implementing generic operations over data structures, such as
-  equality, marshalling, or traversal.  In the past, there have been
-  two different forms of ad-hoc polymorphism. The nominal form
-  dispatches on the name of the type argument, whereas the structural
-  form operates by decomposing the structure of types. In languages
-  with user-defined types, these two approaches are very
-  different. Operations defined by the nominal approach are
-  ``open''---they must be extended with specialized branches for
-  user-defined types. In contrast, structurally defined operations are
-  closed to extension. They automatically apply to user-defined types
-  by treating them as their underlying definitions.  Both approaches
-  have their benefits, so it important to provide both capabilities in
-  a language. Therefore we present an expressive language that
-  supports both forms of ad-hoc polymorphism in a single framework.
-  Among the language's features are the ability to define both
-  ``open'' and ``closed'' operations with a single mechanism, the
-  ability to naturally restrict the domain of type-analyzing
-  operations, and new mechanisms for defining higher-order polytypism
-  and manipulating generative type definitions."  }
-
-misc{weirich:erasure-manuscript,
-  author = 		  {Stephanie Weirich},
-  title = 		  {Higher-Order Intensional Type Analysis in Type Erasure Semantics},
-  note = 		  {At \url{http://www.cis.upenn.edu/~sweirich/papers/erasure/erasure-paper-july03.pdf}},
-  month =		  jul,
-  year =			  2003,
-  ps =           "http://www.seas.upenn.edu/~sweirich/papers/erasure/erasure-paper-july03.ps",
-  pdf =          "http://www.seas.upenn.edu/~sweirich/papers/erasure/erasure-paper-july03.pdf",
-  abstract =     { Higher-order intensional type analysis is a way of defining
-  type-indexed operations, such as map, fold and zip, based on
-  run-time type information. However, languages supporting this
-  facility are naturally defined with a type-passing semantics, which
-  suffers from a number of drawbacks. This paper, describes how to
-  recast higher-order intensional type analysis in a type-erasure
-  semantics.  The resulting language is simple and easy to
-  implement---we present a prototype implementation of the necessary
-  machinery as a small Haskell library.}
-}
-
-@TechReport{washburn:itabox-tr,
-  author = 		  {Geoffrey Washburn and Stephanie Weirich},
-  title = 		  {Boxes Go Bananas: {E}ncoding Higher-order
-                  Abstract Syntax with Parametric Polymorphism
-                   (Extended version) },
-  institution =  {University of Pennsylvania, Computer and Information Science },
-  year = 		  2003,
-  number =		  {MS-CIS-03-26},
-  month =		  sep,
-  ps =           "http://www.seas.upenn.edu/~sweirich/papers/itabox/MS-CIS-03-26.ps",
-  pdf =          {http://repository.upenn.edu/cis_reports/43/},
-  annote =       {This paper is an extended version of \cite{washburn:itabox}.},
-  abstract =
-{Higher-order abstract syntax is a simple technique for implementing languages with functional programming. Object variables and binders are implemented by variables and binders in the host language. By using this technique, one can avoid implementing common and tricky routines dealing with variables, such as capture-avoiding substitution. However, despite the advantages this technique provides, it is not commonly used because it is difficult to write sound elimination forms (such as folds or catamorphisms) for higher-order abstract syntax. To fold over such a datatype, one must either simultaneously define an inverse operation (which may not exist) or show that all functions embedded in the datatype are parametric.
-
-In this paper, we show how first-class polymorphism can be used to guarantee the parametricity of functions embedded in higher-order abstract syntax. With this restriction, we implement a library of iteration operators over data-structures containing functionals. From this implementation, we derive "fusion laws" that functional programmers may use to reason about the iteration operator. Finally, we show how this use of parametric polymorphism corresponds to the Schuermann, Despeyroux and Pfenning method of enforcing parametricity through modal types. We do so by using this library to give a sound and complete encoding of their calculus into System F-omega. This encoding can serve as a starting point for reasoning about higher-order structures in polymorphic languages.}
 }
 
 
@@ -2390,20 +2220,8 @@ higher-order structures in polymorphic languages.  } }
   pdf = "http://www.seas.upenn.edu/~sweirich/papers/cast/cast.pdf"
   }
 
-@TECHREPORT{HicksW00type-loading-tr,
-  plclub =       "yes",
-  AUTHOR = {Michael Hicks and Stephanie Weirich},
-  TITLE = {A Calculus for Dynamic Loading},
-  INSTITUTION = {University of Pennsylvania},
-  YEAR = {2000},
-  NUMBER = {MS-CIS-00-07},
-  MONTH = {April},
-  PDF = { http://repository.upenn.edu/cis_reports/169/ },
-  ABSTRACT = {
-We present the load-calculus, used to model dynamic loading, and prove it sound. The calculus extends the polymorphic lambda-calculus with a load primitive that dynamically loads terms that are closed, with respect to values. The calculus is meant to approximate the process of dynamic loading in TAL/Load , a version of Typed Assembly Language extending with dynamic linking. To model the key aspects of TAL, the calculus contains references and facilities for named types. Loadable programs may refer to named types defined by the running program, and may export new types to code loaded later. Our approach follows the framework initially outlined by Glew et. al. This calculus has been implemented in the TALx86 version of Typed Assembly Language, and is used to implement a full-featured dynamic linking library, DLpop.}
-}
 
-@incollection{hicks00,
+@inproceedings{hicks00,
   plclub =       "yes",
   author = "Michael Hicks and Stephanie Weirich and Karl Crary",
   title =  "Safe and Flexible Dynamic Linking of Native Code",
@@ -2451,7 +2269,7 @@ We present the load-calculus, used to model dynamic loading, and prove it sound.
   pages =	 {184--198},
   year =	 2000,
   address =	 "Boston, MA, USA",
-  month =	 jan,
+  month =	 Jan,
   pdf =          "http://www.seas.upenn.edu/~sweirich/papers/res/res.pdf",
   ps =          "http://www.seas.upenn.edu/~sweirich/papers/res/res.ps.gz",
 
@@ -2585,18 +2403,6 @@ We present the load-calculus, used to model dynamic loading, and prove it sound.
   beta-expansions required by other frameworks.  } }
 
 
-@TechReport{crary98a,
-  author = 	 {Karl Crary and Stephanie Weirich and Greg Morrisett},
-  title = 	 {Intensional Polymorphism in Type Erasure Semantics
-              (Extended Version)},
-  institution =  {Cornell University, Computer Science},
-  year = 	 1998,
-  number =	 {TR98-1721},
-  month =	 nov,
-  ps = "http://www.seas.upenn.edu/~sweirich/papers/typepass/typepass-tr.ps",
-  pdf = "http://www.seas.upenn.edu/~sweirich/papers/typepass/typepass-tr.pdf"
-}
-
 
 @inproceedings{flanagan96,
   plclub =       "yes",
@@ -2621,4 +2427,407 @@ We present the load-calculus, used to model dynamic loading, and prove it sound.
 
    Ps = "http://www.seas.upenn.edu/~sweirich/papers/pldi96-ffkwf.ps",
    pdf = "http://www.seas.upenn.edu/~sweirich/papers/pldi96-ffkwf.pdf"
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Extended versions
+
+@TechReport{weirich:dep-roles-extended,
+  author = 		  {Stephanie Weirich and Pritam Choudhury and Antoine Voizard and Richard Eisenberg},
+  title = 		  {A Role for Dependent Types in {Haskell} (Extended Version)},
+  year = 		  2019,
+  url = "https://arxiv.org/abs/1905.13706"
+}
+
+
+@TechReport{type-app-extened,
+  author =    {Richard A. Eisenberg and Stephanie Weirich and Hamidhasan G. Ahmed},
+  title =     {Visible Type Application (Extended version)},
+  pdf =       {http://www.seas.upenn.edu/~sweirich/papers/esop2016-typeapp-extended.pdf},
+  month =     Jan,
+  year =      2016}
+
+
+@TechReport{sjoberg:congruence-extended,
+  author = 		  {Vilhelm Sj\"oberg and Stephanie Weirich},
+  title = 		  {Programming up to Congruence (Extended Version)},
+  year = 		  2014,
+  institution =  {University of Pennsylvania},
+  number =       {MS-CIS-14-10},
+  month = 	     oct,
+  pdf =          "http://repository.upenn.edu/cis_reports/992/"
+}
+
+
+
+@TechReport{breitner:safe-coercions-extended,
+  author = 		  {Joachim Breitner and Richard A. Eisenberg and Simon {Peyton Jones} and Stephanie Weirich},
+  title = 		  {Safe Zero-cost Coercions for {Haskell} (Extended Version)},
+  institution =  {Univ. of Pennsylvania},
+  year = 		  2014,
+  month =        apr,
+  number = 	     {MS-CIS-14-07},
+  pdf =          "http://www.seas.upenn.edu/~sweirich/papers/coercible-extended.pdf"
+}
+
+@TechReport{weirich:dwk-extended,
+  author = 	  {Stephanie Weirich and Justin Hsu and Richard A. Eisenberg},
+  title = 	  {System {FC} with explicit kind equality (Extended Version)},
+  year = 	  2013,
+  month =     sep,
+  pdf =       "http://www.seas.upenn.edu/~sweirich/papers/fckinds-extended.pdf"
+}
+
+
+@TechReport{casinghino:combining-proofs-extended,
+  author = 	  {Chris Casinghino and Vilhelm Sj\"oberg and Stephanie Weirich},
+  title = 	  {Combining Proofs and Programs in a Dependently Typed Language (With Technical Appendix)},
+  year =      2013,
+  institution = "University of Pennsylvania",
+  pdf =       "http://repository.upenn.edu/cis_reports/985/",
+  month =     nov,
+  number =    {MS-CIS-13-08}
+}
+
+@TechReport{eisenberg:closed-tf-extended,
+  author = 	  {Richard A. Eisenberg and Dimitrios Vytiniotis and Simon {Peyton Jones} and Stephanie Weirich},
+  title = 	  {Closed type families with overlapping equations (Extended version)},
+  year = 	  2013,
+  month =     nov,
+  plclub =    {yes},
+  pdf =       "http://repository.upenn.edu/cis_reports/990/",
+  institution = {University of Pennsylvania},
+  number =    {MS-CIS-13-10}
+}
+
+
+
+@TechReport{teqt-tr,
+  author = 		  {Aaron Stump and Vilhelm Sj\"oberg and Stephanie Weirich},
+  title = 		  {Termination Casts: A Flexible Approach to Termination with General Recursion (Technical Appendix)},
+  institution =  {University of Pennsylvania Department of Computer and Information Science},
+  year = 		  2010,
+  pdf =          {http://repository.upenn.edu/cis_reports/930/},
+  number = 	  {MS-CIS-10-21}}
+
+
+@TechReport{weirich:newtypes-long,
+  author = 	 {Stephanie Weirich and Dimitrios Vytiniotis and Simon {Peyton Jones}
+  and Steve Zdancewic},
+  title = 	 {Generative Type Abstraction and Type-level Computation (Extended Version) },
+  month = 	 nov,
+  year = 	 2010,
+  pdf = "http://www.cis.upenn.edu/~sweirich/papers/newtypes.pdf",
+  abstract = "Modular languages support generative type abstraction,
+ensuring that an abstract type is distinct from its
+representation, except inside the implementation where the
+two are synonymous.  We show that this well-established
+feature is in tension with the non-parametric features
+of newer type systems, such as indexed type families and GADTs.
+In this paper we solve the problem by using kinds to
+distinguish between parametric and non-parametric contexts.
+The result is directly applicable to Haskell, which is rapidly
+developing support for type-level computation, but the same
+issues should arise whenever generativity and non-parametric features
+are combined."
+}
+
+
+
+@TechReport{crary98a,
+  author = 	 {Karl Crary and Stephanie Weirich and Greg Morrisett},
+  title = 	 {Intensional Polymorphism in Type Erasure Semantics
+              (Extended Version)},
+  institution =  {Cornell University, Computer Science},
+  year = 	 1998,
+  number =	 {TR98-1721},
+  month =	 nov,
+  ps = "http://www.seas.upenn.edu/~sweirich/papers/typepass/typepass-tr.ps",
+  pdf = "http://www.seas.upenn.edu/~sweirich/papers/typepass/typepass-tr.pdf"
+}
+
+@TECHREPORT{HicksW00type-loading-tr,
+  plclub =       "yes",
+  AUTHOR = {Michael Hicks and Stephanie Weirich},
+  TITLE = {A Calculus for Dynamic Loading},
+  INSTITUTION = {University of Pennsylvania},
+  YEAR = {2000},
+  NUMBER = {MS-CIS-00-07},
+  MONTH = {April},
+  PDF = { http://repository.upenn.edu/cis_reports/169/ },
+  ABSTRACT = {
+We present the load-calculus, used to model dynamic loading, and prove it sound. The calculus extends the polymorphic lambda-calculus with a load primitive that dynamically loads terms that are closed, with respect to values. The calculus is meant to approximate the process of dynamic loading in TAL/Load , a version of Typed Assembly Language extending with dynamic linking. To model the key aspects of TAL, the calculus contains references and facilities for named types. Loadable programs may refer to named types defined by the running program, and may export new types to code loaded later. Our approach follows the framework initially outlined by Glew et. al. This calculus has been implemented in the TALx86 version of Typed Assembly Language, and is used to implement a full-featured dynamic linking library, DLpop.}
+}
+
+
+@TECHREPORT{vytiniotis:boxy-techreport,
+  TOPIC = {language design},
+  AUTHOR = {Dimitrios Vytiniotis and Stephanie Weirich and Simon L. {Peyton~Jones}},
+  TITLE = {Boxy type inference for higher-rank types and impredicativity, {Technical Appendix}},
+  INSTITUTION = {University of Pennsylvania},
+  YEAR = 2006,
+  NUMBER = {MS-CIS-05-23},
+  MONTH = {April},
+  PDF = {http://www.cis.upenn.edu/~sweirich/boxy/boxy-techreport.pdf},
+  CATEGORY = {fcp},
+  CATTYPE = {report},
+  HISTORICAL = {This report accompanies the boxy types paper and provides proofs for the claims in that paper.}
+}
+
+
+@TECHREPORT{vytiniotis:gadt-techreport,
+  TOPIC = {language design},
+  AUTHOR = {Dimitrios Vytiniotis and Stephanie Weirich and Simon L. {Peyton~Jones}},
+  TITLE = {Simple unification-based type inference for {GADTs}, {Technical Appendix}},
+  INSTITUTION = {University of Pennsylvania},
+  YEAR = 2006,
+  NUMBER = {MS-CIS-05-22},
+  MONTH = {April},
+  CATEGORY = {gadt},
+  CATTYPE = {report},
+  plclub = "yes",
+  PDF = {http://www.cis.upenn.edu/~sweirich/gadt/wobbly-techreport.pdf}
+}
+
+
+
+@TechReport{dantas:tech-report,
+  author = 		  {Daniel S. Dantas and David Walker and Geoffrey Washburn and Stephanie Weirich},
+  title = 		  {{PolyAML:} A Polymorphic Aspect-Oriented Functional Programming Language (Extended Version)},
+  institution =  {University of Pennsylvania, Department of Computer and Information Science},
+  year = 		  2005,
+  pdf =          {http://repository.upenn.edu/cis_reports/51/},
+  number =		  {MS-CIS-05-07},
+  abstract =     {
+This paper defines PolyAML, a typed functional, aspect-oriented programming language. The main contribution of PolyAML is the seamless integration of polymorphism, run-time type analysis and aspect-oriented programming language features. In particular, PolyAML allows programmers to define type-safe polymorphic advice using pointcuts constructed from a collection of polymorphic join points. PolyAML also comes equipped with a type inference algorithm that conservatively extends Hindley-Milner type inference. To support first-class polymorphic point-cut designators, a crucial feature for developing aspect-oriented profiling or logging libraries, the algorithm blends the conventional Hindley-Milner type inference algorithm with a simple form of local type inference.
+
+We give our language operational meaning via a type-directed translation into an expressive type-safe intermediate language. Many complexities of the source language are eliminated in this translation, leading to a modular specification of its semantics. One of the novelties of the intermediate language is the definition of polymorphic labels for marking control-flow points. These labels are organized in a tree structure such that a parent in the tree serves as a representative for all of its children. Type safety requires that the type of each child is less polymorphic than its parent type. Similarly, when a set of labels is assembled as a pointcut, the type of each label is an instance of the type of the pointcut.}
+
+}
+
+@TechReport{peyton-jones:practical-tr,
+  author = 		  {Simon L. {Peyton Jones} and Dimitrios Vytiniotis and Stephanie Weirich and Mark Shields},
+  title = 		  {Practical type inference for arbitrary-rank types (Technical appendix)},
+  month =        jul,
+  year =			  2005,
+  institution =  {University of Pennsylvania},
+  number =		  {MIS-CIS-05-14},
+  projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
+  pdf = "http://repository.upenn.edu/cis_reports/58/"
+}
+
+@TechReport{washburn:seckinds-tr,
+  author = 		  {Geoffrey Washburn and Stephanie Weirich},
+  title = 		  {Generalizing Parametricity Using Information Flow (Extended version)},
+  number =       {MS-CIS-05-04},
+  institution =  {Computer and Information Science, University of Pennsylvania},
+  year =			  2005,
+  month =        jul,
+  pdf =          {http://repository.upenn.edu/cis_reports/50/},
+
+  abstract = {Run-time type analysis allows programmers to easily and
+concisely define many operations based upon type structure, such as
+serialization, iterators, and structural equality.  However, when
+types can be inspected at run time, nothing is secret.  A module
+writer cannot use type abstraction to hide implementation details from
+clients: those clients can use type analysis to determine the
+structure of these supposedly ``abstract'' data types.  Furthermore,
+access control mechanisms do not help in isolating the implementation
+of abstract datatypes from their clients.  Buggy or malicious
+authorized modules may simply leak type information to unauthorized
+clients, so module implementors cannot reliably tell which parts of a
+program rely on their type definitions and which parts do not.
+
+Currently, module implementors rely on parametric polymorphism to
+provide guarantees about the use of their abstract datatypes.
+Standard type parametricity does not hold for a language with run-time
+type analysis, but in this paper we show how to generalize the
+statement of parametricity so that it does hold in the presence of
+type analysis and still encompasses the integrity and confidentiality
+policies that are normally derived from parametricity.  The key is to
+augment the type system with annotations about information flow.
+Because the type system tracks the flow of dynamic type information,
+the implementor of an abstract data type can easily see what parts of
+the program depend on the implementation of a given type.
+} }
+
+%%  note =         {15 pages},
+
+@TechReport{peyton-jones:wobbly,
+  author = 		  {Simon L. {Peyton Jones} and Geoffrey Washburn and
+                 Stephanie Weirich},
+  title = 		  {Wobbly types: Practical Type Inference for Generalised
+                  Algebraic Dataypes},
+  month =        jul,
+  year =			  2004,
+  number =       {MS-CIS-05-26},
+
+  pdf =          {http://www.cis.upenn.edu/~sweirich/papers/gadt/MS-CIS-05-26.pdf},
+ INSTITUTION =   {University of Pennsylvania, Computer and Information Science Department},
+ ADDRESS = {Levine Hall,
+             3330 Walnut Street, Philadelphia, Pennsylvania, 19104-6389},
+abstract = {
+Generalised algebraic data types (GADTs), sometimes known as ``guarded
+recursive data types'' or ``first-class phantom types'', are a simple
+but powerful generalisation of the data types of Haskell and ML.
+Recent works have given compelling examples of the utility of GADTs,
+although type inference is known to be difficult.
+
+It is time to pluck the fruit.  Can GADTs be added to Haskell, without
+losing type inference, or requiring unacceptably heavy type annotations?
+Can this be done without completely rewriting the already-complex Haskell
+type-inference engine, and without complex interactions with (say)
+type classes?  We answer these questions in the affirmative, giving
+a type system that explains just what type annotations are required,
+and a prototype implementation that implements it.  Our main technical
+innovation is \emph{wobbly types}, which express in a declarative way
+the uncertainty caused by the incremental nature of typical type-inference
+algorithms.
+}
+}
+
+%% 25 pages
+misc{dantas:poly-aspects,
+  author =  {Dan S. Dantas and David Walker and Geoffrey Washburn and Stephanie Weirich},
+  title =  {Analyzing Polymorphic Advice},
+  month = oct,
+  year = 2004,
+  projecturl = {http://www.cs.princeton.edu/sip/projects/aspectml/},
+  pdf =  "http://www.cis.upenn.edu/~sweirich/papers/poly/poly-aspect.pdf",
+  note = {An extended version of this paper is Princeton University Computer Science Technical Report TR-717-04}
+}
+
+%%   note = 		  {24 pages},
+
+@TechReport{dantas:poly-aspects-tr,
+  author = 		  {Dan S. Dantas and David Walker and Geoffrey Washburn and
+                  Stephanie Weirich},
+  title = 		  {Analyzing Polymorphic Advice},
+  month =		  dec,
+  institution =  {Princeton University Computer Science},
+  number =       {TR-717-04},
+  year =			  2004,
+  pdf =          "http://ncstrl.cs.princeton.edu/expand.php?id=TR-717-04",
+  projecturl = {http://www.cs.princeton.edu/sip/projects/aspectml/},
+
+  abstract = { We take one of the first steps towards developing a
+   practical, statically-typed, functional, aspect-oriented
+   programming language by showing how to integrate polymorphism and
+   type analysis with aspect-oriented programming features.  In
+   particular, we demonstrate how to define type-safe polymorphic
+   advice using pointcuts that unify a collection of polymorphic join
+   points.  We also introduce a new mechanism for specifying
+   context-sensitive advice that involves pattern matching against the
+   current stack of activation records, and meshes well with
+   functional programming idioms.  We give our language meaning via a
+   type-directed translation into an expressive, but fairly simple,
+   type-safe intermediate language.  Many complexities of the source
+   language are eliminated in this translation, leading to a modular
+   specification of its semantics.  One of the novelties of the
+   intermediate language is the definition of polymorphic labels for
+   marking control-flow points.  These labels are organized in a tree
+   structure such that a parent in the tree serves as a representative
+   for the collection of all its children.  Type safety requires that
+   the type of each child is a generic instance of the type of the
+   polymorphic parent.  Similarly, when a set of labels is assembled
+   as a pointcut, the type of each label is an instance of the type of
+   the pointcut.
+  }
+}
+
+@TechReport{huang:tdp-tr,
+  plclub =       "yes",
+  author = 		  {Liang Huang and Stephanie Weirich},
+  title = 		  {A Design for Type-Directed Programming in {Java} (Extended Version)},
+  institution =  {University of Pennsylvania, Computer and Information Science},
+  year = 		  2004,
+  number =		  {MS-CIS-04-11},
+  month =		  oct,
+  pages =        {1--49},
+  ps =           "http://www.seas.upenn.edu/~sweirich/papers/tdj/ms-cis-04-11.ps",
+  pdf =          "http://www.seas.upenn.edu/~sweirich/papers/tdj/ms-cis-04-11.pdf"
+}
+
+@TechReport{vytiniotis:itaname-tr,
+  author = 		  {Dimtrios Vytiniotis and Geoffrey Washburn and Stephanie Weirich},
+  title = 		  {An Open and Shut Typecase (Extended Version)},
+  institution =  {University of Pennsylvania, Computer and Information Science},
+  year = 		  2004,
+  pages =        {1--50},
+  number =		  {MS-CIS-04-26},
+  month =		  oct,
+  pdf =          {http://repository.upenn.edu/cis_reports/27/},
+abstract =     {
+Ad-hoc polymorphism is a compelling addition to typed programming languages. There are two different forms of ad-hoc polymorphism. With the nominal form, the execution of an operation is determined solely by the name of the type argument, whereas with the structural form, operations are defined by case analysis on the structure of types. The two forms differ in the way that they treat user-defined types. Operations defined by the nominal approach are considered "open"--the programmer can add cases for new types without modifying existing code. The operations must be extended however with specialized code for the new types, and it may be tedious and even difficult to add extensions that apply to a potentially large universe of user-defined types. Structurally defined operations apply to new types by treating them as equal to their underlying definitions, so no new cases for new types are necessary. However this form is considered "closed" to extension, as the behaviour of the operations cannot be differentiated for the new types. This form destroys the distinctions that user-defined types are designed to express. Both approaches have their benefits, so it is important to provide both capabilities in a single language that is expressive enough to decouple the "openness" issue from the way that user-defined types are treated. We present such a language that supports both forms of ad-hoc polymorphism.}
+}
+#  pdf =           "http://www.cis.upenn.edu/~sweirich/itaname/itaname-extended.pdf",
+
+
+@TechReport{washburn:mtr,
+  author = 		  {Geoffrey Washburn and Stephanie Weirich},
+  title = 		  {Unifying nominal and structural ad-hoc
+                  polymorphism (Extended version) },
+  institution =  {University of Pennsylvania},
+  year = 		  2004,
+  month =		  mar,
+  pdf = "http://www.cis.upenn.edu/~sweirich/papers/itaname/tech-report-mar04.pdf",
+
+  abstract = "Ad-hoc polymorphism allows the execution of programs to
+  depend on type information. In modern systems, it is useful for
+  implementing generic operations over data structures, such as
+  equality, marshalling, or traversal.  In the past, there have been
+  two different forms of ad-hoc polymorphism. The nominal form
+  dispatches on the name of the type argument, whereas the structural
+  form operates by decomposing the structure of types. In languages
+  with user-defined types, these two approaches are very
+  different. Operations defined by the nominal approach are
+  ``open''---they must be extended with specialized branches for
+  user-defined types. In contrast, structurally defined operations are
+  closed to extension. They automatically apply to user-defined types
+  by treating them as their underlying definitions.  Both approaches
+  have their benefits, so it important to provide both capabilities in
+  a language. Therefore we present an expressive language that
+  supports both forms of ad-hoc polymorphism in a single framework.
+  Among the language's features are the ability to define both
+  ``open'' and ``closed'' operations with a single mechanism, the
+  ability to naturally restrict the domain of type-analyzing
+  operations, and new mechanisms for defining higher-order polytypism
+  and manipulating generative type definitions."  }
+
+misc{weirich:erasure-manuscript,
+  author = 		  {Stephanie Weirich},
+  title = 		  {Higher-Order Intensional Type Analysis in Type Erasure Semantics},
+  note = 		  {At \url{http://www.cis.upenn.edu/~sweirich/papers/erasure/erasure-paper-july03.pdf}},
+  month =		  jul,
+  year =			  2003,
+  ps =           "http://www.seas.upenn.edu/~sweirich/papers/erasure/erasure-paper-july03.ps",
+  pdf =          "http://www.seas.upenn.edu/~sweirich/papers/erasure/erasure-paper-july03.pdf",
+  abstract =     { Higher-order intensional type analysis is a way of defining
+  type-indexed operations, such as map, fold and zip, based on
+  run-time type information. However, languages supporting this
+  facility are naturally defined with a type-passing semantics, which
+  suffers from a number of drawbacks. This paper, describes how to
+  recast higher-order intensional type analysis in a type-erasure
+  semantics.  The resulting language is simple and easy to
+  implement---we present a prototype implementation of the necessary
+  machinery as a small Haskell library.}
+}
+
+@TechReport{washburn:itabox-tr,
+  author = 		  {Geoffrey Washburn and Stephanie Weirich},
+  title = 		  {Boxes Go Bananas: {E}ncoding Higher-order
+                  Abstract Syntax with Parametric Polymorphism
+                   (Extended version) },
+  institution =  {University of Pennsylvania, Computer and Information Science },
+  year = 		  2003,
+  number =		  {MS-CIS-03-26},
+  month =		  sep,
+  ps =           "http://www.seas.upenn.edu/~sweirich/papers/itabox/MS-CIS-03-26.ps",
+  pdf =          {http://repository.upenn.edu/cis_reports/43/},
+  annote =       {This paper is an extended version of \cite{washburn:itabox}.},
+  abstract =
+{Higher-order abstract syntax is a simple technique for implementing languages with functional programming. Object variables and binders are implemented by variables and binders in the host language. By using this technique, one can avoid implementing common and tricky routines dealing with variables, such as capture-avoiding substitution. However, despite the advantages this technique provides, it is not commonly used because it is difficult to write sound elimination forms (such as folds or catamorphisms) for higher-order abstract syntax. To fold over such a datatype, one must either simultaneously define an inverse operation (which may not exist) or show that all functions embedded in the datatype are parametric.
+
+In this paper, we show how first-class polymorphism can be used to guarantee the parametricity of functions embedded in higher-order abstract syntax. With this restriction, we implement a library of iteration operators over data-structures containing functionals. From this implementation, we derive "fusion laws" that functional programmers may use to reason about the iteration operator. Finally, we show how this use of parametric polymorphism corresponds to the Schuermann, Despeyroux and Pfenning method of enforcing parametricity through modal types. We do so by using this library to give a sound and complete encoding of their calculus into System F-omega. This encoding can serve as a starting point for reasoning about higher-order structures in polymorphic languages.}
 }

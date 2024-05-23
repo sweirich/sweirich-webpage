@@ -11,8 +11,8 @@ Students
   - Joachim Breitner, Aug 2016-2018.
 
 ## Dissertation supervision (graduated students)
-  - Pritam Choudhury, August 2023.
-    Dependency and Linearity Analyses in Pure Type Systems.
+  - Pritam Choudhury, 2023.
+    [*Dependency and Linearity Analyses in Pure Type Systems*](https://repository.upenn.edu/handle/20.500.14332/59273).
   - Yao Li, August 2022.
     [*Mechanized Reasoning About "How" Using Functional Programs and Embeddings*](https://repository.upenn.edu/edissertations/5111/).
     Current employment: Portland State University
@@ -41,6 +41,7 @@ Students
     Current position: [Logicblox](http://www.logicblox.com/).
 
 ## Dissertation committee member
+  - Daniel Marshall, University of Kent.
   - Nicholas Rioux, Penn.
   - Lawrence Dunn, Penn.
   - Paul He, Penn. July 2024.
