@@ -7,17 +7,16 @@ Current
 1. Epic Games. Unrestricted gift $74,400.00. 3/2024.
 
 1. *SHF: Small: SMALL:Dependency Tracking and Dependent Types.* Weirich,
-   NSF 2327738. $540,000. 12/2023-11/2026.
+   NSF CCF-2327738. $540,000. 12/2023-11/2026.
 
 1. VERSE: Verification Engineering for Real-World Software Engineers.
   Pierce (PI), Head, Weirich. DARPA. 2024-2027.
 
 1. Research Experience for Undergraduates in Programming Languages (REPL).
-   Zdancewic (PI), Weirich, Pierce. NSF $322,095.  2023-2027.
+   Zdancewic (PI), Weirich, Pierce. NSF CNS-2244494 $322,095.  2023-2027.
 
 1. *SHF: Small: Mechanized reasoning for functional programs.* Weirich,
-   NSF 2006535. $450,000, 10/2020-09/2024.
-
+   NSF CCF-2006535. $450,000, 10/2020-09/2024.
 
 Completed
 ---------

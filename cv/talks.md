@@ -1,9 +1,9 @@
 Invited Talks and Technical Presentations
 =========================================
 
-1. *TBA*. ICALP/LICS Invited Speaker. Talinn, Estonia. 8-12 July, 2024.
+1. [*Tracking how dependently-typed functions use their arguments*](talks/lics-icalp-fscd-2024.pdf). LICS/ICALP/FSCD Joint Invited Speaker. Talinn, Estonia. 10 July, 2024.
 
-1. *CBPV+effects, CBPV+coeffects*.  WG 2.11 Meeting, Drexel University, Philadelphia, PA. March 2024.
+1. [*CBPV+effects, CBPV+coeffects*](talks/wg211-2024.pdf).  WG 2.11 Meeting, Drexel University, Philadelphia, PA. March 2024.
 
 1. *CBPV+effects, CBPV+coeffects*.  WG 2.8 Meeting, Pembroke College, Cambridge UK. April 2023.
 
