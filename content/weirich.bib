@@ -28,7 +28,7 @@
   note =         {Draft},
   month =        Feb,
   year =         2024,
-  eprint=        {2309.15724},
+  eprint=        {2309.12164},
   archivePrefix= {arXiv},
   primaryClass=  {cs.PL}
 }
@@ -51,7 +51,6 @@
 @misc{suarez:logrel,
   author =       {Emmanuel {Su\'{a}rez Acevedo} and Stephanie Weirich},
   title =        {Making Logical Relations More Relatable (Proof Pearl)},
-  note =         {Draft},
   month =     Sep,
   year =      2023, 
   eprint={2309.15724},
@@ -276,6 +275,26 @@ misc{InCertProposal06,
 
 %% Artifacts %%
 
+@TechReport{xia_2024_11493754,
+  author       = {Xia, Li-yao and
+                  Israel, Laura and
+                  Kramarz, Maite and
+                  Coltharp, Nicholas and
+                  Claessen, Koen and
+                  Weirich, Stephanie and
+                  Li, Yao},
+  title        = {{Story of Your Lazy Function's Life: A 
+                   Bidirectional Demand Semantics for Mechanized Cost
+                   Analysis of Lazy Programs (Artifact)}},
+  month        = jun,
+  year         = 2024,
+  publisher    = {Zenodo},
+  version      = {V1.0.0},
+  doi          = {10.5281/zenodo.11493754},
+  url          = {https://doi.org/10.5281/zenodo.11493754}
+}
+
+
 @TechReport{torczon:cbpv-artifact,
   title={Artifact associated with "Effects and Coeffects in Call-By-Push-Value"}, 
   author={Cassia Torczon and Emmanuel {Su\'{a}rez Acevedo} and Shubh Agrawal and Joey Velez-Ginorio and Stephanie Weirich},
@@ -392,14 +411,39 @@ misc{InCertProposal06,
 @article{xia:cost2,
   author = {Li-Yao Xia and Laura Israel and Maite Kramarz and Nathan Coltharp and Koen Claessen and Stephanie Weirich and Yao Li},
   title = {Story of Your Lazy Function's Life: A Bidirectional Demand Semantics for Mechanized Cost Analysis of Lazy Programs},
+  month = aug, 
   year = {2024},
   publisher = {Association for Computing Machinery},
   address = {New York, NY, USA},
+  issue_date = {August 2024},
+  volume = {8},
   number = {ICFP},
+  articleno = {237},
+  numpages = {34},
   journal = {Proc. ACM Program. Lang.},
-  month = sep, 
-  note = {To appear},
-  plclub = yes
+  pdf = {http://www.seas.upenn.edu/~sweirich/papers/icfp24.pdf},
+  doi = {10.1145/3674626},
+  keywords = {formal verification, computation cost, lazy evaluation, amortized analysis},
+  plclub = yes,
+  abstract = { Lazy evaluation is a powerful tool that enables better
+                  compositionality and potentially better performance in
+                  functional programming, but it is challenging to analyze its
+                  computation cost. Existing works either require manually
+                  annotating sharing, or rely on separation logic to reason
+                  about heaps of mutable cells. In this paper, we propose a
+                  bidirectional demand semantics that allows for extrinsic
+                  reasoning about the computation cost of lazy programs
+                  without relying on special program logics. To show the
+                  effectiveness of our approach, we apply the demand semantics
+                  to a variety of case studies including insertion sort,
+                  selection sort, Okasaki’s banker’s queue, and the implicit
+                  queue. We formally prove that the banker’s queue and the
+                  implicit queue are both amortized and persistent using the
+                  Rocq Prover (formerly known as Coq). We also propose the
+                  reverse physicist’s method, a novel variant of the classical
+                  physicist’s method, which enables mechanized, modular and
+                  compositional reasoning about amortization and persistence
+                  with the demand semantics.}
 }
 
   
@@ -413,14 +457,34 @@ publisher = {Association for Computing Machinery},
 address = {New York, NY, USA},
 volume = {8},
 number = {POPL},
-url = {https://doi.org/10.1145/3632886},
 doi = {10.1145/3632886},
-abstract = {In type systems with dependency tracking, programmers can assign an ordered set of levels to computations and prevent information flow from high-level computations to the low-level ones. The key notion in such systems is indistinguishability: a definition of program equivalence that takes into account the parts of the program that an observer may depend on. In this paper, we investigate the use of dependency tracking in the context of dependently-typed languages. We present the Dependent Calculus of Indistinguishability (DCOI), a system that adopts indistinguishability as the definition of equality used by the type checker. DCOI also internalizes that relation as an observer-indexed propositional equality type, so that programmers may reason about indistinguishability within the language. Our design generalizes and extends prior systems that combine dependency tracking with dependent types and is the first to support conversion and propositional equality at arbitrary observer levels. We have proven type soundness and noninterference theorems for DCOI and have developed a prototype implementation of its type checker.},
+abstract = {In type systems with dependency tracking, programmers can assign
+                  an ordered set of levels to computations and prevent
+                  information flow from high-level computations to the
+                  low-level ones. The key notion in such systems is
+                  indistinguishability: a definition of program equivalence
+                  that takes into account the parts of the program that an
+                  observer may depend on. In this paper, we investigate the
+                  use of dependency tracking in the context of
+                  dependently-typed languages. We present the Dependent
+                  Calculus of Indistinguishability (DCOI), a system that
+                  adopts indistinguishability as the definition of equality
+                  used by the type checker. DCOI also internalizes that
+                  relation as an observer-indexed propositional equality type,
+                  so that programmers may reason about indistinguishability
+                  within the language. Our design generalizes and extends
+                  prior systems that combine dependency tracking with
+                  dependent types and is the first to support conversion and
+                  propositional equality at arbitrary observer levels. We have
+                  proven type soundness and noninterference theorems for DCOI
+                  and have developed a prototype implementation of its type
+                  checker.},
 journal = {Proc. ACM Program. Lang.},
 month = jan,
 articleno = {44},
 numpages = {28},
 keywords = {Coq, Dependent Types, Formalization, Modes},
+pdf = {http://www.seas.upenn.edu/~sweirich/papers/popl24.pdf},
 plclub = yes
 }
 
@@ -434,7 +498,6 @@ plclub = yes
   address =      {New York, NY, USA},
   volume =       {7},
   number =       {ICFP},
-  url =          {https://doi.org/10.1145/3607852},
   doi =          {10.1145/3607852},
   abstract =     {In dependently-typed functional programming languages that
                   allow general recursion, programs used as proofs must be
@@ -458,6 +521,7 @@ plclub = yes
   articleno =    {210},
   numpages =     {37},
   keywords =     {Modes, Equality Reflection, Haskell, Dependent Types},
+  pdf = {http://www.seas.upenn.edu/~sweirich/papers/icfp23.pdf},
   plclub = yes
 }
 
@@ -473,8 +537,28 @@ plclub = yes
   month =        Sep,
   publisher =    ACM, 
   doi =          {10.1145/3547632},
-  url =          "papers/icfp22.pdf",
+  pdf =          "papers/icfp22.pdf",
   note =         {Distinguished Paper Award. Artifact available},
+  abstract = {Free monads (and their variants) have become a popular
+                  general-purpose tool for representing the semantics of
+                  effectful programs in proof assistants. These data
+                  structures support the compositional definition of semantics
+                  parameterized by uninterpreted events, while admitting a
+                  rich equational theory of equivalence. But monads are not
+                  the only way to structure effectful computation, why should
+                  we limit ourselves?  In this paper, inspired by applicative
+                  functors, selective functors, and other structures, we
+                  define a collection of data structures and theories, which
+                  we call program adverbs, that capture a variety of
+                  computational patterns. Program adverbs are themselves
+                  composable, allowing them to be used to specify the
+                  semantics of languages with multiple computation
+                  patterns. We use program adverbs as the basis for a new
+                  class of semantic embeddings called Tlön
+                  embeddings. Compared with embeddings based on free monads,
+                  Tlön embeddings allow more flexibility in computational
+                  modeling of effects, while retaining more information about
+                  the program’s syntactic structure.},
   plclub = yes
 }
 
@@ -522,8 +606,9 @@ plclub = yes
   issue_date =   {August 2021},
   publisher =    {ACM},
   plclub =       {yes},
-  url =    {https://richarde.dev/papers/2021/exists/exists.pdf}, 
+  pdf =    {papers/icfp21-eisenberg.pdf}, 
   doi = {10.1145/3473569},
+  abstract = "Despite the great success of inferring and programming with universal types, their dual—existential types—are much harder to work with. Existential types are useful in building abstract types, working with indexed types, and providing first-class support for refinement types. This paper, set in the context of Haskell, presents a bidirectional type-inference algorithm that infers where to introduce and eliminate existentials without any annotations in terms, along with an explicitly typed, type-safe core language usable as a compilation target. This approach is backward compatible. The key ingredient is to use strong existentials, which support (lazily) projecting out the encapsulated data, not weak existentials accessible only by pattern-matching."
 }
 
 @Article{li2021:reasoning,
@@ -537,7 +622,24 @@ plclub = yes
       issue_date =   {August 2021},
       publisher =    {ACM},
       plclub =       {yes},
-      doi = {10.1145/3473585}
+      pdf = {papers/icfp21.pdf},
+      doi = {10.1145/3473585},
+      abstract = { Lazy evaluation is a powerful tool for functional
+                  programmers. It enables the concise expression of on-demand
+                  computation and a form of compositionality not available
+                  under other evaluation strategies. However, the stateful
+                  nature of lazy evaluation makes it hard to analyze a
+                  program’s computational cost, either informally or
+                  formally. In this work, we present a novel and simple
+                  framework for formally reasoning about lazy computation
+                  costs based on a recent model of lazy evaluation:
+                  clairvoyant call-by-value. The key feature of our framework
+                  is its simplicity, as expressed by our definition of the
+                  clairvoyance monad. This monad is both simple to define
+                  (around 20 lines of Coq) and simple to reason about. We show
+                  that this monad can be effectively used to mechanically
+                  reason about the computational cost of lazy functional
+                  programs written in Coq.}
 }
 
 
@@ -825,7 +927,7 @@ year = {2014},
 isbn = {9781450325448},
 publisher = {Association for Computing Machinery},
 address = {New York, NY, USA},
-url = {https://doi.org/10.1145/2535838.2535883},
+url = {https://www.seas.upenn.edu/~sweirich/papers/popl14-trellys.pdf},
 doi = {10.1145/2535838.2535883},
 abstract = {Most dependently-typed programming languages either require that all expressions terminate (e.g. Coq, Agda, and Epigram), or allow infinite loops but are inconsistent when viewed as logics (e.g. Haskell, ATS, Ωmega. Here, we combine these two approaches into a single dependently-typed core language. The language is composed of two fragments that share a common syntax and overlapping semantics: a logic that guarantees total correctness, and a call-by-value programming language that guarantees type safety but not termination. The two fragments may interact: logical expressions may be used as programs; the logic may soundly reason about potentially nonterminating programs; programs can require logical proofs as arguments; and "mobile" program values, including proofs computed at runtime, may be used as evidence by the logic. This language allows programmers to work with total and partial functions uniformly, providing a smooth path from functional programming to dependently-typed programming.},
 booktitle = {Proceedings of the 41st ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages},
