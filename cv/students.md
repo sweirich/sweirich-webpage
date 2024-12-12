@@ -41,6 +41,9 @@ Students
     Current position: [Logicblox](http://www.logicblox.com/).
 
 ## Dissertation committee member
+  - Calvin Beck, Penn.
+  - Lef Ioannidis, Penn.
+  - Peio Borthelle, Université Savoie Mont Blanc in Chambéry, France.
   - Daniel Marshall, University of Kent.
   - Nicholas Rioux, Penn.
   - Lawrence Dunn, Penn.
@@ -83,7 +86,7 @@ Students
 
 ## Independent study
 
-  - Doctoral: Jessica Shi,
+  - Doctoral: Daniel Sainati, Fall 2024. Jessica Shi,
   Fall 2021. Irene Yoon, Spring 2020.  Hengchu Zhang, Yao Li,
   Spring 2017. Antoine Voizard, Kenny Foner, Fall 2015. Antal Spector-Zabusky,
   Spring 2016, Spring 2013. Jennifer Paykin, Fall 2012.  Richard Eisenberg,
@@ -92,7 +95,7 @@ Students
   Casinghino, Spring 2008. Andrew Hilton (co-advised), Karl Mazurak, Jeff
   Vaughan, Fall 2004.  Liang Huang, Spring 2004.
 
-  - Masters: Emmanuel Suarez, Fall 2022-present. Eric Giovanni,
+  - Masters: Emmanuel Suarez, Fall 2022-Spring 2024. Eric Giovanni,
     Spring 2020. Dominik Bollman, Spring 2016. Simon Wimmer, Summer 2015.
 
   - Undergraduate Senior Design Project: Memoria Matters and Lauren Leung,

@@ -3,18 +3,18 @@ Research Community Service
 
 ## Conference and Symposium Leadership
 
+- POPL 2026, associate chair.
 - European Symposium on Programming (ESOP) 2024, program chair.
-- International Conference on Functional Programming (ICFP) 2020, general
-  chair.
+- International Conference on Functional Programming (ICFP) 2020, general chair.
 - Principles of Programming Languages (POPL) 2019, program chair.
 - International Conference on Functional Programming (ICFP) 2010, program chair.
 - Haskell Symposium 2009, program chair.
 
 ## Journal Leadership
 
-- Editorial Board of TheoreTICs, 2021-present.
+- Editorial Board of TheoreTICs, 2021-2024.
 - Associate Editor of ACM TOPLAS, 2019-2023.
-- Editorial Board of Logical Methods in Computer Science, 2016-present.
+- Editorial Board of Logical Methods in Computer Science, 2016-2024.
 - Editor of Journal of Functional Programming, 2011-2017.
 - Guest Editor (with Zhenjiang Hu, Shin-Cheng Mu), Progress in
   Informatics. Special Issue on Advanced Programming Techniques for
@@ -22,10 +22,7 @@ Research Community Service
 - Guest Editor (with Benjamin Pierce),
   Journal of Automated Reasoning. Special Issue on the POPLmark
   Challenge. October 2012.
-- Editorial Board,  Foundations and Trends in Programming
-  Languages, 2012-present.
 - Nomination committee, SIGPLAN CACM Research Highlights, 2009-2011.
-
 
 ## Workshop Leadership
 
@@ -41,6 +38,7 @@ Research Community Service
 
 ## Program Committee Membership (conference/symposium)
 
+- International Conference on Functional Programming (ICFP) 2025.
 - Certified Proofs adn Programs (CPP) 2025.
 - International Conference on Functional Programming (ICFP) 2022.
 - Formal Structures for Computation and Deduction (FSCD) 2022.

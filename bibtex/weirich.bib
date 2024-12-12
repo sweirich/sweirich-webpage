@@ -4,13 +4,6 @@
 
 %% Drafts %%
 
-@Unpublished{liu:indist-mltt,
-  author =       {Yiyun Liu and Jonathan Chan and Stephanie Weirich},
-  title =        {Indistinguishability in Predicative Type Theory},
-  note =         {Draft},
-  month =        jul,
-  year =         2024
-}
 
 @Unpublished{liu:pearl,
   author =       {Yiyun Liu and Stephanie Weirich},
@@ -20,29 +13,6 @@
   pdf =          {http://www.seas.upenn.edu/~sweirich/papers/liu-mltt-consistency.pdf},
   month =        Feb,
   year =         2024}
-
-
-@Unpublished{chan:stratt,
-  author =       {Jonathan Chan and Stephanie Weirich},
-  title =        {Stratified Type Theory},
-  note =         {Draft},
-  month =        Feb,
-  year =         2024,
-  eprint=        {2309.12164},
-  archivePrefix= {arXiv},
-  primaryClass=  {cs.PL}
-}
-
-@Unpublished{torczon2023effects,
-      title={Effects and Coeffects in Call-By-Push-Value (Extended Version)}, 
-      author={Cassia Torczon and Emmanuel {Su\'{a}rez Acevedo} and Shubh Agrawal and Joey Velez-Ginorio and Stephanie Weirich},
-      note={Submitted for publication},
-      month=Apr,
-      year={2024},
-      eprint={2311.11795},
-      archivePrefix={arXiv},
-      primaryClass={cs.PL}
-}
 
 
 %% Unrefereed goodness %%
@@ -275,6 +245,20 @@ misc{InCertProposal06,
 
 %% Artifacts %%
 
+@TechReport{liu_2024_14252132,
+  author       = {Liu, Yiyun and
+                  Chan, Jonathan and
+                  Weirich, Stephanie},
+  title        = {Artifact associated with Consistency of a
+                   Dependent Calculus of Indistinguishability
+                  },
+  month        = nov,
+  year         = 2024,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.14252132},
+  url          = {https://doi.org/10.5281/zenodo.14252132}
+}
+
 @TechReport{xia_2024_11493754,
   author       = {Xia, Li-yao and
                   Israel, Laura and
@@ -303,10 +287,8 @@ misc{InCertProposal06,
   publisher    = {Zenodo},
   doi          = {10.5281/zenodo.12654518},
   url          = {https://zenodo.org/records/12654518},
-  note =         {},
-
+  note         = {Awarded ``Available'', ``Evaluated & Reusable'' and ``Results Reproduced'' by OOPSLA 2024 Artifact Evaluation Committee}
 }
-
 
 @TechReport{liu:dcoi-artifact,
   author       = {Liu, Yiyun and
@@ -408,6 +390,81 @@ misc{InCertProposal06,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Conference and journal papers 
 
+@article{liu:indist-mltt,
+  author =       {Yiyun Liu and Jonathan Chan and Stephanie Weirich},
+  title =        {Consistency of a Dependent Calculus of Indistinguishability},
+  month =        jan,
+  year =         2025,
+  publisher =    {Association for Computing Machinery},
+  address =      {New York, NY, USA},
+  number =       {POPL},
+  journal =      {Proc. ACM Program. Lang.},
+  note =         {Conditionally accepted to POPL 2025},
+  pdf =          {papers/popl25.pdf}, 
+  abstract = {
+The Dependent Calculus of Indistinguishability (DCOI) uses dependency tracking to identify irrelevant
+arguments and uses indistinguishability during type conversion to enable proof irrelevance, supporting
+run-time and compile-time irrelevance with the same uniform mechanism. DCOI also internalizes reasoning
+about indistinguishability through the use of a propositional equality type indexed by an observer level.
+
+As DCOI is a pure type system, prior work establishes only its syntactic type safety, justifying its use as the
+basis for a programming language with dependent types. However, it was not clear whether any instance
+of this system would be suitable for use as a type theory for theorem proving. Here, we identify a suitable
+instance DCOI$\omega$, which has an infinite predicative universe hierarchy. We show that DCOI$\omega$ is logically
+consistent, normalizing, and that type conversion is decidable. We have mechanized all results using the Coq
+proof assistant.
+  }
+}
+
+
+@article{torczon2024effects,
+  title={Effects and Coeffects in Call-By-Push-Value}, 
+  author={Cassia Torczon and Emmanuel {Su\'{a}rez Acevedo} and Shubh Agrawal and Joey Velez-Ginorio and Stephanie Weirich},
+  month=oct,
+  year={2024},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  issue_date = {October 2024},
+  volume = {8},
+  number = {OOPSLA},
+  journal = {Proc. ACM Program. Lang.},
+  doi = {10.1145/3689750},
+  plclub = yes,
+  abstract = { Effect and coeffect tracking integrate many types of
+                  compile-time analysis, such as cost, liveness, or dataflow,
+                  directly into a language's type system. In this paper, we
+                  investigate the addition of effect and coeffect tracking to
+                  the type system of call-by-push-value (CBPV), a
+                  computational model useful in compilation for its isolation
+                  of effects and for its ability to cleanly express both
+                  call-by-name and call-by-value computations. Our main result
+                  is effect-and-coeffect soundness, which asserts that the
+                  type system accurately bounds the effects that the program
+                  may trigger during execution and accurately tracks the
+                  demands that the program may make on its environment. This
+                  result holds for two different dynamic semantics: a generic
+                  one that can be adapted for different coeffects and one that
+                  is adapted for reasoning about resource usage. In
+                  particular, the second semantics discards the evaluation of
+                  unused values and pure computations while ensuring that
+                  effectful computations are always evaluated, even if their
+                  results are not required. Our results have been mechanized
+                  using the Coq proof assistant.  }
+}
+
+
+@inproceedings{chan:stratt,
+  author =       {Jonathan Chan and Stephanie Weirich},
+  editor=        "Viktor Vafeiadis",
+  title =        {Stratified Type Theory},
+  note =         {To appear},
+  month =        May,
+  year =         2025,
+  booktitle =   "European Symposium on Programming Languages and Systems, ESOP 2025",
+  plclub = yes
+}
+
+
 @article{xia:cost2,
   author = {Li-Yao Xia and Laura Israel and Maite Kramarz and Nathan Coltharp and Koen Claessen and Stephanie Weirich and Yao Li},
   title = {Story of Your Lazy Function's Life: A Bidirectional Demand Semantics for Mechanized Cost Analysis of Lazy Programs},
@@ -436,12 +493,12 @@ misc{InCertProposal06,
                   without relying on special program logics. To show the
                   effectiveness of our approach, we apply the demand semantics
                   to a variety of case studies including insertion sort,
-                  selection sort, Okasaki’s banker’s queue, and the implicit
-                  queue. We formally prove that the banker’s queue and the
+                  selection sort, Okasaki's banker's queue, and the implicit
+                  queue. We formally prove that the banker's queue and the
                   implicit queue are both amortized and persistent using the
                   Rocq Prover (formerly known as Coq). We also propose the
-                  reverse physicist’s method, a novel variant of the classical
-                  physicist’s method, which enables mechanized, modular and
+                  reverse physicist's method, a novel variant of the classical
+                  physicist's method, which enables mechanized, modular and
                   compositional reasoning about amortization and persistence
                   with the demand semantics.}
 }
