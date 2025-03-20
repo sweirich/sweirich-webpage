@@ -1,6 +1,10 @@
 Invited Talks and Technical Presentations
 =========================================
 
+1. TBA. WG 2.8 Meeting, York, Maine. May 2025.
+
+1. [*Tracking how dependently-typed functions use their arguments*](talks/chalmers25.pdf). Chalmers Department Seminar, Gothenberg, Sweden. 7 March 2025.
+
 1. [*Tracking how dependently-typed functions use their arguments*](talks/lics-icalp-fscd-2024.pdf). LICS/ICALP/FSCD Joint Invited Speaker. Talinn, Estonia. 10 July, 2024.
 
 1. [*CBPV+effects, CBPV+coeffects*](talks/wg211-2024.pdf).  WG 2.11 Meeting, Drexel University, Philadelphia, PA. March 2024.
