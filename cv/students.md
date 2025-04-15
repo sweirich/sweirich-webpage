@@ -18,7 +18,6 @@ Students
     Current employment: Portland State University
   - Antal Spector-Zabusky, May 2021.
     [*Don't mind the formalization gap: The Design and Usage of hs-to-coq.*](https://repository.upenn.edu/entities/publication/e03bce8b-14a0-4981-8714-335a43310976)
-    Current position: Jane Street.
   - Richard Eisenberg, December 2016.
     [*Dependently-Typed Haskell*](http://repository.upenn.edu/dissertations/AAI10244979/).
     Current position: Jane Street.
@@ -38,7 +37,7 @@ Students
     Current position: Google DeepMind, London, UK.
   - Geoffrey Washburn, December 2007.
     [*Principia Narcissus: How to avoid being caught by your reflection*](http://repository.upenn.edu/dissertations/AAI3292086/).
-    Current position: [Logicblox](http://www.logicblox.com/).
+    Current position: Amazon Redshift.
 
 ## Dissertation committee member (external)
   - Danielle Marshall, University of Kent.
@@ -109,7 +108,10 @@ Students
    (Third place). 2014-2015.  Kaycee Anderson, Juan Jose Lopez, Caroline Ho,
    and Johanna Martens (Honorable Mention), 2013-2014.
 
-  - Undergraduate Research: Shubh Agrawal, Maite Kramarz, Annabel Baniak, Summer 2023 (REPL).
+  - Undergraduate Research: 
+  Liz Austell, Elliot Brobow, Kevin Diggs, Apol Medrano, Elon Roth, Summer 2024 (REPL).
+  Shubh Agrawal, Maite Kramarz, Annabel Baniak, Summer 2023 (REPL).
+  Vikram Singh (DeepSpec REU), Summer 2021.
   Daniel Lee, 2021. Joshua Cohen, 2018. Emmanuel Suarez,
   2017-2018. Anastasiya Kravchuk-Kirilyuk, 2017. Matthew Weaver
   2015-2016. Leondra Morse, Summer 2015 (CRA-DREU). Mitchell Stern,
