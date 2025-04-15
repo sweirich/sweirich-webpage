@@ -116,7 +116,7 @@ Research Community Service
 
 ## Other
 - SIGPLAN Reynold's dissertation award committee, 2021-2022, 2022-2023.
-- NSF panel: October 2022, March 2019, March 2018, February 2016, June 2014, October 2012,
+- NSF panel: January 2025, October 2022, March 2019, March 2018, February 2016, June 2014, October 2012,
   December 2011, March 2008, December 2004.
 - Haskell' language standard committee, 2005-2010.
 - TYPES forum moderator: 2003-2009.
