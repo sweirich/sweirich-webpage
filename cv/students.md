@@ -6,6 +6,7 @@ Students
   - Yiyun Liu, Aug 2021-
   - Jonathan Chan, Aug 2022-
   - Cassia Torczon, Aug 2022-
+  - Daniel Sainati, Aug 2024-
 
 ## Postdoc supervision
   - Joachim Breitner, Aug 2016-2018.
