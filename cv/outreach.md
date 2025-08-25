@@ -1,9 +1,9 @@
 Outreach
 =======
 
-+ [Oregon Programming Languages Summer School](https://www.cs.uoregon.edu/research/summerschool/summer22/), co-organizer, 2023
-
 + [SIGPLAN CARES member](https://www.sigplan.org/Cares/), January 2020-present
+
++ [Oregon Programming Languages Summer School](https://www.cs.uoregon.edu/research/summerschool/summer22/), co-organizer, 2023
 
 + [Computing Connections Fellowship](https://computingconnections.org/), selection committe, 2022-present
 

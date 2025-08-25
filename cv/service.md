@@ -39,7 +39,7 @@ Research Community Service
 ## Program Committee Membership (conference/symposium)
 
 - International Conference on Functional Programming (ICFP) 2025.
-- Certified Proofs adn Programs (CPP) 2025.
+- Certified Proofs and Programs (CPP) 2025.
 - International Conference on Functional Programming (ICFP) 2022.
 - Formal Structures for Computation and Deduction (FSCD) 2022.
 - History of Programming Languages (HOPL IV) 2020.

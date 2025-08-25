@@ -1,15 +1,14 @@
 Students
 ========
 
+## Postdoc supervision
+  - Joachim Breitner, Aug 2016-2018.
 
 ## Dissertation supervision (current students)
   - Yiyun Liu, Aug 2021-
   - Jonathan Chan, Aug 2022-
-  - Cassia Torczon, Aug 2022-
-  - Daniel Sainati, Aug 2024-
-
-## Postdoc supervision
-  - Joachim Breitner, Aug 2016-2018.
+  - Cassia Torczon (co-advised with Benjamin Pierce), Aug 2022-
+  - Daniel Sainati (co-advised with Benjamin Pierce), Aug 2024-
 
 ## Dissertation supervision (graduated students)
   - Pritam Choudhury, 2023.
@@ -41,10 +40,9 @@ Students
     Current position: Amazon Redshift.
 
 ## Dissertation committee member (external)
-  - Danielle Marshall, University of Kent.
   - Peio Borthelle, Université Savoie Mont Blanc in Chambéry, France. March 2025.
   - Riccardo Bianchini, Univ. di Genova, April 2024.
-  - Steven Keuchel, University of Ghent, June 2018.  
+  - Steven Keuchel, University of Ghent, June 2018.
   - William Bowman, Northeastern University, November 2018.
   - Harley Eades III, University of Iowa, May 2014.
   - Julien Cretin, INRIA / University Paris 7, January 2014.
@@ -56,7 +54,7 @@ Students
 ## Dissertation committee member (Penn)
   - Joe Cutler, Penn. 
   - Calvin Beck, Penn.
-  - Lef Ioannidis, Penn.
+  - Lef Ioannidis, Penn, June 2025.
   - Nicholas Rioux, Penn, June 2025.
   - Lawrence Dunn, Penn, April 2025.
   - Paul He, Penn, July 2024.
