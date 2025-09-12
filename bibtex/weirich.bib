@@ -3,14 +3,6 @@
 
 %% Drafts %%
 
-@Unpublished{weirich:rebound,
-  author = {No\'e de Santo and Stephanie Weirich},
-  title = {Rebound: Efficient, expressive, and well-scoped binding},
-  month = {June},
-  year = {2025},
-  note = {To appear in Haskell Symposium}, 
-  url = {https://github.com/sweirich/rebound}
-}
 
 @Unpublished{sainati:strictness,
   author = {Daniel Sainati and Joseph W. Cutler and Benjamin C. Pierce and Stephanie Weirich},
@@ -419,7 +411,46 @@ misc{InCertProposal06,
 %% POPL 2015 artifact?? Just the google code repostory -> github
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Conference and journal papers 
+%% Workshop, Seminar, Conference and journal papers 
+
+@inproceedings{weirich:rebound,
+  author = {No\'e de Santo and Stephanie Weirich},
+  title = {Rebound: Efficient, expressive, and well-scoped binding},
+  booktitle = {Proceedings of the 18th ACM SIGPLAN International Haskell Symposium},
+  numpages = {15},
+  location = {Singapore, Singapore},
+  series = {Haskell 2025},
+  month = oct,
+  year = {2025},
+  pdf = {papers/hs25-rebound.pdf}, 
+  doi = {10.1145/3759164.3759348},
+  url = {https://github.com/sweirich/rebound},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  plclub = yes,
+  abstract = { We introduce the Rebound library that supports well-scoped term
+                  representations in Haskell and automates the definition of
+                  substitution, alpha-equivalence, and other operations that
+                  work with binding structures. The key idea of our design is
+                  the use of first-class environments that map variables to
+                  expressions in some new scope. By statically tracking
+                  scopes, users of this library gain confidence that they have
+                  correctly maintained the subtle invariants that stem from
+                  using de Bruijn indices. Behind the scenes, Rebound uses
+                  environments to optimize the application of substitutions,
+                  while providing explicit access to these data structures
+                  when desired. We demonstrate that this library is expressive
+                  by using it to implement a wide range of language features
+                  with sophisticated uses of binding and several different
+                  operations that use this abstract syntax. Our examples
+                  include pi-forall, a tutorial implementation of a type
+                  checker for a dependently-typed programming
+                  language. Finally, we benchmark Rebound to understand its
+                  performance characteristics and find that it produces faster
+                  code than competing libraries.  }
+}
+
+
 
 @article{liu:indist-mltt,
   author =       {Yiyun Liu and Jonathan Chan and Stephanie Weirich},
@@ -494,7 +525,29 @@ proof assistant.
   pdf =          "papers/esop25.pdf",
   booktitle =   "European Symposium on Programming Languages and Systems, ESOP 2025",
   doi = {10.1007/978-3-031-91118-7_10},
-  plclub = yes
+  plclub = yes,
+  abstract = { 
+A hierarchy of type universes is a rudimentary ingredient
+in the type theories of many proof assistants to prevent the logical inconsistency resulting from combining dependent functions and the typein-type axiom. In this work, we argue that a universe hierarchy is not
+the only option for universes in type theory. Taking inspiration from
+Leivant’s Stratified System F, we introduce Stratified Type Theory
+(StraTT), where rather than stratifying universes by levels, we stratify
+typing judgements and restrict the domain of dependent functions to
+strictly lower levels. Even with type-in-type, this restriction suffices to
+enforce consistency.
+In StraTT, we consider a number of extensions beyond just stratified dependent functions. First, the subsystem subStraTT employs McBride’s
+crude-but-effective stratification (also known as displacement) as a simple form of level polymorphism where global definitions with concrete
+levels can be displaced uniformly to any higher level. Second, to recover
+some expressivity lost due to the restriction on dependent function domains, the full StraTT includes a separate nondependent function type
+with a floating domain whose level matches that of the overall function
+type. Finally, we have implemented a prototype type checker for StraTT
+extended with datatypes and inference for level and displacement annotations, along with a small core library.
+We have proven subStraTT to be consistent and StraTT to be type safe,
+but consistency of the full StraTT remains an open problem, largely
+due to the interaction between floating functions and cumulativity of
+judgements. Nevertheless, we believe StraTT to be consistent, and as
+evidence have verified the ill-typedness of some well-known type-theoretic
+paradoxes using our implementation.}
 }
 
 
