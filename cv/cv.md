@@ -12,4 +12,3 @@ Honors
   * CRA-W Distributed Mentorship Project Award, 1996
   * Microsoft Technical Scholar, 1995--1996
 
-

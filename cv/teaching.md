@@ -3,6 +3,9 @@ Teaching Experience
 
 University of Pennsylvania
 --------------------------
+
+* CIS 7000 - Programming Languages: Semantics and Types
+  Fall 2025
 * CIS 120/CIS 1200 - Programming Languages and Techniques I  
   Spring 2025, Spring 2024, Spring 2022, Spring 2021, Spring 2020, Spring 2018, Spring 2016, Spring 2015, Spring 2014, Spring 2013, Spring 2012, Spring 2011, Fall 2008, Spring 2008, Spring 2007
 * CIS 5520/552 - Advanced Programming  

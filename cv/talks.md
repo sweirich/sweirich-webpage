@@ -1,11 +1,95 @@
-Invited Talks and Technical Presentations
-=========================================
+Keynotes
+========
 
-1. TBA. WG 2.8 Meeting, York, Maine. May 2025.
+1. [*Tracking how dependently-typed functions use their arguments*](talks/lics-icalp-fscd-2024.pdf). 
+   [LICS/ICALP/FSCD](https://compose.ioc.ee/icalp2024/) Joint Invited Speaker. Talinn, Estonia. 10 July, 2024.
 
-1. [*Tracking how dependently-typed functions use their arguments*](talks/chalmers25.pdf). Chalmers Department Seminar, Gothenberg, Sweden. 7 March 2025.
+1. [*What are Dependent Types and What are they Good for?*](talks/milner-2022.pdf)
+   [Milner lecture](https://web.inf.ed.ac.uk/lfcs/events/milner-lectures), 
+   Laboratory for Computer Science, Edinburgh. June 15, 2022.
 
-1. [*Tracking how dependently-typed functions use their arguments*](talks/lics-icalp-fscd-2024.pdf). LICS/ICALP/FSCD Joint Invited Speaker. Talinn, Estonia. 10 July, 2024.
+1. [*How to implement the Lambda Calculus, Quickly*](https://youtu.be/6JH8bFRohn8). 
+   Keynote presentations at IFL, [The 33rd Symposium on Implementation and Application of Functional Languages](https://ifl21.cs.ru.nl/Program.html). September 3, 2021.
+
+1. [*A Dependently-Typed Core Calculus for GHC*](talks/types19.pdf).
+   [TYPES 2019 Conference](https://sites.google.com/view/types-2019) Invited speaker. Oslo, Norway. June 2019.
+
+1. [*The Influence of Dependent Types*](https://www.youtube.com/watch?v=GgD0KUxMaQs).
+   Keynote address, ACM Symposium on Principles of Programming Languages (POPL '17)
+   Paris, France, January 2017.
+
+1. [*Depending on Types.*](talks/icfp14.pdf)
+   Keynote address, International Conference on Functional
+   Programming (ICFP). Gothenburg, Sweden, September 3, 2014
+
+1. [*Dependently-typed programming in GHC.*](talks/flops2012.pdf)
+ Invited speaker,
+ [FLOPS 2012: Eleventh International Symposium on
+ Functional and Logic Programming](http://www.org.kobe-u.ac.jp/flops2012/),
+ Kobe, Japan, May 25, 2012.
+
+1. [*Combining Proofs and Programs.*](talks/rdp2011.pdf)
+ Joint invited speaker for  [Rewriting Techniques and
+ Applications (RTA 2011) and Typed Lambda Calculi and Applications (TLCA 2011)](http://www.rdp2011.uns.ac.rs/index.html)
+ Novi Sad, Serbia, June 1, 2011.
+
+
+Industry Presentations
+======================
+
+1. *How to implement the Lambda Calculus, Quickly*. 
+   [Haskell Love](https://haskell.love/), virtual developer conference. September 10, 2021.
+
+1. *Strongly-Typed System F in GHC*. YOW! Lambda Jam Online 2020. July 2020.
+
+1. *Dependent Types in Haskell*.
+   [BOBkonf invited speaker](https://bobkonf.de/2019-summer/) (research track). Berlin, Germany. August 21, 2019.
+
+1. [*Dependent Types in Haskell*](https://skillsmatter.com/skillscasts/12195-keynote-dependent-types-in-haskell).
+   Haskell eXchange keynote, London, October 2018.
+
+1. *Work-in-progress: Verifying the Glasgow Haskell Compiler Core language using the Coq proof assistant*.
+   Intel Labs, Hillsboro, OR. August 2018.
+
+1. *Dependent Types in Haskell.* Invited speaker, Comcast Labs Connect: Functional Programming. March 9, 2018.
+
+1. [*Dependent Types in Haskell*](https://www.youtube.com/watch?v=wNa3MMbhwS4&t=25s).
+   StrangeLoop 2017, St. Louis, MO, September 2017.
+
+1. [*Depending on Types*](talks/typelevel16.pdf).
+   [Typelevel Summit](http://typelevel.org/), Philadelphia, PA, March 2-3, 2016.
+
+1. [*Dynamic Typing in GHC*](https://www.youtube.com/watch?v=asdABzBUoGM).
+   [Compose :: Conference](http://www.composeconference.org/), Brooklyn, NY, February 4-5, 2016.
+
+1. [*Visible Type Application*](talks/vta-2015.pdf).
+   Microsoft Research, Cambridge, UK, November 6, 2015.
+
+1. [*Depending on Types*](https://www.youtube.com/watch?v=n-b1PYbRUOY).
+   [Code Mesh 2015](http://www.codemesh.io/), London, November 4, 2015.
+
+1. [*Pi-Forall: How to use and implement a dependently-typed language*](https://github.com/sweirich/pi-forall/blob/2014/compose.md).
+	Technical Keynote, Compose Conference. New York, January 30, 2015.
+
+1. [*The Pleasure and Pain of Advanced Type Systems.*](talks/facebook13.pdf)
+   Facebook Faculty Summit.
+   Menlo Park, CA, August 6, 2013.
+
+1. [*A Design for Type-Directed Java.*](talks/msr04.pdf)
+   Microsoft Research Lab,
+   Cambridge, UK. August 31, 2004.
+  
+1. [*Resource Bound Certification.*](talks/ibm-final.ppt)
+   IBM Research, Hawthorne, NY. June 2000.
+  
+
+Conference talks, Seminars, and other Technical presentations
+============================================================
+
+1. [*A tale of four lambda calculus interpreters*](talks/wg28-york-maine.pdf). WG 2.8 Meeting, York, Maine. May 2025.
+
+1. [*Tracking how dependently-typed functions use their arguments*](talks/chalmers25.pdf). 
+Chalmers Department Seminar, Gothenberg, Sweden. 7 March 2025.
 
 1. [*CBPV+effects, CBPV+coeffects*](talks/wg211-2024.pdf).  WG 2.11 Meeting, Drexel University, Philadelphia, PA. March 2024.
 
@@ -13,17 +97,10 @@ Invited Talks and Technical Presentations
 
 1. [*Stratified Type Theory*](https://docs.google.com/presentation/d/1ttkDSHICdXzES95UjmKhLu6ZOuNprqLuEIsKxIgtN3k/edit?usp=sharing), WG 2.8 Meeting, Pembroke College, Cambridge UK. April 2023.
 
-1. [*What are Dependent Types and What are they Good for?*](talks/milner-2022.pdf) [Milner lecture](https://web.inf.ed.ac.uk/lfcs/events/milner-lectures), Laboratory for Computer Science, Edinburgh. June 15, 2022.
-
 1. [*A Dependent Dependency Calculus*](https://www.youtube.com/watch?v=REy4RbDr46g). [Ediburgh LFCS Seminar](talks/edinburgh-2022.pdf), June 14, 2022.  
 
-1. *How to implement the Lambda Calculus, Quickly*. [Haskell Love](https://haskell.love/), virtual developer conference. September 10, 2021.
-
-1. [*How to implement the Lambda Calculus, Quickly*](https://youtu.be/6JH8bFRohn8). Invited talk at IFL. The 33rd Symposium on Implementation and Application of Functional Languages. September 3, 2021.
 
 1. [*Programming Language Design: From Grace Hopper to Today*](https://www.youtube.com/watch?v=gLTDyrAY4Hk). [ENIAC Day: 75th anniversary of ENIAC mini-symposium](https://events.seas.upenn.edu/event/eniacday/). February 15, 2021.
-
-1. *Strongly-Typed System F in GHC*. YOW! Lambda Jam Online 2020. July 2020.
 
 1. [*Strongly-Typed System F in GHC*](https://www.youtube.com/watch?v=j2xYSxMkXeQ). Chalmers Functional Programming Seminar Series. June 2020.
 
@@ -32,23 +109,11 @@ Invited Talks and Technical Presentations
 1. *A Dependently-Typed Core Calculus for GHC*.
    [PurPL Fest](https://purpl.cs.purdue.edu/kickoff.html) invited speaker. Purdue University. West Lafayette, IN. September 23, 2019.
    
-1. *Dependent Types in Haskell*.
-   [BOBkonf invited speaker](https://bobkonf.de/2019-summer/) (research track). Berlin, Germany. August 21, 2019.
-
-1. [*A Dependently-Typed Core Calculus for GHC*](talks/types19.pdf).
-   [TYPES 2019 Conference](https://cas.oslo.no/types2019/) Invited talk. Oslo, Norway. June 2019.
-   
 1. [*Strongly-typed System F in GHC*](talks/wg28-bordeaux.pdf).
    IFIP WG 2.8, Bordeaux, Fr. May 2019.
 
 1. [*Dependent Types in Haskell*](https://www.cs.cornell.edu/content/dependent-types-haskell).
    Cornell CS Colloquium, Ithaca, NY. November 2018.
-
-1. [*Dependent Types in Haskell*](https://skillsmatter.com/skillscasts/12195-keynote-dependent-types-in-haskell).
-   Haskell eXchange keynote, London, October 2018.
-
-1. *Work-in-progress: Verifying the Glasgow Haskell Compiler Core language using the Coq proof assistant*.
-   Intel Labs, Hillsboro, OR. August 2018.
 
 1. [*Work-in-progress: Towards a formal semantics for GHC Core*](talks/dsw18.pdf).
    DeepSpec 2018 Workshop, Philadelphia, PA. June 2018.
@@ -60,8 +125,6 @@ Invited Talks and Technical Presentations
    Dagstuhl Seminar 18201, "Secure Compilation"
    Wadern, Germany, May, 2018.
 
-1. *Dependent Types in Haskell.* Invited speaker, Comcast Labs Connect: Functional Programming. March 9, 2018.
-
 1. [*Locally Nameless at Scale*](papers/coqpl18.pdf).
 	Joint presentation with Anastasiya Kravchuck-Kirilyuk. CoqPL workshop, Los Angeles, CA. January 2018.
 
@@ -71,33 +134,14 @@ Invited Talks and Technical Presentations
 1. *Dependent Types in Haskell.*
    McMaster University Departmental Seminar, Hamilton Ontario, November 2017.
 
-1. [*Dependent Types in Haskell*](https://www.youtube.com/watch?v=wNa3MMbhwS4&t=25s).
-   StrangeLoop 2017, St. Louis, MO, September 2017.
-
 1. [*Eta-equivalence in Core Dependent Haskell*](talks/wg28-edinburgh.pdf).
    WG 2.8, Edinburgh, UK. June 2017.
-
-1. [*The Influence of Dependent Types*](https://www.youtube.com/watch?v=GgD0KUxMaQs).
-   Keynote address, ACM Symposium on Principles of Programming Languages (POPL '17)
-   Paris, France, January 2017.
 
 1. [*A Foundation for Dependently Typed Haskell*](talks/wg28-2016.pdf).
     WG 2.8, Lake Placid, NY, July 19, 2016.
 
-1. [*Depending on Types*](talks/typelevel16.pdf).
-   [Typelevel Summit](http://typelevel.org/), Philadelphia, PA, March 2-3, 2016.
-
-1. [*Dynamic Typing in GHC*](https://www.youtube.com/watch?v=asdABzBUoGM).
-   [Compose :: Conference](http://www.composeconference.org/), Brooklyn, NY, February 4-5, 2016.
-
-1. [*Visible Type Application*](talks/vta-2015.pdf).
-   Microsoft Research, Cambridge, UK, November 6, 2015.
-
 1. [*Visible Type Application*](talks/vta-2015.pdf).
    University of Kent, November 5, 2015.
-
-1. [*Depending on Types*](https://www.youtube.com/watch?v=n-b1PYbRUOY).
-   [Code Mesh 2015](http://www.codemesh.io/), London, November 4, 2015.
 
 1. [*From System F to Typed Assembly Language, by Morrisett, Walker, Crary, Glew*](https://www.youtube.com/watch?v=Epbaka9uTQ4).
    Papers We Love, Philadelphia. Philadelphia, PA, October 6, 2015
@@ -105,8 +149,6 @@ Invited Talks and Technical Presentations
 1. [*Towards Dependently Typed Haskell*](http://www.cs.ox.ac.uk/ralf.hinze/WG2.8/33/slides/wg28.hs).
    [WG 2.8, Kefalonia, Greece, May 24, 2015](http://www.cs.ox.ac.uk/ralf.hinze/WG2.8/33/minutes.html)
 
-1. [*Pi-Forall: How to use and implement a dependently-typed language*](https://github.com/sweirich/pi-forall/blob/2014/compose.md).
-	Technical Keynote, Compose Conference. New York, January 30, 2015
 
 1. [*Programming up-to Congruence*](talks/popl15-congruence.pdf).
    ACM Symposium on Principles of Programming Languages (POPL '15).
@@ -120,9 +162,6 @@ Invited Talks and Technical Presentations
 	Cornell CS 50th Anniversary Symposium.
    Ithaca, New York, October 2, 2014
 
-1. [*Depending on Types.*](talks/icfp14.pdf)
-  Keynote address, International Conference on Functional
-  Programming (ICFP). Gothenburg, Sweden, September 3, 2014
 
 1. [*Programming Up-to Congruence, Again.*](talks/wg28-congruence-again.pdf)
 	WG 2.8, Estes Park, Colorado, August 12, 2014
@@ -138,25 +177,16 @@ Invited Talks and Technical Presentations
 1. [*Programming Up-to Congruence.*](talks/wg28-congruence.pdf)
   WG 2.8, Aussios, France, October 14, 2013
 
-1. [*The Pleasure and Pain of Advanced Type Systems.*](talks/facebook13.pdf)
-  Invited speaker, Facebook Faculty Summit.
-  Menlo Park, CA, August 6, 2013
-
 1. [*Paradoxical Typecase.*](talks/wg28-paradoxes.pdf)
   WG 2.8, Anapolis, MD, November 7, 2012
 
 1. *A POPLmark Retrospective: Using Proof Assistants in
-  Programming Language Research.*
-  Invited speaker, [LFMTP 2012: 7th
-  International Workshop on Logical Frameworks and Meta-languages:
+   Programming Language Research.*
+   Invited speaker, [LFMTP 2012: 7th
+   International Workshop on Logical Frameworks and Meta-languages:
   Theory and Practice](http://people.csail.mit.edu/adamc/lfmtp12/programme.html),
-  Copenhagen, Denmark, September 9, 2012
+  Copenhagen, Denmark, September 9, 2012.
 
-1. [*Dependently-typed programming in GHC.*](talks/flops2012.pdf)
- Invited speaker,
- [FLOPS 2012: Eleventh International Symposium on
- Functional and Logic Programming](http://www.org.kobe-u.ac.jp/flops2012/),
- Kobe, Japan, May 25, 2012
 
 1. [*Binders Unbound.*](talks/icfp2011.pdf)
  The 16th ACM SIGPLAN International Conference on Functional
@@ -166,11 +196,6 @@ Invited Talks and Technical Presentations
 1. [*Combining Proofs and Programs.*](talks/shonan2011.pdf)
  Dependently Typed Programming, Shonan Seminar 007,
  Shonan Village, Japan, September 16, 2011
-
-1. [*Combining Proofs and Programs.*](talks/rdp2011.pdf)
- Joint invited speaker for  [Rewriting Techniques and
- Applications (RTA 2011) and Typed Lambda Calculi and Applications (TLCA 2011)](http://www.rdp2011.uns.ac.rs/index.html)
- Novi Sad, Serbia, June 1, 2011
 
 1. [*Combining Proofs and Programs in Trellys.*](talks/mfps2011.pdf)
  Plenary Address, [MFPS 27](http://dauns.math.tulane.edu/%7Emfps/MFPS27/MFPS_XXVII.html).
@@ -281,10 +306,6 @@ Invited Talks and Technical Presentations
   Dagstuhl Seminar 04381: Dependently Typed Programming, Wadern,
   Germany. September 12, 2004
 
-1. [*A Design for Type-Directed Java.*](talks/msr04.pdf)
-  Microsoft Research Lab,
-  Cambridge, UK. August 31, 2004
-
 1. [*A Design for Type-Directed Java.*](talks/wood04.pdf)
   Workshop on Object-Oriented Developments (WOOD '04).
   London, UK, August 2004
@@ -377,9 +398,6 @@ Invited Talks and Technical Presentations
 1. *Functional Pearl: Type-Safe Cast.*
   International Conference on Functional Programming.
   Montreal, Canada. September 2000
-
-1. [*Resource Bound Certification.*](talks/ibm-final.ppt)
-  IBM Research, Hawthorne, NY. June 2000
 
 1. *Resource Bound Certification.*
   ACM Symposium on Principles of Programming Languages (POPL '00).

@@ -1,7 +1,5 @@
 \documentclass[letterpaper,final]{moderncv}
 
-
-
 % Need FontAwesome < 5
 %% https://github.com/FortAwesome/Font-Awesome/blob/v4.7.0/fonts/FontAwesome.otf
 
@@ -28,7 +26,7 @@
 %\renewcommand*{\bibliographyitemlabel}{\@biblabel{\arabic{enumiv}}}
 %\makeatother
 
-%\usepackage{fullpage}
+\usepackage{fullpage}
 
 
 \usepackage{url}
@@ -62,8 +60,6 @@
 
 \makecvtitle
 
-
-
 \section{Academic Positions}
 \cventry{September 2019-present}{ENIAC President's Distinguished Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}
 \cventry{July 2015-August 2019}{Professor}{University of Pennsylvania}{Philadelphia, Pennsylvania}{}{}{}
@@ -76,7 +72,12 @@
 \cventry{March 2022-September 2023}{Principal Language Engineer}{Epic Games}{Philadelphia, Pennsylvania}{}{}
 \cventry{June 2018-August 2019}{Visiting Scientist}{Galois, Inc}{Portland, Oregon}{}{}{}
 \cventry{September-November 2009}{Visiting Researcher}{Microsoft Research}{Cambridge, UK}{}{}{}
-\cventry{June-July 1999}{Intern}{Lucent Technologies}{Murray Hill, New Jersey}{}{}{}
+\cventry{June-July 1999}{Graduate Intern}{Lucent Technologies}{Murray Hill, New Jersey}{}{}{}
+
+\section{Education}
+\cventry{2002}{Ph.D.}{Cornell University}{Ithaca, NY}{Computer Science}{}{}
+\cventry{2000}{M.S.}{Cornell University}{Ithaca, NY}{Computer Science}{}{}
+\cventry{1996}{B.A.}{Rice University}{Houston, TX}{Computer Science, magnum cum laude}{}{}
 
 \section{Education}
 \cventry{2002}{Ph.D.}{Cornell University}{Ithaca, NY}{Computer Science}{}{}
@@ -84,6 +85,10 @@
 \cventry{1996}{B.A.}{Rice University}{Houston, TX}{Computer Science, magnum cum laude}{}{}
 
 \input{temp/cv}
+
+\input{temp/students}
+
+\input{temp/funding}
 
 
 \bibliographystyleconf{unsrtnat}
@@ -102,7 +107,6 @@
 \bibliographymisc{temp/misc}
 \nocitemisc{*}
 
-\input{temp/funding}
 
 \input{temp/talks}
 
@@ -110,7 +114,6 @@
 
 \input{temp/teaching}
 
-\input{temp/students}
 
 \input{temp/university-service}
 \input{temp/outreach}
