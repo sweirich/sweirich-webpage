@@ -43,10 +43,10 @@ Students
 ## Dissertation committee member
   - Calvin Beck, Penn.
   - Lef Ioannidis, Penn.
-  - Peio Borthelle, Université Savoie Mont Blanc in Chambéry, France.
-  - Daniel Marshall, University of Kent.
+  - Danielle Marshall, University of Kent.
   - Nicholas Rioux, Penn.
   - Lawrence Dunn, Penn.
+  - Peio Borthelle, Université Savoie Mont Blanc in Chambéry, France. March 2025.  
   - Paul He, Penn. July 2024.
   - Harrison Goldstein, Penn. May 2024.
   - Riccardo Bianchini, Univ. di Genova, April 2024.
@@ -86,7 +86,7 @@ Students
 
 ## Independent study
 
-  - Doctoral: Daniel Sainati, Fall 2024. Jessica Shi,
+  - Doctoral: Daniel Sainati, Noe De Santo, Francis Rinaldi Fall 2024-Spring 2025. Jessica Shi,
   Fall 2021. Irene Yoon, Spring 2020.  Hengchu Zhang, Yao Li,
   Spring 2017. Antoine Voizard, Kenny Foner, Fall 2015. Antal Spector-Zabusky,
   Spring 2016, Spring 2013. Jennifer Paykin, Fall 2012.  Richard Eisenberg,
@@ -105,7 +105,9 @@ Students
    (Third place). 2014-2015.  Kaycee Anderson, Juan Jose Lopez, Caroline Ho,
    and Johanna Martens (Honorable Mention), 2013-2014.
 
-  - Undergraduate Research: Shubh Agrawal, Maite Kramarz, Annabel Baniak, Summer 2023 (REPL).
+  - Undergraduate Research: 
+  Elliot Brobow, Kevin Diggs, Elan Roth, Elizabeth Austell, Apol Medrano, Summer 2024 (REPL).
+  Shubh Agrawal, Maite Kramarz, Annabel Baniak, Summer 2023 (REPL).
   Daniel Lee, 2021. Joshua Cohen, 2018. Emmanuel Suarez,
   2017-2018. Anastasiya Kravchuk-Kirilyuk, 2017. Matthew Weaver
   2015-2016. Leondra Morse, Summer 2015 (CRA-DREU). Mitchell Stern,

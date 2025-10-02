@@ -5,7 +5,7 @@ Outreach
 
 + [SIGPLAN CARES member](https://www.sigplan.org/Cares/), January 2020-present
 
-+ [Computing Connections Fellowship](https://computingconnections.org/), selection committe, 2022-present
++ [Computing Connections Fellowship](https://computingconnections.org/), selection committe, 2022
 
 + Workshop organizer: (with Ron Garcia)
   ICFP Programming Languages Mentoring Workshop (ICFP-PLMW 2015)

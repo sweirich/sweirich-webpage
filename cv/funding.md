@@ -15,11 +15,12 @@ Current
 1. Research Experience for Undergraduates in Programming Languages (REPL).
    Zdancewic (PI), Weirich, Pierce. NSF CNS-2244494 $322,095.  2023-2027.
 
-1. *SHF: Small: Mechanized reasoning for functional programs.* Weirich,
-   NSF CCF-2006535. $450,000, 10/2020-09/2024.
 
 Completed
 ---------
+
+1. *SHF: Small: Mechanized reasoning for functional programs.* Weirich,
+   NSF CCF-2006535. $450,000, 10/2020-09/2024.
 
 
 1. *SHF: Medium: Collaborative Research: The Theory and Practice of Dependent
