@@ -3,22 +3,46 @@
 
 %% Drafts %%
 
+@unpublished{chan:ccnf,
+  author = {Chan, Jonathan and Weirich, Stephanie},
+  title = {{Commuting Conversions and Join Points for Call-By-Push-Value}},
+  year = {2025},
+  note = {Under submission},
+  month = {Oct},
+  url = {https://ionathan.ch/assets/pdfs/ccnf.pdf}
+}
 
-@Unpublished{sainati:strictness,
+
+@article{sainati:strictness,
   author = {Daniel Sainati and Joseph W. Cutler and Benjamin C. Pierce and Stephanie Weirich},
   title = {Typing Strictness},
-  month = {July},
-  year = {2025}
+  month =        jan,
+  year =         2026,
+  publisher =    {Association for Computing Machinery},
+  address =      {New York, NY, USA},
+  number =       {POPL},
+  journal =      {Proc. ACM Program. Lang.},
+  note =         {To appear.},
+  plclub =       {yes}
 }
 
-@Unpublished{liu:pair-eta,
+@article{liu:pair-eta,
   author = {Yiyun Liu and Stephanie Weirich},
   title = {Algorithmic Conversion with Surjective Pairing: A Syntactic and Untyped Approach},
-  month = {July},
-  year = {2025}
+  month =        jan,
+  year =         2026,
+  publisher =    {Association for Computing Machinery},
+  address =      {New York, NY, USA},
+  number =       {POPL},
+  journal =      {Proc. ACM Program. Lang.},
+  note =         {To appear.},
+  plclub =       {yes}
 }
 
-@Unpublished{liu:pearl,
+
+%% Unrefereed goodness %%
+
+@misc{liu:pearl,
   author =       {Yiyun Liu and Stephanie Weirich},
   title =        {Functional Pearl: A Short and Mechanized Logical Relation for Dependent Type Theories},
   note =         {Draft},
@@ -28,12 +52,10 @@
   year =         2024}
 
 
-%% Unrefereed goodness %%
-
-
 @Unpublished{chan2025boundedfirstclassuniverselevels,
       title={Bounded First-Class Universe Levels in Dependent Type Theory}, 
       author={Jonathan Chan and Stephanie Weirich},
+      month=feb,
       year={2025},
       eprint={2502.20485},
       archivePrefix={arXiv},
@@ -1219,7 +1241,7 @@ semantics},
   pages =   {117--130},
   address = {Copenhagen, Denmark},
   project = "http://www.cis.upenn.edu/~eir/packages/singletons/",
-  pdf = "http://www.seas.upenn.edu/~sweirich/papers/haskell12.pdf"
+  pdf = "papers/haskell12.pdf"
 }
 
 
@@ -1504,7 +1526,7 @@ and apply our proof technique to show that well-typed programs are secure.
   number =       2,
   pages =        {175--210},
   plclub =       {yes},
-  pdf =          {http://www.cis.upenn.edu/~sweirich/papers/gparam-jfp2.pdf},
+  pdf =          {papers/gparam-jfp2.pdf},
   abstract = {
   Propositions that express type equality are a frequent ingredient of
   modern functional programming---they can encode generic
@@ -1529,7 +1551,7 @@ and apply our proof technique to show that well-typed programs are secure.
   title = 	  {Generic Programming with Dependent Types},
   publisher = 	  {Springer-Verlag Berlin Heidelberg},
   year = 		  2012,
-  pdf =          {http://www.cis.upenn.edu/~sweirich/papers/ssgip-journal.pdf},
+  pdf =          {papers/ssgip-journal.pdf},
   number = 	  7470,
   series = 	  "Lecture Notes in Computer Science",
   plclub =    "yes",
@@ -1852,6 +1874,8 @@ loading or runtime type generativity.
 }
 }
 
+#  projecturl = {http://fling-l.seas.upenn.edu/~plclub/cgi-bin/poplmark/index.php?title=The_POPLmark_Challenge},
+
 @InProceedings{pierce:position,
   author = 		  {Benjamin C. Pierce and Peter Sewell and
                   Stephanie Weirich and Steve Zdancewic},
@@ -1864,7 +1888,6 @@ loading or runtime type generativity.
   annote =			  {This position paper is adapted from the introduction
                   to the {\sc POPLMark} Challenge paper~\cite{mmm}.},
   pdf = {http://vstte.ethz.ch/Files/pierce-sewell-weirich-zdancewic.pdf},
-  projecturl = {http://fling-l.seas.upenn.edu/~plclub/cgi-bin/poplmark/index.php?title=The_POPLmark_Challenge},
   abstract = {
 
 How close are we to a world in which mechanically verified software is
@@ -1881,6 +1904,9 @@ technology to the point where we can achieve mechanized metatheory for
 the masses.
  }
 }
+
+
+%% projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
 
 @InProceedings{vytiniotis:boxy,
   TOPIC = {language design},
@@ -1906,7 +1932,6 @@ the masses.
   MONTH = Sep,
   YEAR = 2006,
   PDF = {http://repository.upenn.edu/cis_papers/275/},
-  projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
   CATEGORY = {fcp},
   address = {Portland, OR, USA},
   PLCLUB = {yes},
@@ -1988,7 +2013,7 @@ type of the pointcut.
 }
 }
 
-
+%%   projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
 
 @article{peyton-jones:practical,
   author = 		  {Simon L. {Peyton Jones} and Dimitrios Vytiniotis and Stephanie Weirich and Mark Shields},
@@ -2000,7 +2025,6 @@ type of the pointcut.
   volume =       17,
   number =       1,
   month =        Jan,
-  projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
   pdf = {http://repository.upenn.edu/cis_papers/315/},
   abstract =     {
 Haskell's popularity has driven the need for ever more expressive type
@@ -2038,7 +2062,8 @@ The paper is long, but is strongly tutorial in style.
   }
 }
 
-
+%%   projecturl =   {http://alliance.seas.upenn.edu/~plclub/cgi-bin/poplmark/index.php?title=The_POPLmark_Challenge},
+%%   ps = {http://www.cis.upenn.edu/proj/plclub/mmm/poplmark/poplmark.ps},
 @InProceedings{mmm,
   author = 		  {Brian E. Aydemir and Aaron Bohannon and Matthew Fairbairn and J. Nathan Foster and Benjamin C. Pierce and Peter Sewell and Dimitrios Vytiniotis and Geoffrey Washburn and Stephanie Weirich and Steve Zdancewic},
   title = 		  {Mechanized Metatheory for the Masses: The {POPLmark} Challenge},
@@ -2047,9 +2072,9 @@ The paper is long, but is strongly tutorial in style.
   year =			  2005,
   address =      {Oxford, UK},
   pages =        {50--65},
-  projecturl =   {http://alliance.seas.upenn.edu/~plclub/cgi-bin/poplmark/index.php?title=The_POPLmark_Challenge},
-  ps = {http://www.cis.upenn.edu/proj/plclub/mmm/poplmark/poplmark.ps},
-  pdf = "http://repository.upenn.edu/cis_papers/235/",
+  url = {https://link.springer.com/chapter/10.1007/11541868_4},
+  doi = {https://doi.org/10.1007/11541868_4},
+  pdf = {https://repository.upenn.edu/handle/20.500.14332/6273},
   abstract = {How close are we to a world where every paper on
 programming languages is accompanied by an electronic appendix with
 machine-checked proofs?
@@ -2147,6 +2172,7 @@ higher-order structures in polymorphic languages.
 }
 
 %% 20 pages
+%%   ps = "http://www.cis.upenn.edu/~lhuang3/pubs/tdj-short.ps",
 @InProceedings{weirich:tdj,
   plclub =       "yes",
   author = 		  {Stephanie Weirich and Liang Huang},
@@ -2163,7 +2189,7 @@ higher-order structures in polymorphic languages.
                   MS-CIS-04-11.},
   projecturl =    "http://www.seas.upenn.edu/%7Esweirich/tdj/tdj.htm",
   pdf = "http://repository.upenn.edu/cis_papers/275/",
-  ps = "http://www.cis.upenn.edu/~lhuang3/pubs/tdj-short.ps",
+
 
   abstract = {
   Type-directed programming is an important and widely used
@@ -2273,7 +2299,7 @@ higher-order structures in polymorphic languages.
                  is University of
                  Pennsylvania Technical Computer and Information Science
                  Report MS-CIS-04-26},
-  ps =           "http://www.cis.upenn.edu/~sweirich/itaname/itaname.pdf",
+  ps =           "papers/itaname/itaname.pdf",
   abstract =
 {Two different ways of defining ad-hoc polymorphic operations commonly
 occur in programming languages. With the first form polymorphic
@@ -2797,7 +2823,7 @@ higher-order structures in polymorphic languages.  } }
   title = 	 {Generative Type Abstraction and Type-level Computation (Extended Version) },
   month = 	 nov,
   year = 	 2010,
-  pdf = "http://www.cis.upenn.edu/~sweirich/papers/newtypes.pdf",
+  pdf = "papers/newtypes.pdf",
   abstract = "Modular languages support generative type abstraction,
 ensuring that an abstract type is distinct from its
 representation, except inside the implementation where the
@@ -2848,7 +2874,7 @@ We present the load-calculus, used to model dynamic loading, and prove it sound.
   YEAR = 2006,
   NUMBER = {MS-CIS-05-23},
   MONTH = {April},
-  PDF = {http://www.cis.upenn.edu/~sweirich/boxy/boxy-techreport.pdf},
+  PDF = {boxy/boxy-techreport.pdf},
   CATEGORY = {fcp},
   CATTYPE = {report},
   HISTORICAL = {This report accompanies the boxy types paper and provides proofs for the claims in that paper.}
@@ -2866,7 +2892,7 @@ We present the load-calculus, used to model dynamic loading, and prove it sound.
   CATEGORY = {gadt},
   CATTYPE = {report},
   plclub = "yes",
-  PDF = {http://www.cis.upenn.edu/~sweirich/gadt/wobbly-techreport.pdf}
+  PDF = {gadt/wobbly-techreport.pdf}
 }
 
 
@@ -2885,6 +2911,7 @@ We give our language operational meaning via a type-directed translation into an
 
 }
 
+%   projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
 @TechReport{peyton-jones:practical-tr,
   author = 		  {Simon L. {Peyton Jones} and Dimitrios Vytiniotis and Stephanie Weirich and Mark Shields},
   title = 		  {Practical type inference for arbitrary-rank types (Technical appendix)},
@@ -2892,7 +2919,6 @@ We give our language operational meaning via a type-directed translation into an
   year =			  2005,
   institution =  {University of Pennsylvania},
   number =		  {MIS-CIS-05-14},
-  projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
   pdf = "http://repository.upenn.edu/cis_reports/58/"
 }
 
@@ -2942,7 +2968,7 @@ the program depend on the implementation of a given type.
   year =			  2004,
   number =       {MS-CIS-05-26},
 
-  pdf =          {http://www.cis.upenn.edu/~sweirich/papers/gadt/MS-CIS-05-26.pdf},
+  pdf =          {papers/gadt/MS-CIS-05-26.pdf},
  INSTITUTION =   {University of Pennsylvania, Computer and Information Science Department},
  ADDRESS = {Levine Hall,
              3330 Walnut Street, Philadelphia, Pennsylvania, 19104-6389},
@@ -2973,7 +2999,7 @@ misc{dantas:poly-aspects,
   month = oct,
   year = 2004,
   projecturl = {http://www.cs.princeton.edu/sip/projects/aspectml/},
-  pdf =  "http://www.cis.upenn.edu/~sweirich/papers/poly/poly-aspect.pdf",
+  pdf =  "papers/poly/poly-aspect.pdf",
   note = {An extended version of this paper is Princeton University Computer Science Technical Report TR-717-04}
 }
 
@@ -3040,9 +3066,8 @@ misc{dantas:poly-aspects,
 abstract =     {
 Ad-hoc polymorphism is a compelling addition to typed programming languages. There are two different forms of ad-hoc polymorphism. With the nominal form, the execution of an operation is determined solely by the name of the type argument, whereas with the structural form, operations are defined by case analysis on the structure of types. The two forms differ in the way that they treat user-defined types. Operations defined by the nominal approach are considered "open"--the programmer can add cases for new types without modifying existing code. The operations must be extended however with specialized code for the new types, and it may be tedious and even difficult to add extensions that apply to a potentially large universe of user-defined types. Structurally defined operations apply to new types by treating them as equal to their underlying definitions, so no new cases for new types are necessary. However this form is considered "closed" to extension, as the behaviour of the operations cannot be differentiated for the new types. This form destroys the distinctions that user-defined types are designed to express. Both approaches have their benefits, so it is important to provide both capabilities in a single language that is expressive enough to decouple the "openness" issue from the way that user-defined types are treated. We present such a language that supports both forms of ad-hoc polymorphism.}
 }
-#  pdf =           "http://www.cis.upenn.edu/~sweirich/itaname/itaname-extended.pdf",
 
-
+%%  pdf =           "http://www.cis.upenn.edu/~sweirich/itaname/itaname-extended.pdf",
 @TechReport{washburn:mtr,
   author = 		  {Geoffrey Washburn and Stephanie Weirich},
   title = 		  {Unifying nominal and structural ad-hoc
@@ -3050,7 +3075,7 @@ Ad-hoc polymorphism is a compelling addition to typed programming languages. The
   institution =  {University of Pennsylvania},
   year = 		  2004,
   month =		  mar,
-  pdf = "http://www.cis.upenn.edu/~sweirich/papers/itaname/tech-report-mar04.pdf",
+  pdf = "papers/itaname/tech-report-mar04.pdf",
 
   abstract = "Ad-hoc polymorphism allows the execution of programs to
   depend on type information. In modern systems, it is useful for
@@ -3077,7 +3102,7 @@ Ad-hoc polymorphism is a compelling addition to typed programming languages. The
 misc{weirich:erasure-manuscript,
   author = 		  {Stephanie Weirich},
   title = 		  {Higher-Order Intensional Type Analysis in Type Erasure Semantics},
-  note = 		  {At \url{http://www.cis.upenn.edu/~sweirich/papers/erasure/erasure-paper-july03.pdf}},
+  note = 		  {At \url{papers/erasure/erasure-paper-july03.pdf}},
   month =		  jul,
   year =			  2003,
   ps =           "http://www.seas.upenn.edu/~sweirich/papers/erasure/erasure-paper-july03.ps",

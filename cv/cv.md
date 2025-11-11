@@ -1,5 +1,6 @@
 Honors
 ======
+  * Invited Professor, Fondation Sciences Mathématiques de Paris, 2026.
   * Milner Lecture, University of Edinburgh, 2022
   * SIGPLAN Robin Milner Young Researcher award, 2016
   * Most Influential ICFP 2006 Paper, awarded in 2016
