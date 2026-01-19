@@ -34,59 +34,16 @@ Keynotes
  Novi Sad, Serbia, June 1, 2011.
 
 
-Industry Presentations
-======================
-
-1. *How to implement the Lambda Calculus, Quickly*. 
-   [Haskell Love](https://haskell.love/), virtual developer conference. September 10, 2021.
-
-1. *Strongly-Typed System F in GHC*. YOW! Lambda Jam Online 2020. July 2020.
-
-1. *Dependent Types in Haskell*.
-   [BOBkonf invited speaker](https://bobkonf.de/2019-summer/) (research track). Berlin, Germany. August 21, 2019.
-
-1. [*Dependent Types in Haskell*](https://skillsmatter.com/skillscasts/12195-keynote-dependent-types-in-haskell).
-   Haskell eXchange keynote, London, October 2018.
-
-1. *Work-in-progress: Verifying the Glasgow Haskell Compiler Core language using the Coq proof assistant*.
-   Intel Labs, Hillsboro, OR. August 2018.
-
-1. *Dependent Types in Haskell.* Invited speaker, Comcast Labs Connect: Functional Programming. March 9, 2018.
-
-1. [*Dependent Types in Haskell*](https://www.youtube.com/watch?v=wNa3MMbhwS4&t=25s).
-   StrangeLoop 2017, St. Louis, MO, September 2017.
-
-1. [*Depending on Types*](talks/typelevel16.pdf).
-   [Typelevel Summit](http://typelevel.org/), Philadelphia, PA, March 2-3, 2016.
-
-1. [*Dynamic Typing in GHC*](https://www.youtube.com/watch?v=asdABzBUoGM).
-   [Compose :: Conference](http://www.composeconference.org/), Brooklyn, NY, February 4-5, 2016.
-
-1. [*Visible Type Application*](talks/vta-2015.pdf).
-   Microsoft Research, Cambridge, UK, November 6, 2015.
-
-1. [*Depending on Types*](https://www.youtube.com/watch?v=n-b1PYbRUOY).
-   [Code Mesh 2015](http://www.codemesh.io/), London, November 4, 2015.
-
-1. [*Pi-Forall: How to use and implement a dependently-typed language*](https://github.com/sweirich/pi-forall/blob/2014/compose.md).
-	Technical Keynote, Compose Conference. New York, January 30, 2015.
-
-1. [*The Pleasure and Pain of Advanced Type Systems.*](talks/facebook13.pdf)
-   Facebook Faculty Summit.
-   Menlo Park, CA, August 6, 2013.
-
-1. [*A Design for Type-Directed Java.*](talks/msr04.pdf)
-   Microsoft Research Lab,
-   Cambridge, UK. August 31, 2004.
-  
-1. [*Resource Bound Certification.*](talks/ibm-final.ppt)
-   IBM Research, Hawthorne, NY. June 2000.
   
 
 Conference talks, Seminars, and other Technical presentations
 ============================================================
 
-1. [*A tale of four lambda calculus interpreters*](talks/wg28-york-maine.pdf). WG 2.8 Meeting, York, Maine. May 2025.
+1. [*Algorithmic Conversion with Surjective Pairing: A Syntactic
+and Untyped Approach*](talks/POPL_2026.pdf). POPL 2026, Rennes, France. January 16, 2026.
+
+1. [*A tale of four lambda calculus interpreters*](talks/wg28-york-maine.pdf). 
+WG 2.8 Meeting, York, Maine. May 2025.
 
 1. [*Tracking how dependently-typed functions use their arguments*](talks/chalmers25.pdf). 
 Chalmers Department Seminar, Gothenberg, Sweden. 7 March 2025.
@@ -413,3 +370,52 @@ Chalmers Department Seminar, Gothenberg, Sweden. 7 March 2025.
 1. [*Intensional Polymorphism in Type-Erasure Semantics.*](http://www.cs.cornell.edu/sweirich/talks/Typepass-final/index.htm)
   International conference on Functional Programming (ICFP '98).
   Baltimore, MD, USA, September 1998
+
+
+Industry Presentations
+======================
+
+1. *How to implement the Lambda Calculus, Quickly*. 
+   [Haskell Love](https://haskell.love/), virtual developer conference. September 10, 2021.
+
+1. *Strongly-Typed System F in GHC*. YOW! Lambda Jam Online 2020. July 2020.
+
+1. *Dependent Types in Haskell*.
+   [BOBkonf invited speaker](https://bobkonf.de/2019-summer/) (research track). Berlin, Germany. August 21, 2019.
+
+1. [*Dependent Types in Haskell*](https://skillsmatter.com/skillscasts/12195-keynote-dependent-types-in-haskell).
+   Haskell eXchange keynote, London, October 2018.
+
+1. *Work-in-progress: Verifying the Glasgow Haskell Compiler Core language using the Coq proof assistant*.
+   Intel Labs, Hillsboro, OR. August 2018.
+
+1. *Dependent Types in Haskell.* Invited speaker, Comcast Labs Connect: Functional Programming. March 9, 2018.
+
+1. [*Dependent Types in Haskell*](https://www.youtube.com/watch?v=wNa3MMbhwS4&t=25s).
+   StrangeLoop 2017, St. Louis, MO, September 2017.
+
+1. [*Depending on Types*](talks/typelevel16.pdf).
+   [Typelevel Summit](http://typelevel.org/), Philadelphia, PA, March 2-3, 2016.
+
+1. [*Dynamic Typing in GHC*](https://www.youtube.com/watch?v=asdABzBUoGM).
+   [Compose :: Conference](http://www.composeconference.org/), Brooklyn, NY, February 4-5, 2016.
+
+1. [*Visible Type Application*](talks/vta-2015.pdf).
+   Microsoft Research, Cambridge, UK, November 6, 2015.
+
+1. [*Depending on Types*](https://www.youtube.com/watch?v=n-b1PYbRUOY).
+   [Code Mesh 2015](http://www.codemesh.io/), London, November 4, 2015.
+
+1. [*Pi-Forall: How to use and implement a dependently-typed language*](https://github.com/sweirich/pi-forall/blob/2014/compose.md).
+	Technical Keynote, Compose Conference. New York, January 30, 2015.
+
+1. [*The Pleasure and Pain of Advanced Type Systems.*](talks/facebook13.pdf)
+   Facebook Faculty Summit.
+   Menlo Park, CA, August 6, 2013.
+
+1. [*A Design for Type-Directed Java.*](talks/msr04.pdf)
+   Microsoft Research Lab,
+   Cambridge, UK. August 31, 2004.
+  
+1. [*Resource Bound Certification.*](talks/ibm-final.ppt)
+   IBM Research, Hawthorne, NY. June 2000.

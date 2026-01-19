@@ -24,6 +24,7 @@ Outreach
     - 2000, [Third Annual ICFP Programming Contest](http://www.cs.cornell.edu/icfp/)
 
 + Panelist/Speaker (External events):
+    - *On building a successful research group*, [RTFM @ POPL](https://popl26.sigplan.org/home/rtfm-2026), January 2026
     - [Researcher Panel](https://popl22.sigplan.org/details/PLMW-2022-papers/8/Panel-live-only-no-recording-), PLMW @POPL, January 18, 2022
     - [Panel on Advising and Research](https://pldi21.sigplan.org/details/PLMW-PLDI-2021/7/Panel-on-Advising-and-Research). PLMW @PLDI, June 22, 2021
     - [“Dependent types—salvation or plague?”](https://www.lambdadays.org/lambdadays2021?utm_source=ESL&utm_medium=email&utm_campaign=CBV+America+2021#free-meetup), panel discussion at LambdaDays, Feb 4th, 2021
