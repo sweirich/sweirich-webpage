@@ -4,7 +4,7 @@ Tutorials
 * *TBA*. Midlands Graduate School, April 2026.
 
 * *On Building a Successful Research Group*. [RTFM 2026](https://popl26.sigplan.org/home/rtfm-2026). 
-  Rennes, France, January 13, 2026.
+  Rennes, France, January 13, 2026
   
 * [*Implementing Dependent Types in pi-forall*](https://www.cs.uoregon.edu/research/summerschool/summer23).
   Oregon Programming Languages Summer School: Types, Logic, and Verification.
