@@ -39,6 +39,15 @@ Keynotes
 Conference talks, Seminars, and other Technical presentations
 ============================================================
 
+1. *Tracking how dependently-typed functions use their arguments*.
+PPS Seminar. Institut de Recherche en Informatique Fondamentale (IRIF). Paris, France. February 26, 2026.
+
+1. *Tracking how dependently-typed functions use their arguments*.
+Epicure team, INRIA. Rennes, France. February 10, 2026.
+
+1. *Tracking how dependently-typed functions use their arguments*.
+Galinette team, INRIA. Nantes, France. February 6, 2026.
+
 1. [*Algorithmic Conversion with Surjective Pairing: A Syntactic
 and Untyped Approach*](talks/POPL_2026.pdf). POPL 2026, Rennes, France. January 16, 2026.
 

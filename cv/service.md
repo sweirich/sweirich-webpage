@@ -12,6 +12,7 @@ Research Community Service
 
 ## Journal Leadership
 
+- Advisory Board of PACMPL, member at large (issue ICFP), 2023-2026.
 - Editorial Board of TheoreTICs, 2021-2024.
 - Associate Editor of ACM TOPLAS, 2019-2023.
 - Editorial Board of Logical Methods in Computer Science, 2016-2024.
@@ -70,6 +71,7 @@ Research Community Service
 
 ## Program Committee Membership (workshop)
 
+- TYPES 2026.
 - TYPES 2021.
 - TyDe 2021.
 - CoqPL Workshop 2020.
@@ -96,7 +98,8 @@ Research Community Service
 
 ## Steering Committee Membership
 
-- ESOP, 2023-2025.
+- WITS, 2024-2026
+- ESOP, 2023-2025
 - ICFP, 2009-2012, 2017-2022. SC Chair, 2021-2022
 - POPL, 2017-2021
 - PLMW, 2012

@@ -1,6 +1,6 @@
 Department, School and University Service
 ========================================
-- FPC, 2023-present.
+- Faculty Personnel Committee, 2023-2025.
 - Faculty Council on Access and Academic Support, 2019-2023.
 - University committee on the Facilities,  2022-2023, 2011-2014. Chair 2012-2014.
 - CIS Lecturer Hiring committee, 2022-2023.
@@ -12,9 +12,9 @@ Department, School and University Service
 - SEAS Diversity Committee, 2015-2016.
 - Penn Forum for Women Faculty, 2015-2016.
 - Faculty advisor to CommuniTech (Penn undergraduate service
-    organization). 2012-present.
+    organization). 2012.
 - Faculty advisor to AΩE International Engineering and Technical
-    Science Sorority. 2012-present.
+    Science Sorority. 2012.
 - Graduate student admissions chair, 2013-2014, 2012-2013.
 - CIS seminar series coordinator, 2011-2012.
 - Faculty Council, 2010-2012.

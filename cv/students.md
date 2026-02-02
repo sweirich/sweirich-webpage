@@ -7,7 +7,6 @@ Students
 ## Dissertation supervision (current students)
   - Yiyun Liu, Aug 2021-
   - Jonathan Chan, Aug 2022-
-  - Cassia Torczon (co-advised with Benjamin Pierce), Aug 2022-
   - Daniel Sainati (co-advised with Benjamin Pierce), Aug 2024-
 
 ## Dissertation supervision (graduated students)
@@ -54,8 +53,9 @@ Students
   - Joeseph Vanderwaart, Carnegie Mellon University, August 2006.
 
 ## Dissertation committee member (Penn)
-  - Joe Cutler, Penn. 
+  - Jessica Shi, Penn.
   - Calvin Beck, Penn.
+  - Joe Cutler, Penn. February 2026. 
   - Lef Ioannidis, Penn, June 2025.
   - Nicholas Rioux, Penn, June 2025.
   - Lawrence Dunn, Penn, April 2025.
@@ -90,7 +90,8 @@ Students
 ## Independent study
 
   - Doctoral: Daniel Sainati, Fall 2024-Spring 2025. Noé De Santo, Fall
-  2024-Spring 2025. Francis Rinaldi, Fall 2024-Spring 2025. Jessica Shi,
+  2024-Spring 2025. Francis Rinaldi, Fall 2024-Spring 2025. 
+  Cassia Torczon, Fall 2022-Spring 2024. Jessica Shi,
   Fall 2021. Irene Yoon, Spring 2020.  Hengchu Zhang, Yao Li,
   Spring 2017. Antoine Voizard, Kenny Foner, Fall 2015. Antal Spector-Zabusky,
   Spring 2016, Spring 2013. Jennifer Paykin, Fall 2012.  Richard Eisenberg,

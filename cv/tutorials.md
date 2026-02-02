@@ -1,6 +1,8 @@
 Tutorials
 =========
 
+* *TBA*. Midlands Graduate School, April 2026.
+
 * *On Building a Successful Research Group*. [RTFM 2026](https://popl26.sigplan.org/home/rtfm-2026). 
   Rennes, France, January 13, 2026.
   
