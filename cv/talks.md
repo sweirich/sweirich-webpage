@@ -43,7 +43,7 @@ Conference talks, Seminars, and other Technical presentations
 1. *Tracking how dependently-typed functions use their arguments*.
 Cambium team. Inria Paris, France. March 13, 2026.
 
-1. *Commuting Conversions and CBPV*. IFIP WG 2.8. Viana do Castelo, Portugal. March 2, 2026.
+1. [*Commuting Conversions and CBPV*](talks/w28-portugal.pdf). IFIP WG 2.8. Viana do Castelo, Portugal. March 2, 2026.
 
 1. *Tracking how dependently-typed functions use their arguments*.
 PPS Seminar. Institut de Recherche en Informatique Fondamentale (IRIF). Paris, France. February 26, 2026.
