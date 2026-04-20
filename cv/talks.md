@@ -395,6 +395,8 @@ Chalmers Department Seminar, Gothenberg, Sweden. 7 March 2025.
 Industry Presentations
 ======================
 
+1. *TBA*. [Lambda World](https://lambda.world/). Malaga, Spain. October 29-30, 2026. 
+
 1. *How to implement the Lambda Calculus, Quickly*. 
    [Haskell Love](https://haskell.love/), virtual developer conference. September 10, 2021.
 
