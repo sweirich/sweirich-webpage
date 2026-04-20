@@ -1,6 +1,8 @@
 Keynotes
 ========
 
+1. TBA. Haskell Symposium. Indianapolis, USA. August 2026.
+
 1. [*Tracking how dependently-typed functions use their arguments*](talks/lics-icalp-fscd-2024.pdf). 
    [LICS/ICALP/FSCD](https://compose.ioc.ee/icalp2024/) Joint Invited Speaker. Talinn, Estonia. 10 July, 2024.
 
@@ -39,8 +41,10 @@ Keynotes
 Conference talks, Seminars, and other Technical presentations
 ============================================================
 
-
 1. *Tracking how dependently-typed functions use their arguments*.
+CHoCoLa Seminar. Lyon, France. April 2, 2026.
+
+1. [*Tracking how dependently-typed functions use their arguments*.](talks/inria26_paris.pdf)
 Cambium team. Inria Paris, France. March 13, 2026.
 
 1. [*Commuting Conversions and CBPV*](talks/w28-portugal.pdf). IFIP WG 2.8. Viana do Castelo, Portugal. March 2, 2026.

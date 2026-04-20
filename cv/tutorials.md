@@ -1,7 +1,9 @@
 Tutorials
 =========
 
-* *TBA*. Midlands Graduate School, April 2026.
+* [*Implement your POPL paper (in Haskell)*](https://sweirich.github.io/rebound). [Midlands Graduate School](https://ulrikbuchholtz.dk/mgs2026/), April 2026.
+
+* [*Implement your POPL paper (in Haskell)*](https://sweirich.github.io/rebound). INRIA Paris, April 8, 2026.
 
 * *On Building a Successful Research Group*. [RTFM 2026](https://popl26.sigplan.org/home/rtfm-2026). 
   Rennes, France, January 13, 2026

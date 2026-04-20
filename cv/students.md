@@ -5,11 +5,12 @@ Students
   - Joachim Breitner, Aug 2016-2018.
 
 ## Dissertation supervision (current students)
-  - Yiyun Liu, Aug 2021-
   - Jonathan Chan, Aug 2022-
   - Daniel Sainati (co-advised with Benjamin Pierce), Aug 2024-
 
 ## Dissertation supervision (graduated students)
+  - Yiyun Liu, May 2026.
+    *Dependency Tracking and Dependent Types*.
   - Pritam Choudhury, 2023.
     [*Dependency and Linearity Analyses in Pure Type Systems*](https://repository.upenn.edu/handle/20.500.14332/59273).
   - Yao Li, August 2022.
@@ -41,6 +42,7 @@ Students
 
 
 ## Dissertation committee member (external)
+  - Josselin Poiret, France. September 2026.
   - Peio Borthelle, Université Savoie Mont Blanc in Chambéry, France. March 2025.
   - Riccardo Bianchini, Univ. di Genova, April 2024.
   - Steven Keuchel, University of Ghent, June 2018.
