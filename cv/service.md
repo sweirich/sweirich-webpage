@@ -3,6 +3,7 @@ Research Community Service
 
 ## Conference and Symposium Leadership
 
+- Interactive Theorem Proving (ITP) 2027, co-program chair.
 - Principles of Programming Languages (POPL) 2026, associate chair.
 - European Symposium on Programming (ESOP) 2024, program chair.
 - International Conference on Functional Programming (ICFP) 2020, general chair.
@@ -39,6 +40,7 @@ Research Community Service
 
 ## Program Committee Membership (conference/symposium)
 
+- Formal Structures for Computation and Deduction (FSCD) 2027.
 - International Conference on Functional Programming (ICFP) 2025.
 - Certified Proofs and Programs (CPP) 2025.
 - International Conference on Functional Programming (ICFP) 2022.
@@ -55,8 +57,7 @@ Research Community Service
 - Principles of Programming Languages (POPL) 2014.
 - Functional and Logic Programming (FLOPS) 2014.
 - Typed Lambda Calculi and Applications (TLCA) 2013.
-- Asian Symposium on Programming Languages and Systems
-    (APLAS) 2012.
+- Asian Symposium on Programming Languages and Systems (APLAS) 2012.
 - International Symp. on Principles and Practice of
     Declarative Programming (PPDP) 2012.
 - Certified Proofs and Programs (CPP) 2011.
@@ -99,7 +100,7 @@ Research Community Service
 ## Steering Committee Membership
 
 - WITS, 2024-2026
-- ESOP, 2023-2025
+- ESOP, 2023-2026
 - ICFP, 2009-2012, 2017-2022. SC Chair, 2021-2022
 - POPL, 2017-2021
 - PLMW, 2012
