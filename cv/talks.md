@@ -1,9 +1,9 @@
 Keynotes
 ========
 
-1. [*What Have We Learned about Dependently Typed Programming from Haskell?*](https://github.com/sweirich/rebound/tree/main/tutorial/main/src/talks/hs26). [Haskell Symposium](https://icfp26.sigplan.org/home/haskellsymp-2026). Indianapolis, USA. August 29, 2026.
+1. [*What Have We Learned about Dependently Typed Programming from Haskell?*](https://github.com/sweirich/rebound/tree/main/tutorial/main/src/talks/hs26). Keynote presentation at [Haskell Symposium](https://icfp26.sigplan.org/home/haskellsymp-2026). Indianapolis, USA. August 29, 2026.
 
-1. [*Functional / Logic Programming in Verse*](talks/SCW_Verse.pdf). [LOPSTR+PPDP](https://icfp26.sigplan.org/home/lopstr-ppdp-2026). Indianapolis, USA. August 27, 2026.
+1. [*Functional / Logic Programming in Verse*](talks/SCW_Verse.pdf). Keynote presentation at [LOPSTR+PPDP](https://icfp26.sigplan.org/home/lopstr-ppdp-2026). Indianapolis, USA. August 27, 2026.
 
 1. [*Tracking how dependently-typed functions use their arguments*](talks/lics-icalp-fscd-2024.pdf). 
    [LICS/ICALP/FSCD](https://compose.ioc.ee/icalp2024/) Joint Invited Speaker. Talinn, Estonia. 10 July, 2024.
@@ -38,12 +38,16 @@ Keynotes
  Novi Sad, Serbia, June 1, 2011.
 
 
-  
-
 Conference talks, Seminars, and other Technical presentations
 ============================================================
 
-1. [*Well-scoped de Bruijn expressions in Dependent Haskell*](https://github.com/sweirich/rebound/tree/main/tutorial/main/src/talks/bristol) University of Bristol. July 15, 2026.
+1. *Tracking how dependently-typed functions use their arguments*.
+MPI-SWS, Saarbr\"ucken, Germany. September 18, 2026.
+
+1. [*Well-scoped de Bruijn expressions in Dependent Haskell*](https://github.com/sweirich/rebound/tree/main/tutorial/main/src/talks/bristol). University of Bristol. July 15, 2026.
+
+1. *Tracking how dependently-typed functions use their arguments*.
+EPFL, Lausanne, Switzerland. May 5, 2026.
 
 1. *Tracking how dependently-typed functions use their arguments*.
 CHoCoLa Seminar. Lyon, France. April 2, 2026.
