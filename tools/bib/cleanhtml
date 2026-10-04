@@ -13,6 +13,6 @@ s/ \]//
 s/journal_//
 s/conf_//
 s/unpub_//
+s/drafts_//
 s/thesis_//
 s/techreport_//
-s/chapters_//

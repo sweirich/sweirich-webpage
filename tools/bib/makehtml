@@ -8,9 +8,9 @@ LOCAL=../../content/
 # it divides these files up into the following files, using the bibextract
 # utility.
 #  - journal.bib 
-#  - chapters.bib
 #  - thesis.bib
 #  - unpub.bib
+#  - drafts.bib
 #  - techreport.bib
 #  - misc.bib
 
@@ -33,13 +33,13 @@ export TMPDIR=.
 FLAGS="-s boldtitle -nodoc -d -r -both -nobibsource -nf ps PS -nf pdf PDF -nf projecturl Project"
 
 ###### Create source files
-bib2bib -c '$type = "ARTICLE"'  $SOURCEBIB > journal.bib
-bib2bib -c '$type = "INPROCEEDINGS"' $SOURCEBIB >> journal.bib
-bib2bib -c '$type = "INCOLLECTION"'  $SOURCEBIB > chapters.bib
-bib2bib -c '$type = "UNPUBLISHED"' $SOURCEBIB > unpub.bib
+bib2bib -c '$type = "ARTICLE" and not exists draft and not exists misc'  $SOURCEBIB > journal.bib
+bib2bib -c '$type = "INPROCEEDINGS" and not exists draft and not exists misc' $SOURCEBIB >> journal.bib
+bib2bib -c '$type = "UNPUBLISHED" and not exists draft' $SOURCEBIB > unpub.bib
+bib2bib -c '($type = "MISC" or $type = "UNPUBLISHED") and exists draft' $SOURCEBIB > drafts.bib
 bib2bib -c '$type = "PHDTHESIS"' $SOURCEBIB > thesis.bib
 bib2bib -c '$type = "TECHREPORT"' $SOURCEBIB > techreport.bib
-bib2bib -c '$type = "MISC"' $SOURCEBIB > misc.bib
+bib2bib -c '($type = "MISC" and not exists draft) or exists misc' $SOURCEBIB > misc.bib
 
 ###### Header information
 touch publications.html
@@ -86,19 +86,20 @@ echo "</td></tr>" >> publications.html
 echo "</td></tr>" >> abstracts.html
 
 
-###### Chapter Publications
+###### Draft papers
+
 # Put them in an table cell 
 echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> publications.html
-echo "<font size=4>Book Chapters</font>" >> publications.html
+echo "<font size=4>Draft papers</font>" >> publications.html
 echo "<tr><td width="100%" class="lightaqua" valign="middle" align="left">" >> abstracts.html
-echo "<font size=4>Book Chapters</font>" >> abstracts.html
+echo "<font size=4>Draft papers</font>" >> abstracts.html
 
 # Generate the html from the bibfile
-bibtex2html $FLAGS chapters.bib 
+bibtex2html $FLAGS drafts.bib 
 
 # Clean up the resulting html
-sed -f cleanhtml chapters.html >> publications.html
-sed -f cleanhtml chapters_abstracts.html >> abstracts.html
+sed -f cleanhtml drafts.html >> publications.html
+sed -f cleanhtml drafts_abstracts.html >> abstracts.html
 
 # close the cell
 echo "</td></tr>" >> publications.html
@@ -182,12 +183,12 @@ echo "</font></td></tr></table></table></center></html>" >> abstracts.html
 ## clean up temporary files
 rm journal.bib
 rm journal.html
-rm chapters.bib
-rm chapters.html
 rm thesis.bib
 rm thesis.html
 rm unpub.bib
 rm unpub.html
+rm drafts.bib
+rm drafts.html
 rm techreport.bib
 rm techreport.html
 rm *.old

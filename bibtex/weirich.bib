@@ -53,11 +53,12 @@ series = {Haskell '26}
   plclub =       {yes},
   doi =          {10.1145/3798210},
   pdf = {http://www.seas.upenn.edu/~sweirich/papers/oopsla26.pdf}, 
-  note =         {Distinguished Paper Award.}
+  note =         {Distinguished Paper Award. \href{#chan:ccnf-artifact}{Artifact} available.}
 }
 
 
 @article{sainati:strictness,
+  note = {\href{#sainati:strictness-artifact}{Artifact} available.},
   author = {Daniel Sainati and Joseph W. Cutler and Benjamin C. Pierce and Stephanie Weirich},
   title = {Typing Strictness},
   month =        jan,
@@ -72,6 +73,7 @@ series = {Haskell '26}
 }
 
 @article{liu:pair-eta,
+  note = {\href{#liu:pair-eta-artifact}{Artifact} available.},
   author = {Yiyun Liu and Stephanie Weirich},
   title = {Algorithmic Conversion with Surjective Pairing: A Syntactic and Untyped Approach},
   month =        jan,
@@ -97,6 +99,7 @@ series = {Haskell '26}
 %% Unrefereed goodness %%
 
 @misc{liu:pearl,
+  draft = {yes},
   author =       {Yiyun Liu and Stephanie Weirich},
   title =        {Functional Pearl: A Short and Mechanized Logical Relation for Dependent Type Theories},
   note =         {Draft},
@@ -107,6 +110,7 @@ series = {Haskell '26}
 
 
 @Unpublished{chan2025boundedfirstclassuniverselevels,
+  draft = {yes},
       title={Bounded First-Class Universe Levels in Dependent Type Theory}, 
       author={Jonathan Chan and Stephanie Weirich},
       month=feb,
@@ -118,6 +122,7 @@ series = {Haskell '26}
 }
 
 @misc{suarez:logrel,
+  draft = {yes},
   author =       {Emmanuel {Su\'{a}rez Acevedo} and Stephanie Weirich},
   title =        {Making Logical Relations More Relatable (Proof Pearl)},
   month =     Sep,
@@ -128,6 +133,7 @@ series = {Haskell '26}
 }
 
 @misc{spectorzabusky2019embracing,
+  draft = {yes},
       title={Embracing a mechanized formalization gap}, 
       author={Antal Spector-Zabusky and Joachim Breitner and Yao Li and Stephanie Weirich},
       year={2019},
@@ -149,6 +155,7 @@ series = {Haskell '26}
 }
 
 @misc{aydemir:lngen,
+  draft = {yes},
   title =        {LNgen: Tool Support for Locally Nameless Representations},
   author =       {Brian Aydemir and Stephanie Weirich},
   institution =  {Computer and Information Science, University of Pennsylvania},
@@ -162,6 +169,7 @@ series = {Haskell '26}
 }
 
 @misc{aydemir:syntax,
+  draft = {yes},
   author = 	 {Brian Aydemir and Steve Zdancewic and Stephanie Weirich},
   title =  	 {Abstracting Syntax},
   number =       {MS-CIS-09-06},
@@ -344,6 +352,55 @@ misc{InCertProposal06,
 
 %% Artifacts %%
 
+@TechReport{chan:ccnf-artifact,
+  author       = {Chan, Jonathan},
+  title        = {Artifact for ``Commuting Conversions and Join Points for Call-By-Push-Value''},
+  month        = feb,
+  year         = 2026,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.19288094},
+  url          = {https://doi.org/10.5281/zenodo.19288094},
+  note         = {Awarded ``Available'', ``Evaluated \& Reusable'' and ``Results Reproduced'' badges by OOPSLA 2026 Artifact Evaluation Committee. Artifact for \href{#chan:ccnf}{the paper}.}
+}
+
+@TechReport{liu:pair-eta-artifact,
+  author       = {Liu, Yiyun and
+                  Weirich, Stephanie},
+  title        = {Artifact associated with ``Algorithmic Conversion with Surjective Pairing: A Syntactic and Untyped Approach''},
+  month        = oct,
+  year         = 2025,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.17343517},
+  url          = {https://doi.org/10.5281/zenodo.17343517},
+  note         = {Awarded ``Available'' and ``Evaluated \& Functional'' badges by POPL 2026 Artifact Evaluation Committee. Artifact for \href{#liu:pair-eta}{the paper}.}
+}
+
+@TechReport{sainati:strictness-artifact,
+  author       = {Sainati, Daniel and
+                  Cutler, Joseph and
+                  Pierce, Benjamin and
+                  Weirich, Stephanie},
+  title        = {Artifact associated with ``Typing Strictness''},
+  month        = oct,
+  year         = 2025,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.17279039},
+  url          = {https://doi.org/10.5281/zenodo.17279039},
+  note         = {Awarded ``Available'' and ``Evaluated \& Functional'' badges by POPL 2026 Artifact Evaluation Committee. Artifact for \href{#sainati:strictness}{the paper}.}
+}
+
+@TechReport{chan:stratt-artifact,
+  author       = {Chan, Jonathan and
+                  Weirich, Stephanie},
+  title        = {Artifact for ``Stratified Type Theory''},
+  month        = may,
+  year         = 2025,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.14676180},
+  url          = {https://doi.org/10.5281/zenodo.14676180},
+  note         = {Artifact for \href{#chan:stratt}{the paper}.}
+}
+
 @TechReport{liu_2024_14252132,
   author       = {Liu, Yiyun and
                   Chan, Jonathan and
@@ -354,7 +411,7 @@ misc{InCertProposal06,
   publisher    = {Zenodo},
   doi          = {10.5281/zenodo.14252132},
   url          = {https://doi.org/10.5281/zenodo.14252132},
-  note         = {Awarded ``Available'', and ``Evaluated \& Reusable'' badges by POPL 2025 Artifact Evaluation Committee}
+  note         = {Awarded ``Available'', and ``Evaluated \& Reusable'' badges by POPL 2025 Artifact Evaluation Committee. Artifact for \href{#liu:indist-mltt}{the paper}.}
 }
 
 @TechReport{xia_2024_11493754,
@@ -374,7 +431,7 @@ misc{InCertProposal06,
   version      = {V1.0.0},
   doi          = {10.5281/zenodo.11493754},
   url          = {https://doi.org/10.5281/zenodo.11493754},
-  note         = {Awarded ``Available'' and ``Evaluated and Functional'' badges by ICFP 2024 Artifact Evaluation Committee.}
+  note         = {Awarded ``Available'' and ``Evaluated and Functional'' badges by ICFP 2024 Artifact Evaluation Committee. Artifact for \href{#xia:cost2}{the paper}.}
 }
 
 
@@ -386,7 +443,7 @@ misc{InCertProposal06,
   publisher    = {Zenodo},
   doi          = {10.5281/zenodo.12654518},
   url          = {https://zenodo.org/records/12654518},
-  note         = {Awarded ``Available'', ``Evaluated \& Reusable'' and ``Results Reproduced'' badges by OOPSLA 2024 Artifact Evaluation Committee}
+  note         = {Awarded ``Available'', ``Evaluated \& Reusable'' and ``Results Reproduced'' badges by OOPSLA 2024 Artifact Evaluation Committee. Artifact for \href{#torczon2024effects}{the paper}.}
 }
 
 @TechReport{liu:dcoi-artifact,
@@ -402,7 +459,7 @@ misc{InCertProposal06,
   doi          = {10.5281/zenodo.8423073},
   url          = {https://doi.org/10.5281/zenodo.8423073},
   note =         {Awarded ``Available'' and ``Evaluated \& Reusable'' badges
-                  by POPL 2024 Artifact Evaluation Committee},
+                  by POPL 2024 Artifact Evaluation Committee. Artifact for \href{#liu:dcoi}{the paper}.},
 
 }
 
@@ -419,7 +476,7 @@ misc{InCertProposal06,
                   verify the Coq development.  },
   keywords =     {Coq, Dependent types, Mechanized metatheory},
   note =         {Awarded ``Available'' and ``Evaluated \& Reusable'' badges
-                  by ICFP 2023 Artifact Evaluation Committee},
+                  by ICFP 2023 Artifact Evaluation Committee. Artifact for \href{#liu:icfp23}{the paper}.},
   doi =          {10.1145/3580401}
 }
 
@@ -429,7 +486,7 @@ misc{InCertProposal06,
   month =     jun,
   year =      2022,
   plclub =    {yes},
-  note =      {Awarded ``Available'' and ``Evaluated \& Reusable'' badges by ICFP 2022 Artifact Evaluation Committee}, 
+  note =      {Awarded ``Available'' and ``Evaluated \& Reusable'' badges by ICFP 2022 Artifact Evaluation Committee. Artifact for \href{#li2022:tlon}{the paper}.}, 
   doi = {10.5281/zenodo.6678339}
 }
 
@@ -438,7 +495,7 @@ misc{InCertProposal06,
   title  = {Artifact Associated with A Dependent Dependency Calculus},
   month  = Jan,
   year   = 2022, 
-  note   = {Awarded ``Reusable'' and ``Available'' badges by ESOP 2022 Artifact Evaluation Committee},
+  note   = {Awarded ``Reusable'' and ``Available'' badges by ESOP 2022 Artifact Evaluation Committee. Artifact for \href{#choudhury:ddc}{the paper}.},
   plclub = {yes},
   doi    = {10.5281/zenodo.5903727}
 }
@@ -448,7 +505,7 @@ misc{InCertProposal06,
   title =     {Reasoning about the garden of forking paths (artifact)},
   month =     may,
   year =      2021,
-  note =      {Awarded ``Functional'' and ``Available'' badges by ICFP 2021 Artifact Evaluation Committee}, 
+  note =      {Awarded ``Functional'' and ``Available'' badges by ICFP 2021 Artifact Evaluation Committee. Artifact for \href{#li2021:reasoning}{the paper}.}, 
   plclub =    {yes},
   doi = {10.5281/zenodo.4771438}
 }
@@ -460,7 +517,7 @@ misc{InCertProposal06,
   year = 2020, 
   month = dec, 
   plclub = yes, 
-  note = {Awarded ``Reusable'', ``Functional'' and ``Available'' badges by POPL 2021 Artifact Evaluation Committee}
+  note = {Awarded ``Reusable'', ``Functional'' and ``Available'' badges by POPL 2021 Artifact Evaluation Committee. Artifact for \href{#weirich:graded-haskell}{the paper}.}
 }
 
 @TechReport{weirich19:role-artifact,
@@ -470,7 +527,7 @@ misc{InCertProposal06,
   year = 2019, 
   month = jul, 
   plclub = yes,
-  note = {Awarded ``Functional'' and ``Available'' badges by ICFP 2019 Artifact Evaluation Committee}
+  note = {Awarded ``Functional'' and ``Available'' badges by ICFP 2019 Artifact Evaluation Committee. Artifact for \href{#weirich:dep-roles}{the paper}.}
 }
 
 @TechReport{breitner18:hs-to-coq-artifact,
@@ -478,7 +535,7 @@ misc{InCertProposal06,
   title =  {The {hs-to-coq} tool with examples},
   year =   2018,
   month =  jul,
-  note =   {Awarded ``Artifacts Available'' and ``Artifacts Evaluated - Functional'' badges by ICFP 2018 Artifact Evaluation Committee},
+  note =   {Awarded ``Artifacts Available'' and ``Artifacts Evaluated - Functional'' badges by ICFP 2018 Artifact Evaluation Committee. Artifact for \href{#Breitner:2018:set}{the paper}.},
   doi =    {10.1145/3235036/},
   plclub = {yes}}
   
@@ -529,6 +586,7 @@ misc{InCertProposal06,
 
 
 @article{liu:indist-mltt,
+  note = {\href{#liu_2024_14252132}{Artifact} available.},
   author =       {Yiyun Liu and Jonathan Chan and Stephanie Weirich},
   title =        {Consistency of a Dependent Calculus of Indistinguishability},
   month =        jan,
@@ -559,6 +617,7 @@ proof assistant.
 
 
 @article{torczon2024effects,
+  note = {\href{#torczon:cbpv-artifact}{Artifact} available.},
   title={Effects and Coeffects in Call-By-Push-Value}, 
   author={Cassia Torczon and Emmanuel {Su\'{a}rez Acevedo} and Shubh Agrawal and Joey Velez-Ginorio and Stephanie Weirich},
   month=oct,
@@ -595,6 +654,7 @@ proof assistant.
 
 
 @inproceedings{chan:stratt,
+  note = {\href{#chan:stratt-artifact}{Artifact} available.},
   author =       {Jonathan Chan and Stephanie Weirich},
   editor=        "Viktor Vafeiadis",
   title =        {Stratified Type Theory},
@@ -630,6 +690,7 @@ paradoxes using our implementation.}
 
 
 @article{xia:cost2,
+  note = {\href{#xia_2024_11493754}{Artifact} available.},
   author = {Li-Yao Xia and Laura Israel and Maite Kramarz and Nicholas Coltharp and Koen Claessen and Stephanie Weirich and Yao Li},
   title = {Story of Your Lazy Function's Life: A Bidirectional Demand Semantics for Mechanized Cost Analysis of Lazy Programs},
   month = aug, 
@@ -670,6 +731,7 @@ paradoxes using our implementation.}
   
 
 @article{liu:dcoi,
+  note = {\href{#liu:dcoi-artifact}{Artifact} available.},
 author = {Liu, Yiyun and Chan, Jonathan and Shi, Jessica and Weirich, Stephanie},
 title = {Internalizing Indistinguishability with Dependent Types},
 year = {2024},
@@ -710,6 +772,7 @@ plclub = yes
 }
 
 @article{liu:icfp23,
+  note = {\href{#10.1145/3580401}{Artifact} available.},
   author =       {Liu, Yiyun and Weirich, Stephanie},
   title =        {Dependently-Typed Programming with Logical Equality
                   Reflection},
@@ -759,7 +822,7 @@ plclub = yes
   publisher =    ACM, 
   doi =          {10.1145/3547632},
   pdf =          "papers/icfp22.pdf",
-  note =         {Distinguished Paper Award.},
+  note =         {Distinguished Paper Award. \href{#li22:tlon-artifact}{Artifact} available.},
   abstract = {Free monads (and their variants) have become a popular
                   general-purpose tool for representing the semantics of
                   effectful programs in proof assistants. These data
@@ -785,6 +848,7 @@ plclub = yes
 
 
 @InProceedings{choudhury:ddc,
+  note = {\href{#choudhury22:ddc-artifact}{Artifact} available.},
   author="Choudhury, Pritam and Eades III, Harley and Weirich, Stephanie",
   editor="Sergey, Ilya",
   title="A Dependent Dependency Calculus",
@@ -832,6 +896,7 @@ plclub = yes
 }
 
 @Article{li2021:reasoning,
+  note = {\href{#li21:reasoning-artifact}{Artifact} available. \href{#li2021:reasoning-arXiv}{arXiv version} available.},
       title={Reasoning about the garden of forking paths}, 
       author={Yao Li and {Li-yao} Xia and Stephanie Weirich},
       year={2021},
@@ -864,6 +929,7 @@ plclub = yes
 
 
 @TechReport{li2021:reasoning-arXiv,
+  note = {arXiv version of \href{#li2021:reasoning}{the paper}.},
       title={Reasoning about the garden of forking paths}, 
       author={Yao Li and {Li-yao} Xia and Stephanie Weirich},
       year={2021},
@@ -875,6 +941,7 @@ plclub = yes
 }
 
 @TechReport{weirich:graded-haskell-extended,
+  note = {Extended version of \href{#weirich:graded-haskell}{the paper}.},
   author =       {Pritam Choudhury and Harley D. Eades III and Richard A. Eisenberg and Stephanie Weirich},
   title =        {A Graded Dependent Type System with a Usage-Aware Semantics (Extended Version)},
   year =         2020,
@@ -892,7 +959,7 @@ plclub = yes
   publisher =    {ACM},
   plclub =       {yes},
   doi =          {10.1145/3434331},
-  note =         {Artifact available},
+  note =         {\href{#weirich21:GrAD-artifact}{Artifact} available. \href{#weirich:graded-haskell-extended}{Extended technical report} available.},
   url =          {https://github.com/sweirich/graded-haskell/blob/main/README.md}
 }
 
@@ -915,6 +982,7 @@ plclub = yes
 
 
 @Article{weirich:dep-roles,
+  note = {\href{#weirich19:role-artifact}{Artifact} available. \href{#weirich:dep-roles-extended}{Extended technical report} available.},
   author = 		  {Stephanie Weirich and Pritam Choudhury and Antoine Voizard and Richard Eisenberg},
   title = 		  {A Role for Dependent Types in {Haskell}},
   journal = 	  {Proc. ACM Program. Lang.},
@@ -931,6 +999,7 @@ plclub = yes
 
 
 @Article{Breitner:2019:jfp,
+  note = {Journal version of the \href{#Breitner:2018:set}{ICFP 2018 experience report}.},
  author = {Breitner, Joachim and Spector-Zabusky, Antal and Li, Yao and Rizkallah, Christine and Wiegley, John and Cohen, Joshua and Weirich, Stephanie},
  title = {Ready, Set, Verify! {Applying} Hs-to-coq to Real-world {Haskell} Code},
  journal = "Journal of Functional Programming",
@@ -966,7 +1035,7 @@ plclub = yes
  address = {New York, NY, USA},
  keywords = {Coq, Haskell, verification},
  plclub = "yes",
- note = {Artifact Available}
+ note = {\href{#breitner18:hs-to-coq-artifact}{Artifact} available. Extended version published in \href{#Breitner:2019:jfp}{JFP 2021}.}
 } 
 
 
@@ -1008,6 +1077,7 @@ Programs and Proofs (CPP'18)},
 }
 
 @article {Appel20160331,
+  misc = {yes},
 	author = {Appel, Andrew W. and Beringer, Lennart and Chlipala, Adam and Pierce, Benjamin C. and Shao, Zhong and Weirich, Stephanie and Zdancewic, Steve},
 	title = {Position paper: the science of deep specification},
 	volume = {375},
@@ -1024,6 +1094,7 @@ Programs and Proofs (CPP'18)},
 
 
 @article{breitner2016,
+  note = {Journal version of the \href{#breitner:safe-coercions}{ICFP 2014 paper}.},
 title = "Safe zero-cost coercions for {Haskell}",
 doi = "10.1017/S0956796816000150",
 publisher = "Cambridge University Press",
@@ -1050,6 +1121,7 @@ journal = "Journal of Functional Programming"
   year = 	  2016}
 
 @InProceedings{type-app,
+  note = {\href{#type-app-extened}{Extended technical report} available.},
   author = 	  {Richard A. Eisenberg and Stephanie Weirich and Hamidhasan G. Ahmed},
   title = 	  {Visible Type Application},
   booktitle = {European Symposium on Programming (ESOP)},
@@ -1098,12 +1170,13 @@ journal = "Journal of Functional Programming"
   plclub =    {yes},
   pages =     {369--382},
   doi = {10.1145/2676726.2676974},
-  note = {Artifact Evaluated},
+  note = {Artifact Evaluated. \href{#sjoberg:congruence-extended}{Extended technical report} available.},
   pdf =       "http://www.seas.upenn.edu/~sweirich/papers/popl15-congruence.pdf"
 }
 
 
 @inproceedings{breitner:safe-coercions,
+  note = {Extended version published in \href{#breitner2016}{JFP 2016}. \href{#breitner:safe-coercions-extended}{Extended technical report} available.},
 author = {Breitner, Joachim and Eisenberg, Richard A. and Peyton Jones, Simon and Weirich, Stephanie},
 title = {Safe Zero-Cost Coercions for Haskell},
 year = {2014},
@@ -1127,6 +1200,7 @@ plclub = {yes}
 
 
 @InProceedings{eisenberg:closed-tf,
+  note = {\href{#eisenberg:closed-tf-extended}{Extended technical report} available.},
   author = 	  {Richard A. Eisenberg and Dimitrios Vytiniotis and Simon {Peyton Jones} and Stephanie Weirich},
   title = 	  {Closed type families with overlapping equations},
   booktitle = {POPL 2014: 41st ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages},
@@ -1141,6 +1215,7 @@ plclub = {yes}
 
 
 @inproceedings{casinghino:combining-proofs-programs,
+  note = {\href{#casinghino:combining-proofs-extended}{Technical appendix} available.},
 author = {Casinghino, Chris and Sj\"{o}berg, Vilhelm and Weirich, Stephanie},
 title = {Combining Proofs and Programs in a Dependently Typed Language},
 year = {2014},
@@ -1162,6 +1237,7 @@ plclub = {yes}
 
 
 @inproceedings{weirich:dwk,
+  note = {\href{#weirich:dwk-extended}{Extended technical report} available.},
 author = {Weirich, Stephanie and Hsu, Justin and Eisenberg, Richard A.},
 title = {System FC with Explicit Kind Equality},
 year = {2013},
@@ -1183,6 +1259,7 @@ pdf =       "http://www.seas.upenn.edu/~sweirich/papers/fckinds.pdf"
 
 
 @article{pii13preface,
+  misc = {yes},
   author = {Zhenjiang Hu and Shin-Cheng Mu and Stephanie Weirich},
   title = {Guest Editorial: Advanced programming techniques for construction of robust, generic and evolutionary programs},
   journal = {Progress in Informatics},
@@ -1238,6 +1315,7 @@ semantics},
 
 
 @article{DBLP:journals/jfp/AcarCW12,
+  misc = {yes},
   author    = {Umut A. Acar and
                James Cheney and
                Stephanie Weirich},
@@ -1253,6 +1331,7 @@ semantics},
 }
 
 @article{greenberg:jfp,
+  note = {Journal version of the \href{#contracts}{POPL 2010 paper}.},
   author    = {Michael Greenberg and
                Benjamin C. Pierce and
                Stephanie Weirich},
@@ -1352,6 +1431,7 @@ semantics},
 }
 
 @InProceedings{stump:position,
+  misc = {yes},
   author = 		  {Tim Sheard and Aaron Stump and Stephanie Weirich},
   title = 		  {Language-Based Verification Will Change The World},
   booktitle =    {2010 FSE/SDP Workshop on the Future of Software Engineering Research},
@@ -1366,6 +1446,7 @@ semantics},
 
 
 @InProceedings{weirich:newtypes,
+  note = {\href{#weirich:newtypes-long}{Extended technical report} available.},
   author = 		  {Stephanie Weirich and Dimitrios Vytiniotis and Simon {Peyton Jones}
   and Steve Zdancewic},
   title = 		  {Generative Type Abstraction and Type-level Computation},
@@ -1412,6 +1493,7 @@ are combined."
 
 
 @InProceedings{teqt,
+  note = {\href{#teqt-tr}{Technical appendix} available.},
   author = 	 {Aaron Stump and Vilhelm Sj\"{o}berg and Stephanie Weirich},
   title = 	 {Termination Casts: A Flexible Approach to Termination with
 General Recursion},
@@ -1441,6 +1523,7 @@ term."
 
 
 @InProceedings{contracts,
+  note = {Extended version published in \href{#greenberg:jfp}{JFP 2012}.},
   author = 	 {Michael Greenberg and Benjamin Pierce and Stephanie Weirich},
   title = 	 {Contracts Made Manifest},
   booktitle = 	 {37th ACM SIGACT-SIGPLAN Symposium on Principles of Programming Languages (POPL)},
@@ -1699,6 +1782,7 @@ draft{char:binders,
 }
 
 @InProceedings{vytiniotis07a,
+  misc = {yes},
   author = 		  {Dimitrios Vytiniotis and Stephanie Weirich},
   title = 		  {Dependent types: Easy as {PIE}},
   booktitle = 	  {Draft Proceedings of the 8th Symposium on Trends in Functional Programming},
@@ -1775,6 +1859,7 @@ using universal quantification over a cofinite set of names.  } }
 }
 
 @article{dantas:aspectml-journal,
+  note = {Journal version of the \href{#dantas:polyaml}{ICFP 2005 paper} ``PolyAML: A Polymorphic Aspect-oriented Functional Programming Language''.},
   author = 		  {Daniel S. Dantas and David Walker and Geoffrey Washburn and Stephanie Weirich},
   title = 		  {{AspectML}: A Polymorphic Aspect-oriented Functional Programming Language},
   journal =      {ACM Transactions on Programming Languages and Systems},
@@ -1916,6 +2001,7 @@ loading or runtime type generativity.
 #  projecturl = {http://fling-l.seas.upenn.edu/~plclub/cgi-bin/poplmark/index.php?title=The_POPLmark_Challenge},
 
 @InProceedings{pierce:position,
+  misc = {yes},
   author = 		  {Benjamin C. Pierce and Peter Sewell and
                   Stephanie Weirich and Steve Zdancewic},
   title = 		  {It is Time to Mechanize Programming Language Metatheory},
@@ -1948,6 +2034,7 @@ the masses.
 %% projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
 
 @InProceedings{vytiniotis:boxy,
+  note = {\href{#vytiniotis:boxy-techreport}{Technical appendix} available.},
   TOPIC = {language design},
   HISTORICAL = {The paper shows how type inference can exploit user annotations in order to type check programs
                 that require first-class polymorphism. This revision of the boxy types paper offers a new smart-application rule,
@@ -1980,6 +2067,7 @@ the masses.
 
 
 @InProceedings{pj-vytiniotis:wobbly,
+  note = {\href{#vytiniotis:gadt-techreport}{Technical appendix} available.},
   AUTHOR = {Simon L. {Peyton Jones} and Dimitrios Vytiniotis and Stephanie Weirich and Geoffrey Washburn},
   TITLE = {Simple unification-based type inference for {GADTs}},
   booktitle = {International Conference on Functional Programming (ICFP)},
@@ -2013,6 +2101,7 @@ the masses.
 
 
 @InProceedings{dantas:polyaml,
+  note = {Extended version published in \href{#dantas:aspectml-journal}{TOPLAS 2008}. \href{#dantas:tech-report}{Extended technical report} available.},
   author = 		  {Daniel S. Dantas and David Walker and Geoffrey Washburn and Stephanie Weirich},
   title = 		  {{PolyAML}: A polymorphic aspect-oriented functional programming language},
   booktitle =    "{ACM SIGPLAN} International Conference on Functional Programming (ICFP) ",
@@ -2055,6 +2144,7 @@ type of the pointcut.
 %%   projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
 
 @article{peyton-jones:practical,
+  note = {\href{#peyton-jones:practical-tr}{Technical appendix} available.},
   author = 		  {Simon L. {Peyton Jones} and Dimitrios Vytiniotis and Stephanie Weirich and Mark Shields},
   title = 		  {Practical type inference for arbitrary-rank types},
   journal =      "Journal of Functional Programming",
@@ -2132,6 +2222,7 @@ technologies, and motivate further research.  }
 
 
 @InProceedings{washburn:seckinds,
+  note = {\href{#washburn:seckinds-tr}{Extended technical report} available.},
   author = 		  {Geoffrey Washburn and Stephanie Weirich},
   title = 		  {Generalizing Parametricity Using Information Flow},
   booktitle =    {Twentieth Annual IEEE Symposium on. Logic in Computer Science (LICS 2005)},
@@ -2171,6 +2262,7 @@ the program depend on the implementation of a given type.
 
 %% 64 pages
 @article{washburn:bgb-journal,
+  note = {Journal version of the \href{#washburn:itabox}{ICFP 2003 paper}.},
   year =         {2008},
   author = 		  {Geoffrey Washburn and Stephanie Weirich},
   title = 		  {Boxes Go Bananas: {E}ncoding Higher-order
@@ -2213,6 +2305,7 @@ higher-order structures in polymorphic languages.
 %% 20 pages
 %%   ps = "http://www.cis.upenn.edu/~lhuang3/pubs/tdj-short.ps",
 @InProceedings{weirich:tdj,
+  note = {\href{#huang:tdp-tr}{Extended technical report} available.},
   plclub =       "yes",
   author = 		  {Stephanie Weirich and Liang Huang},
   title = 		  {A Design for Type-Directed {Java}},
@@ -2327,6 +2420,7 @@ higher-order structures in polymorphic languages.
 
 
 @InProceedings{vytiniotis:itaname,
+  note = {\href{#vytiniotis:itaname-tr}{Extended technical report} available.},
   author = 		  {Dimitrios Vytiniotis and Geoffrey Washburn and Stephanie Weirich},
   title = 		  {An Open and Shut Typecase},
   booktitle = 	  {{ACM SIGPLAN Workshop} on Types in Language Design and Implementation},
@@ -2377,6 +2471,7 @@ polymorphism, using the same basic constructs.}
 %                 has been submitted for publication.",
 
 @InProceedings{washburn:itabox,
+  note = {Extended version published in \href{#washburn:bgb-journal}{JFP 2008}. \href{#washburn:itabox-tr}{Extended technical report} available.},
   author = 		  {Geoffrey Washburn and Stephanie Weirich},
   title = 		  {Boxes Go Bananas: {E}ncoding Higher-order
                   Abstract Syntax with Parametric Polymorphism},
@@ -2477,6 +2572,7 @@ higher-order structures in polymorphic languages.  } }
 
 
 @Article{crary:intensional-journal,
+  note = {Journal version of the \href{#crary:intensional}{ICFP 1998 paper}.},
   author    = {Karl Crary and Stephanie Weirich and Greg Morrisett},
   title     = "Intensional Polymorphism in Type Erasure Semantics",
   journal   = "Journal of Functional Programming",
@@ -2714,6 +2810,7 @@ higher-order structures in polymorphic languages.  } }
 %  note =    "An extended and revised version of this paper is Journal Publication
 %              \cite{crary:intensional-journal}.",
 @InProceedings{crary:intensional,
+  note = {Extended version published in \href{#crary:intensional-journal}{JFP 2002}. \href{#crary98a}{Technical report version} available.},
   plclub =       "yes",
   author = 	 {Karl Crary and Stephanie Weirich and Greg Morrisett},
   title = 	 "Intensional Polymorphism in Type Erasure Semantics",
@@ -2778,6 +2875,7 @@ higher-order structures in polymorphic languages.  } }
 %% Extended versions
 
 @TechReport{weirich:dep-roles-extended,
+  note = {Extended version of \href{#weirich:dep-roles}{the paper}.},
   author = 		  {Stephanie Weirich and Pritam Choudhury and Antoine Voizard and Richard Eisenberg},
   title = 		  {A Role for Dependent Types in {Haskell} (Extended Version)},
   year = 		  2019,
@@ -2786,6 +2884,7 @@ higher-order structures in polymorphic languages.  } }
 
 
 @TechReport{type-app-extened,
+  note = {Extended version of \href{#type-app}{the paper}.},
   author =    {Richard A. Eisenberg and Stephanie Weirich and Hamidhasan G. Ahmed},
   title =     {Visible Type Application (Extended version)},
   pdf =       {http://www.seas.upenn.edu/~sweirich/papers/esop2016-typeapp-extended.pdf},
@@ -2794,6 +2893,7 @@ higher-order structures in polymorphic languages.  } }
 
 
 @TechReport{sjoberg:congruence-extended,
+  note = {Extended version of \href{#sjoberg:congruence}{the paper}.},
   author = 		  {Vilhelm Sj\"oberg and Stephanie Weirich},
   title = 		  {Programming up to Congruence (Extended Version)},
   year = 		  2014,
@@ -2806,6 +2906,7 @@ higher-order structures in polymorphic languages.  } }
 
 
 @TechReport{breitner:safe-coercions-extended,
+  note = {Extended version of \href{#breitner:safe-coercions}{the paper}.},
   author = 		  {Joachim Breitner and Richard A. Eisenberg and Simon {Peyton Jones} and Stephanie Weirich},
   title = 		  {Safe Zero-cost Coercions for {Haskell} (Extended Version)},
   institution =  {Univ. of Pennsylvania},
@@ -2816,6 +2917,7 @@ higher-order structures in polymorphic languages.  } }
 }
 
 @TechReport{weirich:dwk-extended,
+  note = {Extended version of \href{#weirich:dwk}{the paper}.},
   author = 	  {Stephanie Weirich and Justin Hsu and Richard A. Eisenberg},
   title = 	  {System {FC} with explicit kind equality (Extended Version)},
   year = 	  2013,
@@ -2825,6 +2927,7 @@ higher-order structures in polymorphic languages.  } }
 
 
 @TechReport{casinghino:combining-proofs-extended,
+  note = {Technical appendix for \href{#casinghino:combining-proofs-programs}{the paper}.},
   author = 	  {Chris Casinghino and Vilhelm Sj\"oberg and Stephanie Weirich},
   title = 	  {Combining Proofs and Programs in a Dependently Typed Language (With Technical Appendix)},
   year =      2013,
@@ -2835,6 +2938,7 @@ higher-order structures in polymorphic languages.  } }
 }
 
 @TechReport{eisenberg:closed-tf-extended,
+  note = {Extended version of \href{#eisenberg:closed-tf}{the paper}.},
   author = 	  {Richard A. Eisenberg and Dimitrios Vytiniotis and Simon {Peyton Jones} and Stephanie Weirich},
   title = 	  {Closed type families with overlapping equations (Extended version)},
   year = 	  2013,
@@ -2848,6 +2952,7 @@ higher-order structures in polymorphic languages.  } }
 
 
 @TechReport{teqt-tr,
+  note = {Technical appendix for \href{#teqt}{the paper}.},
   author = 		  {Aaron Stump and Vilhelm Sj\"oberg and Stephanie Weirich},
   title = 		  {Termination Casts: A Flexible Approach to Termination with General Recursion (Technical Appendix)},
   institution =  {University of Pennsylvania Department of Computer and Information Science},
@@ -2857,6 +2962,7 @@ higher-order structures in polymorphic languages.  } }
 
 
 @TechReport{weirich:newtypes-long,
+  note = {Extended version of \href{#weirich:newtypes}{the paper}.},
   author = 	 {Stephanie Weirich and Dimitrios Vytiniotis and Simon {Peyton Jones}
   and Steve Zdancewic},
   title = 	 {Generative Type Abstraction and Type-level Computation (Extended Version) },
@@ -2880,6 +2986,7 @@ are combined."
 
 
 @TechReport{crary98a,
+  note = {Technical report version of \href{#crary:intensional}{the paper}.},
   author = 	 {Karl Crary and Stephanie Weirich and Greg Morrisett},
   title = 	 {Intensional Polymorphism in Type Erasure Semantics
               (Extended Version)},
@@ -2906,6 +3013,7 @@ We present the load-calculus, used to model dynamic loading, and prove it sound.
 
 
 @TECHREPORT{vytiniotis:boxy-techreport,
+  note = {Technical appendix for \href{#vytiniotis:boxy}{the paper}.},
   TOPIC = {language design},
   AUTHOR = {Dimitrios Vytiniotis and Stephanie Weirich and Simon L. {Peyton~Jones}},
   TITLE = {Boxy type inference for higher-rank types and impredicativity, {Technical Appendix}},
@@ -2921,6 +3029,7 @@ We present the load-calculus, used to model dynamic loading, and prove it sound.
 
 
 @TECHREPORT{vytiniotis:gadt-techreport,
+  note = {Technical appendix for \href{#pj-vytiniotis:wobbly}{the paper}.},
   TOPIC = {language design},
   AUTHOR = {Dimitrios Vytiniotis and Stephanie Weirich and Simon L. {Peyton~Jones}},
   TITLE = {Simple unification-based type inference for {GADTs}, {Technical Appendix}},
@@ -2937,6 +3046,7 @@ We present the load-calculus, used to model dynamic loading, and prove it sound.
 
 
 @TechReport{dantas:tech-report,
+  note = {Extended version of \href{#dantas:polyaml}{the paper}.},
   author = 		  {Daniel S. Dantas and David Walker and Geoffrey Washburn and Stephanie Weirich},
   title = 		  {{PolyAML:} A Polymorphic Aspect-Oriented Functional Programming Language (Extended Version)},
   institution =  {University of Pennsylvania, Department of Computer and Information Science},
@@ -2952,6 +3062,7 @@ We give our language operational meaning via a type-directed translation into an
 
 %   projecturl = {http://www.cis.upenn.edu/%7Edimitriv/dimitriv-inference.html},
 @TechReport{peyton-jones:practical-tr,
+  note = {Technical appendix for \href{#peyton-jones:practical}{the paper}.},
   author = 		  {Simon L. {Peyton Jones} and Dimitrios Vytiniotis and Stephanie Weirich and Mark Shields},
   title = 		  {Practical type inference for arbitrary-rank types (Technical appendix)},
   month =        jul,
@@ -2962,6 +3073,7 @@ We give our language operational meaning via a type-directed translation into an
 }
 
 @TechReport{washburn:seckinds-tr,
+  note = {Extended version of \href{#washburn:seckinds}{the paper}.},
   author = 		  {Geoffrey Washburn and Stephanie Weirich},
   title = 		  {Generalizing Parametricity Using Information Flow (Extended version)},
   number =       {MS-CIS-05-04},
@@ -3081,6 +3193,7 @@ misc{dantas:poly-aspects,
 }
 
 @TechReport{huang:tdp-tr,
+  note = {Extended version of \href{#weirich:tdj}{the paper}.},
   plclub =       "yes",
   author = 		  {Liang Huang and Stephanie Weirich},
   title = 		  {A Design for Type-Directed Programming in {Java} (Extended Version)},
@@ -3094,6 +3207,7 @@ misc{dantas:poly-aspects,
 }
 
 @TechReport{vytiniotis:itaname-tr,
+  note = {Extended version of \href{#vytiniotis:itaname}{the paper}.},
   author = 		  {Dimitrios Vytiniotis and Geoffrey Washburn and Stephanie Weirich},
   title = 		  {An Open and Shut Typecase (Extended Version)},
   institution =  {University of Pennsylvania, Computer and Information Science},
@@ -3158,6 +3272,7 @@ misc{weirich:erasure-manuscript,
 }
 
 @TechReport{washburn:itabox-tr,
+  note = {Extended version of \href{#washburn:itabox}{the paper}.},
   author = 		  {Geoffrey Washburn and Stephanie Weirich},
   title = 		  {Boxes Go Bananas: {E}ncoding Higher-order
                   Abstract Syntax with Parametric Polymorphism
